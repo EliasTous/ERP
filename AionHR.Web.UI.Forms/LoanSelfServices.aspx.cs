@@ -461,7 +461,7 @@ namespace AionHR.Web.UI.Forms
                 s.purpose = "";
                 s.date = DateTime.Now;
                 s.effectiveDate = DateTime.Now;
-                s.status = 0;
+                s.apStatus = "0";
                 s.ltId = 0;
                 s.ltName = "";
                 s.amount = 0;
@@ -828,7 +828,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                        request.entity.status = 1;
+                        request.entity.apStatus = "1";
                         PostResponse<loanSelfService> r = _selfServiceService.ChildAddOrUpdate<loanSelfService>(request);
                         //check if the insert failed
                         if (!r.Success)//it maybe be another condition

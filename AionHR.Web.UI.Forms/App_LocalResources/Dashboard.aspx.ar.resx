@@ -702,4 +702,7 @@
   <data name="FieldHelpText" xml:space="preserve">
     <value>نص المساعدة</value>
   </data>
+  <data name="FieldSupplier" xml:space="preserve">
+    <value>المورد</value>
+  </data>
 </root>

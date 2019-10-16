@@ -54,7 +54,7 @@
                         <ext:ModelField Name="endDate" />
                         <ext:ModelField Name="returnDate" />
                         <ext:ModelField Name="ltId" />
-                        <ext:ModelField Name="status" />
+                        <ext:ModelField Name="apStatus" />
                           <ext:ModelField Name="statusString" />
                         <ext:ModelField Name="isPaid" />
                         <ext:ModelField Name="destination" />
@@ -227,7 +227,7 @@
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler=" if (record.data['status']==1){return editRender()+'&nbsp;&nbsp;' +deleteRender()+'&nbsp;&nbsp;'+historeRender();} else {return editRender()+'&nbsp;&nbsp;'+historeRender();} " />
+                                <Renderer Handler=" if (record.data['apStatus']==1){return editRender()+'&nbsp;&nbsp;' +deleteRender()+'&nbsp;&nbsp;'+historeRender();} else {return editRender()+'&nbsp;&nbsp;'+historeRender();} " />
 
                             </ext:Column>
 

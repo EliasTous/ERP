@@ -3085,6 +3085,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Raw Punches.
+        /// </summary>
+        internal static string RT311 {
+            get {
+                return ResourceManager.GetString("RT311", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loans History.
         /// </summary>
         internal static string RT401 {

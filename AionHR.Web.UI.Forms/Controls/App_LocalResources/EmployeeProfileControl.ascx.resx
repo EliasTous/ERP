@@ -430,6 +430,6 @@
     <value>Leave Payment :</value>
   </data>
   <data name="EmployeeUserValues" xml:space="preserve">
-    <value>User Value</value>
+    <value>User Defined</value>
   </data>
 </root>

@@ -432,5 +432,17 @@ namespace AionHR.Web.UI.Forms.Reports
         {
             return GetJobInfoString();
         }
+
+
+        public void setBranch(string id)
+        {
+            branchId.SetValue(id);
+            branchId.Select(id);
+        }
+        public void setDepartment(string id)
+        {
+            departmentId.SetValue(id);
+            departmentId.Select(id);
+        }
     }
 }

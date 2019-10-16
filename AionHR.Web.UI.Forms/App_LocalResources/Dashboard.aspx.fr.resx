@@ -699,4 +699,7 @@
   <data name="FieldHelpText" xml:space="preserve">
     <value>Help Text</value>
   </data>
+  <data name="FieldSupplier" xml:space="preserve">
+    <value>Fournisseur</value>
+  </data>
 </root>

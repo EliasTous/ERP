@@ -2245,6 +2245,8 @@
                                                        <ext:ModelField Name="arName" />
                                                  <ext:ModelField Name="seqNo" />
                                                   <ext:ModelField Name="activityId" />
+                                                <ext:ModelField Name="supplierName" />
+                                                
                                                  
                                                 
                                                 
@@ -2265,10 +2267,11 @@
                                      <ext:Column ID="Column61" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column62" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column63" DataIndex="categoryName" Text="<%$ Resources: FieldCategory%>" runat="server" Flex="1" />
+                                    <ext:Column ID="Column39" DataIndex="supplierName" Text="<%$ Resources: FieldSupplier%>" runat="server" Flex="1" /> 
                                      <ext:Column ID="Column64" DataIndex="qty" Text="<%$ Resources: FieldQty%>" runat="server" Flex="1" />
                                  
                                      <ext:Column ID="Column67"  DataIndex="arName" runat="server" Flex="1" text="<%$ Resources:Common, ApprovalReason%> " />
-                                       
+                                       <ext:Column ID="Column16" DataIndex="supplierName" Text="<%$ Resources: FieldSupplier%>" runat="server" Flex="1" /> 
                                           
                                                                    
                                    

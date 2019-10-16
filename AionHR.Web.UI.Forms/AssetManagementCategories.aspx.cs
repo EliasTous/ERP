@@ -98,6 +98,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 FillParent();
                 currentCategory.Text = "";
+                ApprovalStore.Reload();
 
             }
 
@@ -166,7 +167,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     FillParent();
-                    ApprovalStore.Reload();
+                    //ApprovalStore.Reload();
                     this.BasicInfoTab.SetValues(response.result);
                     
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
@@ -440,7 +441,7 @@ namespace AionHR.Web.UI.Forms
         {
 
             //Reset all values of the relative object
-            ApprovalStore.Reload();
+         //   ApprovalStore.Reload();
             currentCategory.Text = "";
             BasicInfoTab.Reset();
             FillParent();

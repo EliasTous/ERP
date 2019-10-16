@@ -555,24 +555,24 @@
                     Icon="ApplicationSideList"
                     DefaultAnchor="100%"
                     BodyPadding="5">
-                   <%-- <TopBar>
+                    <TopBar>
                         <ext:Toolbar runat="server">
                             <Items>
                                 <ext:Container runat="server" Layout="FitLayout">
                                     <Content>
-                                        <uc:jobInfo runat="server" FieldWidth="160" ID="jobInfo1" EnableBranch="false" EnableDivision="false" />
+                                        <uc:jobInfo runat="server" FieldWidth="160" ID="jobInfo1" EnablePosition="false" EnableDivision="false" />
 
                                     </Content>
 
                                 </ext:Container>
-                                <ext:Button runat="server" Text="<%$Resources:Filter %>">
+                                <ext:Button runat="server" Text="Filter">
                                     <Listeners>
-                                        <Click Handler="App.direct.GetFilteredUsers();" />
+                                        <Click Handler="App.userSelectorStore.reload();" />
                                     </Listeners>
                                 </ext:Button>
                             </Items>
                         </ext:Toolbar>
-                    </TopBar>--%>
+                    </TopBar>
                     <Items>
                         <ext:ItemSelector runat="server"  MaxHeight="300" MinHeight="300" AutoScroll="true" ID="userSelector" FromTitle="<%$Resources:All %>" DisplayField="fullName" ValueField="recordId"
                             ToTitle="<%$Resources:Selected %>" SubmitValue="true" SimpleSubmit="true" >

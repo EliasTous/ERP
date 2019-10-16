@@ -714,7 +714,7 @@
                             <DirectEvents>
                             </DirectEvents>
                         </ext:FileUploadField>
-                        <ext:Panel  runat="server" ID="img" MarginSpec="20 0 0 0">
+                        <ext:Panel  runat="server" ID="img" MarginSpec="15 0 0 0" Scrollable="Both">
 
                             <Items>
                                 <ext:Panel runat="server">
@@ -734,7 +734,7 @@
                                 </ext:Panel>
                                 <ext:Panel runat="server">
                                     <Items>
-                                        <ext:Label ID="departmentLbl" runat="server" />
+                                        <ext:Label ID="departmentLbl" runat="server"  />
                                     </Items>
                                 </ext:Panel>
                                 <ext:Panel runat="server">
@@ -1492,31 +1492,8 @@
 
                                 </ext:Store>
                             </Store>
-                            <RightButtons>
-                                <ext:Button ID="Button5" runat="server" Icon="Add" Hidden="true">
-                                    <Listeners>
-                                        <Click Handler="CheckSession(); 
-                                                     App.direct.employeeControl1.addTR( {
-                    success: function (result) { 
-                       if(result!=null)
-                                                    #{trStore}.insert(0,result);
-                                                    
-                    }
-                  
-                });
-                                                      " />
-                                    </Listeners>
-                                    <%--            <DirectEvents>
-
-                                                <Click OnEvent="addTR" >
-                                                </Click>
-                                            </DirectEvents>--%>
-                                </ext:Button>
-                            </RightButtons>
-                            <Listeners>
-                                <FocusEnter Handler=" if(!this.readOnly)this.rightButtons[0].setHidden(false);" />
-                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                            </Listeners>
+                           
+                            
                         </ext:ComboBox>
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="rehire" runat="server" FieldLabel="<%$ Resources:RehireEligibilty%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="rehire" AllowBlank="false">
                             <Items>

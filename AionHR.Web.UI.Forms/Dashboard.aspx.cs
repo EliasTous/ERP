@@ -2775,7 +2775,7 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(resp);
                 return;
             }
-            resp.Items.ForEach(x => x.hireDateString = x.hireDate.ToString(_systemService.SessionHelper.GetDateformat()));
+            resp.Items.ForEach(x => x.birthDateString = x.birthDate.ToString(_systemService.SessionHelper.GetDateformat()));
             retirementAgeStore.DataSource = resp.Items;
             retirementAgeStore.DataBind();
         }

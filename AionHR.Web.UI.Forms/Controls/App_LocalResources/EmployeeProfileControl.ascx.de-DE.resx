@@ -427,4 +427,7 @@
   <data name="LeavePayment" xml:space="preserve">
     <value>Urlaubszahlung :</value>
   </data>
+  <data name="EmployeeUserValues" xml:space="preserve">
+    <value>Benutzerdefinierte</value>
+  </data>
 </root>

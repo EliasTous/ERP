@@ -32,7 +32,7 @@ namespace AionHR.Model.SelfService
         
         public string purpose { get; set; }
         
-        public short? status { get; set; }
+        
 
 
        

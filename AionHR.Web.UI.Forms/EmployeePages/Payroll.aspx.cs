@@ -250,7 +250,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
 
         protected void PoPuPSA(object sender, DirectEventArgs e)
         {
-
+          
             fillSalaryType();
             int id = Convert.ToInt32(e.ExtraParams["id"]);
             string type = e.ExtraParams["type"];
@@ -777,7 +777,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 if (lastSalaryList.Items != null && lastSalaryList.Items.Count > 0)
                 {
                     EmployeeSalary lastSalary = lastSalaryList.Items.OrderBy(x => x.effectiveDate).ToList().Last();
+                    lastSalary.dAmount = 0;
+                    lastSalary.eAmount = 0;
+                    lastSalary.finalAmount = lastSalary.basicAmount;
                     this.EditSAForm.SetValues(lastSalary);
+                   
                     SAId.Text = "";
                     effectiveDate.Value = DateTime.Now;
                 }

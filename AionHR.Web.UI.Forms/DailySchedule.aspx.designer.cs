@@ -553,6 +553,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.FormPanel groupUsersForm;
         
         /// <summary>
+        /// jobInfo1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
+        
+        /// <summary>
         /// userSelector control.
         /// </summary>
         /// <remarks>

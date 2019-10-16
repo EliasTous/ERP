@@ -350,8 +350,10 @@ namespace AionHR.Web.UI.Forms.Utilities
             Ext.Net.Node rt306 = BuildLeafNode("report_rt306", Resources.Common.RT306, "", true, rt3);
             Ext.Net.Node rt307 = BuildLeafNode("report_rt307", Resources.Common.RT307, "", true, rt3);
             Ext.Net.Node rt308 = BuildLeafNode("report_rt308", Resources.Common.RT308, "", true, rt3);
+           
             Ext.Net.Node rt309 = BuildLeafNode("report_rt309", Resources.Common.RT309, "", true, rt3);
             Ext.Net.Node rt310 = BuildLeafNode("report_rt310", Resources.Common.RT310, "", true, rt3);
+            Ext.Net.Node rt311 = BuildLeafNode("report_rt311", Resources.Common.RT311, "", true, rt3);
 
             Ext.Net.Node rt4 = BuildParentNode("report_rt4", Resources.Common.Loans, true, timeAt, "MoneyDelete");
             Ext.Net.Node rt401 = BuildLeafNode("report_rt401", Resources.Common.RT401, "", true, rt4);
@@ -409,10 +411,11 @@ namespace AionHR.Web.UI.Forms.Utilities
             // FillConfigItem(rt306, "rt306", "Reports/RT306.aspx", Resources.Common.RT306, "icon-Employees", "1");
             FillConfigItem(rt306, "rt306", "Reports/RT306.aspx", Resources.Common.RT306, "icon-Employees", "1");
             FillConfigItem(rt307, "rt307", "Reports/RT307.aspx", Resources.Common.RT307, "icon-Employees", "1");
-            FillConfigItem(rt308, "rt308", "Reports/RT308.aspx", Resources.Common.RT308, "icon-Employees", "1");
+            FillConfigItem(rt308, "rt308", "Reports/RT308.aspx?id=308", Resources.Common.RT308, "icon-Employees", "1");
             FillConfigItem(rt309, "rt309", "RT309.aspx", Resources.Common.RT309, "icon-Employees", "1");
             FillConfigItem(rt310, "rt310", "Reports/RT310.aspx", Resources.Common.RT310, "icon-Employees", "1");
-
+            FillConfigItem(rt311, "rt311", "Reports/RT308.aspx?id=311", Resources.Common.RT311, "icon-Employees", "1");
+                
             FillConfigItem(rt401, "rt401", "Reports/RT401.aspx", Resources.Common.RT401, "icon-Employees", "1");
             FillConfigItem(rt402, "rt402", "Reports/RT402.aspx", Resources.Common.RT402, "icon-Employees", "1");
 

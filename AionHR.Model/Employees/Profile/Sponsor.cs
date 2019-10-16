@@ -38,7 +38,7 @@ namespace AionHR.Model.Employees.Profile
         [PropertyID("31110_09")]
         [ApplySecurity]
         public string fax { get; set; }
-        public bool isSupplier { get; set; }
+        public bool? isSupplier { get; set; }
 
 
 

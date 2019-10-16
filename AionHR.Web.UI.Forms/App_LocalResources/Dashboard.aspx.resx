@@ -708,4 +708,7 @@
   <data name="LeaveReturn" xml:space="preserve">
     <value>Leave Return</value>
   </data>
+  <data name="FieldSupplier" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
 </root>
