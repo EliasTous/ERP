@@ -348,4 +348,7 @@
   <data name="mailWindowTitle" xml:space="preserve">
     <value>Mail Employees</value>
   </data>
+  <data name="leavesPayment" xml:space="preserve">
+    <value>Leave Payments</value>
+  </data>
 </root>

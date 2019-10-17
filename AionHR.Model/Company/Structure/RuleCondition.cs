@@ -13,5 +13,6 @@ namespace AionHR.Model.Company.Structure
         public string keyName { get; set; }
         public int? oper { get; set; }
         public string value { get; set; }
+        public string expressionId { get; set; }
     }
 }

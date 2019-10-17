@@ -602,6 +602,8 @@ namespace AionHR.Web.UI.Forms
             req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "fullName";
+            req.Filter = "";
+            req.activeStatus = "1";
             var s = jobInfo1.GetJobInfo();
             req.DepartmentId = s.DepartmentId.HasValue ? s.DepartmentId.ToString() : "0";
             req.PositionId = s.PositionId.HasValue ? s.PositionId.ToString() : "0";

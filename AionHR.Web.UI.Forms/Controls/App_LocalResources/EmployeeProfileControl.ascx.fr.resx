@@ -427,6 +427,6 @@
     <value>Congé de paiement :</value>
   </data>
   <data name="EmployeeUserValues" xml:space="preserve">
-    <value>Valeur d'utilisateur</value>
+    <value>Défini par l'utilisateur</value>
   </data>
 </root>

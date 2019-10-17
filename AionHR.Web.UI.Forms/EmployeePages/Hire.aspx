@@ -217,7 +217,7 @@
                                
                                    
                                 </ext:ComboBox>
-      <ext:TextField runat="server"  LabelWidth="120" ID="otherRef" Name="otherRef" FieldLabel="<%$ Resources:otherRef %>" AllowBlank="true" />
+      <ext:TextField runat="server"  LabelWidth="120" ID="otherRef" Name="otherRef" FieldLabel="<%$ Resources:otherRef %>" AllowBlank="true" MaxLength="10" />
 
 
                                          <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local"  LabelWidth="120" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="bsId" Name="bsId" FieldLabel="<%$ Resources:FieldbsId%>" >

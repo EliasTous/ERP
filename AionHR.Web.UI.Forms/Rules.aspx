@@ -255,6 +255,12 @@
                                                 </ext:Store>
                                             </Store>
                                        </ext:ComboBox>
+                                  <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ExpressionCombo  runat="server" ID="expressionCombo1" />
+                                            </Content>
+                                        </ext:Container>
                               
                             </Items>
 
@@ -729,6 +735,13 @@
                                             </Store>
                                        </ext:ComboBox>
                                    <ext:TextField ID="value" runat="server" FieldLabel="<%$ Resources:FieldValue%>" Name="value"   />
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ExpressionCombo  runat="server" ID="expressionCombo2" />
+                                            </Content>
+                                        </ext:Container>
+                              
                             </Items>
 
                         </ext:FormPanel>

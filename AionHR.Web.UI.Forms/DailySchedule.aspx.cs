@@ -155,7 +155,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 FillBranches();
                 FillDepartment();
-               
+                
                 this.workingHours.Value = string.Empty;
             }
             try
@@ -1457,33 +1457,27 @@ namespace AionHR.Web.UI.Forms
         }
         protected void userSelectorStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            EmployeeQuickViewRecordRequest qvReq = new EmployeeQuickViewRecordRequest();
-            qvReq.RecordID = employeeId.Value.ToString();
-            qvReq.asOfDate = DateTime.Now;
-            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(qvReq);
-            if (!qv.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-
-                Common.errorMessage(qv);
-                return;
-            }
+            
 
 
 
+            EmployeeListRequest empRequest = new EmployeeListRequest();
+            
 
-            EmployeeSnapshotListRequest req = new EmployeeSnapshotListRequest();
-
-            req.BranchId = string.IsNullOrEmpty(qv.result.branchId) ? "0" : qv.result.branchId;
-
-
-            req.StartAt = "0";
-            req.Size = "2000";
-            req.Filter = "";
-           ListResponse<EmployeeSnapShot> response = ServiceLocator.Current.GetInstance<IEmployeeService>().ChildGetAll<EmployeeSnapShot>(req);
+            var d = jobInfo1.GetJobInfo();
+            string branchId = d.BranchId.HasValue ? d.BranchId.Value.ToString() : "0";
+            string departmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value.ToString() : "0";
+            empRequest.paramString = "1|" + departmentId + "^2|" + branchId;
+            empRequest.StartAt = e.Start.ToString();
+            empRequest.SortBy = "recordId";
+            empRequest.Size = "30";         
 
 
-            if (!response.Success)
+         
+                ListResponse<Employee> response = _employeeService.GetAll<Employee>(empRequest);
+
+
+                if (!response.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
 
@@ -1551,6 +1545,22 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ToDateHigherFromDate")).Show();
                 return;
             }
+            EmployeeQuickViewRecordRequest qvReq = new EmployeeQuickViewRecordRequest();
+
+            qvReq.RecordID = employeeId.Value.ToString();
+            qvReq.asOfDate = DateTime.Now;
+
+            RecordResponse<EmployeeQuickView> qv = _employeeService.ChildGetRecord<EmployeeQuickView>(qvReq);
+            if (!qv.Success)
+            {
+                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+
+                Common.errorMessage(qv);
+                return;
+            }
+            jobInfo1.setBranch(qv.result.branchId);
+            jobInfo1.setDepartment(qv.result.departmentId);
+
 
             userSelectorStore.Reload();
             this.groupUsersWindow.Show();

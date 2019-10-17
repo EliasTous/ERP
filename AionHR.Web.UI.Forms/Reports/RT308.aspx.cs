@@ -113,7 +113,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-
+                    CurrentReportId.Text = Request.QueryString["id"];
                 }
                 catch { }
             }
@@ -208,7 +208,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
 
-        private void FillReport(bool isInitial = false, bool throwException = true)
+        private void FillRT308Report(bool isInitial = false, bool throwException = true)
         {
 
 
@@ -277,7 +277,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 }
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            PunchLogReport h = new PunchLogReport(newPunchLogsList, /*_systemService.SessionHelper.CheckIfArabicSession()*/ getLan, _systemService.SessionHelper.GetDateformat(), parameters,maxPunchCount);
+            PunchLogReport h = new PunchLogReport(newPunchLogsList, /*_systemService.SessionHelper.CheckIfArabicSession()*/ getLan, _systemService.SessionHelper.GetDateformat(), parameters,maxPunchCount, "RT308");
             h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
@@ -304,7 +304,104 @@ namespace AionHR.Web.UI.Forms.Reports
          
 
         }
-    
+        private void FillRT311Report(bool isInitial = false, bool throwException = true)
+        {
+
+
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
+
+
+            ListResponse<AionHR.Model.Reports.RT311> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT311>(req);
+            if (!resp.Success)
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+            int counter = 1;
+            int maxPunchCount = 0;
+            List<AionHR.Model.Reports.RT308> newPunchLogsList = new List<AionHR.Model.Reports.RT308>();
+            AionHR.Model.Reports.RT308 record = new AionHR.Model.Reports.RT311();
+            DateTime parsed = DateTime.Now;
+
+            string getLan = _systemService.SessionHelper.getLangauge();
+
+            foreach (var e in resp.Items.GroupBy(x => x.employeeName))
+            {
+
+
+                e.ToList().ForEach(y =>
+                {
+                    counter = 1;
+                    if (DateTime.TryParseExact(y.dayId, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
+                    {
+
+                        //y.dayIdDateTime = parsed;
+                        //record = new Model.Reports.RT309();
+                        //record.employeeName = y.employeeName;
+                        //record.dayIdDateTime = y.dayIdDateTime;
+                        //record.shiftLog = y.shiftLog;
+
+                        //record.shiftId = String.Format("{0} {1}", "Shift", counter);
+                        //counter++;
+                        //newShiftLogsList.Add(record);
+                        for (int i = 0; i < y.punchLog.Count(); i++)
+                        {
+
+                            y.dayIdDateTime = parsed;
+                            record = new Model.Reports.RT311();
+                            record.employeeName = y.employeeName;
+                            record.dayIdDateTime = y.dayIdDateTime;
+                            record.punchString = y.punchLog[i];
+                            //if (_systemService.SessionHelper.CheckIfArabicSession())
+                            if (getLan == "ar")
+                                record.punchId = String.Format("{0} {1}", "البصمة ", (i + 1));
+                            else if (getLan == "fr")
+                                record.punchId = String.Format("{0} {1}", "Poinçon ", (i + 1));
+                            else
+                                record.punchId = String.Format("{0} {1}", "Punch ", (i + 1));
+                            if (maxPunchCount < counter)
+                                maxPunchCount = counter;
+                            counter++;
+                            newPunchLogsList.Add(record);
+                        }
+
+                    }
+
+
+
+
+                });
+
+            }
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            PunchLogReport h = new PunchLogReport(newPunchLogsList, /*_systemService.SessionHelper.CheckIfArabicSession()*/ getLan, _systemService.SessionHelper.GetDateformat(), parameters, maxPunchCount,"RT311");
+            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
+
+            //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            h.Parameters["User"].Value = string.IsNullOrEmpty(_systemService.SessionHelper.GetCurrentUser()) ? " " : _systemService.SessionHelper.GetCurrentUser();
+            //h.Parameters["Fitlers"].Value = texts.Text;
+
+
+
+
+
+
+
+            h.CreateDocument();
+
+
+            ASPxWebDocumentViewer1.OpenReport(h);
+
+
+
+
+
+        }
+
+
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
@@ -313,7 +410,11 @@ namespace AionHR.Web.UI.Forms.Reports
 
             if (pageIndex == 1)
             {
-                FillReport();
+                if (CurrentReportId.Text == "308")
+                    FillRT308Report();
+                else
+                    FillRT311Report();
+
 
             }
 

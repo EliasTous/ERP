@@ -1416,4 +1416,7 @@
   <data name="SyncSucc" xml:space="preserve">
     <value>Activity  Synchronized Successfully</value>
   </data>
+  <data name="RT311" xml:space="preserve">
+    <value>Raw Punches</value>
+  </data>
 </root>

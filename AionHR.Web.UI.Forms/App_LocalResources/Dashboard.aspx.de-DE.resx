@@ -700,4 +700,7 @@
   <data name="ppType4" xml:space="preserve">
     <value>Stempel duplizieren</value>
   </data>
+  <data name="FieldSupplier" xml:space="preserve">
+    <value>Lieferant</value>
+  </data>
 </root>

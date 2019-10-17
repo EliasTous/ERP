@@ -30,7 +30,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(LeaveSchedule), "getLS");
             ChildGetLookup.Add(typeof(LeaveSchedulePeriod), "getLP");
             ChildGetLookup.Add(typeof(LeaveReturn), "getRE");
-
+            
 
             ChildGetAllLookup.Add(typeof(VacationSchedule), "qryVS");
             ChildGetAllLookup.Add(typeof(VacationSchedulePeriod), "qryVP");
@@ -46,6 +46,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(LeaveSchedulePeriod), "qryLP");
             ChildGetAllLookup.Add(typeof(LeaveReturn), "qryRE");
             ChildGetAllLookup.Add(typeof(LeaveReturnApproval), "qryRA");
+            ChildGetAllLookup.Add(typeof(pendingRA), "pendingRA");
 
             ChildAddOrUpdateLookup.Add(typeof(VacationSchedule), "setVS");
             ChildAddOrUpdateLookup.Add(typeof(VacationSchedulePeriod[]), "arrVP");

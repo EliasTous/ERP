@@ -1020,8 +1020,9 @@ namespace AionHR.Web.UI.Forms
             PostRequest<UserInfo> request = new PostRequest<UserInfo>();
 
             request.entity = response.result;
+            
             request.entity.userType = 4;
-            request.entity.activeStatus = enableSS.Checked?Convert.ToInt16( ActiveStatus.INACTIVE): Convert.ToInt16(ActiveStatus.ACTIVE);
+            request.entity.activeStatus = Convert.ToInt16(ActiveStatus.ACTIVE);
             PostResponse<UserInfo> r = _systemService.ChildAddOrUpdate<UserInfo>(request);
             if (!r.Success)
             {
@@ -1248,9 +1249,9 @@ namespace AionHR.Web.UI.Forms
             );
             //            fullNameLbl.Html = forSummary.name.fullName + "<br />";
 
-            departmentLbl.Html = forSummary.departmentName + "<br />";
-            branchLbl.Html = forSummary.branchName + "<br />";
-            positionLbl.Html = forSummary.positionName + "<br />";
+            departmentLbl.Html = forSummary.departmentName!=null? forSummary.departmentName + "<br />":"";
+            branchLbl.Html = forSummary.branchName != null ? forSummary.branchName + "<br />" : "";
+            positionLbl.Html = forSummary.positionName != null ? forSummary.positionName + "<br />" : "";
             esName.Html = forSummary.esName + "<br /><br />";
             eosBalanceLbl.Html = forSummary.indemnity!=null?((int)(forSummary.indemnity)).ToString("N2"):"" +" "+forSummary.currencyName+ "<br />";
             serviceDuration.Html = forSummary.serviceDuration + "<br />";// Friendly(GetGlobalResourceObject("Common", "Day").ToString(), GetGlobalResourceObject("Common", "Month").ToString(), GetGlobalResourceObject("Common", "Year").ToString())+"<br />";

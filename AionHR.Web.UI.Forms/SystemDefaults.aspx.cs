@@ -1195,7 +1195,11 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("pylvDays", values.pylvDays.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("pylvDays", "30"));
-
+            
+            if (values.MaxLoanDeduction != null && !string.IsNullOrEmpty(values.MaxLoanDeduction.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", values.MaxLoanDeduction.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("MaxLoanDeduction", "30"));
 
             return submittedValues;
         }

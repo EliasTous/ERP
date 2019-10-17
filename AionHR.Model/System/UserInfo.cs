@@ -30,17 +30,7 @@ namespace AionHR.Model.System
         [PropertyID("20010_03")]
         [ApplySecurity]
         public short activeStatus { get; set; }
-        public bool isInactive
-        {
-            get
-            {
-                if ((int)this.activeStatus == -1)
-                    return true;
-                else return false;
-            }
-            set { }
-
-        }
+       
         [PropertyID("20010_04")]
         [ApplySecurity]
         public bool isAdmin

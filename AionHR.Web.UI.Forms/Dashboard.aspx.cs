@@ -1043,7 +1043,7 @@ namespace AionHR.Web.UI.Forms
 
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
-                ListResponse<AionHR.Model.LeaveManagement.LeaveReturnApproval> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.LeaveReturnApproval>(req);
+                ListResponse<AionHR.Model.LeaveManagement.pendingRA> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.pendingRA>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -2775,7 +2775,7 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(resp);
                 return;
             }
-            resp.Items.ForEach(x => x.hireDateString = x.hireDate.ToString(_systemService.SessionHelper.GetDateformat()));
+            resp.Items.ForEach(x => x.birthDateString = x.birthDate.ToString(_systemService.SessionHelper.GetDateformat()));
             retirementAgeStore.DataSource = resp.Items;
             retirementAgeStore.DataBind();
         }

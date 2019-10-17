@@ -23,6 +23,8 @@ namespace AionHR.Model.AssetManagement
         public string arName { get; set; }
         public string seqNo { get; set; }
         public string activityId { get; set; }
+        public string supplierName { get; set; }
+    
 
 
 

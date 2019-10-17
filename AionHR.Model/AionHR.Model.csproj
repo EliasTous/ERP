@@ -190,6 +190,7 @@
     <Compile Include="LeaveManagement\LeaveReturn.cs" />
     <Compile Include="LeaveManagement\LeaveReturnApproval.cs" />
     <Compile Include="LeaveManagement\PendingLA.cs" />
+    <Compile Include="LeaveManagement\pendingRA.cs" />
     <Compile Include="LeaveManagement\SyncLeaveReplacment.cs" />
     <Compile Include="LoadTracking\PendingLA.cs" />
     <Compile Include="Mathematical\IMathematicalRepository.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Reports\PT501.cs" />
     <Compile Include="Reports\ReportParameter.cs" />
     <Compile Include="Reports\RT115.cs" />
+    <Compile Include="Reports\RT311.cs" />
     <Compile Include="Reports\RT308.cs" />
     <Compile Include="Reports\RT309.cs" />
     <Compile Include="Reports\RT310.cs" />

@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Dashboard.css?id=20" />
     <link rel="stylesheet" href="CSS/LiveSearch.css?id=30" />
   
-    <!--  <script type="text/javascript" src="Scripts/app.js"></script>-->
+  
     <script type="text/javascript" src="Scripts/common.js?id=1"></script>
     <script type="text/javascript" src="Scripts/moment.js?id=2"></script>
     <script type="text/javascript" src="Scripts/CircileProgress.js?id=3"></script>
@@ -1323,13 +1323,11 @@
                             </LayoutConfig>
                             <Items>
 
-                                <%--      <ext:Panel ID="spacePanel" UI="Danger" runat="server" Flex="1" ></ext:Panel>--%>
+                              
                                 <ext:Panel runat="server" ID="right" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground" Layout="FitLayout" Flex="2" MarginSpec="0 5 0 5">
                                     <Items>
                                         <ext:Panel ID="rightPanel" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground" runat="server" AutoScroll="true" Layout="VBoxLayout" Flex="1" StyleSpec="padding-top:20px;">
-                                            <%--  <Listeners>
-                                                <AfterLayout Handler="  App.active.setWidth(App.att.getWidth()/7);App.active.setHeight(App.att.getWidth()/7); App.PolarChart6.setWidth(App.att.getWidth()/4); App.PolarChart6.setHeight(App.att.getWidth()/4); App.absense.setWidth(App.att.getWidth()/7);App.late.setWidth(App.att.getWidth()/7);App.overdue.setWidth(App.belowt.getWidth()/4);App.today.setWidth(App.belowt.getWidth()/4);"></AfterLayout>
-                                            </Listeners>--%>
+                                         
                                             <LayoutConfig>
                                                 <ext:VBoxLayoutConfig Pack="End" Align="Stretch"></ext:VBoxLayoutConfig>
                                             </LayoutConfig>
@@ -1539,91 +1537,7 @@
 
 
                                                       
-                                                      <%--  <ext:GridPanel MarginSpec="0 0 0 0"
-                                                            ID="LoansGrid"
-                                                            runat="server"
-                                                            PaddingSpec="0 0 0 0"
-                                                            Header="false"
-                                                            Title="<%$Resources:Loans %>"
-                                                            Layout="FitLayout"
-                                                            Scroll="Vertical"
-                                                            Border="false" Visible="false"
-                                                            ColumnLines="True" IDMode="Explicit" RenderXType="True" StyleSpec=" border: 1px solid #add2ed !important;">
-                                                             
-                                                            <Store>
-                                                                    
-                   
-          
-                                                                <ext:Store
-
-                                                                    ID="LoansStore"
-                                                                    runat="server"  RemoteFilter="false" RemoteSort="false"
-                                                                    PageSize="30"  >
-                                                                   
-                                                                    <Model>
-                                                                        <ext:Model ID="Model11" runat="server" IDProperty="recordId">
-                                                                            <Fields>
-
-                                                                                <ext:ModelField Name="recordId" />
-                                                                                <ext:ModelField Name="employeeId" />
-
-                                                                                <ext:ModelField Name="date" />
-                                                                                <ext:ModelField Name="branchName" />
-                                                                                <ext:ModelField Name="purpose" />
-                                                                                <ext:ModelField Name="amount" />
-                                                                                <ext:ModelField Name="ltName" />
-                                                                                <ext:ModelField Name="currencyRef" />
-                                                                                <ext:ModelField Name="employeeName"  />
-
-                                                                            </Fields>
-                                                                        </ext:Model>
-                                                                    </Model>
-
-                                                                </ext:Store>
-                                                            </Store>
-
-                                                            <ColumnModel ID="ColumnModel12" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                                                <Columns>
-
-                                                                    <ext:Column Visible="false" ID="Column10" MenuDisabled="true" runat="server" DataIndex="recordId" Hideable="false" Width="75" />
-                                                                    <ext:Column ID="Column11" DataIndex="employeeName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="2">
-                                                                    
-                                                                     
-                                                                    </ext:Column>
-                                                                    <ext:Column ID="Column14" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
-
-                                                                    <ext:DateColumn ID="DateColumn3" DataIndex="date" Text="<%$ Resources: FieldDate%>" runat="server" Width="100" />
-
-                                                                    <ext:Column ID="Column20" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldAmount %>" DataIndex="amount" Hideable="false" Width="100">
-                                                                        <Renderer Handler="return record.data['currencyRef']+ '&nbsp;'+record.data['amount']; "></Renderer>
-                                                                    </ext:Column>
-
-                                                                    <ext:Column ID="Column16" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="1" />
-
-
-
-
-
-
-
-
-
-
-                                                                </Columns>
-                                                            </ColumnModel>
-
-
-                                                            <View>
-                                                                <ext:GridView ID="GridView12" runat="server" />
-                                                            </View>
-
-
-                                                            <SelectionModel>
-                                                                <ext:RowSelectionModel ID="rowSelectionModel11" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />
-                                                            </SelectionModel>
-                                                        </ext:GridPanel>--%>
-
+                                                   
                                                        
                                                      
                                                          <ext:GridPanel MarginSpec="0 0 0 0"
@@ -1731,7 +1645,7 @@
                                                             </Listeners>
                                                             <SelectionModel>
                                                                 <ext:RowSelectionModel ID="rowSelectionModel10" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                                                        
                                                             </SelectionModel>
                                                         </ext:GridPanel>
                                                            <ext:GridPanel MarginSpec="0 0 0 0"
@@ -1794,7 +1708,7 @@
                                                                     <ext:DateColumn ID="DateColumn3" DataIndex="startDate" Text="<%$ Resources: FieldStartDate%>" runat="server" Width="100" />
                                                                     <ext:DateColumn ID="DateColumn13" DataIndex="endDate" Text="<%$ Resources: FieldEndDate%>" runat="server" Width="100" />
                                                                      <ext:Column ID="Column14" DataIndex="arName" Text="<%$ Resources: Common, ApprovalReason%>" runat="server" Flex="1" />
-                                                                <%--    <ext:Column ID="Column16" DataIndex="ltName" Text="<%$ Resources: FieldLtName%>" runat="server" Flex="1" />--%>
+                                                             
                                                                     <ext:Column runat="server"
                                                                         ID="Column20" Visible="true"
                                                                         Text=""
@@ -1841,7 +1755,7 @@
                                                             </Listeners>
                                                             <SelectionModel>
                                                                 <ext:RowSelectionModel ID="rowSelectionModel8" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                                                            
                                                             </SelectionModel>
                                                         </ext:GridPanel>
 
@@ -1950,9 +1864,7 @@
                           
 
                                                                      <ext:Column ID="Column26" DataIndex="timeCodeString" Text="<%$ Resources: FieldTimeCode %>"  runat="server" Flex="1" />
-                                                                 <%--    <ext:Column ID="Column30" Visible="false" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
-                                                                        
-                                                                    </ext:Column>--%>
+                                                          
                                                                      <ext:Column ID="Column28" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
 
                                                                 
@@ -2028,13 +1940,7 @@
                                                                     runat="server" OnReadData="ApprovaLoan_ReadData"
                                                                     RemoteSort="false"
                                                                     RemoteFilter="false">
-                                                                  <%--  <Proxy>
-                                                                        <ext:PageProxy>
-                                                                            <Listeners>
-                                                                                <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                                                                            </Listeners>
-                                                                        </ext:PageProxy>
-                                                                    </Proxy>--%>
+                                                                
                                                                     <Model>
                                                                         <ext:Model ID="Model25" runat="server" >
                                                                             <Fields>
@@ -2292,14 +2198,7 @@
 
                                
 
-                            <%--  alert(last.dayId);
-                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
-                                                             if(last.dayId==rec.data['dayId'])  
-                                                                        this.setDisabled(false);
-                                                            else this.setDisabled(true); 
-                                                        else
-                                                            this.setDisabled(true); --%>
-                            
+                      
                            <Listeners>
                                <Activate Handler="#{EmployeePenaltyApprovalStore}.reload();" />
                            </Listeners>
@@ -2311,7 +2210,7 @@
 
                             <SelectionModel>
                                 <ext:RowSelectionModel ID="rowSelectionModel32" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                          
                             </SelectionModel>
                          
                      </ext:GridPanel>
@@ -2346,6 +2245,8 @@
                                                        <ext:ModelField Name="arName" />
                                                  <ext:ModelField Name="seqNo" />
                                                   <ext:ModelField Name="activityId" />
+                                                <ext:ModelField Name="supplierName" />
+                                                
                                                  
                                                 
                                                 
@@ -2362,14 +2263,15 @@
                                     <ext:Column ID="Column56" Visible="false" DataIndex="approverId" runat="server" />
                                  
                                        
-                                     <ext:Column ID="Column57" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2" />
+                              
                                      <ext:Column ID="Column61" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column62" DataIndex="branchName" Text="<%$ Resources: FieldBranch%>" runat="server" Flex="1" />
                                      <ext:Column ID="Column63" DataIndex="categoryName" Text="<%$ Resources: FieldCategory%>" runat="server" Flex="1" />
+                                    <ext:Column ID="Column39" DataIndex="supplierName" Text="<%$ Resources: FieldSupplier%>" runat="server" Flex="1" /> 
                                      <ext:Column ID="Column64" DataIndex="qty" Text="<%$ Resources: FieldQty%>" runat="server" Flex="1" />
-                                     <ext:Column ID="Column60"  DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " />
+                                 
                                      <ext:Column ID="Column67"  DataIndex="arName" runat="server" Flex="1" text="<%$ Resources:Common, ApprovalReason%> " />
-                                       
+                                       <ext:Column ID="Column16" DataIndex="supplierName" Text="<%$ Resources: FieldSupplier%>" runat="server" Flex="1" /> 
                                           
                                                                    
                                    
@@ -2413,7 +2315,7 @@
                                                                            <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
                                                                            <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
                                                                         
-                                                                       <%-- <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />--%>
+                                                               
                                                                     </ExtraParams>
 
                                                                 </CellClick>
@@ -2459,7 +2361,7 @@
                                         <Click OnEvent="processPunches">
                                             <EventMask ShowMask="true" CustomTarget="={#{PunchesGrid}.body}" />
                                             <ExtraParams>
-                                            <%--    <ext:Parameter Name="approve" Value="true" Mode="Raw" />--%>
+                                       
                                             </ExtraParams>
                                         </Click>
                                         
@@ -2546,7 +2448,7 @@
                                                                     <ext:DateColumn ID="DateColumn4" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate %>" DataIndex="clockStamp" Hideable="false" Flex="4"  />
                           
 
-                                                                   <%--  <ext:Column ID="Column7" DataIndex="serialNo" Text="serialNo"  runat="server" Flex="2" />--%>
+                                                           
                                                             
                                                                      <ext:Column ID="Column54" DataIndex="udId" Text="<%$ Resources: DeviceRef %>" runat="server" Flex="2" />
                                                                        <ext:Column ID="Column7" DataIndex="ppTypeName" Text="<%$ Resources: FieldType %>" runat="server" Flex="2" />
@@ -2585,7 +2487,7 @@
                                                                       
                                                                      
                                                                         <ext:Parameter Name="id" Value="record.data['recordId']" Mode="Raw" />
-                                                                  <%--      <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />--%>
+                                                             
                                                                  
                                                                          
                                                                     </ExtraParams>
@@ -2626,9 +2528,7 @@
                               <ext:Panel runat="server" ID="Panel4" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground" Layout="FitLayout" Flex="1" MarginSpec="0 5 0 5">
                                     <Items>
                                     <ext:Panel ID="Panel3" BodyCls="withBackground" Cls="withBackground" StyleHtmlCls="withBackground" runat="server" AutoScroll="true" Layout="VBoxLayout"  StyleSpec="padding-top:20px;">
-                                            <%--  <Listeners>
-                                                <AfterLayout Handler="  App.active.setWidth(App.att.getWidth()/7);App.active.setHeight(App.att.getWidth()/7); App.PolarChart6.setWidth(App.att.getWidth()/4); App.PolarChart6.setHeight(App.att.getWidth()/4); App.absense.setWidth(App.att.getWidth()/7);App.late.setWidth(App.att.getWidth()/7);App.overdue.setWidth(App.belowt.getWidth()/4);App.today.setWidth(App.belowt.getWidth()/4);"></AfterLayout>
-                                            </Listeners>--%>
+                                        
                                             <LayoutConfig>
                                                 <ext:VBoxLayoutConfig Pack="End" Align="Stretch"></ext:VBoxLayoutConfig>
                                             </LayoutConfig>
@@ -2779,7 +2679,7 @@
                                                                     <EventMask ShowMask="true" />
                                                                     <ExtraParams>
                                                                         <ext:Parameter Name="id" Value="record.data['alertId']" Mode="Raw" />
-                                                                  <%--      <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />--%>
+                                                            
                                                                     </ExtraParams>
 
                                                                 </CellClick>
@@ -2793,7 +2693,7 @@
                                                           
                                                             <SelectionModel>
                                                                 <ext:RowSelectionModel ID="rowSelectionModel37" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                                                              
                                                             </SelectionModel>
                                                         </ext:GridPanel>
                                                      
@@ -2913,7 +2813,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel5" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -3395,13 +3295,7 @@
                             runat="server" OnReadData="latenessStore_ReadData"
                             RemoteSort="false"
                             RemoteFilter="false">
-                           <%-- <Proxy>
-                               <ext:PageProxy>
-                                    <Listeners>
-                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                                    </Listeners>
-                                </ext:PageProxy>
-                            </Proxy>--%>
+                        
 
                             <Model>
                                 <ext:Model ID="Model3" runat="server" IDProperty="recordId">
@@ -3430,10 +3324,7 @@
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayLate(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                       
                         </Columns>
                     </ColumnModel>
 
@@ -3444,7 +3335,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel2" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                     
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -3468,13 +3359,7 @@
                             runat="server" OnReadData="UnlateStore_ReadData"
                             RemoteSort="false"
                             RemoteFilter="false">
-                          <%--  <Proxy>
-                                <ext:PageProxy>
-                                    <Listeners>
-                                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
-                                    </Listeners>
-                                </ext:PageProxy>
-                            </Proxy>--%>
+                      
 
                             <Model>
                                 <ext:Model ID="Model19" runat="server" IDProperty="recordId">
@@ -3503,10 +3388,7 @@
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayLate(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                        
                         </Columns>
                     </ColumnModel>
 
@@ -3517,7 +3399,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel18" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                   
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -3587,7 +3469,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel1" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                     
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -3655,7 +3537,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel3" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                 
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -3723,7 +3605,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel17" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                     
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -3754,10 +3636,7 @@
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                       
                         </Columns>
                     </ColumnModel>
 
@@ -3769,7 +3648,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                      
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -3844,7 +3723,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel15" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                   
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -3893,13 +3772,7 @@
                     <ColumnModel ID="ColumnModel17" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                            <%--                                                   <ext:Column Visible="false" ID="ColrecordId" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
-                                                    <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
-                                                    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            --%><ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: Loan %>" DataIndex="name" Hideable="false" Width="75">
+                        <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: Loan %>" DataIndex="name" Hideable="false" Width="75">
                                 <Renderer Handler=" return displayCompletedLoans(record.data);  ">
                                 </Renderer>
                             </ext:Column>
@@ -3919,7 +3792,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel16" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -3945,16 +3818,13 @@
                     <ColumnModel ID="ColumnModel20" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                         <Columns>
 
-                         <%--   <ext:Column Visible="false" ID="Column22" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />--%>
+                   
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTime%>" DataIndex="time" Width="55" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                         
                         </Columns>
                     </ColumnModel>
 
@@ -3966,7 +3836,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel19" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -3997,10 +3867,7 @@
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                          
                         </Columns>
                     </ColumnModel>
 
@@ -4012,7 +3879,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel20" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                      
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -4052,41 +3919,6 @@
                                 <ext:TextField ID="employeeName" runat="server" Name="employeeName" FieldLabel="<%$ Resources:FieldEmployeeName%>" ReadOnly="true" />
 
 
-                                <%--   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeId" AllowBlank="false"
-                            DisplayField="fullName" Name="employeeId"
-                            ValueField="recordId"
-                            TypeAhead="false"
-                            FieldLabel="<%$ Resources: FieldEmployeeName%>"
-                            HideTrigger="true" SubmitValue="true"
-                            MinChars="3"
-                            TriggerAction="Query" ForceSelection="false">
-                            <Store>
-                                <ext:Store runat="server" ID="employeeStore" AutoLoad="false">
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                                <ext:ModelField Name="recordId" />
-                                                <ext:ModelField Name="fullName" />
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                    <Proxy>
-                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                                    </Proxy>
-
-                                </ext:Store>
-
-                            </Store>
-                            <DirectEvents>
-                                <Select OnEvent="MarkLeaveChanged">
-                                    <ExtraParams>
-                                        <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
-                                        <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
-                                    </ExtraParams>
-                                </Select>
-                            </DirectEvents>
-
-                        </ext:ComboBox>--%>
                                 <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" ReadOnly="true" />
                                 <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldendDate%>" Name="endDate" ReadOnly="true" />
 
@@ -4277,18 +4109,13 @@
 
                             <ext:Column Visible="false" ID="Column25" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" Width="75">
-                              <%--  <Renderer Handler=" return displayAnniversary(record.data);  ">
-                                </Renderer>--%>
+                        
                             </ext:Column>
-                           <%-- <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
-                                <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
-
-
-                            </ext:Column>--%>
+                   
                              <ext:DateColumn ID="ColProbationEndDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldProbationEndDate %>" DataIndex="probationEndDate" Hideable="false" Visible="false"  />
                              <ext:DateColumn  ID="ColNextReviewDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNextReviewDate %>" DataIndex="nextReviewDate" Hideable="false"  Visible="false"/>
                              <ext:DateColumn  ID="ColtermEndDate" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTermEndDate %>" DataIndex="termEndDate" Hideable="false" />
-                          <%--   <ext:Column  ID="npName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNpName %>" DataIndex="npName" Hideable="false"  />--%>
+                     
 
 
 
@@ -4308,7 +4135,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel22" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                      
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -4762,12 +4589,9 @@
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldFirstPunch%>" DataIndex="firstPunch" Width="55" Hideable="false" />
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
-                           <%-- <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
+                      
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                        
                         </Columns>
                     </ColumnModel>
 
@@ -4779,7 +4603,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel25" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                     
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -4833,12 +4657,9 @@
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                             <ext:DateColumn MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dtFrom" Flex="3" Hideable="false" ID="dtFrom" />
                             <ext:DateColumn MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dtTo" Flex="3" Hideable="false"  ID="dtTo"/>
-                        <%--    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
+                     
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                      
                         </Columns>
                     </ColumnModel>
 
@@ -4850,7 +4671,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel26" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                  
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -4904,12 +4725,8 @@
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
                                           <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dayEnd" Flex="3" Hideable="false" />
-                        <%--    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                       
                         </Columns>
                     </ColumnModel>
 
@@ -4921,7 +4738,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel27" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                       
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -4975,12 +4792,9 @@
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dayStart" Flex="3" Hideable="false" />
                                           <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dayEnd" Flex="3" Hideable="false" />
-                        <%--    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
+                      
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                        
                         </Columns>
                     </ColumnModel>
 
@@ -4992,7 +4806,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel28" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                      
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -5046,12 +4860,9 @@
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:DateColumn MenuDisabled="true" ID="LWFromField" runat="server" Text="<%$ Resources: FieldFrom%>" DataIndex="from" Flex="3" Hideable="false" />
                                           <ext:DateColumn MenuDisabled="true" ID="LWToField" runat="server" Text="<%$ Resources: FieldTo%>" DataIndex="to" Flex="3" Hideable="false" />
-                        <%--    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
+                    
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                      
                         </Columns>
                     </ColumnModel>
 
@@ -5063,7 +4874,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel29" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                     
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -5117,12 +4928,9 @@
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldPosition%>" DataIndex="positionName" Flex="3" Hideable="false" />
                                           <ext:DateColumn MenuDisabled="true" Hidden="true" runat="server" Text="<%$ Resources: FieldDayStart%>" DataIndex="dtFrom" Flex="3" Hideable="false" ID="DODtFrom" />
                                           <ext:DateColumn MenuDisabled="true" Hidden="true" runat="server" Text="<%$ Resources: FieldDayEnd%>" DataIndex="dtTo" Flex="3" Hideable="false"  ID="DODtTo"/>
-                        <%--    <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDepartment%>" DataIndex="departmentName" Flex="3" Hideable="false" />--%>
+                    
                             <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldBranch%>" DataIndex="branchName" Flex="3" Hideable="false" />
-                            <%--  <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="name" Hideable="false" Width="75">
-                                <Renderer Handler=" return displayActive(record.data);  ">
-                                </Renderer>
-                            </ext:Column>--%>
+                       
                         </Columns>
                     </ColumnModel>
 
@@ -5134,7 +4942,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel30" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -5212,7 +5020,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel31" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                     
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -5287,7 +5095,7 @@
                              <ext:DateColumn Flex="2" ID="DateColumn6" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldStartDate %>" DataIndex="startDate" Hideable="false"   />
                              <ext:DateColumn Flex="2"   ID="DateColumn7" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEndDate %>" DataIndex="endDate" Hideable="false" />
                              <ext:DateColumn  Flex="1"  ID="DateColumn8" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldReturnDate %>" DataIndex="returnDate" Hideable="false" />
-                          <%--   <ext:Column  ID="npName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNpName %>" DataIndex="npName" Hideable="false"  />--%>
+                      
 
 
                                <ext:Column Flex="1"   MenuDisabled="true" runat="server" Text="<%$ Resources: RemainingDays %>" DataIndex="leaveDays" Hideable="false"  />
@@ -5311,7 +5119,7 @@
 
                     <SelectionModel>
                         <ext:RowSelectionModel ID="rowSelectionModel34" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                     
                     </SelectionModel>
                 </ext:GridPanel>
             </Items>
@@ -5363,18 +5171,13 @@
 
                             <ext:Column Visible="false" ID="Column46" MenuDisabled="true" runat="server"  DataIndex="recordId" Hideable="false" Width="75" />
                             <ext:Column Flex="2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEmployee %>" DataIndex="employeeName" Hideable="false" Width="75">
-                              <%--  <Renderer Handler=" return displayAnniversary(record.data);  ">
-                                </Renderer>--%>
+                       
                             </ext:Column>
-                           <%-- <ext:Column MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDaysLeft %>" DataIndex="days" Hideable="false" Width="120">
-                                <Renderer Handler="return record.data['days'] + ' ' + #{daysLeft}.value;" />
-
-
-                            </ext:Column>--%>
+                      
                              <ext:DateColumn ID="DateColumn9" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldProbationEndDate %>" DataIndex="probationEndDate" Hideable="false" Visible="false"  />
                              <ext:DateColumn  ID="DateColumn10" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNextReviewDate %>" DataIndex="nextReviewDate" Hideable="false"  Visible="true"/>
                              <ext:DateColumn  ID="DateColumn11" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldTermEndDate %>" DataIndex="termEndDate" Hideable="false"  Visible="false" />
-                          <%--   <ext:Column  ID="npName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldNpName %>" DataIndex="npName" Hideable="false"  />--%>
+                    
 
 
 
@@ -5488,86 +5291,7 @@
 
                         </ext:FormPanel>
 
-                   <%--  <ext:GridPanel MarginSpec="0 0 0 0"
-                                                            ID="GridPanel5"
-                                                            runat="server"
-                                                            PaddingSpec="0 0 1 0"
-                                                            Header="false"
-                                                            Title="<%$ Resources:EditWindowsTimeApproval %>"
-                                                            Layout="FitLayout"
-                                                            Scroll="Vertical"
-                                                           
-                                                            Border="false"
-                                                              ColumnLines="True" IDMode="Explicit" RenderXType="True">
-                                                          <Store>
-                                                                <ext:Store 
-                                                                    ID="store2"
-                                                                    runat="server" 
-                                                                    RemoteSort="false"
-                                                                    RemoteFilter="false" >
-                                                                  
-                                                                    <Model>
-                                                                        <ext:Model ID="Model39" runat="server" >
-                                                                            <Fields>
-                                                                                                                                                            
-                                                                                <ext:ModelField Name="employeeId" />
-                                                                                <ext:ModelField Name="employeeName"  />
-                                                                               
-                                                                               <ext:ModelField Name="approverName"  />
-                                                                               
-                                                                                <ext:ModelField Name="approverId" />
-                                                                                <ext:ModelField Name="status" />
-                                                                                <ext:ModelField Name="notes" />
-                                                                                  <ext:ModelField Name="statusString" />
-                                                                            
-
-                                                                            </Fields>
-                                                                        </ext:Model>
-                                                                    </Model>
-                                                                   
-                                                                </ext:Store>
-                                                         
-
-                                                              </Store>
-                                                            <ColumnModel ID="ColumnModel40" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                                                <Columns>
-                                                                  
-                                                                   <ext:Column ID="Column65" DataIndex="employeeId"  runat="server" Visible="false" />
-                                                                 
-
-                                                                     <ext:Column ID="Column66" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="2">
-                                                                  
-                                                                    </ext:Column>
-                                                                                                                              
-                                                                                                                                
-                          
-
-                                                                    
-                                                                     <ext:Column ID="Column67" DataIndex="statusString" Text="<%$ Resources: FieldStatus %>" Flex="1" runat="server" >
-                                                                      
-                                                                    </ext:Column>
-                                                                     <ext:Column ID="Column68" DataIndex="notes" Text="<%$ Resources: FieldNotes %>" runat="server" Flex="2" />
-
-                                                                
-                                                                  
-
-
-
-                                                                </Columns>
-                                                            </ColumnModel>
-                                                           
-
-                                                            <View>
-                                                                <ext:GridView ID="GridView40" runat="server" />
-                                                            </View>
-
-
-                                                            <SelectionModel>
-                                                                <ext:RowSelectionModel ID="rowSelectionModel39" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                                               
-                                                            </SelectionModel>
-                                                        </ext:GridPanel>--%>
-
+          
                   
 
 
@@ -5611,7 +5335,7 @@
                                  <ext:TextField ID="PAEmployeeName"  runat="server"   FieldLabel="<%$ Resources: FieldEmployee %>" ReadOnly="true"  />
 
                                
-                                  <%--  <ext:NumberField ID="NumberField1"  runat="server" FieldLabel="<%$ Resources:FieldAmount%>"  DataIndex="amount" DecimalPrecision="2" MinValue="0" AllowBlank="false"/>--%>
+                            
                                   <ext:Container runat="server"  Layout="FitLayout">
                                             <Content>
                                              
@@ -5625,86 +5349,7 @@
                             </Items>
 
                         </ext:FormPanel>
-                          <%--  <ext:GridPanel
-                            ID="ApprovalsGridPanel"
-                            runat="server"
-                            PaddingSpec="0 0 1 0"
-                            Header="false"
-                            MaxHeight="350"
-                            Layout="FitLayout"
-                            Scroll="Vertical"
-                            Border="false"
-                             Title="<%$ Resources: Approvals %>"
-                            ColumnLines="True" IDMode="Explicit" RenderXType="True" >
-                            
-                            <Store>
-                                <ext:Store runat="server" ID="ApprovalStore" OnReadData="ApprovalsStore_ReadData">
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                                <ext:ModelField Name="approverName"  />
-                                                <ext:ModelField Name="departmentName" />
-                                                 <ext:ModelField Name="penaltyId" />
-                                                <ext:ModelField Name="approverId" />
-                                                <ext:ModelField Name="status" />
-                                                 <ext:ModelField Name="statusString" />
-                                                 <ext:ModelField Name="notes" />
-                                                
-                                                
-                                                
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                </ext:Store>
-                            </Store>
-
-
-                            <ColumnModel ID="ColumnModel5" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                <Columns>
-                                          <ext:Column ID="Column67" Visible="false" DataIndex="approverId" runat="server" />
-                                 
-                                        <ext:Column ID="Column68" DataIndex="approverName" Text="<%$ Resources: FieldEmployeeName%>" runat="server" Flex="1">
-                                           <Renderer Handler=" return record.data['approverName'].fullName; ">
-                                           </Renderer>
-                                         </ext:Column>
-                                    <ext:Column ID="Column69" DataIndex="departmentName" Text="<%$ Resources: FieldDepartment%>" runat="server" Flex="1"/>
-                                    <ext:Column ID="Column70" Visible="true" DataIndex="statusString" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
-                                       
-                                    </ext:Column>
-                                      
-                                    <ext:Column ID="Column71" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
-                                       
-                                    </ext:Column>
-                                   
-
-
-
-                                </Columns>
-                            </ColumnModel>
-
-                            <%--  alert(last.dayId);
-                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
-                                                             if(last.dayId==rec.data['dayId'])  
-                                                                        this.setDisabled(false);
-                                                            else this.setDisabled(true); 
-                                                        else
-                                                            this.setDisabled(true); 
-                            
-                           <Listeners>
-                               <Activate Handler="#{ApprovalStore}.reload();" />
-                           </Listeners>
-
-                            <View>
-                                <ext:GridView ID="GridView5" runat="server" />
-                            </View>
-
-
-                            <SelectionModel>
-                                <ext:RowSelectionModel ID="rowSelectionModel4" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                                <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />
-                            </SelectionModel>
-                         
-                     </ext:GridPanel>--%>
+                     
 
                     </Items>
                 </ext:TabPanel>
@@ -5781,19 +5426,11 @@
                                             </Fields>
                                         </ext:Model>
                                     </Model>
-                                   <%-- <Proxy>
-                                        <ext:PageProxy DirectFn="App.direct.FillEmployee"></ext:PageProxy>
-                                    </Proxy>--%>
-                                  
+                                
                                 </ext:Store>
 
                             </Store>
-                                  <%-- <Listeners>
-                                       <Select Handler="App.leaveId.setValue('');" />
-                                   </Listeners>
-                                   <DirectEvents>
-                                       <Select OnEvent="fillLeaves" />
-                                   </DirectEvents>--%>
+                                
                         </ext:ComboBox>
                                                               
 
@@ -5813,9 +5450,7 @@
                                            
                                         </ext:Store>
                                     </Store>
-                                     <%-- <DirectEvents>
-                                       <Expand   OnEvent="fillLeaves" />
-                                   </DirectEvents>--%>
+                                  
                                     </ext:ComboBox>
 
 
@@ -5855,99 +5490,7 @@
 
                         </ext:FormPanel>
                       
-                 
-                   <%--     <ext:GridPanel
-                            ID="ApprovalsGridPanel"
-                            runat="server"
-                            PaddingSpec="0 0 1 0"
-                            Header="false"
-                            MaxHeight="350"
-                            Layout="FitLayout"
-                            Scroll="Vertical"
-                            Border="false"
-                            Icon="User" 
-                            ColumnLines="True" IDMode="Explicit" RenderXType="True" Title="<%$ Resources:Approvals %>" >
-                            
-                            <Store>
-                               <ext:Store runat="server" ID="ApprovalsStore" >
-                                    <Model>
-                                        <ext:Model runat="server">
-                                            <Fields>
-                                                <ext:ModelField Name="employeeName"  />
-                                                   <ext:ModelField Name="approverName"  />
-                                                <ext:ModelField Name="departmentName" />
-                                                <ext:ModelField Name="stringStatus" />
-                                                <ext:ModelField Name="notes" />
-                                                 <ext:ModelField Name="leaveId" />
-                                                   <ext:ModelField Name="arName" />
-                                                
-                                                
-                                            </Fields>
-                                        </ext:Model>
-                                    </Model>
-                                </ext:Store>
-                            </Store>
-
-
-                            <ColumnModel ID="ColumnModel12" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
-                                <Columns>
-                                    <ext:Column ID="leaveIdCO" Visible="false" DataIndex="leaveId" runat="server">
-                                    </ext:Column>
-                                      <ext:Column ID="Column16" DataIndex="approverName" Text="<%$ Resources: FieldApproverName%>" runat="server" Flex="1">
-                                         
-                                          
-                                         </ext:Column>
-                                        <ext:Column ID="Column39" DataIndex="employeeName" Text="<%$ Resources: FieldEmployee%>" runat="server" Flex="1">
-                                       
-                                          
-                                         </ext:Column>
-                                    <ext:Column ID="Column40" DataIndex="departmentName" Text="<%$ Resources: Department%>" runat="server" Flex="1"/>
-                                    <ext:Column ID="stringStatus" Visible="true" DataIndex="stringStatus" runat="server" Width="100" text="<%$ Resources: FieldStatus%> " >
-                                    </ext:Column>
-                                     <ext:Column ID="Column70" Visible="true" DataIndex="arName" runat="server" Width="100" text="<%$ Resources: Common,ApprovalReason%> " >
-                                    </ext:Column>
-                                      
-                                    <ext:Column ID="Column71" DataIndex="notes" Text="<%$ Resources: ReturnNotes%>" runat="server" Flex="2">
-                                       
-                                    </ext:Column>
-                                   
-
-
-
-                                </Columns>
-                            </ColumnModel>
-
-                            <%--  alert(last.dayId);
-                                                        if(App.leaveRequest1_shouldDisableLastDay.value=='1')
-                                                             if(last.dayId==rec.data['dayId'])  
-                                                                        this.setDisabled(false);
-                                                            else this.setDisabled(true); 
-                                                        else
-                                                            this.setDisabled(true); 
-                            <DockedItems>
-
-                                <ext:Toolbar ID="Toolbar3" runat="server" Dock="Bottom">
-                                    <Items>
-                                        <ext:StatusBar ID="StatusBar2" runat="server" />
-                                        <ext:ToolbarFill />
-
-                                    </Items>
-                                </ext:Toolbar>
-
-                            </DockedItems>
-
-
-                            <View>
-                                <ext:GridView ID="GridView12" runat="server" />
-                            </View>
-
-
-                            <SelectionModel>
-                                <ext:RowSelectionModel ID="rowSelectionModel11" runat="server" Mode="Single" StopIDModeInheritance="true" />
-                               <ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />
-                         
-                        </ext:GridPanel>--%>
-
+              
 
                  
 

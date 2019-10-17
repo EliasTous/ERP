@@ -47,6 +47,7 @@
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="format" runat="server" />
+           <ext:Hidden ID="CurrentReportId" runat="server" />
 <ext:Hidden ID="loaderUrl" runat="server"  Text="../ReportParameterBrowser.aspx?_reportName=RT308&values="/>
 
 

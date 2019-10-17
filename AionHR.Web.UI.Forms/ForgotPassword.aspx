@@ -79,7 +79,7 @@
                     ID="panelLogin"
                     runat="server"
                     Icon="LockGo"
-                    Title="<%$ Resources:RequestPasswordRecovery %>"
+                    Title="<%$ Resources: RequestPasswordRecovery %>"
                     Draggable="false"
                     Width="400"
                     Frame="true"

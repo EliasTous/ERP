@@ -18,7 +18,15 @@ namespace AionHR.Model.Dashboard
         {
             get; set;
         }
+        public DateTime birthDate
+        {
+            get; set;
+        }
         public string hireDateString
+        {
+            get; set;
+        }
+        public string birthDateString
         {
             get; set;
         }

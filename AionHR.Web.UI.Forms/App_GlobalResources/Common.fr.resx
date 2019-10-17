@@ -1435,7 +1435,7 @@
     <value>Veuillez remplir les champs obligatoires avant d'appuyer sur Allez</value>
   </data>
   <data name="RequiredFieldsHeader" xml:space="preserve">
-    <value>Missing Filters</value>
+    <value>Filtres Manquants</value>
   </data>
   <data name="deleteUserProperty" xml:space="preserve">
     <value>La suppression d'une propriété aura toutes les données d'employé pour cette propriété supprimées.</value>

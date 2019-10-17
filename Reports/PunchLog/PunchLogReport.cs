@@ -13,9 +13,17 @@ namespace Reports.PunchLog
 {
     public partial class PunchLogReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public PunchLogReport(List<RT308> items, /*bool isArabic*/ string getLanguage, string DateFormat, Dictionary<string, string> parameters,int maxPunchCount)
+        public PunchLogReport(List<RT308> items, /*bool isArabic*/ string getLanguage, string DateFormat, Dictionary<string, string> parameters,int maxPunchCount,string reportId)
         {
             InitializeComponent();
+
+            if (reportId=="RT308")
+            {
+
+            }
+
+
+
             if (maxPunchCount > 0)
             {
                 fieldpunchId.Width = (this.PageWidth - this.Margins.Left - this.Margins.Right - fieldemployeeName1.Width - fielddayId1.Width) / maxPunchCount;
@@ -29,6 +37,7 @@ namespace Reports.PunchLog
             //if (isArabic)
             if (getLanguage == "ar")
             {
+                xrLabel1.Text =reportId=="RT308"?"بصمات قبل المعالجة": "جدول البصمات ";
                 fieldemployeeName1.Caption = "الموظف";
                 fielddayId1.Caption = "التاريخ";
                 this.RightToLeft = RightToLeft.Yes;
@@ -38,14 +47,19 @@ namespace Reports.PunchLog
             }
             else if (getLanguage == "fr")
             {
+                xrLabel1.Text = xrLabel1.Text = reportId == "RT308" ? "Journal de poinçon": "raws coups de poing";
                 fieldemployeeName1.Caption = "Employe";
                 fielddayId1.Caption = "Date";
+            }
+            else if (getLanguage == "en")
+            {
+                xrLabel1.Text = xrLabel1.Text = reportId == "RT308" ? "Punch Log" : "Raws Punches";
             }
 
 
 
             dsSalaries1.DataTable1.AddDataTable1Row("ad");
-
+            
             items.ForEach(x =>
             {
                 dsSalaries1.SalariesItems.AddSalariesItemsRow(x.employeeId,x.employeeName,x.dayIdDateTime,x.punchString,x.punchId);

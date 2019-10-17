@@ -13,8 +13,9 @@ namespace AionHR.Services.Messaging.System
         public string PositionId { get; set; }
 
         public string BranchId { get; set; }
+        public string activeStatus { get; set; }
 
-     
+        
 
         public string SortBy { get; set; }
 
@@ -24,11 +25,14 @@ namespace AionHR.Services.Messaging.System
         {
             get
             {
+                if (string.IsNullOrEmpty(activeStatus))
+                    activeStatus = "0";
                 parameters = base.Parameters;
                 parameters.Add("_departmentId",DepartmentId);
                 parameters.Add("_positionId",PositionId);
                 parameters.Add("_sortBy", SortBy);
                 parameters.Add("_branchId", BranchId);
+                parameters.Add("_activeStatus", activeStatus);
                 return parameters; 
             }
         }
