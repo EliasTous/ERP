@@ -36,7 +36,7 @@ using AionHR.Model.SelfService;
 using AionHR.Web.UI.Forms.ConstClasses;
 using AionHR.Services.Messaging.TimeAttendance;
 using AionHR.Model.TimeAttendance;
-
+using AionHR.Services.Messaging.Reports;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -323,7 +323,7 @@ namespace AionHR.Web.UI.Forms
             string status = e.ExtraParams["status"];
             string shiftId = e.ExtraParams["shiftId"];
             string seqNo = e.ExtraParams["seqNo"];
-            string tvId = e.ExtraParams["tvId"];
+            string activityId = e.ExtraParams["activityId"];
             
 
             string notes = e.ExtraParams["notes"];
@@ -332,7 +332,7 @@ namespace AionHR.Web.UI.Forms
             r.seqNo = seqNo;
             //r.timeCode = timeCode;
             //r.shiftId = shiftId;
-            r.tvId = tvId;
+            r.tvId = activityId;
             RecordResponse<TimeSelfService> response = _selfServiceService.ChildGetRecord<TimeSelfService>(r);
             if (!response.Success)
             {
@@ -360,66 +360,45 @@ namespace AionHR.Web.UI.Forms
          
 
 
-            FillTimeApproval(((DateTime)response.result.date).ToString("yyyyMMdd"), Convert.ToInt32(employeeId), timeCode, shiftId, status);
+            FillTimeApproval(activityId);
 
             this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
             this.TimeWindow.Show();
 
         }
-        private void FillTimeApproval(string dayId, int employeeId, string timeCode, string shiftId, string apstatus)
+
+
+        private void FillTimeApproval(string tvId)
         {
+
+
+
+            string rep_params = "";
             try
             {
 
-                string rep_params = "";
-                Dictionary<string, string> parameters = new Dictionary<string, string>();
-                parameters.Add("1", employeeId.ToString());
-                parameters.Add("2", dayId.ToString());
-                parameters.Add("3", dayId.ToString());
-                parameters.Add("5", timeCode);
-                parameters.Add("7", apstatus);
-                foreach (KeyValuePair<string, string> entry in parameters)
-                {
-                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
-                }
-                if (rep_params.Length > 0)
-                {
-                    if (rep_params[rep_params.Length - 1] == '^')
-                        rep_params = rep_params.Remove(rep_params.Length - 1);
-                }
 
 
 
 
 
 
-               
-                TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
-                req.paramString = rep_params;
-                req.StartAt = "0";
-                req.Size = "30";
-                req.sortBy = "dayId";
-                ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(req);
-
-                //DashboardTimeListRequest r = new DashboardTimeListRequest();
-                //r.fromDayId = dayId.ToString();
-                //r.toDayId = dayId.ToString();
-                //r.employeeId = employeeId;
-                //r.approverId = 0;
-                //r.timeCode = timeCode;
-                //r.shiftId = shiftId;
-                //// r.apStatus = apstatus.ToString();
-                //r.apStatus = "0";
-                //r.PositionId = req.PositionId;
-                //r.DepartmentId = req.DepartmentId;
-                //r.DivisionId = req.DivisionId;
-                //r.BranchId = req.BranchId;
-                //r.EsId = req.EsId;
-                //r.StartAt = "0";
-                //r.Size = "1000";
 
 
-              
+
+
+
+
+
+
+
+                ReportGenericRequest r = new ReportGenericRequest();
+                r.paramString = "12|" + tvId;
+
+
+
+
+                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
                 {
                     Common.errorMessage(Times);
@@ -434,12 +413,13 @@ namespace AionHR.Web.UI.Forms
                         x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
                     }
 
+
                     x.statusString = FillApprovalStatus(x.status);
                 });
 
                 timeApprovalStore.DataSource = Times.Items;
-                ////List<ActiveLeave> leaves = new List<ActiveLeave>();
-                //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+                //////List<ActiveLeave> leaves = new List<ActiveLeave>();
+                ////leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
 
                 timeApprovalStore.DataBind();
@@ -450,6 +430,7 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+     
         protected void SaveTimeRecord(object sender, DirectEventArgs e)
         {
             string obj = e.ExtraParams["values"];
@@ -693,39 +674,11 @@ namespace AionHR.Web.UI.Forms
         protected void Timebatch(object sender, DirectEventArgs e)
         {
             string approve = e.ExtraParams["approve"];
-            string timeCode = "0";
-         
-
             string rep_params = vals.Text;
-            Dictionary<string, string> parameters = Common.FetchReportParameters(vals.Text);
-            if (parameters.ContainsKey("5"))
-                timeCode = parameters["5"];
-
-            parameters = new Dictionary<string, string>();
-            parameters.Add("5", timeCode);
-            parameters.Add("7", "1");
-
-
-            foreach (KeyValuePair<string, string> entry in parameters)
-            {
-                rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
-            }
-            if (rep_params.Length > 0)
-            {
-                if (rep_params[rep_params.Length - 1] == '^')
-                    rep_params = rep_params.Remove(rep_params.Length - 1);
-            }
-
-
-
-
-
-
-
             TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
             req.paramString = rep_params;
             req.StartAt = "0";
-            req.Size = "30";
+            req.Size = "1000";
             req.sortBy = "dayId";
             ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(req);
 

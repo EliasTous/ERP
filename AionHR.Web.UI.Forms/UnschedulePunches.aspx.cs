@@ -283,50 +283,60 @@ namespace AionHR.Web.UI.Forms
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
         {
-
-            //GEtting the filter from the page
-            string filter = string.Empty;
-            int totalCount = 1;
-
-
-
-            //Fetching the corresponding list
-
-            //in this test will take a list of News
-            ReportGenericRequest req = new ReportGenericRequest();
-            req.paramString = vals.Text;
-
-           
-            ListResponse<UnschedulePunch> resp = _timeAttendanceService.ChildGetAll<UnschedulePunch>(req);
-            if (!resp.Success)
+            try
             {
-                Common.errorMessage(resp);
-                return;
-            }
-            this.Store1.DataSource = resp.Items;
-            e.Total = resp.Items.Count; ;
 
-            this.Store1.DataBind();
+                //GEtting the filter from the page
+                string filter = string.Empty;
+                int totalCount = 1;
+
+
+
+                //Fetching the corresponding list
+
+                //in this test will take a list of News
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = vals.Text;
+
+
+                ListResponse<UnschedulePunch> resp = _timeAttendanceService.ChildGetAll<UnschedulePunch>(req);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
+                resp.Items.ForEach(x =>
+                {
+                 
+                    x.variation = time(Convert.ToInt32(x.variation), true);
+                });
+                this.Store1.DataSource = resp.Items;
+                e.Total = resp.Items.Count; ;
+
+                this.Store1.DataBind();
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
         }
 
-
-
-
-        protected void processPunches(object sender, DirectEventArgs e)
+        [DirectMethod]
+        public void Processrecords(string index)
+       
         {
-
             processUnscheduledPunch PUP = new processUnscheduledPunch();
             Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
             if (parameters.ContainsKey("1"))
-                PUP.startDate =DateTime.ParseExact( parameters["1"],"yyyyMMdd", new CultureInfo("en")).ToString("yyyy-MM-dd");
+                PUP.startDate = DateTime.ParseExact(parameters["1"], "yyyyMMdd", new CultureInfo("en")).ToString("yyyy-MM-dd");
             if (parameters.ContainsKey("2"))
                 PUP.endDate = DateTime.ParseExact(parameters["2"], "yyyyMMdd", new CultureInfo("en")).ToString("yyyy-MM-dd");
-            
+
             if (parameters.ContainsKey("4"))
                 PUP.branchId = parameters["4"];
             if (parameters.ContainsKey("3"))
                 PUP.employeeId = parameters["3"];
-           
+
             PostRequest<processUnscheduledPunch> request = new PostRequest<processUnscheduledPunch>();
 
             request.entity = PUP;
@@ -347,8 +357,33 @@ namespace AionHR.Web.UI.Forms
                     Html = Resources.Common.RecordSavingSucc
                 });
 
-              //  this.EditRecordWindow.Close();
+                //  this.EditRecordWindow.Close();
             }
+        }
+
+        protected void processPunches(object sender, DirectEventArgs e)
+        {
+            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.confirmProcess, new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.Processrecords({0})", "1"),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+
+
+
+
+
+
+       
 
             
         }
@@ -367,7 +402,30 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
+        public static string time(int _minutes, bool _signed)
+        {
+            if (_minutes == 0)
+                return "00:00";
 
+            bool isNegative = _minutes < 0 ? true : false;
+
+            _minutes = Math.Abs(_minutes);
+
+            string hours = (_minutes / 60).ToString(), minutes = (_minutes % 60).ToString(), formattedTime;
+
+            if (hours.Length == 1)
+                hours = "0" + hours;
+
+            if (minutes.Length == 1)
+                minutes = "0" + minutes;
+
+            formattedTime = hours + ':' + minutes;
+
+            if (isNegative && _signed)
+                formattedTime = "-" + formattedTime;
+
+            return formattedTime;
+        }
         private void FillStore2(string employeeId)
         {
             ReportGenericRequest req = new ReportGenericRequest();

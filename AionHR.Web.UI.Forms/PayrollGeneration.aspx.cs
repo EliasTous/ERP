@@ -1518,6 +1518,11 @@ namespace AionHR.Web.UI.Forms
 
 
                 parameters = new Dictionary<string, string>();
+                if (resp.Items.Count!=0)
+                {
+                    parameters.Add(GetLocalResourceObject("FieldPayRef").ToString(), resp.Items.First().payRef+"( "+ resp.Items.First().startDate.ToString(_systemService.SessionHelper.GetDateformat())+" - "+ resp.Items.First().endDate.ToString(_systemService.SessionHelper.GetDateformat()));
+                    
+                }
                 EmployeesPaySlip h = new EmployeesPaySlip(newlist, _systemService.SessionHelper.CheckIfArabicSession(), parameters);
 
 

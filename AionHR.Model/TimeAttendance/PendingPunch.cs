@@ -14,6 +14,8 @@ namespace AionHR.Model.TimeAttendance
         public string ppTypeName { get; set; }
 
         public string employeeName { get; set; }
+        public short? ppType { get; set; }
+        
 
     }
 }

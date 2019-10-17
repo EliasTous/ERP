@@ -124,13 +124,13 @@
     <value>التعميد </value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Leave Return Info</value>
+    <value>معلومات العودة من الاجازة</value>
   </data>
   <data name="Department" xml:space="preserve">
     <value>القسم </value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Leave Return</value>
+    <value>تعديل العودة من الاجازة</value>
   </data>
   <data name="FieldApproverName" xml:space="preserve">
     <value>المعمد </value>
@@ -151,7 +151,7 @@
     <value>الاسم </value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>معرف السجل</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>الرمز </value>
@@ -166,6 +166,6 @@
     <value>ملاحظات حول العودة </value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
-    <value>Leave Returns </value>
+    <value>العودات من الاجازة</value>
   </data>
 </root>

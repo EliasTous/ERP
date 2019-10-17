@@ -100,6 +100,7 @@
                             <ext:ModelField Name="dayId" />
                         <ext:ModelField Name="dayIdString" />
                            <ext:ModelField Name="justification" />
+                         <ext:ModelField Name="activityId" />
                       
                                          
                         
@@ -332,7 +333,7 @@
                                   <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
                                  <ext:Parameter Name="apStatus" Value="record.data['apStatus']" Mode="Raw" />
                                 <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
-                                
+                                  
 
                                   <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />

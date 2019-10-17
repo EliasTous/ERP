@@ -149,13 +149,24 @@ namespace AionHR.Web.UI.Forms
           //  string AssetId = currentAsset.Text;
          //   string catId = currentCat.Text;
             string[] values = e.ExtraParams["values"].Split(',');
-            List<string> sentIds = new List<string>();
+          
             for (int i = 0; i < values.Length; i++)
             {
 
-                sentIds.Add(values[i].Split(':')[0].Replace("\"", "").Replace("{", ""));
+                
                 PostRequest<EmployeeUserValue> req = new PostRequest<EmployeeUserValue>();
-                req.entity = new EmployeeUserValue() {employeeId= Request.QueryString["employeeId"],  propertyId = values[i].Split(':')[0].Replace("\"", "").Replace("{", ""), value = values[i].Split(':')[1].Replace("\"", "").Replace("}", "") };
+                req.entity = new EmployeeUserValue() {employeeId= Request.QueryString["employeeId"],  propertyId = values[i].Split(':')[0].Replace("\"", "").Replace("{", "") };
+                string[] t = values[i].Split(':');
+                if (values[i].Split(':').Length == 4)
+                {
+                    req.entity.value = values[i].Split(':')[1];
+                    req.entity.value += ":"+values[i].Split(':')[2];
+                    req.entity.value += ":"+ values[i].Split(':')[3];
+                }
+                else
+                req.entity.value = values[i].Split(':')[1];
+
+                req.entity.value = req.entity.value.Replace("\"", "").Replace("}", "");
                 PostResponse<EmployeeUserValue> resp = _employeeService.ChildAddOrUpdate<EmployeeUserValue>(req);
                 if (!resp.Success)
                     Common.errorMessage(resp);

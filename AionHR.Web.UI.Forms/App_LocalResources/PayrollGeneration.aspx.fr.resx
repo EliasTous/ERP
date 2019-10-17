@@ -324,4 +324,10 @@
   <data name="Delete" xml:space="preserve">
     <value>Effacer</value>
   </data>
+  <data name="endDate" xml:space="preserve">
+    <value>date de fin</value>
+  </data>
+  <data name="startDate" xml:space="preserve">
+    <value>Date de début</value>
+  </data>
 </root>

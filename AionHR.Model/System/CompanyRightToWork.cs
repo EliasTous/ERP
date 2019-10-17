@@ -65,5 +65,7 @@ namespace AionHR.Model.System
         [PropertyID("20081_01")]
         [ApplySecurity]
         public string branchName { get; set; }
+        public string fileName { get; set; }
+        
     }
 }

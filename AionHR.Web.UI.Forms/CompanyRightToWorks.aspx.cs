@@ -347,6 +347,7 @@ namespace AionHR.Web.UI.Forms
                     }
                     //Step 2 : call setvalues with the retrieved object
                     recordId.Text = response.result.recordId;
+                  
                     url.Text = response.result.fileUrl;
                     this.BasicInfoTab.SetValues(response.result);
 
@@ -380,6 +381,9 @@ namespace AionHR.Web.UI.Forms
                     }
                     else
                     { SetHijriInputState(false); }
+
+                    rwFile.EmptyText = response.result.fileName;
+                    rwFile.ReRender();
                     this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditRecordWindow.Show();
                     break;

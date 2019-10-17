@@ -86,37 +86,43 @@
                    
                         
                        <DockedItems>
-                        <ext:Toolbar runat="server" Height="30" Dock="Top">
+                        <ext:Toolbar runat="server" Height="30" Dock="Top" Width="50" ClassicButtonStyle="false" >
 
                             <Items>
-                             
-                             
-                                
-                                <ext:Container runat="server" Layout="FitLayout">
-                                    <Content>
-                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                           
+                            
+                                   <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
                                        <Listeners>
                                            <Click Handler=" App.reportsParams.show();" />
                                        </Listeners>
                                         </ext:Button>
+                                  
+                                       
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
                                                 <Click Handler="App.Store1.reload();" />
                                             </Listeners>
                                         </ext:Button>
-                                          <ext:Button runat="server" Text="<%$Resources: Process %>" >
+                             
+                        
+         
+                                         
+                                             <ext:Button runat="server" ID="searchTrigger" Text="<%$Resources: Process %>" >
                                            <DirectEvents> 
                                                <Click OnEvent="processPunches">
                                                    <EventMask ShowMask="true" />
                                                </Click>
                                            </DirectEvents>
                                         </ext:Button>
-                                       
-                                    </Content>
-                                </ext:Container>
-                                       
-                        
-
+                                 
+                             
+                          
+                      
+                               
+   
+                                
+                           
+                                
                             </Items>
                         </ext:Toolbar>
                            

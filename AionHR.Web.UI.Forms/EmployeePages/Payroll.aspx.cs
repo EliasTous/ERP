@@ -1591,7 +1591,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             entitlementsStore.DataSource = details.Items;
             entitlementsStore.DataBind();
-            ENSeq.Text = (details.count + 1).ToString();
+            if (details.Items.OrderBy(x => x.seqNo).ToList().Count() != 0)
+                ENSeq.Text = (details.Items.OrderBy(x => x.seqNo).ToList().Last().seqNo + 1).ToString();
+            else
+                ENSeq.Text = "1";
 
 
         }
@@ -1609,7 +1612,11 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             }
             deductionStore.DataSource = details.Items;
             deductionStore.DataBind();
-            DESeq.Text = (details.count + 1).ToString();
+            if (details.Items.OrderBy(x => x.seqNo).ToList().Count() != 0)
+                DESeq.Text = (details.Items.OrderBy(x => x.seqNo).ToList().Last().seqNo + 1).ToString();
+            else
+                DESeq.Text = "1";
+
 
 
         }

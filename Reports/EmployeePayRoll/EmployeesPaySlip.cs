@@ -88,7 +88,7 @@ namespace Reports.EmployeePayRoll
                 row.Cells.Add(valueCell);
 
                 count++;
-                if (count % 4 == 0)
+                if (count % 2 == 0)
                 {
                     table.Rows.Add(row);
                     row = new XRTableRow();
@@ -99,9 +99,9 @@ namespace Reports.EmployeePayRoll
 
 
             }
-            if (count % 4 != 0)
+            if (count % 2 != 0)
             {
-                for (int i = 0; i < (4 - (count % 4)) * 2; i++)
+                for (int i = 0; i < (2 - (count % 2)) * 2; i++)
                 {
                     XRTableCell cell = new XRTableCell();
 

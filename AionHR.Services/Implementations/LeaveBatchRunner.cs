@@ -82,9 +82,15 @@ namespace AionHR.Services.Implementations
             if (response == null || response.Items == null)
                 return ltRef;
 
-         if (response.Items.Where(x => x.reference == ltRef).ToArray()==null)
-                 return ltRef;
-         else  return response.Items.Where(x => x.reference == ltRef).ToArray()[0].recordId.ToString();
+            if (response.Items.Where(x => x.reference == ltRef).ToArray() == null)
+                return ltRef;
+            else
+            {
+                if (response.Items.Where(x => x.reference == ltRef).ToList().Count() != 0)
+                    return response.Items.Where(x => x.reference == ltRef).ToList().First().recordId;
+                else
+                    return ltRef;
+            }
 
 
 

@@ -705,4 +705,7 @@
   <data name="FieldSupplier" xml:space="preserve">
     <value>المورد</value>
   </data>
+  <data name="LeaveReturn" xml:space="preserve">
+    <value>العودة من الاجازة</value>
+  </data>
 </root>

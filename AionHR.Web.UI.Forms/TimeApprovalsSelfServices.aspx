@@ -171,7 +171,7 @@
                                                                                   <ext:ModelField Name="statusString" />
                                                                                  <ext:ModelField Name="arName" />
                                                                                 <ext:ModelField Name="notes" />
-                                                                                  <ext:ModelField Name="tvId" />
+                                                                                  <ext:ModelField Name="activityId" />
                                                                                  <ext:ModelField Name="seqNo" />
                                                                             
 
@@ -242,7 +242,7 @@
                                                                            <ext:Parameter Name="status" Value="record.data['status']" Mode="Raw" />
                                                                              <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
                                                                              <ext:Parameter Name="seqNo" Value="record.data['seqNo']" Mode="Raw" />
-                                                                             <ext:Parameter Name="tvId" Value="record.data['tvId']" Mode="Raw" />
+                                                                             <ext:Parameter Name="activityId" Value="record.data['activityId']" Mode="Raw" />
                                                                     
                                                                       
                                                                         

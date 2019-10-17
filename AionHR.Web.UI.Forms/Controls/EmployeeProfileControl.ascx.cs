@@ -1212,11 +1212,17 @@ namespace AionHR.Web.UI.Forms
             {
                 TerminatedLbl.Hidden = false;
                 TerminationDateLbl.Hidden = false;
+                departmentLbl.Hidden = true;
+                branchLbl.Hidden = true;
+                positionLbl.Hidden = true;
             }
             else
             {
                 TerminatedLbl.Hidden = true;
                 TerminationDateLbl.Hidden = true;
+                departmentLbl.Hidden = false;
+                branchLbl.Hidden = false;
+                positionLbl.Hidden = false;
             }
 
             string reportToFullName= forSummary.reportToName!=null? forSummary.reportToName:"";

@@ -538,7 +538,8 @@ namespace AionHR.Web.UI.Forms
                 string apStatus = e.ExtraParams["apStatus"];
                 string type = e.ExtraParams["type"];
                 string justificationParam = e.ExtraParams["justification"];
-              
+           
+
                 switch (type)
                 {
                     case "imgEdit":
@@ -674,7 +675,7 @@ namespace AionHR.Web.UI.Forms
                         break;
 
                     case "LinkRender":
-                        FillTimeApproval(dayId, employeeId,timeCodeParameter,shiftId,apStatus);
+                        FillTimeApproval(id);
                         TimeApprovalWindow.Show();
 
                         break;
@@ -727,7 +728,7 @@ namespace AionHR.Web.UI.Forms
                     rejectObject.shiftId = r.result.shiftId;
                     rejectObject.timeCode = r.result.timeCode;
                     rejectObject.justification = r.result.justification;
-                 
+                    rejectObject.apId= r.result.apId;
 
 
 
@@ -1027,53 +1028,38 @@ namespace AionHR.Web.UI.Forms
             }
             return R; 
         }
-        protected void FillTimeApproval(int dayId, int employeeId,string timeCode, string shiftId , string apstatus)
+
+        private void FillTimeApproval(string tvId)
         {
+
+
+
+            string rep_params = "";
             try
             {
-                DashboardTimeListRequest r = new DashboardTimeListRequest();
-                r.fromDayId= dayId.ToString();
-                r.toDayId= dayId.ToString();
-                r.employeeId = employeeId;
-                r.approverId = 0;
-                r.timeCode = timeCode;
-                r.shiftId = shiftId;
-                // r.apStatus = apstatus.ToString();
-                r.apStatus = "0";
-                r.DepartmentId = "0";
-                r.DivisionId = "0";
-                r.BranchId = "0";
-                r.PositionId = "0";
-                r.EsId = "0";
-                r.StartAt = "0";
-                r.Size = "1000";
-                string rep_params = "";
-                Dictionary<string, string> parameters = new Dictionary<string, string>();
-                parameters.Add("1", employeeId.ToString());
-                parameters.Add("2", dayId.ToString());
-                parameters.Add("3", dayId.ToString());
-                if (!string.IsNullOrEmpty(shiftId))
-                parameters.Add("4", shiftId);
-                parameters.Add("5", timeCode);
-                
-                foreach (KeyValuePair<string, string> entry in parameters)
-                {
-                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
-                }
-                if (rep_params.Length > 0)
-                {
-                    if (rep_params[rep_params.Length - 1] == '^')
-                        rep_params = rep_params.Remove(rep_params.Length - 1);
-                }
+               
 
 
 
-                ReportGenericRequest req = new ReportGenericRequest();
-                req.paramString = rep_params;
 
 
 
-                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(req);
+
+
+               
+
+
+
+
+
+
+                ReportGenericRequest r = new ReportGenericRequest();
+                r.paramString = "12|" + tvId;
+
+
+
+
+                ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(r);
                 if (!Times.Success)
                 {
                     Common.errorMessage(Times);
@@ -1088,12 +1074,13 @@ namespace AionHR.Web.UI.Forms
                         x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
                     }
 
+
                     x.statusString = FillApprovalStatus(x.status);
                 });
 
                 TimeStore.DataSource = Times.Items;
-                ////List<ActiveLeave> leaves = new List<ActiveLeave>();
-                //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+                //////List<ActiveLeave> leaves = new List<ActiveLeave>();
+                ////leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
 
 
                 TimeStore.DataBind();
@@ -1104,6 +1091,85 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
+
+
+        //protected void FillTimeApproval(int dayId, int employeeId,string timeCode, string shiftId , string apstatus)
+        //{
+        //    try
+        //    {
+        //        //DashboardTimeListRequest r = new DashboardTimeListRequest();
+        //        //r.fromDayId= dayId.ToString();
+        //        //r.toDayId= dayId.ToString();
+        //        //r.employeeId = employeeId;
+        //        //r.approverId = 0;
+        //        //r.timeCode = timeCode;
+        //        //r.shiftId = shiftId;
+        //        //// r.apStatus = apstatus.ToString();
+        //        //r.apStatus = "0";
+        //        //r.DepartmentId = "0";
+        //        //r.DivisionId = "0";
+        //        //r.BranchId = "0";
+        //        //r.PositionId = "0";
+        //        //r.EsId = "0";
+        //        //r.StartAt = "0";
+        //        //r.Size = "1000";
+        //        //string rep_params = "";
+        //        //Dictionary<string, string> parameters = new Dictionary<string, string>();
+        //        //parameters.Add("1", employeeId.ToString());
+        //        //parameters.Add("2", dayId.ToString());
+        //        //parameters.Add("3", dayId.ToString());
+        //        //if (!string.IsNullOrEmpty(shiftId))
+        //        //parameters.Add("4", shiftId);
+        //        //parameters.Add("5", timeCode);
+                
+        //        //foreach (KeyValuePair<string, string> entry in parameters)
+        //        //{
+        //        //    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+        //        //}
+        //        //if (rep_params.Length > 0)
+        //        //{
+        //        //    if (rep_params[rep_params.Length - 1] == '^')
+        //        //        rep_params = rep_params.Remove(rep_params.Length - 1);
+        //        //}
+
+
+
+        //        //ReportGenericRequest req = new ReportGenericRequest();
+        //        //req.paramString = rep_params;
+
+
+
+        //        //ListResponse<Time> Times = _timeAttendanceService.ChildGetAll<Time>(req);
+        //        //if (!Times.Success)
+        //        //{
+        //        //    Common.errorMessage(Times);
+        //        //    return;
+        //        //}
+        //        List<XMLDictionary> timeCodeList = ConstTimeVariationType.TimeCodeList(_systemService);
+        //        //int currentTimeCode;
+        //        //Times.Items.ForEach(x =>
+        //        //{
+        //        //    if (Int32.TryParse(x.timeCode, out currentTimeCode))
+        //        //    {
+        //        //        x.timeCodeString = timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).Count() != 0 ? timeCodeList.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
+        //        //    }
+
+        //        //    x.statusString = FillApprovalStatus(x.status);
+        //        //});
+
+        //        TimeStore.DataSource = Times.Items;
+        //        ////List<ActiveLeave> leaves = new List<ActiveLeave>();
+        //        //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
+
+
+        //        TimeStore.DataBind();
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+        //    }
+
+        //}
         private void FillDamageStore()
         {
             damageStore.DataSource = Common.XMLDictionaryList(_systemService, "22");

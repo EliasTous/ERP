@@ -664,6 +664,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to are you sure you want to process ?.
+        /// </summary>
+        internal static string confirmProcess {
+            get {
+                return ResourceManager.GetString("confirmProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Constants.
         /// </summary>
         internal static string Constants {

@@ -703,4 +703,7 @@
   <data name="FieldSupplier" xml:space="preserve">
     <value>Lieferant</value>
   </data>
+  <data name="LeaveReturn" xml:space="preserve">
+    <value>Rückkehr verlassen</value>
+  </data>
 </root>

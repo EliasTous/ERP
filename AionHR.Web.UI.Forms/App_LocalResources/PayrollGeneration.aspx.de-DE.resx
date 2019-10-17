@@ -325,4 +325,10 @@
   <data name="Delete" xml:space="preserve">
     <value>Löschen</value>
   </data>
+  <data name="endDate" xml:space="preserve">
+    <value>Endtermin</value>
+  </data>
+  <data name="startDate" xml:space="preserve">
+    <value>Anfangsdatum</value>
+  </data>
 </root>

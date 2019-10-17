@@ -130,7 +130,7 @@
     <value>Department</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Leave Return</value>
+    <value>Rückgabe von Urlaub bearbeiten</value>
   </data>
   <data name="FieldApproverName" xml:space="preserve">
     <value>Genehmigender</value>
@@ -151,7 +151,7 @@
     <value>Name</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>Datensatz-ID</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Referenz</value>

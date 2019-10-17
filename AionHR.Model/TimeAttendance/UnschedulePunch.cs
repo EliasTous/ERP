@@ -15,7 +15,8 @@ namespace AionHR.Model.TimeAttendance
         public string variation { get; set; }
         public string positionName { get; set; }
         public string branchName { get; set; }
-       // public string employeeId { get; set; }
+        // public string employeeId { get; set; }
+        public string AttendedMinutes { get; set; }
 
 
 

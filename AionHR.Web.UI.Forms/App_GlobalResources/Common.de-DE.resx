@@ -1353,4 +1353,7 @@
   <data name="leaveReplacementApproval" xml:space="preserve">
     <value>Ersatzurlaubsgenehmigung</value>
   </data>
+  <data name="LeaveReturn" xml:space="preserve">
+    <value>Rückkehr vom Urlaub</value>
+  </data>
 </root>

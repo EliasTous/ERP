@@ -245,7 +245,7 @@ namespace AionHR.Web.UI.Forms
 
 
             }
-            catch
+            catch(Exception exp)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                 X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();

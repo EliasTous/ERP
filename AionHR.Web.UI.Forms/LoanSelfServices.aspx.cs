@@ -355,7 +355,7 @@ namespace AionHR.Web.UI.Forms
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
-                    effectiveDate.Disabled = response.result.apStatus != "3";
+                      effectiveDate.ReadOnly = response.result.apStatus != "3";
                     //FillFilesStore(Convert.ToInt32(id));
 
                     //Step 2 : call setvalues with the retrieved object
@@ -652,7 +652,7 @@ namespace AionHR.Web.UI.Forms
         {
             foreach (var item in panelRecordDetails.Items)
             {
-                if (item.ID == "BasicInfoTab")
+                if (item.ID == "BasicInfoTab" || item.ID == "BasicInfoTab")
                     continue;
                 item.Disabled = !isEnable;
             }
@@ -686,7 +686,7 @@ namespace AionHR.Web.UI.Forms
             }
 
             branchId.Select(r.result.branchId);
-            effectiveDate.Disabled = false;
+              effectiveDate.ReadOnly = false;
             this.EditRecordWindow.Show();
         }
 

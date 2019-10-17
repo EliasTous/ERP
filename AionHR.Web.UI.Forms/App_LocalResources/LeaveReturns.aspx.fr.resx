@@ -124,13 +124,13 @@
     <value>Approbations</value>
   </data>
   <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
-    <value>Leave Return Info</value>
+    <value>information sur retour de conge</value>
   </data>
   <data name="Department" xml:space="preserve">
-    <value>Department</value>
+    <value>Departement</value>
   </data>
   <data name="EditWindowsTitle" xml:space="preserve">
-    <value>Edit Leave Return</value>
+    <value>éditer congé retour</value>
   </data>
   <data name="FieldApproverName" xml:space="preserve">
     <value>Approbateur</value>
@@ -151,7 +151,7 @@
     <value>Nom</value>
   </data>
   <data name="FieldRecordId" xml:space="preserve">
-    <value>Record ID</value>
+    <value>ID d'enregistrement</value>
   </data>
   <data name="FieldReference" xml:space="preserve">
     <value>Référence</value>

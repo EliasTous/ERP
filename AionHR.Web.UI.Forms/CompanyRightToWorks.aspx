@@ -456,8 +456,9 @@
                                    </ext:DateField>
 
 
-                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" Name="fileUrl" />
-
+                                <ext:FileUploadField runat="server" ID="rwFile" FieldLabel="<%$ Resources:FieldFile%>" AllowBlank="true" Name="fileUrl"  >
+                                    
+                                    </ext:FileUploadField>
 
                             </Items>
 

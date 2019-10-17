@@ -1419,4 +1419,7 @@
   <data name="RT311" xml:space="preserve">
     <value>Raw Punches</value>
   </data>
+  <data name="confirmProcess" xml:space="preserve">
+    <value>are you sure you want to process ?</value>
+  </data>
 </root>

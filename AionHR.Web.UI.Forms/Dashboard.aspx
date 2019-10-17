@@ -2382,7 +2382,7 @@
                                                 </ext:Store>
                                             </Store>
                                       <Listeners>
-                                          <Select Handler="#{punchesStore}.reload();" />
+                                          <Select Handler="#{punchesStore}.reload(); if (this.value==4) App.deleteAllPunches.setDisabled(true); else App.deleteAllPunches.setDisabled(false); " />
                                       </Listeners>
                                        </ext:ComboBox>
                           
@@ -2423,6 +2423,7 @@
                                                                                 <ext:ModelField Name="recordId"  />
                                                                                   <ext:ModelField Name="ppTypeName"  />
                                                                                   <ext:ModelField Name="employeeName" />
+                                                                                  <ext:ModelField Name="ppType" />
                                                                               
                                                                             
 
@@ -2464,8 +2465,7 @@
                                                                         Filterable="false"
                                                                         MenuDisabled="true"
                                                                         Resizable="false">
-
-                                                                        <Renderer Handler="return  deleteRender(); " />
+                                                    <Renderer Handler="if (record.data['ppType']==4)  return deleteRender();  else return '&nbsp;&nbsp';   " />
                                                                     </ext:Column>
 
 
