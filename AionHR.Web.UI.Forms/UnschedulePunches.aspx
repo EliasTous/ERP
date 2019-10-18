@@ -86,34 +86,40 @@
                    
                         
                        <DockedItems>
-                        <ext:Toolbar runat="server" Height="30" Dock="Top" Width="50" ClassicButtonStyle="false" >
+                        <ext:Toolbar runat="server" Height="30" Dock="Top" Width="50" >
 
                             <Items>
                            
                             
-                                   <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
+                                     <ext:Container runat="server" Layout="FitLayout">
+                                    <Content>
+                                          <ext:Button runat="server" Text="<%$ Resources:Common, Parameters%>"> 
                                        <Listeners>
                                            <Click Handler=" App.reportsParams.show();" />
                                        </Listeners>
                                         </ext:Button>
-                                  
-                                       
                                          <ext:Button runat="server" Text="<%$Resources:Common, Go %>" >
                                             <Listeners>
                                                 <Click Handler="App.Store1.reload();" />
                                             </Listeners>
                                         </ext:Button>
-                             
+                                       
+                                    </Content>
+                                </ext:Container>
+                                       
                         
-         
-                                         
-                                             <ext:Button runat="server" ID="searchTrigger" Text="<%$Resources: Process %>" >
+          <ext:ToolbarFill ID="ToolbarFillExport" runat="server" />
+                                   <ext:Container runat="server" Layout="FitLayout">
+                                            <Content>
+                                             <ext:Button runat="server" ID="ProcessButton" Text="<%$Resources: Process %>" >
                                            <DirectEvents> 
                                                <Click OnEvent="processPunches">
                                                    <EventMask ShowMask="true" />
                                                </Click>
                                            </DirectEvents>
                                         </ext:Button>
+                                                </Content>
+                                       </ext:Container>
                                  
                              
                           
