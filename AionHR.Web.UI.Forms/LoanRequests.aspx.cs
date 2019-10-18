@@ -443,7 +443,7 @@ namespace AionHR.Web.UI.Forms
                     ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
-                    status.Select(response.result.apStatus.ToString());
+                    apStatus.Select(response.result.apStatus.ToString());
                     ldMethod.Select(response.result.ldMethod.ToString());
                     if (!string.IsNullOrEmpty(response.result.branchId))
                         branchId.Select(response.result.branchId);
@@ -972,7 +972,7 @@ namespace AionHR.Web.UI.Forms
                 caseCommentStore.DataSource = new List<CaseComment>();
                 caseCommentStore.DataBind();
                 //Reset all values of the relative object
-                status.Select(0);
+                apStatus.Select(0);
                 this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
                 date.SelectedDate = DateTime.Now;
                 //effectiveDate.SelectedDate= DateTime.Now;

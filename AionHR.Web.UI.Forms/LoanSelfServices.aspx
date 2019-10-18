@@ -397,6 +397,22 @@
                                   
                                 </ext:ComboBox>
 
+                                     <ext:ComboBox  ReadOnly="true"   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
+                                    FieldLabel="<%$ Resources: LoanCoverageType %>" AllowBlank="true" SubmitValue="true">
+                                    <Items>
+                                       
+                                              
+                                                <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1"  />
+                                                <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2"  />
+                                                <ext:ListItem Text="<%$ Resources: PFromLoan %>" Value="3" />
+                                                <ext:ListItem Text="<%$ Resources: FixedAmount %>" Value="4"  />
+                                                <ext:ListItem Text="<%$ Resources: FixedPayment %>" Value="5" />
+
+                                            </Items>
+                                          
+                                        </ext:ComboBox>
+                               
+
                                 <%--<ext:TextField ID="employeeName" runat="server" FieldLabel="<%$ Resources:FieldEmployeeName%>" Name="employeeName"   AllowBlank="false"/>--%>
                                 <ext:DateField Hidden="true"  ID="date" runat="server" FieldLabel="<%$ Resources:FieldDate%>" Name="date" AllowBlank="true" >
                                      <CustomConfig>
@@ -456,20 +472,7 @@
                                         </CustomConfig>
                                     </ext:DateField>
                                 
-                                        <ext:ComboBox  Hidden="true"   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ldMethod" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    FieldLabel="<%$ Resources: LoanCoverageType %>" AllowBlank="true" SubmitValue="true">
-                                    <Items>
-                                       
-                                              
-                                                <ext:ListItem Text="<%$ Resources: PFromNetSalary %>" Value="1"  />
-                                                <ext:ListItem Text="<%$ Resources: PFromBasicSalary %>" Value="2"  />
-                                                <ext:ListItem Text="<%$ Resources: PFromLoan %>" Value="3" />
-                                                <ext:ListItem Text="<%$ Resources: FixedAmount %>" Value="4"  />
-                                                <ext:ListItem Text="<%$ Resources: FixedPayment %>" Value="5" />
-
-                                            </Items>
-                                          
-                                        </ext:ComboBox>
+                                   
                                         <ext:NumberField Hidden="false" Width="400"  runat="server"  ID="ldValue" Name="ldValue" FieldLabel="<%$ Resources: PaymentValue %>"  AllowBlank="true" >
                                         
                                

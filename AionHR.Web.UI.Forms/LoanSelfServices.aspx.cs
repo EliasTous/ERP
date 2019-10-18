@@ -754,7 +754,7 @@ namespace AionHR.Web.UI.Forms
                 if (string.IsNullOrEmpty(id))
                 {
                     if (!string.IsNullOrEmpty(ldValueParam))
-                    b.ldValue = Convert.ToInt16(ldValueParam);
+                    b.ldValue = Convert.ToDouble(ldValueParam);
                     if (!string.IsNullOrEmpty(ldMethodParam))
                        b.ldMethod = Convert.ToInt16(ldMethodParam);
 
