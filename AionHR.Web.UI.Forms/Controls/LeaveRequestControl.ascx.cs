@@ -181,7 +181,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 //Step 2 : call setvalues with the retrieved object
                 this.BasicInfoTab.SetValues(response.result);
                 LeaveApprovalStatusControl.setApprovalStatus(response.result.apStatus.ToString());
-
+                FillLeaveDay(id);
 
                 FillLeaveType();
 
@@ -457,10 +457,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
                 if (string.IsNullOrEmpty(id))
                 {
-                    if (days.Count == 0)
-                    {
-                        days = GenerateDefaultLeaveDays();
-                    }
+                    
 
                     try
                     {
@@ -855,73 +852,9 @@ namespace AionHR.Web.UI.Forms.Controls
         [DirectMethod]
         public void MarkLeaveChanged(object sender, DirectEventArgs e)
         {
-            DateTime startDate, endDate;
-            try
-            {
-                startDate = DateTime.Parse(e.ExtraParams["startDate"]);
-                endDate = DateTime.Parse(e.ExtraParams["endDate"]);
-                LeaveChanged.Text = "1";
-            }
-            catch
-            {
-
-                panelRecordDetails.ActiveTabIndex = 0;
-                return;
-            }
-            if (startDate == DateTime.MinValue || endDate == DateTime.MinValue)
-            {
-
-                return;
-            }
-            string startDay = startDate.ToString("yyyyMMdd");
-            string endDay = endDate.ToString("yyyyMMdd");
-
-            LeaveCalendarDayListRequest req = new LeaveCalendarDayListRequest();
-            req.StartDayId = startDay;
-            req.EndDayId = endDay;
-            req.IsWorkingDay = true;
-            int bulk;
-            if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
-            {
-
-                return;
-            }
-            req.employeeId = employeeId.Value.ToString();
-            //if (req.CaId == "0")
-            //{
-
-            //    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorNoCalendar").ToString()).Show();
-            //    return;
-
-            //}
-            ListResponse<LeaveCalendarDay> days = _helpFunctionService.ChildGetAll<LeaveCalendarDay>(req);
-            if (!days.Success)
-            {
-                X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", days.ErrorCode) != null ? GetGlobalResourceObject("Errors", days.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + days.Summary : days.Summary).Show();
-                return;
-            }
-            List<LeaveDay> leaveDays = new List<LeaveDay>();
-            days.Items.ForEach(x => leaveDays.Add(new LeaveDay() { dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek, dayId = x.dayId, workingHours = x.workingHours, leaveHours = x.workingHours }));
-            if (!string.IsNullOrEmpty(CurrentLeave.Text))
-            {
-                LeaveDayListRequest req1 = new LeaveDayListRequest();
-                req1.LeaveId = CurrentLeave.Text;
-                ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req1);
-                if (!resp.Success)
-
-                {
-
-                }
-                foreach (LeaveDay l in resp.Items)
-                {
-                    if (leaveDays.Where(x => x.dayId == l.dayId).Count() > 0)
-                        leaveDays.Where(x => x.dayId == l.dayId).First().leaveHours = l.leaveHours;
-                }
-            }
-            leaveDaysStore.DataSource = leaveDays;
-            leaveDaysStore.DataBind();
-            leaveDaysField.Text = leaveDays.Count.ToString();
+            
+          
+         
             X.Call("CalcSum");
             LoadQuickViewInfo(employeeId.Value.ToString());
         }

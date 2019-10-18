@@ -119,6 +119,7 @@ namespace AionHR.Web.UI.Forms
                    Common.errorMessage(resp);
                     return;
                 }
+                FillReligionStore();
                 if (resp.result != null)
                 {
                     if (resp.result.name != null)
@@ -133,6 +134,7 @@ namespace AionHR.Web.UI.Forms
 
                     BasicInfoTab.Reset();
                     BasicInfoTab.SetValues(resp.result);
+              
 
 
 
@@ -167,7 +169,11 @@ namespace AionHR.Web.UI.Forms
 
         }
 
-
+        private void FillReligionStore()
+        {
+            religionStore.DataSource = Common.XMLDictionaryList(_systemService, "20");
+            religionStore.DataBind();
+        }
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional

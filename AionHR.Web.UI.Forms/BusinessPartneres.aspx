@@ -305,7 +305,7 @@
                                  
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" Name="name" AllowBlank="false"  />
                            
-                                      <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="bcId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="bcId" FieldLabel="<%$ Resources:FieldBusinessPartnerCategory%>" SimpleSubmit="true">
+                                      <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="bcId" AllowBlank="false" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" Name="bcId" FieldLabel="<%$ Resources:FieldBusinessPartnerCategory%>" >
                                     <Store>
                                         <ext:Store runat="server" ID="bcIdStore">
                                             <Model>

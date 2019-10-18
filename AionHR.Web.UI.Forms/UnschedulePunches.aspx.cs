@@ -307,7 +307,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 resp.Items.ForEach(x =>
                 {
-                 
+                    x.AttendedHours = time(Convert.ToInt32(x.variation), true);
                     x.variation = time(Convert.ToInt32(x.variation), true);
                 });
                 this.Store1.DataSource = resp.Items;

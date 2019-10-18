@@ -1527,9 +1527,9 @@ namespace AionHR.Web.UI.Forms
             
                 punchesStore.DataSource = punches.Items;
                 if (punches.Items != null)
-                    PunchesGrid.Title = GetLocalResourceObject("PurchasesApproval").ToString() + " " + (punches.Items.Count != 0 ? punches.Items.Count.ToString() : "");
+                    PunchesGrid.Title = GetLocalResourceObject("PunchesGrid").ToString() + " " + (punches.Items.Count != 0 ? punches.Items.Count.ToString() : "");
                 else
-                    PunchesGrid.Title = GetLocalResourceObject("PurchasesApproval").ToString();
+                    PunchesGrid.Title = GetLocalResourceObject("PunchesGrid").ToString();
                 punchesStore.DataBind();
             }
             catch (Exception exp)
@@ -3479,7 +3479,8 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-
+                if (ppType.SelectedItem.Value != "4")
+                    return;
                 PendingPunchListRequest req = new PendingPunchListRequest();
 
                 req.ppTypeParam = ppType.SelectedItem.Value == null ? "0" : ppType.SelectedItem.Value.ToString();

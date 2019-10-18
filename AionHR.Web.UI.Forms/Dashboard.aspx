@@ -2382,12 +2382,12 @@
                                                 </ext:Store>
                                             </Store>
                                       <Listeners>
-                                          <Select Handler="#{punchesStore}.reload(); if (this.value==4) App.deleteAllPunches.setDisabled(true); else App.deleteAllPunches.setDisabled(false); " />
+                                          <Select Handler="#{punchesStore}.reload(); if (this.value!=4) App.deleteAllPunches.setDisabled(true); else App.deleteAllPunches.setDisabled(false); " />
                                       </Listeners>
                                        </ext:ComboBox>
                           
 
-                                   <ext:Button ID="deleteAllPunches" runat="server"  Icon="Delete">
+                                   <ext:Button ID="deleteAllPunches" runat="server"  Icon="Delete" Disabled="true">
                                     <Listeners>
                                         <Click Handler="CheckSession();" />
                                     </Listeners>

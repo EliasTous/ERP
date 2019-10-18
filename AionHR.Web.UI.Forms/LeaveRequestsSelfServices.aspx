@@ -116,14 +116,14 @@
     }
     function calcSum() {
        
-        var sum = 0;
-        App.LeaveDaysGrid.getStore().each(function (record) {
+        //var sum = 0;
+        //App.LeaveDaysGrid.getStore().each(function (record) {
 
-            sum += record.data['leaveHours'];
-        });
+        //    sum += record.data['leaveHours'];
+        //});
       
-        App.leavePeriod.setValue(sum.toFixed(2));
-        App.sumHours2.setValue(sum.toFixed(2));
+        //App.leavePeriod.setValue(sum.toFixed(2));
+        //App.sumHours2.setValue(sum.toFixed(2));
 
 
     }
@@ -487,12 +487,7 @@
                         </ext:ComboBox>
                            <ext:DateField ID="startDate"   runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false" ViewStateMode="Enabled">
                             <DirectEvents>
-                                <Change OnEvent="MarkLeaveChanged">
-                                    <ExtraParams>
-                                        <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
-                                        <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
-                                    </ExtraParams>
-                                </Change>
+                             
                                 
                             </DirectEvents>
                                <Validator Handler=" if (#{endDate}.getValue() !=null && this.value>#{endDate}.getValue()) return false; else return true;" />
@@ -509,14 +504,7 @@
                       
                                 <ext:DateField ID="endDate"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  Name="endDate" AllowBlank="false">
                                  
-                                    <DirectEvents>
-                                        <Change OnEvent="MarkLeaveChanged">
-                                            <ExtraParams>
-                                                <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
-                                                <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
-                                            </ExtraParams>
-                                        </Change>
-                                    </DirectEvents>
+                                  
                                    <%-- <Listeners>
                                         <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>
@@ -614,7 +602,7 @@
                     </Items>
 
                 </ext:FormPanel>
-                <ext:FormPanel ID="LeaveDays" runat="server" OnLoad="LeaveDays_Load" Title="<%$ Resources: LeaveDaysWindowTitle %>">
+                <ext:FormPanel Visible="false" ID="LeaveDays" runat="server" OnLoad="LeaveDays_Load" Title="<%$ Resources: LeaveDaysWindowTitle %>">
                     <Items>
                         <ext:GridPanel
                             ID="LeaveDaysGrid"
@@ -766,7 +754,7 @@
                  <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
             <Listeners>
-                <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()||!#{LeaveDays}.getForm().isValid()) {return false;}  " />
+                <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;}  " />
             </Listeners>
             <DirectEvents>
                 <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
@@ -776,7 +764,7 @@
                          <ext:Parameter Name="apStatus" Value="#{apStatus}.getValue()" Mode="Raw" />
                         
                         <ext:Parameter Name="values" Value="#{BasicInfoTab}.getForm().getValues()" Mode="Raw"  />
-                        <ext:Parameter Name="days" Value="Ext.encode(#{LeaveDaysGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />
+                  <%--      <ext:Parameter Name="days" Value="Ext.encode(#{LeaveDaysGrid}.getRowsValues({selectedOnly : false}))" Mode="Raw" />--%>
                     </ExtraParams>
                 </Click>
             </DirectEvents>

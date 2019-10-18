@@ -57,6 +57,8 @@
                           <ext:ModelField Name="variation" />
                             <ext:ModelField Name="branchName" />
                           <ext:ModelField Name="positionName" />
+                          <ext:ModelField Name="attendedMinutes" />
+                        
                      
                                </Fields>
                 </ext:Model>

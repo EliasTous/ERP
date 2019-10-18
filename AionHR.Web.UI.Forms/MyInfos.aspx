@@ -107,7 +107,21 @@
                                 <ext:TextField LabelWidth="120" ID="mobile" AllowBlank="true" MinLength="6" MaxLength="18" runat="server" FieldLabel="<%$ Resources:FieldMobile%>" Name="mobile" BlankText="<%$ Resources:Common, MandatoryField%>">
                                     <Validator Handler="return !isNaN(this.value);" />
                                 </ext:TextField>
-                                <ext:ComboBox LabelWidth="120"   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
+                          <ext:ComboBox  AnyMatch="true"  LabelWidth="120"  CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldReligion%>"  runat="server" DisplayField="value" ValueField="key"   Name="religion" ID="religionCombo" >
+                                             <Store>
+                                                <ext:Store runat="server" ID="religionStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="value" />
+                                                                <ext:ModelField Name="key" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                       </ext:ComboBox>
+                              <%--  <ext:ComboBox LabelWidth="120"   AnyMatch="true" CaseSensitive="false"  ID="religionCombo" runat="server" FieldLabel="<%$ Resources:FieldReligion%>" Name="religion" IDMode="Static" SubmitValue="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion0%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionChristian%>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion1%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionMuslim%>"></ext:ListItem>
@@ -117,7 +131,7 @@
                                         <ext:ListItem Text="<%$ Resources:Common, Religion5%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionHindu%>"></ext:ListItem>
                                         <ext:ListItem Text="<%$ Resources:Common, Religion6%>" Value="<%$ Resources:ComboBoxValues, SSEMReligionOther%>"></ext:ListItem>
                                     </Items>
-                                </ext:ComboBox>
+                                </ext:ComboBox>--%>
                                 <ext:DateField LabelWidth="120"
                                     runat="server" ID="birthDate"
                                     Name="birthDate"

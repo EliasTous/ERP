@@ -698,9 +698,10 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                     X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorUpdatingRecord).Show();
                 }
 
-                X.Call("parent.refreshQV");
+               
 
             }
+            X.Call("parent.refreshQV");
         }
 
         protected void SaveJI(object sender, DirectEventArgs e)

@@ -448,7 +448,7 @@ namespace AionHR.Web.UI.Forms.EmployeePages
             ListResponse<Attachement> documents = _systemService.ChildGetAll<Attachement>(request);
             if (!documents.Success)
             {
-                X.Msg.Alert(Resources.Common.Error, documents.Summary).Show();
+                Common.errorMessage(documents);
                 return;
             }
             this.employeeDocumentsStore.DataSource = documents.Items;

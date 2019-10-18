@@ -594,7 +594,7 @@
                                                 </ext:Store>
                                             </Store>
                                             <RightButtons>
-                                                <ext:Button ID="Button6" runat="server" Icon="Add" Hidden="true">
+                                                <ext:Button ID="Button6" runat="server" Icon="Add" >
                                                     <Listeners>
                                                         <Click Handler="CheckSession();  " />
                                                     </Listeners>
@@ -607,10 +607,7 @@
                                                     </DirectEvents>
                                                 </ext:Button>
                                             </RightButtons>
-                                            <Listeners>
-                                                <FocusEnter Handler="this.rightButtons[0].setHidden(false);" />
-                                                <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
-                                            </Listeners>
+                                          
                                         </ext:ComboBox>
                                           <ext:TextField runat="server" Name="cellPhone" AllowBlank="false" ID="TextField3" FieldLabel="<%$ Resources:FieldEMCellPhone%>" >
                                              <Validator Handler="if ( !isNaN(this.value) && this.value.length<=10 ) return true; else return false; " />

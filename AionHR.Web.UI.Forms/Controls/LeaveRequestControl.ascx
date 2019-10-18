@@ -254,8 +254,7 @@
                             <DirectEvents>
                                 <Select OnEvent="MarkLeaveChanged">
                                     <ExtraParams>
-                                        <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
-                                        <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
+                                       
                                     </ExtraParams>
                                 </Select>
                             </DirectEvents>
@@ -293,15 +292,7 @@
                          <ext:Panel runat="server" Layout="HBoxLayout">
                             <Items>
                            <ext:DateField ID="startDate"    runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" AllowBlank="false">
-                            <DirectEvents>
-                                <change OnEvent="MarkLeaveChanged">
-                                    <ExtraParams>
-                                        <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
-                                        <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
-                                    </ExtraParams>
-                                </change>
-                                
-                            </DirectEvents>
+                          
                          <Listeners>
                                         <Change Handler="if(moment(this.value).isSame(moment( #{oldStart}.value) )) {return false;} #{oldStart}.value = this.value; calcDays();" />
 
@@ -313,14 +304,8 @@
                           
                                 <ext:DateField ID="endDate" LabelWidth="65"    runat="server" FieldLabel="<%$ Resources:FieldEndDate%>"  Name="endDate" AllowBlank="false">
                                  
-                                    <DirectEvents>
-                                        <change OnEvent="MarkLeaveChanged">
-                                            <ExtraParams>
-                                                <ext:Parameter Name="startDate" Value="#{startDate}.getValue()" Mode="Raw" />
-                                                <ext:Parameter Name="endDate" Value="#{endDate}.getValue()" Mode="Raw" />
-                                            </ExtraParams>
-                                        </change>
-                                    </DirectEvents>
+                                 
+                                  
                                    <%-- <Listeners>
                                         <Change Handler="App.leaveRequest1_direct.MarkLeaveChanged(); CalcSum(); " />
                                     </Listeners>--%>

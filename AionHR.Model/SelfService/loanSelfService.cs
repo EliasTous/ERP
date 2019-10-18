@@ -57,7 +57,7 @@ namespace AionHR.Model.SelfService
         public short? ldMethod { get; set; }
         [PropertyID("60105_03")]
         [ApplySecurity]
-        public int? ldValue { get; set; }
+        public double? ldValue { get; set; }
 
     }
 }

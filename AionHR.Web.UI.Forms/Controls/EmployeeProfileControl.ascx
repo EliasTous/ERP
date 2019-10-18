@@ -357,6 +357,7 @@
     }
 
     function refreshQV() {
+       
         App.direct.employeeControl1.FillLeftPanel(true);
     }
 </script>
@@ -1228,7 +1229,7 @@
                                     </Store>
 
                                 </ext:ComboBox>--%>
-                                   <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldScheduleType%>"  runat="server" DisplayField="value" ValueField="key"   Name="scType" ID="scType" >
+                                   <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:FieldScheduleType%>"  runat="server" DisplayField="value" ValueField="key"   Name="scType" ID="scType" AllowBlank="false" >
                                              <Store>
                                                 <ext:Store runat="server" ID="scTypeStore">
                                                     <Model>

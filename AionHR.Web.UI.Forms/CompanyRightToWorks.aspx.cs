@@ -556,7 +556,8 @@ namespace AionHR.Web.UI.Forms
                 SetHijriInputState(false);
                 X.Call("handleInputRender");
             }
-
+            rwFile.EmptyText = "";
+            rwFile.ReRender();
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             this.EditRecordWindow.Show();
         }

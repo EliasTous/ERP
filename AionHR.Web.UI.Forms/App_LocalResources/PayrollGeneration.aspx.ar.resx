@@ -324,4 +324,7 @@
   <data name="startDate" xml:space="preserve">
     <value>تاريخ البداية</value>
   </data>
+  <data name="FieldPayrollRef" xml:space="preserve">
+    <value>مرجع الرواتب</value>
+  </data>
 </root>

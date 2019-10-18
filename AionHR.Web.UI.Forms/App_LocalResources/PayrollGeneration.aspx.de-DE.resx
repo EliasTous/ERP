@@ -331,4 +331,7 @@
   <data name="startDate" xml:space="preserve">
     <value>Anfangsdatum</value>
   </data>
+  <data name="FieldPayrollRef" xml:space="preserve">
+    <value>Abrechnungsreferenz</value>
+  </data>
 </root>

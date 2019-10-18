@@ -107,9 +107,15 @@ namespace AionHR.Web.UI.Forms.EmployeePages
                 //ApplySecurityEmergencyContacts();
             }
             if (!string.IsNullOrEmpty(Request.QueryString["fromselfservice"]) && Request.QueryString["fromselfservice"] == "true")
+            {
+                Button6.Hidden = true;
                 _employeeService = ServiceLocator.Current.GetInstance<ISelfServiceService>();
+            }
             else
+            {
+                Button6.Hidden = false;
                 _employeeService = ServiceLocator.Current.GetInstance<IEmployeeService>();
+            }
 
         }
 
