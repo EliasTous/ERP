@@ -36,6 +36,7 @@ using AionHR.Services.Messaging.Employees;
 using AionHR.Services.Messaging.Reports;
 using Reports.AttendanceSchedule;
 using System.Threading;
+using AionHR.Model.AdminTemplates;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -1013,7 +1014,7 @@ namespace AionHR.Web.UI.Forms
                 // string closeAt = "00:00";
                 string startAt = items.Count != 0 ? items.Min(x => x.dtFrom.TimeOfDay).ToString() : "00:00";
                 string closeAt = items.Count != 0 ?items.Max(x => x.dtTo.TimeOfDay).ToString() : "00:00";
-
+               
                 //GetBranchSchedule(out startAt, out closeAt);
                 if (string.IsNullOrEmpty(startAt) || string.IsNullOrEmpty(closeAt))
                 {
@@ -1580,11 +1581,13 @@ namespace AionHR.Web.UI.Forms
                 sh.employeeId = string.IsNullOrEmpty(employeeId.Value.ToString()) ? "0" : employeeId.Value.ToString();
                 sh.branchId = string.IsNullOrEmpty(branchId.Value.ToString()) ? "0" : branchId.Value.ToString();
                 sh.device = device.Value.ToString();
+                sh.processId = ProcessNotificationTypes.TIME_SCHEDULE.ToString();
                 byte[] fileData = GetReportAsBuffer(report);
                 ShareAttachmentPostRequest req = new ShareAttachmentPostRequest();
                 req.entity = sh;
                 req.FilesData.Add(fileData);
                 req.FileNames.Add("Attachment.Jpeg");
+
                 PostResponse<ShareAttachment> resp = _employeeService.ShareEmployeeAttachments(req);
                 if (!resp.Success)
                 {
@@ -1612,7 +1615,7 @@ namespace AionHR.Web.UI.Forms
             }
             catch(Exception exp)
             {
-                X.MessageBox.Alert(Resources.Common.Error, exp.Message);
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message).Show();
                 device.Select("");
             }
 
@@ -1767,9 +1770,10 @@ namespace AionHR.Web.UI.Forms
 
         private XtraReport SetAttendanceScheduleReport()
         {
-            ReportCompositeRequest req = GetRequest();
+            string report_params = GetRequest();
+            ReportGenericRequest req = new ReportGenericRequest();
 
-
+            req.paramString = report_params;
 
 
             ListResponse<AionHR.Model.Reports.RT310> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT310>(req);
@@ -1798,22 +1802,10 @@ namespace AionHR.Web.UI.Forms
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 
 
-            string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+            
             h.Parameters["User"].Value = string.IsNullOrEmpty(_systemService.SessionHelper.GetCurrentUser()) ? " " : _systemService.SessionHelper.GetCurrentUser();
 
-            h.Parameters["From"].Value = from;
-            h.Parameters["To"].Value = to;
-
-            if (req.Parameters["_branchId"] != "0")
-                h.Parameters["Branch"].Value = branchId.SelectedItem != null ? branchId.SelectedItem.Text : "";
-
-
-            else
-                h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-
-
+           
 
 
 
@@ -1821,43 +1813,31 @@ namespace AionHR.Web.UI.Forms
             h.CreateDocument();
             return h;
         }
-        private ReportCompositeRequest GetRequest()
+        private string GetRequest()
         {
-            ReportCompositeRequest req = new ReportCompositeRequest();
-            DateRangeParameterSet DateSet = new DateRangeParameterSet();
-            JobInfoParameterSet jobInfoSet = new JobInfoParameterSet();
-            EmployeeParameterSet EmployeeSet = new EmployeeParameterSet();
-            DateSet.IsDayId = true;
-            DateSet.DateFrom = dateFrom.SelectedDate;
-            DateSet.DateTo = dateTo.SelectedDate;
+            string report_params="";
+
+            report_params+= "1|"+dateFrom.SelectedDate.ToString("yyyyMMdd");
+            report_params += "^2|" + dateTo.SelectedDate.ToString("yyyyMMdd");
+           
             if (!string.IsNullOrEmpty(branchId.Text) && branchId.Value.ToString() != "0")
             {
-                jobInfoSet.BranchId = Convert.ToInt32(branchId.Value);
+                report_params += "^4|"+ branchId.Value.ToString();
 
 
 
             }
-            else
-            {
-                jobInfoSet.BranchId = 0;
-
-            }
+           
             int bulk;
-            if (employeeId.Value == null || !int.TryParse(employeeId.Value.ToString(), out bulk))
+            if (employeeId.Value != null || int.TryParse(employeeId.Value.ToString(), out bulk))
 
-                EmployeeSet.employeeId = 0;
-            else
-                EmployeeSet.employeeId = bulk;
+                report_params += "^3|" + employeeId.Value.ToString();
 
-            req.Size = "1000";
-            req.StartAt = "0";
+            
 
-            req.Add(DateSet);
-            req.Add(jobInfoSet);
-            req.Add(EmployeeSet);
+        
 
-
-            return req;
+            return report_params;
         }
         private void calculateWorkingHours()
         {

@@ -11,6 +11,9 @@ public  class ShareAttachment
         public string employeeId { get; set; }
         public string branchId { get; set; }
         public string device { get; set; }
-       
+        public string processId { get; set; }
+
+        
+
     }
 }
