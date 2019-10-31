@@ -56,6 +56,9 @@
           <ext:Hidden ID="Yes" runat="server" Text="<%$ Resources:Common , Yes %>"  />
           <ext:Hidden ID="No" runat="server" Text="<%$ Resources:Common , No %>"  />
           <ext:Hidden ID="branchId" runat="server" Text=""  />
+
+        <ext:Hidden ID="goIDDD" runat="server" Text=""  />
+        <ext:Hidden ID="goIDName" runat="server" Text=""  />       
         
       
       
@@ -678,6 +681,7 @@
                                     <EventMask ShowMask="true" />
                                     <ExtraParams>
                                         <ext:Parameter Name="id" Value="record.data['goId']" Mode="Raw" />
+                                        <ext:Parameter Name="goName" Value="record.data['goName']" Mode="Raw" />
                                        
                                         <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                                     </ExtraParams>

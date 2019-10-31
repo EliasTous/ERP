@@ -868,9 +868,11 @@ namespace AionHR.Web.UI.Forms
         }
         protected void PoPuPlegalReference(object sender, DirectEventArgs e)
         {
-
+            legalReferenceForm.Reset();
 
             int id = Convert.ToInt32(e.ExtraParams["id"]);
+            goIDDD.Text = e.ExtraParams["id"];
+            goIDName.Text = e.ExtraParams["goName"];
             string type = e.ExtraParams["type"];
 
             switch (type)
@@ -890,8 +892,20 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
                     goNameTF.ReadOnly = true;
 
+                    
+                    
+                    if (response.result == null)
+                    {
+                        goNameTF.Text = goIDName.Text;
+                        referenceTF.Text = "";
+                        releaseDateDF.Text = "";
+                        expiryDateDF.Text = "";
+                    }
+                    else
+                    {
+                        response.result.goName = goIDName.Text;
+                    }
                     this.legalReferenceForm.SetValues(response.result);
-                                      
                     this.EditlegalReferenceWindow.Title = Resources.Common.EditWindowsTitle;
                     this.EditlegalReferenceWindow.Show();
                     break;
@@ -934,6 +948,7 @@ namespace AionHR.Web.UI.Forms
            
             LegalReference b = JsonConvert.DeserializeObject<LegalReference>(obj);
             b.branchId =Convert.ToInt32( branchId.Text);
+            b.goId = Convert.ToInt32(goIDDD.Text);
           
 
             // Define the object to add or edit as null

@@ -103,6 +103,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden branchId;
         
         /// <summary>
+        /// goIDDD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden goIDDD;
+        
+        /// <summary>
+        /// goIDName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden goIDName;
+        
+        /// <summary>
         /// Store1 control.
         /// </summary>
         /// <remarks>
