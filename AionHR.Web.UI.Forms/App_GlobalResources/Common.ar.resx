@@ -1449,4 +1449,7 @@
   <data name="LeaveReturn" xml:space="preserve">
     <value>العودة من الاجازة</value>
   </data>
+  <data name="RT311" xml:space="preserve">
+    <value>بصمات غير معالجة</value>
+  </data>
 </root>

@@ -467,7 +467,7 @@
     <value>846.6667, 35</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>Salaire a un temps specifique</value>
+    <value>Salaire à une date specifique</value>
   </data>
   <data name="reportHeaderBand1.Dpi" type="System.Single, mscorlib">
     <value>100</value>

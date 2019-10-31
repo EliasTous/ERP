@@ -1027,7 +1027,7 @@
     <value>Années de service</value>
   </data>
   <data name="RT105" xml:space="preserve">
-    <value>Historique du travail</value>
+    <value>Histoire du travail</value>
   </data>
   <data name="RT106" xml:space="preserve">
     <value>Taux de roulement</value>
@@ -1448,5 +1448,8 @@
   </data>
   <data name="LeaveReturn" xml:space="preserve">
     <value>Retour de congé</value>
+  </data>
+  <data name="RT311" xml:space="preserve">
+    <value>Raws coup de poings</value>
   </data>
 </root>

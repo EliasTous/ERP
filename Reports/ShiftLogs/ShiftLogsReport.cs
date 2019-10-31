@@ -17,6 +17,7 @@ namespace Reports.ShiftLogs
 
         List<RT309> items = new List<RT309>();
         bool isArabic;
+        string _lang = "";
         public ShiftLogsReport(List<RT309> items, /*bool isArabic*/ string getLanguage, string DateFormat, Dictionary<string, string> parameters,int maxShiftCount)
         {
             isArabic = false;
@@ -34,6 +35,7 @@ namespace Reports.ShiftLogs
             fielddayId1.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             fielddayId1.ValueFormat.FormatString = DateFormat;
             //if (isArabic)
+            _lang = getLanguage;
             if (getLanguage == "ar")
             {
                 isArabic = true;
@@ -299,7 +301,19 @@ namespace Reports.ShiftLogs
            if ( e.RowValueType == PivotGridValueType.Total && e.ColumnIndex==0)
             {
                 //e.DisplayText =time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString()).Sum(x => x.duration),true);
-                e.DisplayText = time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString() && x.shiftId == "shift  1").Sum(x => x.duration), true);
+                if (_lang == "ar")
+                {
+                    e.DisplayText = time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString() && x.shiftId == "فترة   1").Sum(x => x.duration), true);
+                }
+                else if (_lang == "en")
+                {
+                    e.DisplayText = time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString() && x.shiftId == "shift  1").Sum(x => x.duration), true);
+                }
+                else if (_lang == "fr")
+                {
+                    e.DisplayText = time(items.Where(x => x.employeeName == e.GetFieldValue(fieldemployeeName1).ToString() && x.shiftId == "Horraire  1").Sum(x => x.duration), true);
+                }
+                
                 return;
 
             }
