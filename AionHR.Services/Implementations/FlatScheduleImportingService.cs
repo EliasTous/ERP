@@ -31,9 +31,16 @@ namespace AionHR.Services.Implementations
             {
                 string employeeRef = row[0].ToString();
                 DateTime s;
+                DateTime from=new DateTime();
+                DateTime to= new DateTime();
                 string dayId = "";
+                string[] parts;
                 if (DateTime.TryParse(row[1].ToString(), out s))
+                {
+                    from = s;
+                    to = s;
                     dayId = s.ToString("yyyyMMdd");
+                }
                 else
                     dayId = row[1].ToString();
                 for (int i = 0; i < (row.Table.Columns.Count - 2); i += 2)
@@ -50,8 +57,19 @@ namespace AionHR.Services.Implementations
                     {
                         cOut = PadTime(cOut);
                     }
-                    if (cIn.Length == cOut.Length && cOut.Length== 5)
-                        shifts.Add(new FlatSchedule() { from = cIn, to = cOut, dayId = dayId, employeeRef = employeeRef });
+                    if (cIn.Length == cOut.Length && cOut.Length == 5)
+                    {
+                        FlatSchedule FS = new FlatSchedule();
+                     
+                        TimeSpan tsStart = TimeSpan.Parse(cIn);
+                        TimeSpan tsEnd = TimeSpan.Parse(cOut);
+                        FS.dtFrom = from.Add(tsStart);
+                 
+                        FS.dtTo = to.Add(tsEnd); ;
+                        FS.employeeRef = employeeRef; 
+
+                        shifts.Add(FS);
+                    }
                 }
 
 

@@ -256,7 +256,7 @@ namespace AionHR.Web.UI.Forms
                    // CurrentLeave.Text = r.RecordID;
                   //  shouldDisableLastDay.Text = "0";
 
-                    RecordResponse<LeaveRequest> response = _leaveManagementService.ChildGetRecord<LeaveRequest>(r);
+                    RecordResponse<LeaveRequest> response = _selfServiceService.ChildGetRecord<LeaveRequest>(r);
                     if (!response.Success)
                     {
                         X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

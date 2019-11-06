@@ -1833,7 +1833,7 @@
                                                                              
                                                                                     <ext:ModelField Name="date" />
                                                                                    <ext:ModelField Name="timeCodeString"  />
-                                                                                 <ext:ModelField Name="fullName"  />
+                                                                                 <ext:ModelField Name="employeeName"  />
 
                                                                                   <ext:ModelField Name="notes" />
                                                                                     <ext:ModelField Name="seqNo" />
@@ -1856,7 +1856,7 @@
 
 
                                                                
-                                                                        <ext:Column ID="Column27" DataIndex="fullName"  Text="<%$ Resources: FieldEmployee %>"  runat="server" Flex="1"  >
+                                                                        <ext:Column ID="Column27" DataIndex="employeeName"  Text="<%$ Resources: FieldEmployee %>"  runat="server" Flex="1"  >
                                                                           
                                                                             </ext:Column>
                                                                    
@@ -4175,7 +4175,7 @@
                                 <ext:TextField ID="shiftIdTF" runat="server" Name="shiftId" FieldLabel="<%$ Resources: FieldShift%>"   ReadOnly="true" />
                           
                                
-                               <ext:TextField ID="TimeEmployeeName" runat="server" FieldLabel="<%$ Resources:FieldName%>" ReadOnly="true" />
+                               <ext:TextField ID="TimeEmployeeName" runat="server" FieldLabel="<%$ Resources:FieldName%>" ReadOnly="true" Name="employeeName"/>
                                 <ext:DateField ID="TimedayIdDate" runat="server" Name="date"  FieldLabel="<%$ Resources:FieldDate%>"  ReadOnly="true" />
                                 <ext:TextField ID="TimeTimeCodeString" runat="server" Name="timeCodeString" FieldLabel="<%$ Resources: FieldTimeCode%>"   ReadOnly="true" />
 

@@ -1537,6 +1537,18 @@ namespace AionHR.Web.UI.Forms
                 X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
             }
         }
+        private string RemoveSpecialCharacters(string str)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in str)
+            {
+                if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '.' || c == '_')
+                {
+                    sb.Append(c);
+                }
+            }
+            return sb.ToString();
+        }
 
         protected void TimeStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
@@ -1616,11 +1628,12 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(Times);
                     return;
                 }
+
                 List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
                 int currentTimeCode;
                 Times.Items.ForEach(x =>
                 {
-                    x.fullName = x.employeeName;
+                    x.employeeName = x.employeeName.Replace(". ", ".");
                     if (string.IsNullOrEmpty(x.shiftId))
                         x.shiftId = " ";
                   
@@ -1834,31 +1847,35 @@ namespace AionHR.Web.UI.Forms
                         response.result.damageLevel = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
                         damageLevel.Text = GetLocalResourceObject("DamageWITH_DAMAGE").ToString();
                     }
+
+                  
+
+
                     if (!string.IsNullOrEmpty(response.result.shiftStart))
-                        shiftStart.Text = response.result.shiftStart;
+                        response.result.shiftStart = response.result.shiftStart;
                     if (!string.IsNullOrEmpty(response.result.shiftEnd))
-                        shiftStart.Text += " " + response.result.shiftEnd;
+                        response.result.shiftStart += " " + response.result.shiftEnd;
 
 
 
-
+                
 
                     // clockDuration.Text = response.result.clockDuration + " " + response.result.duration;
                     List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
 
 
-                    clockDuration.Text = response.result.clockDuration;
-                    duration.Text = response.result.duration;
-                    TimeEmployeeName.Text = response.result.employeeName;
-                    TimedayIdDate.SelectedDate = (DateTime)response.result.date;
-                    TimeTimeCodeString.Text = timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).First().value : string.Empty; ;
+                    //clockDuration.Text = response.result.clockDuration;
+                    //duration.Text = response.result.duration;
+                    //TimeEmployeeName.Text = response.result.employeeName;
+                    //TimedayIdDate.SelectedDate = (DateTime)response.result.date;
+                    response.result.timeCodeString = timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(response.result.timeCode)).First().value : string.Empty; ;
                     TimeApprovalStatusControl.setApprovalStatus(response.result.status.ToString());
-                    shiftIdTF.Text = string.IsNullOrEmpty(response.result.shiftId) ? "" : response.result.shiftId;
-                    TimeNotes.Text = response.result.notes;
-                    justification.Text = response.result.justification;
+                    //shiftIdTF.Text = string.IsNullOrEmpty(response.result.shiftId) ? "" : response.result.shiftId;
+                    //TimeNotes.Text = response.result.notes;
+                    //justification.Text = response.result.justification;
                     tvId.Text = tvIdParameter;
-                    helpText.Text = response.result.helpText;
-
+                    // helpText.Text = response.result.helpText;
+                    TimeFormPanel.SetValues(response.result);
                     FillTimeApproval(tvIdParameter);
                 }
                 this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
