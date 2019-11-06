@@ -159,7 +159,7 @@ public class LeaveDayListRequest : ListRequest
         get
         {
             parameters = base.Parameters;
-            parameters.Add("_leaveId", LeaveId.ToString());
+            parameters.Add("_leaveId", LeaveId);
 
 
 

@@ -30,6 +30,7 @@ using AionHR.Model.TimeAttendance;
 using AionHR.Infrastructure.JSON;
 using AionHR.Model.SelfService;
 using AionHR.Services.Messaging.SelfService;
+using AionHR.Services.Messaging.LeaveManagement;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -251,8 +252,8 @@ namespace AionHR.Web.UI.Forms
                     leaveDaysField.SetHidden(true);
                     leaveHours.SetHidden(true);
                     workingHours.SetHidden(true);
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
+                    LeaveReturnRecordRequest r = new LeaveReturnRecordRequest();
+                    r.leaveId = id;
                    // CurrentLeave.Text = r.RecordID;
                   //  shouldDisableLastDay.Text = "0";
 
@@ -289,17 +290,17 @@ namespace AionHR.Web.UI.Forms
                     }
                     LoadQuickViewInfo(response.result.employeeId, response.result.startDate);
 
-                    LeaveDayListRequest req = new LeaveDayListRequest();
-                    req.LeaveId = r.RecordID;
-                    ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
-                    if (!resp.Success)
-                    {
-                        Common.errorMessage(resp);
-                        return;
-                    }
+                    //LeaveDayListRequest req = new LeaveDayListRequest();
+                    //req.LeaveId = r.RecordID;
+                    //ListResponse<LeaveDay> resp = _leaveManagementService.ChildGetAll<LeaveDay>(req);
+                    //if (!resp.Success)
+                    //{
+                    //    Common.errorMessage(resp);
+                    //    return;
+                    //}
 
-                    ;
-                    resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
+                    //;
+                    //resp.Items.ForEach(x => x.dow = (short)DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).DayOfWeek);
 
 
 
