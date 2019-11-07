@@ -4170,7 +4170,7 @@
                             DefaultAnchor="100%" OnLoad="TimeTab_Load"
                             BodyPadding="5">
                             <Items>
-                                  <ext:TextField ID="tvId" runat="server" Name="tvId" Hidden="true" />
+                                  <ext:TextField ID="tvId" runat="server" Name="activityId" Hidden="true" />
                               
                                 <ext:TextField ID="shiftIdTF" runat="server" Name="shiftId" FieldLabel="<%$ Resources: FieldShift%>"   ReadOnly="true" />
                           
