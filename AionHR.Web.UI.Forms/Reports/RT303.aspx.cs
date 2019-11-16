@@ -209,7 +209,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.paramString = rep_params;
             req.StartAt = "0";
           
-            req.Size = "30";
+            req.Size = "1000";
             req.sortBy = "dayId";
 
 
