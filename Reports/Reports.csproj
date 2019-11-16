@@ -111,6 +111,20 @@
     <Compile Include="ApproverPerformance.Designer.cs">
       <DependentUpon>ApproverPerformance.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetailedAttendance\DetailedAttendanceReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DetailedAttendance\DetailedAttendanceReport.Designer.cs">
+      <DependentUpon>DetailedAttendanceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailedAttendance\dsSalaries.cs">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DetailedAttendance\dsSalaries.Designer.cs">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="BranchWorkforce.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -468,11 +482,11 @@
     <Compile Include="TurnoverRate.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DetailedAttendance.cs">
+    <Compile Include="OldDetailedAttendance.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DetailedAttendance.Designer.cs">
-      <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    <Compile Include="OldDetailedAttendance.Designer.cs">
+      <DependentUpon>OldDetailedAttendance.cs</DependentUpon>
     </Compile>
     <Compile Include="UsersReport.cs">
       <SubType>Component</SubType>
@@ -496,6 +510,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ApproverPerformance.resx">
       <DependentUpon>ApproverPerformance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendance\DetailedAttendanceReport.ar.resx">
+      <DependentUpon>DetailedAttendanceReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendance\DetailedAttendanceReport.en-US.resx">
+      <DependentUpon>DetailedAttendanceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendance\DetailedAttendanceReport.fr.resx">
+      <DependentUpon>DetailedAttendanceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendance\DetailedAttendanceReport.resx">
+      <DependentUpon>DetailedAttendanceReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AttendanceSchedule\AttendanceScheduleReport.en-US.resx">
       <DependentUpon>AttendanceScheduleReport.cs</DependentUpon>
@@ -548,8 +576,8 @@
     <EmbeddedResource Include="DayTypesReport.fr.resx">
       <DependentUpon>DayTypesReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DetailedAttendance.ar.resx">
-      <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    <EmbeddedResource Include="OldDetailedAttendance.ar.resx">
+      <DependentUpon>OldDetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AttendanceSchedule\AttendanceScheduleReport.ar.resx">
       <DependentUpon>AttendanceScheduleReport.cs</DependentUpon>
@@ -559,8 +587,8 @@
       <DependentUpon>AttendanceScheduleReport.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DetailedAttendance.fr.resx">
-      <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    <EmbeddedResource Include="OldDetailedAttendance.fr.resx">
+      <DependentUpon>OldDetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DivisonsReport.fr.resx">
       <DependentUpon>DivisonsReport.cs</DependentUpon>
@@ -1118,8 +1146,8 @@
     <EmbeddedResource Include="TurnoverRate.resx">
       <DependentUpon>TurnoverRate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DetailedAttendance.resx">
-      <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    <EmbeddedResource Include="OldDetailedAttendance.resx">
+      <DependentUpon>OldDetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsersReport.ar.resx">
       <DependentUpon>UsersReport.cs</DependentUpon>
@@ -1144,6 +1172,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DetailedAttendance\dsSalaries.xsc">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
+    <None Include="DetailedAttendance\dsSalaries.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSalaries.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DetailedAttendance\dsSalaries.xss">
+      <DependentUpon>dsSalaries.xsd</DependentUpon>
+    </None>
     <None Include="AttendanceSchedule\dsSalaries.xsc">
       <DependentUpon>dsSalaries.xsd</DependentUpon>
     </None>

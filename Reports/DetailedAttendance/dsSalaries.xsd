@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsSalaries" targetNamespace="http://tempuri.org/dsSalaries.xsd" xmlns:mstns="http://tempuri.org/dsSalaries.xsd" xmlns="http://tempuri.org/dsSalaries.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsSalaries" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsSalaries" msprop:Generator_UserDSName="dsSalaries">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SalariesItems" msprop:Generator_TableClassName="SalariesItemsDataTable" msprop:Generator_TableVarName="tableSalariesItems" msprop:Generator_RowChangedName="SalariesItemsRowChanged" msprop:Generator_TablePropName="SalariesItems" msprop:Generator_RowDeletingName="SalariesItemsRowDeleting" msprop:Generator_RowChangingName="SalariesItemsRowChanging" msprop:Generator_RowEvHandlerName="SalariesItemsRowChangeEventHandler" msprop:Generator_RowDeletedName="SalariesItemsRowDeleted" msprop:Generator_RowClassName="SalariesItemsRow" msprop:Generator_UserTableName="SalariesItems" msprop:Generator_RowEvArgName="SalariesItemsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="branchRef" msprop:Generator_ColumnVarNameInTable="columnbranchRef" msprop:Generator_ColumnPropNameInRow="branchRef" msprop:Generator_ColumnPropNameInTable="branchRefColumn" msprop:Generator_UserColumnName="branchRef" type="xs:string" minOccurs="0" />
+              <xs:element name="firstPunch" msprop:Generator_ColumnVarNameInTable="columnfirstPunch" msprop:Generator_ColumnPropNameInRow="firstPunch" msprop:Generator_ColumnPropNameInTable="firstPunchColumn" msprop:Generator_UserColumnName="firstPunch" type="xs:string" minOccurs="0" />
+              <xs:element name="lastPunch" msprop:Generator_ColumnVarNameInTable="columnlastPunch" msprop:Generator_ColumnPropNameInRow="lastPunch" msprop:Generator_ColumnPropNameInTable="lastPunchColumn" msprop:Generator_UserColumnName="lastPunch" type="xs:string" minOccurs="0" />
+              <xs:element name="effectiveTime" msprop:Generator_ColumnVarNameInTable="columneffectiveTime" msprop:Generator_ColumnPropNameInRow="effectiveTime" msprop:Generator_ColumnPropNameInTable="effectiveTimeColumn" msprop:Generator_UserColumnName="effectiveTime" type="xs:string" minOccurs="0" />
+              <xs:element name="timeCode" msprop:Generator_ColumnVarNameInTable="columntimeCode" msprop:Generator_ColumnPropNameInRow="timeCode" msprop:Generator_ColumnPropNameInTable="timeCodeColumn" msprop:Generator_UserColumnName="timeCode" type="xs:string" minOccurs="0" />
+              <xs:element name="duration" msprop:Generator_ColumnVarNameInTable="columnduration" msprop:Generator_ColumnPropNameInRow="duration" msprop:Generator_ColumnPropNameInTable="durationColumn" msprop:Generator_UserColumnName="duration" type="xs:string" minOccurs="0" />
+              <xs:element name="employeeName" msprop:Generator_ColumnVarNameInTable="columnemployeeName" msprop:Generator_ColumnPropNameInRow="employeeName" msprop:Generator_ColumnPropNameInTable="employeeNameColumn" msprop:Generator_UserColumnName="employeeName" type="xs:string" minOccurs="0" />
+              <xs:element name="timeVariations" msprop:Generator_ColumnVarNameInTable="columntimeVariations" msprop:Generator_ColumnPropNameInRow="timeVariations" msprop:Generator_ColumnPropNameInTable="timeVariationsColumn" msprop:Generator_UserColumnName="timeVariations" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" msprop:Generator_UserColumnName="DataColumn1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

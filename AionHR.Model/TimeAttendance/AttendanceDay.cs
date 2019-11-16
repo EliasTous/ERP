@@ -1,5 +1,6 @@
 ﻿using AionHR.Model.Attributes;
 using AionHR.Model.Employees.Profile;
+using AionHR.Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,5 +75,9 @@ namespace AionHR.Model.Attendance
         public string variation { get; set; }
         public string effectiveTime { get; set; }
 
+        public List<DetailedAttendanceVariation> variationsList { get; set; }
+        public string firstPunch { get; set; }
+        public string lastPunch { get; set; }
+        public string branchRef { get; set; }
     }
 }

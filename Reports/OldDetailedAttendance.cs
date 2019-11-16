@@ -8,9 +8,9 @@ using System.Drawing.Printing;
 
 namespace Reports
 {
-    public partial class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
+    public partial class OldDetailedAttendance : DevExpress.XtraReports.UI.XtraReport
     {
-        public DetailedAttendance(Dictionary<string, string> parameters, string getLang)
+        public OldDetailedAttendance(Dictionary<string, string> parameters, string getLang)
         {
                InitializeComponent();
             printHeader(parameters);

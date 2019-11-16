@@ -27,7 +27,7 @@ using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
-
+using Reports.DetailedAttendance;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -205,11 +205,15 @@ namespace AionHR.Web.UI.Forms.Reports
         {
 
             string rep_params = vals.Text;
-            ReportGenericRequest req = new ReportGenericRequest();
+            TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
             req.paramString = rep_params;
+            req.StartAt = "0";
+          
+            req.Size = "30";
+            req.sortBy = "dayId";
 
 
-            ListResponse<AionHR.Model.Reports.RT303> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT303>(req);
+            ListResponse<AttendanceDay> resp = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
             //if (!resp.Success)
             //{
 
@@ -232,13 +236,13 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             );
 
-            string getLang = _systemService.SessionHelper.getLangauge();
+           
 
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            DetailedAttendance h = new DetailedAttendance(parameters, getLang); 
+            DetailedAttendanceReport h = new DetailedAttendanceReport(resp.Items, _systemService.SessionHelper.getLangauge(), parameters, Common.XMLDictionaryList(_systemService, "3"));
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.DataSource = resp.Items;
+            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
 
             //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
             //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
