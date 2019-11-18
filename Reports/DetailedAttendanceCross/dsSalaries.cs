@@ -1,4 +1,4 @@
-﻿namespace Reports.DetailedAttendance
+﻿namespace Reports.DetailedAttendanceCross
 {
 
 

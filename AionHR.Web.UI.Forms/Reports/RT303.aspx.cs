@@ -27,7 +27,8 @@ using System.Threading;
 using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
-using Reports.DetailedAttendance;
+
+using Reports.DetailedAttendanceCross;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -229,7 +230,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
 
                
-                    x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", CultureInfo.CurrentCulture);
+                    x.dayId = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat());
               
 
 
@@ -237,47 +238,47 @@ namespace AionHR.Web.UI.Forms.Reports
             );
 
            
-
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            DetailedAttendanceReport h = new DetailedAttendanceReport(resp.Items, _systemService.SessionHelper.getLangauge(), parameters, Common.XMLDictionaryList(_systemService, "3"));
+            DetailedAttendance h = new DetailedAttendance(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
+            if (resp.Items.Count != 0)
+            {
+                List<AionHR.Model.Reports.RT303> data = new List<AionHR.Model.Reports.RT303>();
 
-            //string from = DateTime.ParseExact(req.Parameters["_fromDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
-            //string to = DateTime.ParseExact(req.Parameters["_toDayId"], "yyyyMMdd", new CultureInfo("en")).ToString(_systemService.SessionHelper.GetDateformat(), new CultureInfo("en"));
+                Model.Reports.RT303 Item;
+                resp.Items.ForEach(x =>
+                {
+                    Item = new Model.Reports.RT303();
+                    Item.dayId = x.dayId;
+                    Item.employeeName = x.employeeName;
+                    Item.branchName = x.branchName;
+                    Item.effectiveTime = x.effectiveTime;
+                    Item.firstPunch = x.firstPunch;
+                    Item.lastPunch = x.lastPunch;
+                    Item.duringShiftLeave = x.variationsList.Where(y => y.timeCode == 32).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 32).First().duration, false) : "";
+                    Item.shiftLeaveWithoutRequest = x.variationsList.Where(y => y.timeCode == 21).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 21).First().duration, false) : "";
+                    Item.lateCheckin = x.variationsList.Where(y => y.timeCode == 31).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 31).First().duration, false) : "";
+                    Item.earlyLeave = x.variationsList.Where(y => y.timeCode == 33).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 33).First().duration, false) : "";
+                    data.Add(Item);
+
+                });
+                h.DataSource = data;
+            }
+            else
+                h.DataSource = resp.Items;
+
             string user = _systemService.SessionHelper.GetCurrentUser();
 
-        //    h.Parameters["Fitlers"].Value = texts.Text;
+        
             h.Parameters["User"].Value = user;
 
 
 
+           
 
 
-
-            //if (req.Parameters["_employeeId"] != "0")
-            //{
-            //    RecordRequest empReq = new RecordRequest();
-            //    empReq.RecordID = req.Parameters["_employeeId"];
-            //    Employee emp = _employeeService.Get<Employee>(empReq).result;
-            //    h.Parameters["Employee"].Value = emp.name.fullName;
-            //    h.Parameters["Branch"].Value = emp.branchName;
-            //    h.Parameters["Division"].Value = emp.divisionName;
-
-            //}
-            //ListRequest def = new ListRequest();
-            //int lateness = 0;
-            //ListResponse<KeyValuePair<string, string>> items = _systemService.ChildGetAll<KeyValuePair<string, string>>(def);
-            //try
-            //{
-            //    lateness = Convert.ToInt32(items.Items.Where(s => s.Key == "allowedLateness").First().Value);
-            //}
-            //catch
-            //{
-
-            //}
-            //h.Parameters["AllowedLateness"].Value = lateness;
+           
 
 
             h.CreateDocument();
@@ -286,7 +287,30 @@ namespace AionHR.Web.UI.Forms.Reports
 
         }
 
+        public string time(int _minutes, bool _signed)
+        {
+            if (_minutes == 0)
+                return "00:00";
 
+            bool isNegative = _minutes < 0 ? true : false;
+
+            _minutes = Math.Abs(_minutes);
+
+            string hours = (_minutes / 60).ToString(), minutes = (_minutes % 60).ToString(), formattedTime;
+
+            if (hours.Length == 1)
+                hours = "0" + hours;
+
+            if (minutes.Length == 1)
+                minutes = "0" + minutes;
+
+            formattedTime = hours + ':' + minutes;
+
+            if (isNegative && _signed)
+                formattedTime = "-" + formattedTime;
+
+            return formattedTime;
+        }
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
             string[] parameters = e.Parameter.Split('|');

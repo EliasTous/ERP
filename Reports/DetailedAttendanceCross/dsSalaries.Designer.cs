@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Reports.DetailedAttendance {
+namespace Reports.DetailedAttendanceCross {
     
     
     /// <summary>
@@ -330,6 +330,8 @@ namespace Reports.DetailedAttendance {
             
             private global::System.Data.DataColumn columntimeVariations;
             
+            private global::System.Data.DataColumn columndayId;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SalariesItemsDataTable() {
@@ -429,6 +431,14 @@ namespace Reports.DetailedAttendance {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dayIdColumn {
+                get {
+                    return this.columndayId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -464,7 +474,7 @@ namespace Reports.DetailedAttendance {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SalariesItemsRow AddSalariesItemsRow(string branchRef, string firstPunch, string lastPunch, string effectiveTime, string timeCode, string duration, string employeeName, string timeVariations) {
+            public SalariesItemsRow AddSalariesItemsRow(string branchRef, string firstPunch, string lastPunch, string effectiveTime, string timeCode, string duration, string employeeName, string timeVariations, string dayId) {
                 SalariesItemsRow rowSalariesItemsRow = ((SalariesItemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         branchRef,
@@ -474,7 +484,8 @@ namespace Reports.DetailedAttendance {
                         timeCode,
                         duration,
                         employeeName,
-                        timeVariations};
+                        timeVariations,
+                        dayId};
                 rowSalariesItemsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSalariesItemsRow);
                 return rowSalariesItemsRow;
@@ -505,6 +516,7 @@ namespace Reports.DetailedAttendance {
                 this.columnduration = base.Columns["duration"];
                 this.columnemployeeName = base.Columns["employeeName"];
                 this.columntimeVariations = base.Columns["timeVariations"];
+                this.columndayId = base.Columns["dayId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -526,6 +538,8 @@ namespace Reports.DetailedAttendance {
                 base.Columns.Add(this.columnemployeeName);
                 this.columntimeVariations = new global::System.Data.DataColumn("timeVariations", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntimeVariations);
+                this.columndayId = new global::System.Data.DataColumn("dayId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndayId);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1043,6 +1057,22 @@ namespace Reports.DetailedAttendance {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string dayId {
+                get {
+                    try {
+                        return ((string)(this[this.tableSalariesItems.dayIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dayId\' in table \'SalariesItems\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSalariesItems.dayIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsbranchRefNull() {
                 return this.IsNull(this.tableSalariesItems.branchRefColumn);
             }
@@ -1135,6 +1165,18 @@ namespace Reports.DetailedAttendance {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SettimeVariationsNull() {
                 this[this.tableSalariesItems.timeVariationsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdayIdNull() {
+                return this.IsNull(this.tableSalariesItems.dayIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdayIdNull() {
+                this[this.tableSalariesItems.dayIdColumn] = global::System.Convert.DBNull;
             }
         }
         

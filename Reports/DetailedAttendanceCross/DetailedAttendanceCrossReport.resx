@@ -123,6 +123,16 @@
   <data name="fieldemployeeName1.Caption" xml:space="preserve">
     <value>Employee</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="fieldemployeeName1.ColumnValueLineCount" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="fieldemployeeName1.MinWidth" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="fieldemployeeName1.RowValueLineCount" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
   <data name="fieldbranchRef1.Caption" xml:space="preserve">
     <value>Branch Ref</value>
   </data>
@@ -138,10 +148,15 @@
   <data name="fieldtimeCode1.Caption" xml:space="preserve">
     <value>Time Code</value>
   </data>
+  <data name="fieldtimeCode1.MinWidth" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="fieldtimeCode1.RowValueLineCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
   <data name="fieldduration1.Caption" xml:space="preserve">
     <value>Duration</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="fieldduration1.ColumnValueLineCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -150,6 +165,9 @@
   </data>
   <data name="fieldtimeVariations.Caption" xml:space="preserve">
     <value>Time Variations</value>
+  </data>
+  <data name="fielddayId.Caption" xml:space="preserve">
+    <value>Date</value>
   </data>
   <assembly alias="DevExpress.Data.v18.2" name="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrPivotGrid1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">

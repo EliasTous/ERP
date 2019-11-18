@@ -1,6 +1,6 @@
-﻿namespace Reports.DetailedAttendance
+﻿namespace Reports.DetailedAttendanceCross
 {
-    partial class DetailedAttendanceReport
+    partial class DetailedAttendanceCrossReport
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailedAttendanceReport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailedAttendanceCrossReport));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrPivotGrid1 = new DevExpress.XtraReports.UI.XRPivotGrid();
-            this.dsSalaries1 = new Reports.DetailedAttendance.dsSalaries();
+            this.dsSalaries1 = new Reports.DetailedAttendanceCross.dsSalaries();
             this.fieldemployeeName1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldbranchRef1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldfirstPunch1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -54,6 +54,7 @@
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.User = new DevExpress.XtraReports.Parameters.Parameter();
             this.Employee = new DevExpress.XtraReports.Parameters.Parameter();
+            this.fielddayId = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             ((System.ComponentModel.ISupportInitialize)(this.dsSalaries1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -91,7 +92,8 @@
             this.fieldeffectiveTime1,
             this.fieldtimeCode1,
             this.fieldduration1,
-            this.fieldtimeVariations});
+            this.fieldtimeVariations,
+            this.fielddayId});
             resources.ApplyResources(this.xrPivotGrid1, "xrPivotGrid1");
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsChartDataSource.ProvideColumnTotals = true;
@@ -117,62 +119,44 @@
             // 
             // fieldemployeeName1
             // 
-            this.fieldemployeeName1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldemployeeName1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldemployeeName1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldemployeeName1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldemployeeName1.Appearance.Cell.WordWrap = true;
+            this.fieldemployeeName1.Appearance.FieldHeader.WordWrap = true;
             this.fieldemployeeName1.Appearance.FieldValue.WordWrap = true;
             this.fieldemployeeName1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldemployeeName1.AreaIndex = 0;
+            this.fieldemployeeName1.AreaIndex = 1;
             resources.ApplyResources(this.fieldemployeeName1, "fieldemployeeName1");
             this.fieldemployeeName1.FieldName = "employeeName";
             this.fieldemployeeName1.Name = "fieldemployeeName1";
             // 
             // fieldbranchRef1
             // 
-            this.fieldbranchRef1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldbranchRef1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldbranchRef1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldbranchRef1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldbranchRef1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldbranchRef1.AreaIndex = 1;
+            this.fieldbranchRef1.AreaIndex = 2;
             resources.ApplyResources(this.fieldbranchRef1, "fieldbranchRef1");
             this.fieldbranchRef1.FieldName = "branchRef";
             this.fieldbranchRef1.Name = "fieldbranchRef1";
             // 
             // fieldfirstPunch1
             // 
-            this.fieldfirstPunch1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldfirstPunch1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldfirstPunch1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldfirstPunch1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldfirstPunch1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldfirstPunch1.AreaIndex = 2;
+            this.fieldfirstPunch1.AreaIndex = 3;
             resources.ApplyResources(this.fieldfirstPunch1, "fieldfirstPunch1");
             this.fieldfirstPunch1.FieldName = "firstPunch";
             this.fieldfirstPunch1.Name = "fieldfirstPunch1";
             // 
             // fieldlastPunch1
             // 
-            this.fieldlastPunch1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldlastPunch1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldlastPunch1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldlastPunch1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldlastPunch1.Appearance.FieldValue.WordWrap = true;
             this.fieldlastPunch1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldlastPunch1.AreaIndex = 3;
+            this.fieldlastPunch1.AreaIndex = 4;
             resources.ApplyResources(this.fieldlastPunch1, "fieldlastPunch1");
             this.fieldlastPunch1.FieldName = "lastPunch";
             this.fieldlastPunch1.Name = "fieldlastPunch1";
             // 
             // fieldeffectiveTime1
             // 
-            this.fieldeffectiveTime1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldeffectiveTime1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldeffectiveTime1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldeffectiveTime1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldeffectiveTime1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldeffectiveTime1.AreaIndex = 4;
+            this.fieldeffectiveTime1.AreaIndex = 5;
             resources.ApplyResources(this.fieldeffectiveTime1, "fieldeffectiveTime1");
             this.fieldeffectiveTime1.FieldName = "effectiveTime";
             this.fieldeffectiveTime1.Name = "fieldeffectiveTime1";
@@ -180,11 +164,7 @@
             // fieldtimeCode1
             // 
             this.fieldtimeCode1.Appearance.Cell.WordWrap = true;
-            this.fieldtimeCode1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldtimeCode1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldtimeCode1.Appearance.FieldHeader.WordWrap = true;
-            this.fieldtimeCode1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldtimeCode1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldtimeCode1.Appearance.FieldValue.WordWrap = true;
             this.fieldtimeCode1.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
             this.fieldtimeCode1.AreaIndex = 1;
@@ -194,10 +174,6 @@
             // 
             // fieldduration1
             // 
-            this.fieldduration1.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldduration1.Appearance.Cell.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.fieldduration1.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldduration1.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldduration1.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fieldduration1.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldduration1.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
@@ -209,8 +185,7 @@
             // 
             // fieldtimeVariations
             // 
-            this.fieldtimeVariations.Appearance.FieldHeader.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.fieldtimeVariations.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.fieldtimeVariations.Appearance.FieldHeader.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Top;
             this.fieldtimeVariations.Appearance.FieldValue.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.fieldtimeVariations.Appearance.FieldValue.TextVerticalAlignment = DevExpress.Utils.VertAlignment.Center;
             this.fieldtimeVariations.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
@@ -316,6 +291,14 @@
             this.Employee.Name = "Employee";
             this.Employee.Visible = false;
             // 
+            // fielddayId
+            // 
+            this.fielddayId.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fielddayId.AreaIndex = 0;
+            resources.ApplyResources(this.fielddayId, "fielddayId");
+            this.fielddayId.FieldName = "dayId";
+            this.fielddayId.Name = "fielddayId";
+            // 
             // DetailedAttendanceReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -366,5 +349,6 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldtimeCode1;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldduration1;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldtimeVariations;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fielddayId;
     }
 }

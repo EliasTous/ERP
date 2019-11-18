@@ -13,11 +13,11 @@ using System.Drawing.Printing;
 using AionHR.Model.Attendance;
 using AionHR.Model.System;
 
-namespace Reports.DetailedAttendance
+namespace Reports.DetailedAttendanceCross
 {
-    public partial class DetailedAttendanceReport : DevExpress.XtraReports.UI.XtraReport
+    public partial class DetailedAttendanceCrossReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public DetailedAttendanceReport(List<AttendanceDay> items,string language , Dictionary<string, string> parameters, List<XMLDictionary> timeCodes)
+        public DetailedAttendanceCrossReport(List<AttendanceDay> items,string language , Dictionary<string, string> parameters, List<XMLDictionary> timeCodes)
         {
 
             printHeader(parameters);
@@ -65,7 +65,7 @@ namespace Reports.DetailedAttendance
             {
                 x.variationsList.ForEach(y =>
                 {
-                    dsSalaries1.SalariesItems.AddSalariesItemsRow(x.branchRef, x.firstPunch, x.lastPunch, x.effectiveTime, timeCodes.Where(z=>z.key==y.timeCode).Count()!=0? timeCodes.Where(z => z.key ==y.timeCode).First().value:"", time(y.duration,false), x.employeeName, "Time Variations");
+                    dsSalaries1.SalariesItems.AddSalariesItemsRow(x.branchRef, x.firstPunch, x.lastPunch, x.effectiveTime, timeCodes.Where(z=>z.key==y.timeCode).Count()!=0? timeCodes.Where(z => z.key ==y.timeCode).First().value:"", time(y.duration,false), x.employeeName, "Time Variations",x.dayId);
                });
               
             });
