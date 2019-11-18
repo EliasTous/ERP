@@ -517,6 +517,9 @@
     <EmbeddedResource Include="ApproverPerformance.resx">
       <DependentUpon>ApproverPerformance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendance.fr.resx">
+      <DependentUpon>DetailedAttendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DetailedAttendance.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>
     </EmbeddedResource>

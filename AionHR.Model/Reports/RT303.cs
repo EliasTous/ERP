@@ -24,6 +24,8 @@ namespace AionHR.Model.Reports
         public string duringShiftLeave { get; set; }
         public string earlyLeave { get; set; }
         public string lateCheckin { get; set; }
-        public string shiftLeaveWithoutRequest { get; set; }
+       
+        public string earlyCheckin { get; set; }
+        public string overtime { get; set; }
     }
 }

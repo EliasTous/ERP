@@ -256,10 +256,13 @@ namespace AionHR.Web.UI.Forms.Reports
                     Item.effectiveTime = x.effectiveTime;
                     Item.firstPunch = x.firstPunch;
                     Item.lastPunch = x.lastPunch;
-                    Item.duringShiftLeave = x.variationsList.Where(y => y.timeCode == 32).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 32).First().duration, false) : "";
-                    Item.shiftLeaveWithoutRequest = x.variationsList.Where(y => y.timeCode == 21).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 21).First().duration, false) : "";
+                   
+                  
                     Item.lateCheckin = x.variationsList.Where(y => y.timeCode == 31).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 31).First().duration, false) : "";
+                    Item.duringShiftLeave = x.variationsList.Where(y => y.timeCode == 32).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 32).First().duration, false) : "";
                     Item.earlyLeave = x.variationsList.Where(y => y.timeCode == 33).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 33).First().duration, false) : "";
+                    Item.earlyCheckin = x.variationsList.Where(y => y.timeCode == 51).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 51).First().duration, false) : "";
+                    Item.overtime = x.variationsList.Where(y => y.timeCode == 52).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 52).First().duration, false) : "";
                     data.Add(Item);
 
                 });
