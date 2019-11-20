@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>Assistance détaillée</value>
+    <value>Présence détaillée</value>
   </data>
   <data name="pageInfo1.TextFormatString" xml:space="preserve">
     <value>{0:dddd, MMMM d, yyyy H:mm}</value>
@@ -127,16 +127,16 @@
     <value>Page {0} of {1}</value>
   </data>
   <data name="tableCell1.Text" xml:space="preserve">
-    <value>Date</value>
+    <value>Branche</value>
   </data>
   <data name="tableCell10.Text" xml:space="preserve">
-    <value>Early leave</value>
+    <value>partir tot</value>
   </data>
   <data name="tableCell2.Text" xml:space="preserve">
     <value>Nom et prenom</value>
   </data>
   <data name="tableCell3.Text" xml:space="preserve">
-    <value>Brunch</value>
+    <value>Date</value>
   </data>
   <data name="tableCell4.Text" xml:space="preserve">
     <value>Horaire travaillé</value>
@@ -148,18 +148,16 @@
     <value>Heure de départ</value>
   </data>
   <data name="tableCell7.Text" xml:space="preserve">
-    <value>Early  
-Check in</value>
+    <value>présence précoce</value>
   </data>
   <data name="tableCell8.Text" xml:space="preserve">
-    <value>Late check in</value>
+    <value>présent tardif</value>
   </data>
   <data name="tableCell9.Text" xml:space="preserve">
-    <value>During Shift 
-Leave</value>
+    <value>partir durant travail</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Time Variations</value>
+    <value>variations du temps</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>Par :</value>
@@ -168,7 +166,7 @@ Leave</value>
     <value>xrLabel3</value>
   </data>
   <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>Over time</value>
+    <value>heures supplementaires</value>
   </data>
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>xrTableCell2</value>

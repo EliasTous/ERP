@@ -119,17 +119,17 @@
   </resheader>
   <assembly alias="DevExpress.Data.v18.2" name="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>278.8334, 5</value>
+    <value>322.119324, 5</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>510.4542, 22.9999981</value>
+    <value>467.168274, 22.9999981</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>xrLabel3</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>200.5, 5</value>
+    <value>243.785965, 5</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>78.33334, 23</value>
@@ -138,10 +138,10 @@
     <value>Printed By:</value>
   </data>
   <data name="pageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>4.999997, 5</value>
+    <value>0.000143051147, 5</value>
   </data>
   <data name="pageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>195.5, 23</value>
+    <value>222.903244, 22.9999981</value>
   </data>
   <data name="pageInfo1.TextFormatString" xml:space="preserve">
     <value>{0:dddd, MMMM d, yyyy H:mm}</value>
@@ -196,13 +196,13 @@
     <value>0.0001430511, 23.00001</value>
   </data>
   <data name="tableCell1.Text" xml:space="preserve">
-    <value>Date</value>
+    <value>Branch</value>
   </data>
   <data name="tableCell1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell1.Weight" type="System.Double, mscorlib">
-    <value>0.095801916375395924</value>
+    <value>0.13154539219506417</value>
   </data>
   <data name="tableCell2.Text" xml:space="preserve">
     <value>Employee
@@ -212,16 +212,17 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell2.Weight" type="System.Double, mscorlib">
-    <value>0.1354927684887971</value>
+    <value>0.14774766299727665</value>
   </data>
   <data name="tableCell3.Text" xml:space="preserve">
-    <value>Brunch</value>
+    <value>Date
+</value>
   </data>
   <data name="tableCell3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell3.Weight" type="System.Double, mscorlib">
-    <value>0.12873699115726783</value>
+    <value>0.092993534037098882</value>
   </data>
   <data name="tableCell4.Text" xml:space="preserve">
     <value>Effective Time</value>
@@ -230,7 +231,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell4.Weight" type="System.Double, mscorlib">
-    <value>0.10316230129484644</value>
+    <value>0.0909073880868676</value>
   </data>
   <data name="tableCell5.Text" xml:space="preserve">
     <value>First Punch</value>
@@ -313,25 +314,25 @@ Leave</value>
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell11.Weight" type="System.Double, mscorlib">
-    <value>0.095038098150987932</value>
+    <value>0.13049657890538849</value>
   </data>
   <data name="tableCell12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell12.Weight" type="System.Double, mscorlib">
-    <value>0.13441231217197211</value>
+    <value>0.14656946290760151</value>
   </data>
   <data name="tableCell13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell13.Weight" type="System.Double, mscorlib">
-    <value>0.127710381807093</value>
+    <value>0.092251956703839427</value>
   </data>
   <data name="tableCell14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell14.Weight" type="System.Double, mscorlib">
-    <value>0.10233959770264652</value>
+    <value>0.090182391315870122</value>
   </data>
   <data name="tableCell15.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -400,7 +401,7 @@ Leave</value>
     <value>Arial, 9.75pt</value>
   </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>6, 9, 100, 100</value>
+    <value>6, 8, 100, 100</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
     <value>1268</value>

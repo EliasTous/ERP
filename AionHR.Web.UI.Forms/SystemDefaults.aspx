@@ -323,6 +323,7 @@
                                 <ext:ComboBox AllowBlank="true" AnyMatch="true" CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldNameFormat %>" Name="nameFormat" runat="server" ID="nameFormatCombo">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources:FirstNameLastName %>" Value="{firstName} {lastName}" />
+                                         <ext:ListItem Text="<%$ Resources:FirstNameFamilyName %>" Value="{firstName} {familyName}" />
                                           <ext:ListItem Text="<%$ Resources:FirstNameMiddleNameFamilyNameLastName %>" Value="{firstName} {middleName} {familyName} {lastName}" />
                                          <ext:ListItem Text="<%$ Resources:FirstNameMiddleNameLastName %>" Value="{firstName} {middleName} {lastName}" />
                                         <ext:ListItem Text="<%$ Resources:LastNameFirstName %>" Value="{lastName} {firstName}" />

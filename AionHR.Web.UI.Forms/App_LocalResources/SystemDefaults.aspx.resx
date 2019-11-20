@@ -531,4 +531,7 @@
   <data name="lastReceivedPunch" xml:space="preserve">
     <value>Last Received Punch</value>
   </data>
+  <data name="FirstNameFamilyName" xml:space="preserve">
+    <value>First Name , Family Name</value>
+  </data>
 </root>
