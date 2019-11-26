@@ -160,22 +160,22 @@
     <value>xrLabel1</value>
   </data>
   <data name="xrLabel22.Text" xml:space="preserve">
-    <value>heures supplémentaires</value>
+    <value>HS</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
-    <value>Enregistrement anticipé</value>
+    <value>Avant horraire</value>
   </data>
   <data name="xrLabel16.Text" xml:space="preserve">
-    <value>Congé anticipé</value>
+    <value>Plutot</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
-    <value>Quitter pendant le Shift</value>
+    <value>Pendant </value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
     <value>Coup de poing  manqué</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>Arrivée tardive</value>
+    <value>Apres horraire</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>Congé de jour sans excuse</value>
@@ -202,10 +202,10 @@
     <value>Departement</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>Branche</value>
+    <value>PDV</value>
   </data>
   <data name="xrLabel20.Text" xml:space="preserve">
-    <value>Prenom</value>
+    <value>Nom</value>
   </data>
   <data name="User.Description" xml:space="preserve">
     <value>Parameter1</value>
@@ -226,7 +226,7 @@
     <value>Résumé de la période</value>
   </data>
   <data name="xrLabel31.Text" xml:space="preserve">
-    <value>Branche</value>
+    <value>PDV</value>
   </data>
   <data name="xrLabel30.Text" xml:space="preserve">
     <value>Employe</value>
