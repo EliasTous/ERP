@@ -127,34 +127,34 @@
     <value>Page {0} of {1}</value>
   </data>
   <data name="tableCell1.Text" xml:space="preserve">
-    <value>Branche</value>
+    <value>PDV</value>
   </data>
   <data name="tableCell10.Text" xml:space="preserve">
-    <value>partir tot</value>
+    <value>Plutot</value>
   </data>
   <data name="tableCell2.Text" xml:space="preserve">
-    <value>Nom et prenom</value>
+    <value>Nom</value>
   </data>
   <data name="tableCell3.Text" xml:space="preserve">
     <value>Date</value>
   </data>
   <data name="tableCell4.Text" xml:space="preserve">
-    <value>Horaire travaillé</value>
+    <value>Duree</value>
   </data>
   <data name="tableCell5.Text" xml:space="preserve">
-    <value>Heure d'arrivée</value>
+    <value>Arrivée</value>
   </data>
   <data name="tableCell6.Text" xml:space="preserve">
-    <value>Heure de départ</value>
+    <value>Départ</value>
   </data>
   <data name="tableCell7.Text" xml:space="preserve">
-    <value>présence précoce</value>
+    <value>Avant horaire</value>
   </data>
   <data name="tableCell8.Text" xml:space="preserve">
-    <value>présent tardif</value>
+    <value>Apres horaire</value>
   </data>
   <data name="tableCell9.Text" xml:space="preserve">
-    <value>partir durant travail</value>
+    <value>Pendant</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>variations du temps</value>
@@ -166,7 +166,7 @@
     <value>xrLabel3</value>
   </data>
   <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>heures supplementaires</value>
+    <value>HS</value>
   </data>
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>xrTableCell2</value>
