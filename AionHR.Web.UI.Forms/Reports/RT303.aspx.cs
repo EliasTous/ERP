@@ -212,6 +212,7 @@ namespace AionHR.Web.UI.Forms.Reports
           
             req.Size = "1000";
             req.sortBy = "dayId";
+           
 
 
             ListResponse<AttendanceDay> resp = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
@@ -236,7 +237,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             }
             );
-
+          
            
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             DetailedAttendance h = new DetailedAttendance(parameters);
