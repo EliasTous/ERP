@@ -216,15 +216,17 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportGenericRequest req = new ReportGenericRequest();
             req.paramString = rep_params;
             ListResponse<AionHR.Model.Reports.RT115> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT115>(req);
-
-
-
-            //if (!resp.Success)
-            //{
-            //    throw new Exception(resp.Error + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId + "</br>");
-            //}
+                                            
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+
+            resp.Items.ForEach(x =>
+            {
+                if (x.hireDate != null)
+                    x.hireDateString =((DateTime)( x.hireDate)).ToString(_systemService.SessionHelper.GetDateformat(), System.Threading.Thread.CurrentThread.CurrentCulture);
+                if (x.terminationDate!=null)
+                    x.terminationDateString = ((DateTime)(x.terminationDate)).ToString(_systemService.SessionHelper.GetDateformat(), System.Threading.Thread.CurrentThread.CurrentCulture);
+            });
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             IndemnityReport h = new IndemnityReport(parameters); 
 

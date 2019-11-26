@@ -18,5 +18,8 @@ namespace AionHR.Model.Reports
         public string jobPositionName { get; set; }
         public double indemnityAmount { get; set; }
         public double salary { get; set; }
+        public string hireDateString { get; set; }
+        public string terminationDateString { get; set; }
+
     }
 }
