@@ -472,24 +472,10 @@ namespace AionHR.Web.UI.Forms
 
         private string FillApprovalStatus(short? apStatus)
         {
-            string R; 
-            switch (apStatus)
-            {
-                case 1:
-                    R = GetLocalResourceObject("FieldNew").ToString();
-                    break;
-                case 2:
-                    R = GetLocalResourceObject("FieldApproved").ToString();
-                    break;
-                case -1:
-                    R = GetLocalResourceObject("FieldRejected").ToString();
-                    break;
-                default:
-                   R= string.Empty;
-                    break;
-
-
-            }
+            string R = "";
+            List<XMLDictionary> statusList=    Common.XMLDictionaryList(_systemService, "13");
+            if (apStatus!=null)
+             R= statusList.Where(x => x.key == apStatus).Count() != 0 ? statusList.Where(x => x.key == apStatus).First().value : "";
             return R;
         }
         [DirectMethod]

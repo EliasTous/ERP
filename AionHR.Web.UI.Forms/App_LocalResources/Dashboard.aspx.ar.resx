@@ -708,4 +708,10 @@
   <data name="LeaveReturn" xml:space="preserve">
     <value>العودة من الاجازة</value>
   </data>
+  <data name="approveConfirmation" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد الموافقة على  جميع السجلات؟</value>
+  </data>
+  <data name="rejectConfirmation" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد عدم الموافقة على  جميع السجلات؟</value>
+  </data>
 </root>

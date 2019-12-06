@@ -37,7 +37,7 @@ namespace Reports.PunchLog
             //if (isArabic)
             if (getLanguage == "ar")
             {
-                xrLabel1.Text =reportId=="RT308"?"بصمات قبل المعالجة": "جدول البصمات ";
+                xrLabel1.Text =reportId=="RT308"? "جدول البصمات " : "بصمات غير معالجة";
                 fieldemployeeName1.Caption = "الموظف";
                 fielddayId1.Caption = "التاريخ";
                 this.RightToLeft = RightToLeft.Yes;
@@ -47,13 +47,17 @@ namespace Reports.PunchLog
             }
             else if (getLanguage == "fr")
             {
-                xrLabel1.Text = xrLabel1.Text = reportId == "RT308" ? "Journal de poinçon": "raws coups de poing";
+                xrLabel1.Text = xrLabel1.Text = reportId == "RT308" ? "Journal de poinçon": "Poicon non traités";
                 fieldemployeeName1.Caption = "Employe";
                 fielddayId1.Caption = "Date";
             }
             else if (getLanguage == "en")
             {
                 xrLabel1.Text = xrLabel1.Text = reportId == "RT308" ? "Punch Log" : "Raws Punches";
+            }
+            else if (getLanguage == "de")
+            {
+                xrLabel1.Text = xrLabel1.Text = reportId == "RT308" ? "Log schieben" : "Unbehandeltes Poicon";
             }
 
 

@@ -393,6 +393,7 @@ namespace AionHR.Web.UI.Forms
         [DirectMethod]
         public void SetVals(string labels)
         {
+            filterStartAT.Text = "true";
             this.vals.Text = labels;
         }
 
@@ -411,7 +412,7 @@ namespace AionHR.Web.UI.Forms
                 string rep_params = vals.Text;
                 TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
                 req.paramString = rep_params;
-                req.StartAt = e.Start.ToString();
+                req.StartAt =filterStartAT.Text=="true"?"0": e.Start.ToString();
                 StartAt.Text= e.Start.ToString();
                 req.Size = "30";
                 req.sortBy = "dayId";

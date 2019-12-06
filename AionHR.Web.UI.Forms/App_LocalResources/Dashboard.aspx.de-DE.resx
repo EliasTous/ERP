@@ -706,4 +706,10 @@
   <data name="LeaveReturn" xml:space="preserve">
     <value>Rückkehr verlassen</value>
   </data>
+  <data name="approveConfirmation" xml:space="preserve">
+    <value>Möchten Sie wirklich alle Datensätze genehmigen?</value>
+  </data>
+  <data name="rejectConfirmation" xml:space="preserve">
+    <value>Möchten Sie wirklich alle Datensätze ablehnen ?</value>
+  </data>
 </root>

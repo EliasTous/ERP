@@ -711,4 +711,10 @@
   <data name="FieldSupplier" xml:space="preserve">
     <value>Supplier</value>
   </data>
+  <data name="approveConfirmation" xml:space="preserve">
+    <value>Are you sure you want to approve all records ?</value>
+  </data>
+  <data name="rejectConfirmation" xml:space="preserve">
+    <value>Are you sure you want to reject all records ?</value>
+  </data>
 </root>

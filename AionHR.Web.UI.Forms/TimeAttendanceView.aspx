@@ -111,6 +111,7 @@
         <ext:Hidden ID="texts" runat="server" />
         <ext:Hidden ID="labels" runat="server" />
         <ext:Hidden ID="FromSelfService" runat="server" />
+          <ext:Hidden ID="filterStartAT" runat="server" Text="false" />
        
         <ext:Hidden ID="loaderUrl" runat="server"  Text="ReportParameterBrowser.aspx?_reportName=TAAD&values="/>
          <ext:Hidden ID="allHF" runat="server" Text="<%$ Resources: FieldAll %>" />
@@ -297,6 +298,7 @@
                             </Items>
                             <Listeners>
                                 <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                                <Change Handler="App.filterStartAT.setValue('false');" />
                             </Listeners>
                         </ext:PagingToolbar>
 

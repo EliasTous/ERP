@@ -68,5 +68,8 @@ namespace AionHR.Model.SelfService
 
         public string replacementName { get; set; }
         public string replacementId { get; set; }
+
+        public string replApStatus { get; set; }
+        
     }
 }

@@ -197,6 +197,9 @@
                                     <Listeners>
                                         <Click Handler="CheckSession();App.pnlMaximumTamplate.body.update('');    App.Panel1.body.update('');  App.filter1.setText(App.texts.getValue());  App.mailForm.reset(); App.mailWindow.show(); " />
                                     </Listeners>
+                                           <DirectEvents>
+                                               <Click OnEvent="fillMailEmployeeForm" />
+                                           </DirectEvents>
 
                                           
                                 </ext:Button>

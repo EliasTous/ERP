@@ -1356,4 +1356,7 @@
   <data name="LeaveReturn" xml:space="preserve">
     <value>Rückkehr vom Urlaub</value>
   </data>
+  <data name="RT311" xml:space="preserve">
+    <value>Unbehandeltes Poicon</value>
+  </data>
 </root>

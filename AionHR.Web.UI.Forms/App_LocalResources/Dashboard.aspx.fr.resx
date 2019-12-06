@@ -705,4 +705,10 @@
   <data name="LeaveReturn" xml:space="preserve">
     <value>Laisser le retour</value>
   </data>
+  <data name="approveConfirmation" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir approuver tous les enregistrements?</value>
+  </data>
+  <data name="rejectConfirmation" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir rejeter tous les enregistrements?</value>
+  </data>
 </root>

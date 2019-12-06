@@ -179,9 +179,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-                FillTemplateStore();
-                langaugeStore.DataSource = Common.XMLDictionaryList(_systemService, "23");
-                langaugeStore.DataBind();
+               
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
@@ -442,6 +440,24 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+
+        protected void fillMailEmployeeForm(object sender, DirectEventArgs e)
+        {
+
+
+            try
+            {
+                FillTemplateStore();
+                langaugeStore.DataSource = Common.XMLDictionaryList(_systemService, "23");
+                langaugeStore.DataBind();
+
+            }
+            catch(Exception exp)
+            {
+                X.Msg.Alert(Resources.Common.Error, exp.Message).Show();
+            }
+
+        }
         /// <summary>
         /// This direct method will be called after confirming the delete
         /// </summary>

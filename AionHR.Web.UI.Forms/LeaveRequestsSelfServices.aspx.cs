@@ -1017,7 +1017,7 @@ namespace AionHR.Web.UI.Forms
              res.AddRule("leaveRequest1_status", "status");
 
             settings.ContractResolver = res;
-            leaveRequetsSelfservice b = JsonConvert.DeserializeObject<leaveRequetsSelfservice>(obj, settings);
+            LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
            // b.status = Convert.ToInt16(status1);
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
@@ -1044,10 +1044,10 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<leaveRequetsSelfservice> request = new PostRequest<leaveRequetsSelfservice>();
+                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
 
                     request.entity = b;
-                    PostResponse<leaveRequetsSelfservice> r = _selfServiceService.ChildAddOrUpdate<leaveRequetsSelfservice>(request);
+                    PostResponse<LeaveRequest> r = _selfServiceService.ChildAddOrUpdate<LeaveRequest>(request);
 
 
                     //check if the insert failed
@@ -1153,9 +1153,9 @@ namespace AionHR.Web.UI.Forms
                         //return;
                     }
                     //getting the id of the record
-                    PostRequest<leaveRequetsSelfservice> request = new PostRequest<leaveRequetsSelfservice>();
+                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
                     request.entity = b;
-                    PostResponse<leaveRequetsSelfservice> r = _selfServiceService.ChildAddOrUpdate<leaveRequetsSelfservice>(request);                      //Step 1 Selecting the object or building up the object for update purpose
+                    PostResponse<LeaveRequest> r = _selfServiceService.ChildAddOrUpdate<LeaveRequest>(request);                      //Step 1 Selecting the object or building up the object for update purpose
 
                     //Step 2 : saving to store
 

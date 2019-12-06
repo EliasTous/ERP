@@ -845,7 +845,7 @@ namespace AionHR.Web.UI.Forms
                     fs.toDayId = dateTo.SelectedDate.ToString("yyyyMMdd");
                     if (dateFrom.SelectedDate < DateTime.Today || dateTo.SelectedDate < DateTime.Today)
                     {
-                        X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("updateError"));
+                        X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("updateError")).Show();
                         return;
                     }
                     PostRequest<FlatBulkSchedule> request = new PostRequest<FlatBulkSchedule>();

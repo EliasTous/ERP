@@ -67,7 +67,7 @@ namespace AionHR.Repository.WebService.Repositories
 
             ChildAddOrUpdateLookup.Add(typeof(MyInfo), "setEM");
             ChildAddOrUpdateLookup.Add(typeof(UserInfoSelfService), "setUS");
-            ChildAddOrUpdateLookup.Add(typeof(leaveRequetsSelfservice), "setLR");
+            ChildAddOrUpdateLookup.Add(typeof(LeaveRequest), "setLR");
             ChildAddOrUpdateLookup.Add(typeof(loanSelfService), "setLO");
             ChildAddOrUpdateLookup.Add(typeof(LetterSelfservice), "setLE");
             ChildAddOrUpdateLookup.Add(typeof(LeaveDay[]), "arrLD");

@@ -1099,7 +1099,7 @@ namespace AionHR.Web.UI.Forms
                     Common.errorMessage(resp);
                     return;
                 }
-                resp.Items.ForEach(x => x.birthDateString = x.birthDate.ToString(_systemService.SessionHelper.GetDateformat()));
+                resp.Items.ForEach(x => x.hireDateString = x.hireDate.ToString(_systemService.SessionHelper.GetDateformat()));
                 AnniversaryStore.DataSource = resp.Items;
                 AnniversaryStore.DataBind();
             }
@@ -3541,13 +3541,33 @@ namespace AionHR.Web.UI.Forms
                 X.MessageBox.Alert(Resources.Common.Error, exp.Message);
             }
         }
+
         protected void Timebatch(object sender, DirectEventArgs e)
         {
             string approve = e.ExtraParams["approve"];
+
+            X.Msg.Confirm(Resources.Common.Confirmation,approve=="true"?GetLocalResourceObject("approveConfirmation").ToString(): GetLocalResourceObject("rejectConfirmation").ToString(), new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.Timebatch({0})", approve),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+        }
+        [DirectMethod]
+        
+       public void Timebatch(string approve)
+        {
+           
             DashboardRequest req = GetDashboardRequest();
-          //  DashboardTimeListRequest r = new DashboardTimeListRequest();
-            //r.dayId = "";
-            //r.employeeId = 0;
+          
             if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
 
 
@@ -3556,26 +3576,10 @@ namespace AionHR.Web.UI.Forms
                 TimeStore.DataBind();
                 return;
             }
-            //r.timeCode = timeVariationType.GetTimeCode();
-            //r.shiftId = "0";
-            //r.apStatus = "1";
-            //r.BranchId = req.BranchId;
-            //r.DivisionId = req.DivisionId;
-            //r.PositionId = req.PositionId;
-            //r.DepartmentId = req.DepartmentId;
-            //r.EsId = req.EsId;
-            //r.StartAt = "0";
-            //r.Size = "50";
+            
 
             string rep_params = "";
-            //Dictionary<string, string> parameters = new Dictionary<string, string>();
-            //parameters.Add("5", timeVariationType.GetTimeCode());
-            //parameters.Add("7", "1");
-            //parameters.Add("8",req.BranchId );
-            //parameters.Add("9", req.DepartmentId);
-            //parameters.Add("10", req.EsId);
-            //parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
-
+           
 
 
 
@@ -3592,12 +3596,9 @@ namespace AionHR.Web.UI.Forms
                 parameters.Remove("4");
 
 
-            //   parameters.Add("1", "0");
-
             parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
             parameters.Add("5", timeVariationType.GetTimeCode());
-            //    parameters.Add("4", "0");
-            //  parameters.Add("7", "1");
+          
             parameters.Add("7", "1");
 
 

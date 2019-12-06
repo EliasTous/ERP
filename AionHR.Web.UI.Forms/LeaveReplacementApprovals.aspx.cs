@@ -615,9 +615,9 @@ namespace AionHR.Web.UI.Forms
 
                     try
                     {
-                    RecordRequest rec = new RecordRequest();
-                    rec.RecordID = CurrentLeaveId.Text;
-                    RecordResponse<LeaveRequest> recordResponse = _leaveManagementService.ChildGetRecord<LeaveRequest>(rec);
+                    LeaveReturnRecordRequest rec = new LeaveReturnRecordRequest();
+                    rec.leaveId = CurrentLeaveId.Text;
+                    RecordResponse<LeaveRequest> recordResponse = _selfServiceService.ChildGetRecord<LeaveRequest>(rec);
 
 
                     if (!recordResponse.Success)
@@ -629,7 +629,7 @@ namespace AionHR.Web.UI.Forms
 
                     request.entity = recordResponse.result;
                        request.entity.replApStatus = apStatus.GetApprovalStatus();
-                        PostResponse<LeaveRequest> r = _leaveManagementService.ChildAddOrUpdate<LeaveRequest>(request);
+                        PostResponse<LeaveRequest> r = _selfServiceService.ChildAddOrUpdate<LeaveRequest>(request);
 
 
                         //check if the insert failed
