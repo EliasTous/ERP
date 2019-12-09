@@ -943,9 +943,8 @@ namespace AionHR.Web.UI.Forms
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
             string terminationRecordId= e.ExtraParams["terminationRecordId"];
-            JsonSerializerSettings setting = new JsonSerializerSettings();
-            setting.DateFormatString = "dd/MM/yyyy";
-            EmployeeTermination t = JsonConvert.DeserializeObject<EmployeeTermination>(obj, setting);
+           
+            EmployeeTermination t = JsonConvert.DeserializeObject<EmployeeTermination>(obj);
             t.employeeId = Convert.ToInt32(CurrentEmployee.Text);
             PostResponse<EmployeeTermination> resp;
             if (terminated.Text=="0")
