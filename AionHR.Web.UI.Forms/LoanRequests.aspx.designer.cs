@@ -301,13 +301,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
-        /// statusPref control.
+        /// LoanApprovalStatusFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox statusPref;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus LoanApprovalStatusFilter;
         
         /// <summary>
         /// employeeFilter control.
@@ -661,13 +661,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField purposeField;
         
         /// <summary>
-        /// apStatus control.
+        /// loanApprovalStatusControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox apStatus;
+        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus loanApprovalStatusControl;
         
         /// <summary>
         /// effectiveDate control.

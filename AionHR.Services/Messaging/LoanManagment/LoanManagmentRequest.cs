@@ -31,7 +31,7 @@ namespace AionHR.Services.Messaging.LoanManagment
         public int EmployeeId { get; set; }
         public string DepartmentId { get; set; }
         public string BranchId { get; set; }
-        public int Status { get; set; }
+        public string Status { get; set; }
         public string DivisionId { get; set; }
         public int? approverId { get; set; }
         public string LoanId { get; set; }
@@ -60,7 +60,7 @@ namespace AionHR.Services.Messaging.LoanManagment
                 parameters.Add("_departmentId", DepartmentId.ToString());
                 parameters.Add("_branchId", BranchId.ToString());
                 parameters.Add("_divisionId", DivisionId.ToString());
-                parameters.Add("_status", Status.ToString());
+                parameters.Add("_status", Status);
                 parameters.Add("_sortBy", SortBy.ToString());
              
                 parameters.Add("_loanId", LoanId);

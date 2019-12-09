@@ -376,7 +376,7 @@ namespace AionHR.Web.UI.Forms
             req.DepartmentId = "0";
             req.DivisionId = "0";
             req.EmployeeId = Convert.ToInt32(employeeId);
-            req.Status = 2;
+            req.Status = "2";
             
 
           

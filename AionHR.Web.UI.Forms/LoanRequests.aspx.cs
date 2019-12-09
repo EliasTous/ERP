@@ -160,7 +160,7 @@ namespace AionHR.Web.UI.Forms
                 caseCommentsAddButton.Disabled = false;
                 addDeduction.Disabled = true;
                 effectiveDate.Disabled = false;
-                statusPref.Select("0");
+               
                 ldMethod.Select("0");
                 currentLoanId.Text = "0";
                 LoanAmount.Text = "0";
@@ -443,7 +443,7 @@ namespace AionHR.Web.UI.Forms
                     ltId.Select(response.result.ltId.ToString());
                     CurrentAmountCurrency.Text = response.result.currencyRef;
                     currencyId.Select(response.result.currencyId.ToString());
-                    apStatus.Select(response.result.apStatus.ToString());
+                    loanApprovalStatusControl.setApprovalStatus(response.result.apStatus.ToString());
                     ldMethod.Select(response.result.ldMethod.ToString());
                     if (!string.IsNullOrEmpty(response.result.branchId))
                         branchId.Select(response.result.branchId);
@@ -935,6 +935,8 @@ namespace AionHR.Web.UI.Forms
         {
             foreach (var item in BasicInfoTab.Items)
             {
+                if (item.ClassName == "Ext.container.Container")
+                    continue;
                
                 item.Disabled = !isEnable;
               
@@ -972,7 +974,7 @@ namespace AionHR.Web.UI.Forms
                 caseCommentStore.DataSource = new List<CaseComment>();
                 caseCommentStore.DataBind();
                 //Reset all values of the relative object
-                apStatus.Select(0);
+                loanApprovalStatusControl.setApprovalStatus("1");
                 this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
                 date.SelectedDate = DateTime.Now;
                 //effectiveDate.SelectedDate= DateTime.Now;
@@ -1077,15 +1079,7 @@ namespace AionHR.Web.UI.Forms
             {
                 req.EmployeeId = 0;
             }
-            if (!string.IsNullOrEmpty(statusPref.Text) && statusPref.Value.ToString() != "")
-            {
-                req.Status = Convert.ToInt32(statusPref.Value);
-            }
-            else
-            {
-                req.Status = 0;
-            }
-
+            req.Status = LoanApprovalStatusFilter.GetApprovalStatus();
 
             req.Size = "2000";
             req.StartAt = "0";
@@ -1121,14 +1115,20 @@ namespace AionHR.Web.UI.Forms
             request.Size = e.Limit.ToString();
             request.StartAt = e.Start.ToString();
             request.LoanId = "0";
-            ListResponse<Loan> routers = _loanService.GetAll<Loan>(request);
-            if (!routers.Success)
+            ListResponse<Loan> resp = _loanService.GetAll<Loan>(request);
+            if (!resp.Success)
             {
-                Common.errorMessage(routers);
+                Common.errorMessage(resp);
                 return;
             }
-            this.Store1.DataSource = routers.Items;
-            e.Total = routers.count;
+            List<XMLDictionary> statusList = Common.XMLDictionaryList(_systemService, "13");
+            resp.Items.ForEach(x=>
+                {
+                    x.statusString = statusList.Where(y => y.key == x.apStatus).Count() != 0 ? statusList.Where(y => y.key == x.apStatus).First().value : string.Empty;
+
+            });
+            this.Store1.DataSource = resp.Items;
+            e.Total = resp.count;
 
             this.Store1.DataBind();
         }
@@ -1558,25 +1558,10 @@ namespace AionHR.Web.UI.Forms
                Common.errorMessage(response);
                 return;
             }
+            List<XMLDictionary> statusList = Common.XMLDictionaryList(_systemService, "13");
             response.Items.ForEach(x =>
             {
-
-                switch (x.status)
-                {
-                    case 1:
-                        x.statusString = StatusNew.Text;
-                        break;
-                    case 2:
-                        x.statusString = StatusApproved.Text;
-                        ;
-                        break;
-                 
-                       
-                    case -1:
-                        x.statusString = StatusRejected.Text;
-
-                        break;
-                }
+                x.statusString = statusList.Where(y => y.key == Convert.ToInt32(x.status)).Count() != 0 ? statusList.Where(y => y.key == Convert.ToInt32(x.status)).First().value : string.Empty;
             }
           );
             ApprovalStore.DataSource = response.Items;

@@ -171,6 +171,7 @@
                         <ext:ModelField Name="branchName" />
                         <ext:ModelField Name="purpose" />
                         <ext:ModelField Name="apStatus" />
+                         <ext:ModelField Name="statusString" />
                         <ext:ModelField Name="currencyId" />
                         <ext:ModelField Name="amount" />
                         <ext:ModelField Name="payments" />
@@ -241,16 +242,13 @@
                                     </Content>
 
                                 </ext:Container>
-                                <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FilterStatus %>">
-                                    <Items>
-                                        <ext:ListItem Text="<%$ Resources: All %>" Value="0"  />
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                  
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
-                                    </Items>
-                        
-                                </ext:ComboBox>
+                                    <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="LoanApprovalStatusFilter" EmptyText="<%$ Resources:Common, status %>" FieldType="Filter" />
+                                            </Content>
+                                        </ext:Container>  
+                            
                                 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="employeeFilter" Width="130" LabelAlign="Top"
                                     DisplayField="fullName"
                                     ValueField="recordId" AllowBlank="true"
@@ -315,8 +313,8 @@
                            <%-- <ext:Column ID="Column12" DataIndex="purpose" Text="<%$ Resources: FieldPurpose%>" runat="server" Flex="2" />--%>
 
 
-                            <ext:Column ID="colStatus" DataIndex="status" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
-                                <Renderer Handler="return GetStatusName(record.data['apStatus']);" />
+                            <ext:Column ID="colStatus" DataIndex="statusString" Text="<%$ Resources: FieldStatus%>" runat="server" Width="100">
+                               
                             </ext:Column>
 
                            <%-- <ext:DateColumn ID="cc" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldEffectiveDate %>" DataIndex="effectiveDate" Hideable="false" Width="120" Align="Center">
@@ -632,19 +630,12 @@
 
                                 <ext:TextArea ID="purpose" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
                                  <ext:TextField ID="purposeField" InputType="Password" Visible="false" runat="server" FieldLabel="<%$ Resources:FieldPurpose%>" Name="purpose" AllowBlank="false" />
-                                <ext:ComboBox ReadOnly="true"   AnyMatch="true" CaseSensitive="false"  runat="server" ID="apStatus" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
-                                    FieldLabel="<%$ Resources: FieldStatus %>" AllowBlank="false" SubmitValue="true">
-                                    <Items>
-                                        <ext:ListItem Text="<%$ Resources: FieldNew %>" Value="1" />
-                                    
-                                        <ext:ListItem Text="<%$ Resources: FieldApproved %>" Value="2" />
-                                        <ext:ListItem Text="<%$ Resources: FieldRejected %>" Value="-1" />
-                                    </Items>
-                                   <%-- <Listeners>
-                                        <Change Handler="if(this.value==2) {this.next().setDisabled(false); this.next().setValue(new Date());} else {this.next().setDisabled(true); this.next().clear();if (this.value==1) #{effectiveDate}.allowBlank = true;}">
-                                        </Change>
-                                    </Listeners>--%>
-                                </ext:ComboBox>
+                                <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalStatusControl  runat="server" ID="loanApprovalStatusControl" FieldLabel="<%$ Resources:Common, status %>" ReadOnly="true" />
+                                            </Content>
+                                        </ext:Container>  
 
                                 <ext:DateField AllowBlank="false"  runat="server" ID="effectiveDate" Name="effectiveDate" FieldLabel="<%$ Resources:FieldEffectiveDate%>" Vtype="daterange"  >
                                     <CustomConfig>

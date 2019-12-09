@@ -682,7 +682,7 @@ namespace AionHR.Web.UI.Forms
                 {
                     X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
                     Common.errorMessage(response);
-                    throw new Exception();
+                    return null;
                 }
 
 

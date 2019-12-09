@@ -714,7 +714,7 @@ namespace AionHR.Web.UI.Forms
             request.DepartmentId = "0";
             request.DivisionId = "0";
             request.EmployeeId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId());
-            request.Status = 0;
+            request.Status = "0";
             request.Filter = "";
 
             request.SortBy = e.Sort[0].Property;

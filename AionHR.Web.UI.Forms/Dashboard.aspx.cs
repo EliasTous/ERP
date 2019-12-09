@@ -828,7 +828,7 @@ namespace AionHR.Web.UI.Forms
             req.StartAt = "0";
             req.Filter = "";
             req.SortBy = "recordId";
-            req.Status = 2;
+            req.Status = "2";
 
 
             return req;
@@ -1343,7 +1343,7 @@ namespace AionHR.Web.UI.Forms
             {
                 LoanManagementListRequest req = new LoanManagementListRequest();
                 req = GetLoanManagementRequest();
-                req.Status = 2;
+                req.Status = "2";
                 req.LoanId = "0";
                 ListResponse<Loan> resp = _loanService.GetAll<Loan>(req);
                 if (!resp.Success)
