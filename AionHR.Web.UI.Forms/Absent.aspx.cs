@@ -327,7 +327,8 @@ namespace AionHR.Web.UI.Forms
                 }
                 bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
                 List<XMLDictionary> timeCode = ConstTimeVariationType.TimeCodeList(_systemService);
-           
+                List<XMLDictionary> statusList = Common.XMLDictionaryList(_systemService, "13");
+                List<XMLDictionary> damageList = Common.XMLDictionaryList(_systemService, "22");
                 daysResponse.Items.ForEach(
                     x =>
                     {
@@ -335,8 +336,8 @@ namespace AionHR.Web.UI.Forms
                         x.durationString = time(x.duration, true);
                         x.timeCodeString = timeCode.Where(y => y.key == Convert.ToInt16(x.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
                         
-                        x.apStatusString = FillApprovalStatus(x.apStatus);
-                        x.damageLevelString = FillDamageLevelString(x.damageLevel);
+                        x.apStatusString = statusList.Where(y=> y.key == x.apStatus).Count() != 0 ? statusList.Where(y => y.key == x.apStatus).First().value : "";
+                        x.damageLevelString = damageList.Where(y => y.key == x.damageLevel).Count() != 0 ? damageList.Where(y => y.key == x.damageLevel).First().value : ""; 
                        if (rtl)
                         x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
                        else
