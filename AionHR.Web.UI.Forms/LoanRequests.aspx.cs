@@ -382,7 +382,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void PoPuP(object sender, DirectEventArgs e)
         {
-
+            BasicInfoTab.Reset();
             panelRecordDetails.ActiveIndex = 0;
             //SetTabPanelEnable(true);
             SetBasicInfoFormEnable(true);

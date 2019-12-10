@@ -47,7 +47,7 @@ namespace Reports.PunchLog
             }
             else if (getLanguage == "fr")
             {
-                xrLabel1.Text = xrLabel1.Text = reportId == "RT308" ? "Journal de poinçon": "Poicon non traités";
+                xrLabel1.Text = xrLabel1.Text = reportId == "RT308" ? "Journal de poinçon": "Poinçon non traités";
                 fieldemployeeName1.Caption = "Employe";
                 fielddayId1.Caption = "Date";
             }
