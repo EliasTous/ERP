@@ -139,7 +139,7 @@
     <value>الفرع</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
-    <value>المنصب</value>
+    <value>الوظيفة</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
     <value>الادارة العليا</value>
@@ -151,7 +151,7 @@
     <value>طبع بواسطة :</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
-    <value>المنصب</value>
+    <value>الوظيفة</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>ملاحظات</value>

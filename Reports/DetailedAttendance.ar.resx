@@ -165,7 +165,7 @@
     <value>899.7875, 24.19433</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Detailed Attendance</value>
+    <value>الحضور التفصيلي</value>
   </data>
   <data name="label1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -187,7 +187,7 @@
     <value>393.5824, 23</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Time Variations</value>
+    <value>فروقات الدوام</value>
   </data>
   <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -196,7 +196,7 @@
     <value>0.0001430511, 23.00001</value>
   </data>
   <data name="tableCell1.Text" xml:space="preserve">
-    <value>Branch</value>
+    <value>الفروع</value>
   </data>
   <data name="tableCell1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -205,8 +205,7 @@
     <value>0.13154539219506417</value>
   </data>
   <data name="tableCell2.Text" xml:space="preserve">
-    <value>Employee
-</value>
+    <value>الموظف</value>
   </data>
   <data name="tableCell2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -215,8 +214,7 @@
     <value>0.14774766299727665</value>
   </data>
   <data name="tableCell3.Text" xml:space="preserve">
-    <value>Date
-</value>
+    <value>التاريخ</value>
   </data>
   <data name="tableCell3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -225,7 +223,7 @@
     <value>0.092993534037098882</value>
   </data>
   <data name="tableCell4.Text" xml:space="preserve">
-    <value>Effective Time</value>
+    <value>المدة</value>
   </data>
   <data name="tableCell4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -234,7 +232,7 @@
     <value>0.0909073880868676</value>
   </data>
   <data name="tableCell5.Text" xml:space="preserve">
-    <value>First Punch</value>
+    <value>البصمة الاولى</value>
   </data>
   <data name="tableCell5.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -243,7 +241,7 @@
     <value>0.078592348224715544</value>
   </data>
   <data name="tableCell6.Text" xml:space="preserve">
-    <value>Last Punch</value>
+    <value>البصمة الأخيرة</value>
   </data>
   <data name="tableCell6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -252,8 +250,7 @@
     <value>0.084690637297811427</value>
   </data>
   <data name="tableCell7.Text" xml:space="preserve">
-    <value>Early  
-Check in</value>
+    <value>حضور مبكر</value>
   </data>
   <data name="tableCell7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -262,7 +259,7 @@ Check in</value>
     <value>0.0996794006088214</value>
   </data>
   <data name="tableCell8.Text" xml:space="preserve">
-    <value>Late check in</value>
+    <value>تأخير عن الدوام</value>
   </data>
   <data name="tableCell8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -271,8 +268,7 @@ Check in</value>
     <value>0.0894635696942238</value>
   </data>
   <data name="tableCell9.Text" xml:space="preserve">
-    <value>During Shift 
-Leave</value>
+    <value>مغادرة خلال الدوام</value>
   </data>
   <data name="tableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -281,7 +277,7 @@ Leave</value>
     <value>0.075571862121122171</value>
   </data>
   <data name="tableCell10.Text" xml:space="preserve">
-    <value>Early leave</value>
+    <value>مغادرة مبكرة</value>
   </data>
   <data name="tableCell10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -290,7 +286,7 @@ Leave</value>
     <value>0.10880824124127844</value>
   </data>
   <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>Over time</value>
+    <value>عمل إضافي</value>
   </data>
   <data name="xrTableCell1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -391,12 +387,12 @@ Leave</value>
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
     <value>31.66667</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9.75pt</value>
   </data>
