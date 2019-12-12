@@ -37,7 +37,7 @@ namespace Reports.PunchLog
             //if (isArabic)
             if (getLanguage == "ar")
             {
-                xrLabel1.Text =reportId=="RT308"? "جدول البصمات " : "بصمات غير معالجة";
+                xrLabel1.Text =reportId=="RT308"? "سجل البصمات " : "بصمات غير معالجة";
                 fieldemployeeName1.Caption = "الموظف";
                 fielddayId1.Caption = "التاريخ";
                 this.RightToLeft = RightToLeft.Yes;

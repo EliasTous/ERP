@@ -63,7 +63,7 @@ namespace Reports
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        public SalaryChanges(Dictionary<string, string> parameters)
+        public SalaryChanges(Dictionary<string, string> parameters, string getLanguage)
         {
             InitializeComponent();
             //
@@ -71,6 +71,19 @@ namespace Reports
             xrTableCell4.RightToLeft = RightToLeft.No;
             xrTableCell8.RightToLeft = RightToLeft.No;
             printHeader(parameters);
+
+            if (getLanguage == "fr")
+            {
+                xrLabel7.LocationF = new PointF(0, 10);
+                xrLabel5.LocationF = new PointF(152, 10);
+                xrLabel2.LocationF = new PointF(280, 10);
+                xrLabel4.LocationF = new PointF(438, 10);
+                xrLabel11.LocationF = new PointF(579, 10);
+                xrLabel8.LocationF = new PointF(719, 10);
+
+                xrTable1.HeightF = 50;
+                xrLabel13.HeightF = 50;
+            }
 
         }
         private void printHeader(Dictionary<string, string> parameters)

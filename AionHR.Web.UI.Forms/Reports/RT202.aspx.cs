@@ -223,8 +223,9 @@ namespace AionHR.Web.UI.Forms.Reports
                 x.PrevSalaryTypeString = x.prevSalaryType.HasValue ? GetGlobalResourceObject("Common", ((SalaryType)x.prevSalaryType).ToString()).ToString() : "";
                 x.DateString = x.effectiveDate != null ? ((DateTime)(x.effectiveDate)).ToString(_systemService.SessionHelper.GetDateformat(), CultureInfo.CurrentCulture) : "";
             });
+            string getLan = _systemService.SessionHelper.getLangauge();
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            SalaryChanges h = new SalaryChanges(parameters);
+            SalaryChanges h = new SalaryChanges(parameters, getLan);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
 

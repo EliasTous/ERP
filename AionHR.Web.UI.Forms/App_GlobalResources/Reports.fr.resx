@@ -117,52 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="fieldItemValue.Width" type="System.Int32, mscorlib">
-    <value>70</value>
+  <data name="ExportTo" xml:space="preserve">
+    <value>Exporter vers</value>
   </data>
-  <data name="fieldCSS.Caption" xml:space="preserve">
-    <value>Css</value>
+  <data name="FirstPage" xml:space="preserve">
+    <value>Première page</value>
   </data>
-  <data name="fieldEmployeeName.Caption" xml:space="preserve">
-    <value>الفرع</value>
+  <data name="HighlightEditingFields" xml:space="preserve">
+    <value>Highligh Editing Fields</value>
   </data>
-  <data name="fieldESS.Caption" xml:space="preserve">
-    <value>Ess</value>
+  <data name="LastPage" xml:space="preserve">
+    <value>Dernière page</value>
   </data>
-  <data name="fieldBasicSalary.Caption" xml:space="preserve">
-    <value>اساسي</value>
+  <data name="NextPage" xml:space="preserve">
+    <value>Page suivante</value>
   </data>
-  <data name="fieldBasicSalary.Width" type="System.Int32, mscorlib">
-    <value>60</value>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Page précédente</value>
   </data>
-  <assembly alias="DevExpress.Data.v18.2" name="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="xrPivotGrid1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>10.0000381, 0</value>
+  <data name="Print" xml:space="preserve">
+    <value>Imprimer</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="xrPivotGrid1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1131.00012, 138.958328</value>
+  <data name="PrintPage" xml:space="preserve">
+    <value>Imprimer la page</value>
   </data>
-  <data name="Detail.HeightF" type="System.Single, mscorlib">
-    <value>142.083359</value>
+  <data name="Search" xml:space="preserve">
+    <value>Chercher</value>
   </data>
-  <data name="xrLabel10.Text" xml:space="preserve">
-    <value>المرجع</value>
+  <data name="ToggleMultipleMode" xml:space="preserve">
+    <value>Toggle Multiple Mode</value>
   </data>
-  <data name="xrLabel9.Text" xml:space="preserve">
-    <value>القطاع</value>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>Agrandir</value>
   </data>
-  <data name="xrLabel8.Text" xml:space="preserve">
-    <value>الوظيفة</value>
-  </data>
-  <data name="xrLabel7.Text" xml:space="preserve">
-    <value>الفرع</value>
-  </data>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>رواتب على مستوى معلومات العمل</value>
-  </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>طبع بواسطة :</value>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>Dézoomer</value>
   </data>
 </root>

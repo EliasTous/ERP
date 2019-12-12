@@ -547,7 +547,7 @@
     <value>127.770767, 23</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>xrLabel14</value>
+    <value>Jour</value>
   </data>
   <data name="xrLabel14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -562,7 +562,7 @@
     <value>127.770767, 23.0000076</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>xrLabel13</value>
+    <value>Date d’expiration</value>
   </data>
   <data name="xrLabel13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -577,7 +577,7 @@
     <value>127.770767, 22.9999847</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
-    <value>xrLabel12</value>
+    <value>Document Ref</value>
   </data>
   <data name="xrLabel12.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -592,7 +592,7 @@
     <value>127.770767, 23.0000076</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
-    <value>xrLabel11</value>
+    <value>Type de document</value>
   </data>
   <data name="xrLabel11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -607,7 +607,7 @@
     <value>76.041626, 22.9999924</value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>Statut :</value>
+    <value>Nom du département</value>
   </data>
   <data name="xrLabel10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -622,7 +622,7 @@
     <value>76.04157, 23.0000076</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>Position :</value>
+    <value>Nom de la branche</value>
   </data>
   <data name="xrLabel9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -637,7 +637,7 @@
     <value>76.04157, 22.99997</value>
   </data>
   <data name="xrLabel8.Text" xml:space="preserve">
-    <value>Departement :</value>
+    <value>Nom de la position</value>
   </data>
   <data name="xrLabel8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -652,7 +652,7 @@
     <value>76.041626, 23</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
-    <value>Branche :</value>
+    <value>Nom de l’employé</value>
   </data>
   <data name="xrLabel7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>

@@ -124,19 +124,19 @@
     <value>الوثائق القانونية لموظفين الشركة </value>
   </data>
   <data name="xrLabel10.Text" xml:space="preserve">
-    <value>مطلوب :</value>
+    <value>القسم</value>
   </data>
   <data name="xrLabel11.Text" xml:space="preserve">
-    <value>xrLabel11</value>
+    <value>نوع الوثيقة</value>
   </data>
   <data name="xrLabel12.Text" xml:space="preserve">
-    <value>xrLabel12</value>
+    <value>رقم الوثيقة</value>
   </data>
   <data name="xrLabel13.Text" xml:space="preserve">
-    <value>xrLabel13</value>
+    <value>تاريخ الانتهاء</value>
   </data>
   <data name="xrLabel14.Text" xml:space="preserve">
-    <value>xrLabel14</value>
+    <value>الأيام</value>
   </data>
   <data name="xrLabel15.Text" xml:space="preserve">
     <value>xrLabel15</value>
@@ -157,13 +157,13 @@
     <value>xrLabel6</value>
   </data>
   <data name="xrLabel7.Text" xml:space="preserve">
-    <value>الفرع :</value>
+    <value>اسم الموظف</value>
   </data>
   <data name="xrLabel8.Text" xml:space="preserve">
-    <value>القسم :</value>
+    <value>الوظيفة</value>
   </data>
   <data name="xrLabel9.Text" xml:space="preserve">
-    <value>الوظيفة :</value>
+    <value>الفرع</value>
   </data>
   <data name="xrPageInfo2.Format" xml:space="preserve">
     <value>صفحة {0} من {1}</value>

@@ -670,6 +670,10 @@
     <Content Include="App_LocalResources\LeaveReturns.aspx .de-DE.resx" />
     <Content Include="App_LocalResources\LeaveReturns.aspx.ar.resx" />
     <Content Include="App_LocalResources\LeaveReturns.aspx.fr.resx" />
+    <Content Include="App_GlobalResources\Reports.fr.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Reports.fr.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -753,6 +757,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModuleIDs.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Reports.fr.designer.cs">
+      <DependentUpon>Reports.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="App_GlobalResources\Reports.de-DE.designer.cs">
       <AutoGen>True</AutoGen>
