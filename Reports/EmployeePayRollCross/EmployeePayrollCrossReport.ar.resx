@@ -204,4 +204,7 @@
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
     <value>11, 7, 21, 39</value>
   </data>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>الرواتب على مستوى الموظف</value>
+  </data>
 </root>

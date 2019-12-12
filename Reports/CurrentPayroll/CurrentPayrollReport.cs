@@ -26,7 +26,9 @@ namespace Reports.CurrentPayroll
                 fieldCountry.Caption = "البلد";
                 fieldDepartment.Caption = "القسم";
                 fieldBasicSalary.Caption = "الاسأسي";
-
+                fieldRef.Caption = "الرمز";
+                xrLabel1.Text = "تفاصيل رواتب الموظفين";
+                xrLabel1.LocationF = new PointF(410, 10);
                 this.RightToLeft = RightToLeft.Yes;
                 this.RightToLeftLayout = RightToLeftLayout.Yes;
                 fieldItemValue.Appearance.Cell.TextHorizontalAlignment = DevExpress.Utils.HorzAlignment.Near;

@@ -193,8 +193,7 @@
     <value>511.5, 10</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
-    <value>Current Payroll
-</value>
+    <value>تفاصيل رواتب الموظفين</value>
   </data>
   <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
     <value>80.2083359</value>
