@@ -243,4 +243,16 @@
   <data name="setDefault" xml:space="preserve">
     <value>Set Default</value>
   </data>
+  <data name="EditDay" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="AttendanceScheduleTitle" xml:space="preserve">
+    <value>Edit Attendance Schedule</value>
+  </data>
+  <data name="DTFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="DTTo" xml:space="preserve">
+    <value>To</value>
+  </data>
 </root>

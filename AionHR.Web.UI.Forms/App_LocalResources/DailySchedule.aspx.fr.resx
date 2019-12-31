@@ -243,4 +243,7 @@
   <data name="setDefault" xml:space="preserve">
     <value>définir par defaut</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value>Sélectionnez le jour</value>
+  </data>
 </root>

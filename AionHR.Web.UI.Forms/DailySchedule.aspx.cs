@@ -550,6 +550,7 @@ namespace AionHR.Web.UI.Forms
             this.employeeId.Value = string.Empty;
             this.cmbEmployeeImport.Value = string.Empty;
             this.btnSave.Disabled = true; this.btnDeleteDay.Disabled = true;
+            this.btnEditDay.Disabled = true;
             this.timeFrom.MinTime = TimeSpan.FromMinutes(0);
             this.timeTo.MinTime = TimeSpan.FromMinutes(0);
             this.timeTo.MaxTime = new TimeSpan(23, 30, 0);
@@ -601,6 +602,7 @@ namespace AionHR.Web.UI.Forms
         protected void Load_Click(object sender, DirectEventArgs e)
         {
             X.Call("EnableTools");
+            this.btnEditDay.Disabled = false;
             string branchID = string.Empty;
             //if (branchId.Value == null || branchId.Value.ToString() == string.Empty)
             //{
@@ -691,6 +693,70 @@ namespace AionHR.Web.UI.Forms
             // start is after end, so do the inverse comparison
             return !(end < now && now < start);
         }
+
+        protected void PropertiesStore_ReadData(object sender, StoreReadDataEventArgs e)
+        {
+        }
+        protected void PoPuPAttendanceSchedule(object sender, DirectEventArgs e)
+        {
+        }
+
+        protected void SaveNewRecord(object sender, DirectEventArgs e)
+        {
+        }
+
+        protected void EditDay_Click(object sender, DirectEventArgs e)
+        {
+            try
+            {
+                if (employeeId.Value == null || employeeId.Value.ToString() == string.Empty)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectEmployee")).Show();
+                    return;
+                }
+
+                if (dayId.Value == null || dayId.Value.ToString() == string.Empty)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectDay")).Show();
+                    return;
+                }
+
+                vals.Text = "";
+                vals.Text = "1|" + employeeId.Value + "^2|" + dayId.Value.ToString() + "^3|"+ dayId.Value.ToString();
+
+                ReportGenericRequest reqFS = new ReportGenericRequest();
+                reqFS.paramString = vals.Text;
+
+
+                ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);
+                if (!response.Success)
+                {
+                    X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("ErrorGettingSchedule")).Show();
+                    return;
+                }
+                //Step 2 : call setvalues with the retrieved object
+
+                foreach (var items in response.Items)
+                {
+                    items.from = items.dtFrom.ToString("HH:mm:ss tt");
+                    items.to = items.dtTo.ToString("HH:mm:ss tt");
+                }
+
+                this.AttendanceScheduleStore.DataSource = response.Items;
+                this.AttendanceScheduleGridPanel.DataBind();
+
+                //this.EditRecordWindow.Title = Resources.Common.EditWindowsTitle;
+                this.EditRecordWindow.Show();
+
+
+            }
+            catch (Exception exp)
+            {
+                X.MessageBox.Alert(Resources.Common.Error, exp.Message);
+            }
+        }
+
+
         protected void Save_Click(object sender, DirectEventArgs e)
         { 
            
