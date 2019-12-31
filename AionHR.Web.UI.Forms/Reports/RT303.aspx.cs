@@ -29,6 +29,7 @@ using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
 
 using Reports.DetailedAttendanceCross;
+using AionHR.Model.TimeAttendance;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -260,7 +261,15 @@ namespace AionHR.Web.UI.Forms.Reports
                    
                   
                     Item.lateCheckin = x.variationsList.Where(y => y.timeCode == 31).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 31).First().duration, false) : "";
-                    Item.duringShiftLeave = x.variationsList.Where(y => y.timeCode == 32).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 32).First().duration, false) : "";
+                    //Item.duringShiftLeave = x.variationsList.Where(y => y.timeCode == 32).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 32).First().duration, false) : "";
+                    double dsl = 0;
+                    foreach (DetailedAttendanceVariation obj in x.variationsList)
+                    {
+                        if (obj.timeCode == 32)
+                            dsl += obj.duration;
+                    }
+
+                    Item.duringShiftLeave = dsl.ToString();
                     Item.earlyLeave = x.variationsList.Where(y => y.timeCode == 33).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 33).First().duration, false) : "";
                     Item.earlyCheckin = x.variationsList.Where(y => y.timeCode == 51).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 51).First().duration, false) : "";
                     Item.overtime = x.variationsList.Where(y => y.timeCode == 52).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 52).First().duration, false) : "";

@@ -1100,6 +1100,7 @@
          <ext:Hidden ID="approved" runat="server" Text="<%$ Resources: FieldApproved%>" />
         <ext:Hidden ID="rejected" runat="server" Text="<%$ Resources: FieldRejected%>" />
          <ext:Hidden ID="new" runat="server" Text="<%$ Resources: FieldNew%>" />
+        <ext:Hidden ID="leaveReqApprove" runat="server" Text="<%$ Resources: FieldNew%>" />
 
 
 
@@ -3919,8 +3920,8 @@
                                 <ext:TextField ID="employeeName" runat="server" Name="employeeName" FieldLabel="<%$ Resources:FieldEmployeeName%>" ReadOnly="true" />
 
 
-                                <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" ReadOnly="true" />
-                                <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldendDate%>" Name="endDate" ReadOnly="true" />
+                                <ext:DateField ID="startDate" runat="server" FieldLabel="<%$ Resources:FieldStartDate%>" Name="startDate" ReadOnly="true" Format="MM/dd/yyyy" />
+                                <ext:DateField ID="endDate" runat="server" FieldLabel="<%$ Resources:FieldendDate%>" Name="endDate" ReadOnly="true" Format="MM/dd/yyyy"/>
 
 
 
@@ -3972,6 +3973,7 @@
                             <ExtraParams>
                                 <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="seqNo" Value="#{seqNo}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="returnNotes" Value="#{returnNotes}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value="#{LeaveRecordForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

@@ -32,7 +32,8 @@ namespace Reports.PunchLog
             this.PaperKind = PaperKind.A4;
             this.Landscape = false;
             fielddayId1.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            fielddayId1.ValueFormat.FormatString = DateFormat;
+            //fielddayId1.ValueFormat.FormatString = DateFormat;
+            fielddayId1.ValueFormat.FormatString = "yyyy-MM-dd";
 
             //if (isArabic)
             if (getLanguage == "ar")
@@ -141,6 +142,7 @@ namespace Reports.PunchLog
 
 
             this.PageHeader.Controls.Add(table);
+            
 
         }
         private void table_BeforePrint(object sender, PrintEventArgs e)

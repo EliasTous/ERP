@@ -85,10 +85,12 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
+            
             if (!X.IsAjaxRequest && !IsPostBack)
             {
 
@@ -331,7 +333,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 e.ToList().ForEach(y =>
                 {
                     counter = 1;
-                    if (DateTime.TryParseExact(y.dayId, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out parsed))
+                    if (DateTime.TryParseExact(y.dayId, "yyyyMMdd", new CultureInfo("fr"), DateTimeStyles.AdjustToUniversal, out parsed))
                     {
 
                         //y.dayIdDateTime = parsed;
@@ -345,8 +347,7 @@ namespace AionHR.Web.UI.Forms.Reports
                         //newShiftLogsList.Add(record);
                         for (int i = 0; i < y.punchLog.Count(); i++)
                         {
-
-                            y.dayIdDateTime = parsed;
+                            y.dayIdDateTime = parsed;                            
                             record = new Model.Reports.RT311();
                             record.employeeName = y.employeeName;
                             record.dayIdDateTime = y.dayIdDateTime;

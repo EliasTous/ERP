@@ -2110,12 +2110,14 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
 
                     this.LeaveRecordForm.SetValues(response.result);
+                    leaveReqApprove.Text = response.result.recordId.ToString();
                     employeeName.Text = response.result.employeeName;
                     LeaveApprovalReasonControl.setApprovalReason(arId);
                     seqNo.Text = seqNoParamter;
                     LeveApprovalStatusControl.setApprovalStatus(status);
                     this.LeaveRecordWindow.Title = Resources.Common.EditWindowsTitle;
                     this.LeaveRecordWindow.Show();
+                    //DateColumn2.Format = Convert.ToDateTime(response.result.endDate.Date).ToString("MM dd yyyy", new CultureInfo("en-EN"));
                     break;
 
                 case "imgEdit":
@@ -2453,21 +2455,23 @@ namespace AionHR.Web.UI.Forms
             string obj = e.ExtraParams["values"];
             string id = e.ExtraParams["id"];
             string seqNo = e.ExtraParams["seqNo"];
-            
-            LeaveRequest LV = JsonConvert.DeserializeObject<LeaveRequest>(obj);
+            string returnNotes = e.ExtraParams["returnNotes"];
+            //short LeveApprovalStatusControl = Convert.ToInt16(e.ExtraParams["LeveApprovalStatusControl"]);
+
+            //LeaveRequest LV = JsonConvert.DeserializeObject<LeaveRequest>(obj);
             try
             {
                 //New Mode
                 //Step 1 : Fill The object and insert in the store 
-
+                LeaveRequest LV = new LeaveRequest();
                 PostRequest<DashboardLeave> request = new PostRequest<DashboardLeave>();
                 request.entity = new DashboardLeave();
-                request.entity.activityId = LV.recordId;
+                request.entity.activityId = leaveReqApprove.Text;//LV.recordId;
                 if (_systemService.SessionHelper.GetEmployeeId() != null)
                     request.entity.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
                 else
                     return;
-                request.entity.status = LV.apStatus;
+                request.entity.status = Convert.ToInt16(LeveApprovalStatusControl.GetApprovalStatus()); //LV.apStatus;
                 if (!string.IsNullOrEmpty(LV.returnNotes))
                     request.entity.notes = LV.returnNotes;
                 else

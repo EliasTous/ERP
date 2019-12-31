@@ -265,6 +265,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Hidden @new;
         
         /// <summary>
+        /// leaveReqApprove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden leaveReqApprove;
+        
+        /// <summary>
         /// StatusNew control.
         /// </summary>
         /// <remarks>
