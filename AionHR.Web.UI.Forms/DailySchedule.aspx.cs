@@ -156,7 +156,18 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 FillBranches();
                 FillDepartment();
-                
+                ASDate.Format = _systemService.SessionHelper.GetDateformat();
+                SystemDefaultRecordRequest req = new SystemDefaultRecordRequest();
+                req.Key = "dailySchedule";
+                RecordResponse<KeyValuePair<string, string>> SystemDefaultResponse = _systemService.ChildGetRecord<KeyValuePair<string, string>>(req);
+                if (!SystemDefaultResponse.Success)
+                {
+                    Common.errorMessage(SystemDefaultResponse);
+                    return;
+
+                }
+                ASDtFrom.Increment = string.IsNullOrEmpty(SystemDefaultResponse.result.Value) ? 15 : Convert.ToInt32(SystemDefaultResponse.result.Value);
+                ASDtTo.Increment = string.IsNullOrEmpty(SystemDefaultResponse.result.Value) ? 15 : Convert.ToInt32(SystemDefaultResponse.result.Value);
                 this.workingHours.Value = string.Empty;
             }
             try
@@ -703,8 +714,56 @@ namespace AionHR.Web.UI.Forms
 
         protected void SaveNewRecord(object sender, DirectEventArgs e)
         {
+            X.Call("submitData");
         }
+        protected void SubmitData(object sender, StoreSubmitDataEventArgs e)
+        {
+            try
+            {
+                PostRequest<ResetFlatSchedule> request = new PostRequest<ResetFlatSchedule>();
+                PostResponse<ResetFlatSchedule> r;
+                List<ResetFlatSchedule> PN = e.Object<ResetFlatSchedule>();
+                PN.ForEach(x =>
+                {
+                    DateTime temp = (DateTime)x.date;
+                    x.dtFrom = new DateTime(temp.Year, temp.Month, temp.Day, x.dtFrom.Hour, x.dtFrom.Minute, 0);
+                    x.dtTo = new DateTime(temp.Year, temp.Month, temp.Day, x.dtTo.Hour, x.dtTo.Minute, 0);
+                    x.date = null;
+                
 
+                    request.entity = x;
+                        r = _timeAttendanceService.ChildAddOrUpdate<ResetFlatSchedule>(request);
+                  
+
+                    if (!r.Success)//it maybe be another condition
+                    {
+                        //Show an error saving...
+                        X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+                        Common.errorMessage(r);
+
+                        throw new Exception();
+                    }
+
+
+
+
+
+
+                });
+                Notification.Show(new NotificationConfig
+                {
+                    Title = Resources.Common.Notification,
+                    Icon = Icon.Information,
+                    Html = Resources.Common.RecordSavingSucc
+                });
+                Load_Click(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
+            }
+            catch
+            {
+
+            }
+
+        }
         protected void EditDay_Click(object sender, DirectEventArgs e)
         {
             try
@@ -720,7 +779,9 @@ namespace AionHR.Web.UI.Forms
                     X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectDay")).Show();
                     return;
                 }
-
+            
+                
+               
                 vals.Text = "";
                 vals.Text = "1|" + employeeId.Value + "^2|" + dayId.Value.ToString() + "^3|"+ dayId.Value.ToString();
 
@@ -736,11 +797,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 //Step 2 : call setvalues with the retrieved object
 
-                foreach (var items in response.Items)
-                {
-                    items.from = items.dtFrom.ToString("HH:mm:ss tt");
-                    items.to = items.dtTo.ToString("HH:mm:ss tt");
-                }
+                response.Items.ForEach(x => x.date = x.dtFrom);
 
                 this.AttendanceScheduleStore.DataSource = response.Items;
                 this.AttendanceScheduleGridPanel.DataBind();
@@ -755,8 +812,7 @@ namespace AionHR.Web.UI.Forms
                 X.MessageBox.Alert(Resources.Common.Error, exp.Message);
             }
         }
-
-
+       
         protected void Save_Click(object sender, DirectEventArgs e)
         { 
            

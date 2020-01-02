@@ -111,6 +111,15 @@
 
 
         }
+          function submitData() {
+
+    App.AttendanceScheduleGridPanel.submitData();
+                 
+         
+
+
+        }
+       
 
     
     </script>
@@ -479,36 +488,28 @@
                             Border="false"
                              Title="<%$ Resources: AttendanceScheduleTitle %>"
                             ColumnLines="True" IDMode="Explicit" RenderXType="True" >
-                                  <TopBar>
-                                    <ext:Toolbar ID="Toolbar4" runat="server" ClassicButtonStyle="false">
-                                     <Items>
-                                    <%--<ext:Button ID="Button5" runat="server" Text="<%$ Resources:Common , Add %>" Icon="Add">       
-                                            <Listeners>
-                                                 <Click Handler="CheckSession();" />
-                                            </Listeners>                           
-                                    <DirectEvents>
-                                        <Click OnEvent="ADDAddressNewRecord">
-                                            <EventMask ShowMask="true" CustomTarget="={#{AttendanceScheduleGridPanel}.body}" />
-                                        </Click>
-                                    </DirectEvents>
-                                </ext:Button>--%>
-                            </Items>
-                        </ext:Toolbar>
-
-                    </TopBar>
+                               <Plugins>
+	                            <ext:CellEditing ClicksToEdit="1" >
+		
+	                            </ext:CellEditing>
+                                        </Plugins>
                             
                             <Store>
-                                <ext:Store runat="server" ID="AttendanceScheduleStore" OnReadData="PropertiesStore_ReadData">
+                                <ext:Store runat="server" ID="AttendanceScheduleStore" OnReadData="PropertiesStore_ReadData"   OnSubmitData="SubmitData">
                                     <Model>
                                         <ext:Model runat="server">
                                             <Fields>
                                                <ext:ModelField Name="employeeId" />
-                                                <ext:ModelField Name="dtFrom"  />                                 
-                                              <ext:ModelField Name="dtTo"  />
-                                                <ext:ModelField Name="dayId"  />
+                                                <ext:ModelField Name="dtFrom"  Type="Date"  />                                 
+                                              <ext:ModelField Name="dtTo"  Type="Date"  />
+                                                 <ext:ModelField Name="date"   />
+                                                   <ext:ModelField Name="recordId"   />
+                                                 
+                                                 
+                                                
+                                               
                                                 <ext:ModelField Name="employeeRef"  />
-                                                <ext:ModelField Name="from"  />                                 
-                                              <ext:ModelField Name="to"  />
+                                             
                                             </Fields>
                                         </ext:Model>
                                     </Model>
@@ -519,53 +520,38 @@
                             <ColumnModel ID="ColumnModel4" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                 <Columns>
                                     <ext:Column ID="ASEmployeeId" Visible="false" DataIndex="employeeId" runat="server" />
+                                     <ext:Column ID="ASRecordId" Visible="false" DataIndex="recordId" runat="server" />
                                    <ext:Column ID="ASEmployeeRef" Visible="false" DataIndex="employeeRef" runat="server" />
-                                    <ext:Column ID="ASDayId" Visible="false" DataIndex="dayId" runat="server" />
-
-                                     <ext:Column ID="ColFrom" DataIndex="from" Text="<%$ Resources: DTFrom%>" runat="server" Flex="1">                                        
-                                    </ext:Column>
-
-                                    <ext:Column ID="ColTo" DataIndex="to" Text="<%$ Resources: DTTo%>" runat="server" Flex="1">                                        
-                                    </ext:Column>
+                                   <ext:DateColumn ID="ASDate" runat="server" DataIndex="date" Text="<%$ Resources: date%>" Flex="1"   />
+                                   <ext:DateColumn runat="server" DataIndex="dtFrom" Format="HH:mm" Text="<%$ Resources: DTFrom%>" Flex="1"   >
+                            <Editor>
+                                <ext:TimeField ID="ASDtFrom" runat="server" Format="HH:mm" AllowBlank="false"   >
+                                  
+                                    </ext:TimeField>
+                            </Editor>
+                        </ext:DateColumn>
+                                      <ext:DateColumn runat="server" DataIndex="dtTo" Format="HH:mm" Text="<%$ Resources: DTTo%>"  Flex="1" >
+                            <Editor>
+                                <ext:TimeField ID="ASDtTo" runat="server" Format="HH:mm" AllowBlank="false"   />
+                            </Editor>
+                        </ext:DateColumn>
+                                    
+                                     
+                                     
+                                   
+                                  
+                                       
 
                            
                                    
                                    
                                     
-                            <ext:Column runat="server"
-                                ID="Column1"  Visible="true"
-                                Text=""
-                                Width="100"
-                                Hideable="false"
-                                Align="Center"
-                                Fixed="true"
-                                Filterable="false"
-                                MenuDisabled="true"
-                                Resizable="false">
-
-                                <Renderer handler="return editRender(); " />
-
-                            </ext:Column>
-
+                    
 
                                 </Columns>
                             </ColumnModel>
 
                           
-                          <Listeners>
-                        <Render Handler="this.on('cellclick', cellClick);" />
-                    </Listeners>
-                    <DirectEvents>
-                        <CellClick OnEvent="PoPuPAttendanceSchedule">
-                            <EventMask ShowMask="true" />
-                            <ExtraParams>
-                                <ext:Parameter Name="employeeId" Value="record.data['employeeId']" Mode="Raw" />
-                                <ext:Parameter Name="id" Value="record.getId()" Mode="Raw" />
-                                <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
-                            </ExtraParams>
-
-                        </CellClick>
-                    </DirectEvents>
 
                             <View>
                                 <ext:GridView ID="GridView4" runat="server" />
@@ -586,14 +572,13 @@
                 <ext:Button ID="SaveButton" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">
 
                     <Listeners>
-                        <Click Handler="CheckSession(); if (!#{BasicInfoTab}.getForm().isValid()) {return false;} " />
+                        <Click Handler="CheckSession();" />
                     </Listeners>
                     <DirectEvents>
                         <Click OnEvent="SaveNewRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{EditRecordWindow}.body}" />
                             <ExtraParams>
-                                <ext:Parameter Name="id" Value="#{recordId}.getValue()" Mode="Raw" />
-                                <ext:Parameter Name="values" Value ="#{BasicInfoTab}.getForm().getValues(false, false, false, true)" Mode="Raw" Encode="true" />
+                             
                             </ExtraParams>
                         </Click>
                     </DirectEvents>

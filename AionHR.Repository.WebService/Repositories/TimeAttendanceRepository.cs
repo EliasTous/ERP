@@ -94,6 +94,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(OverrideTimeVariation), "overrideTV");
             ChildAddOrUpdateLookup.Add(typeof(processUnscheduledPunch), "processUP");
             ChildAddOrUpdateLookup.Add(typeof(SyncActivity), "syncTV");
+            ChildAddOrUpdateLookup.Add(typeof(ResetFlatSchedule), "resFS");
 
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");

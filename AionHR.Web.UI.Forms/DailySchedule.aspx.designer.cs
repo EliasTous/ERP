@@ -499,15 +499,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.GridPanel AttendanceScheduleGridPanel;
         
         /// <summary>
-        /// Toolbar4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Toolbar Toolbar4;
-        
-        /// <summary>
         /// AttendanceScheduleStore control.
         /// </summary>
         /// <remarks>
@@ -526,6 +517,15 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ASEmployeeId;
         
         /// <summary>
+        /// ASRecordId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column ASRecordId;
+        
+        /// <summary>
         /// ASEmployeeRef control.
         /// </summary>
         /// <remarks>
@@ -535,40 +535,31 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ASEmployeeRef;
         
         /// <summary>
-        /// ASDayId control.
+        /// ASDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column ASDayId;
+        protected global::Ext.Net.DateColumn ASDate;
         
         /// <summary>
-        /// ColFrom control.
+        /// ASDtFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column ColFrom;
+        protected global::Ext.Net.TimeField ASDtFrom;
         
         /// <summary>
-        /// ColTo control.
+        /// ASDtTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column ColTo;
-        
-        /// <summary>
-        /// Column1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Column1;
+        protected global::Ext.Net.TimeField ASDtTo;
         
         /// <summary>
         /// GridView4 control.
