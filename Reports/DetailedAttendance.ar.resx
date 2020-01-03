@@ -408,4 +408,13 @@
   <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
     <value>A4Extra</value>
   </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>حالة اليوم </value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>مجموع الـتأخير </value>
+  </data>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>مجموع الوقت الاضافي </value>
+  </data>
 </root>

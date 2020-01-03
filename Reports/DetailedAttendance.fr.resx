@@ -171,4 +171,13 @@
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>xrTableCell2</value>
   </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>Statut de jour</value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>Retard total</value>
+  </data>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>Heures supplémentaires totales</value>
+  </data>
 </root>

@@ -27,5 +27,8 @@ namespace AionHR.Model.Reports
        
         public string earlyCheckin { get; set; }
         public string overtime { get; set; }
+        public string totalLateness  { get; set; }
+        public string totalOvertime { get; set; }
+        public string dayStatus { get; set; }
     }
 }
