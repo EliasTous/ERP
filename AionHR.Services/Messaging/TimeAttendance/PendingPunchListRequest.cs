@@ -12,6 +12,7 @@ namespace AionHR.Services.Messaging.TimeAttendance
     public class PendingPunchListRequest : ListRequest
     {
         public string ppTypeParam { get; set; }
+        public string udid { get; set; }
 
 
 
@@ -24,7 +25,8 @@ namespace AionHR.Services.Messaging.TimeAttendance
                 parameters = base.parameters;
 
                 parameters.Add("_ppType", ppTypeParam);
-
+                parameters.Add("_udid", udid);
+                
 
                 return parameters;
             }

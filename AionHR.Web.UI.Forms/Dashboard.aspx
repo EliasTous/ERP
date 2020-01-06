@@ -2402,6 +2402,23 @@
                                         
                                     </DirectEvents>
                                 </ext:Button>
+                                 <ext:ComboBox  AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" EmptyText="<%$ Resources:Common, BiometricDevices%>"  runat="server" DisplayField="name" ValueField="reference"   Name="udid" ID="udid"  >
+                                             <Store>
+                                                <ext:Store runat="server" ID="udStore">
+                                                    <Model>
+                                                        <ext:Model runat="server">
+                                                            <Fields>
+                                                                <ext:ModelField Name="name" />
+                                                                <ext:ModelField Name="reference" />
+                                                            </Fields>
+                                                        </ext:Model>
+                                                    </Model>
+                                                </ext:Store>
+                                            </Store>
+                                      <Listeners>
+                                          <Select Handler="#{punchesStore}.reload();  " />
+                                      </Listeners>
+                                       </ext:ComboBox>
 
                             </Items>
                         </ext:Toolbar>

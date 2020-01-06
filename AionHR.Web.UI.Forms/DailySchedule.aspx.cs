@@ -782,11 +782,10 @@ namespace AionHR.Web.UI.Forms
             
                 
                
-                vals.Text = "";
-                vals.Text = "1|" + employeeId.Value + "^2|" + dayId.Value.ToString() + "^3|"+ dayId.Value.ToString();
+              
 
                 ReportGenericRequest reqFS = new ReportGenericRequest();
-                reqFS.paramString = vals.Text;
+                reqFS.paramString = "1|" + employeeId.Value + "^2|" + dayId.Value.ToString() + "^3|" + dayId.Value.ToString();
 
 
                 ListResponse<FlatSchedule> response = _timeAttendanceService.ChildGetAll<FlatSchedule>(reqFS);

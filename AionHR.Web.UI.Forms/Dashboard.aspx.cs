@@ -192,6 +192,7 @@ namespace AionHR.Web.UI.Forms
                         alertStore.Reload();
                         ppTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "26");
                         ppTypeStore.DataBind();
+                        FillUdStore();
                         returnTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "41");
                         returnTypeStore.DataBind();
 
@@ -220,7 +221,19 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-
+        private void FillUdStore()
+        {
+            ListRequest req = new ListRequest();
+            req.Filter = "";
+            ListResponse<BiometricDevice> resp = _timeAttendanceService.ChildGetAll<BiometricDevice>(req);
+            if(!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            udStore.DataSource = resp.Items;
+            udStore.DataBind();
+        }
      
 
         protected void Page_Init(object sender, EventArgs e)
@@ -1509,6 +1522,7 @@ namespace AionHR.Web.UI.Forms
                 PendingPunchListRequest req = new PendingPunchListRequest();
 
                 req.ppTypeParam = ppType.SelectedItem.Value==null ? "0" : ppType.SelectedItem.Value.ToString();
+                req.udid= udid.SelectedItem.Value == null ? "0" : udid.SelectedItem.Value.ToString();
 
 
                 ListResponse<PendingPunch> punches = _timeAttendanceService.ChildGetAll<PendingPunch>(req);
