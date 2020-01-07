@@ -32,9 +32,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
 
         public string GetTimeCode()
         {
+            if (timeVariationType.Value==null)
+                return "0";
             if (string.IsNullOrEmpty(timeVariationType.Value.ToString()))
                 return "0";
-            return timeVariationType.Value.ToString();
+                return timeVariationType.Value.ToString();
         }
         public string GetTimeCodeString()
 

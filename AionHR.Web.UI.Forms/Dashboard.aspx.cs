@@ -150,6 +150,7 @@ namespace AionHR.Web.UI.Forms
                     SetExtLanguage();
                     HideShowButtons();
                     HideShowColumns();
+                    
                     try
                     {
                         //ClassPermissionRecordRequest classReq = new ClassPermissionRecordRequest();
@@ -1634,7 +1635,10 @@ namespace AionHR.Web.UI.Forms
                 //r.Size = "50";
                 //r.StartAt = "0";
 
-                ReportGenericRequest r = new ReportGenericRequest();
+                PendingTimeApprovalListRequest r = new PendingTimeApprovalListRequest();
+                r.StartAt = e.Start.ToString();
+                r.Size = e.Limit.ToString();
+                r.sortBy = "employeeName";
                 r.paramString = rep_params;
                 ListResponse<PendingTA> Times = _timeAttendanceService.ChildGetAll<PendingTA>(r);
                 if (!Times.Success)
@@ -1666,7 +1670,7 @@ namespace AionHR.Web.UI.Forms
                 //leaves.Add(new ActiveLeave() { destination = "dc", employeeId = 8, employeeName = new Model.Employees.Profile.EmployeeName() { fullName = "vima" }, endDate = DateTime.Now.AddDays(10) });
                 
                 TimeStore.DataSource = Times.Items;
-               
+                e.Total = Times.count;
                 TimeStore.DataBind();
             }
             catch (Exception exp)

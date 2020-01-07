@@ -1123,6 +1123,48 @@
           <ext:Hidden ID="CurrentItemId" runat="server" />
 
 
+           
+
+           <ext:Store
+            ID="TimeStore"
+            runat="server"
+            RemoteSort="false"
+            RemoteFilter="true"
+            OnReadData="TimeStore_ReadData"
+            PageSize="30" IDMode="Explicit" Namespace="App">
+            <Proxy>
+                <ext:PageProxy>
+                    <Listeners>
+                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                    </Listeners>
+                </ext:PageProxy>
+            </Proxy>
+            <Model>
+                <ext:Model ID="Model11" runat="server" >
+                    <Fields>
+
+                             <ext:ModelField Name="date" Type="Date" />
+                                                                                   <ext:ModelField Name="timeCodeString" Type="String"  />
+                                                                                 <ext:ModelField Name="employeeName" Type="String"    />
+
+                                                                                  <ext:ModelField Name="notes" Type="String"  />
+                                                                                    <ext:ModelField Name="seqNo" Type="String" />
+                                                                                 <ext:ModelField Name="tvId" Type="String"  />
+                                                                                  <ext:ModelField Name="activityId" Type="String"  />
+
+                        
+
+
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+            <Sorters>
+                <ext:DataSorter Property="employeeName" Direction="ASC" />
+              
+            </Sorters>
+        </ext:Store>
+
 
         <ext:Store
             ID="activeStore"
@@ -1765,6 +1807,7 @@
                                                             ID="TimeGridPanel"
                                                             runat="server"
                                                             PaddingSpec="0 0 1 0"
+                                                             StoreID="TimeStore"
                                                             Header="false"
                                                             Title="<%$ Resources:Time %>"
                                                             Layout="FitLayout"
@@ -1809,9 +1852,13 @@
                                     </Content>
                                 </ext:Container>
                                   <ext:ToolbarSeparator></ext:ToolbarSeparator>
-                                <ext:Button ID="Button3" runat="server"  Icon="Reload">       
+                                <ext:Button ID="Button3" runat="server"  Icon="Reload">  
+                                   
+                                    
                                      <Listeners>
-                                        <Click Handler="CheckSession();#{TimeStore}.reload();" />
+                                        <Click Handler="CheckSession();#{TimeStore}.reload();" >
+                                           
+                                            </Click>
                                     </Listeners>                           
                                    
                                 </ext:Button>
@@ -1823,33 +1870,7 @@
                         </ext:Toolbar>
 
                     </TopBar>
-                                                            <Store>
-                                                                <ext:Store 
-                                                                    ID="TimeStore"
-                                                                    runat="server" OnReadData="TimeStore_ReadData">
-                                                                       <Model>
-                                                                        <ext:Model ID="Model24" runat="server" >
-                                                                            <Fields>                                                                                                                                                   
-                                                                         
-                                                                             
-                                                                                    <ext:ModelField Name="date" />
-                                                                                   <ext:ModelField Name="timeCodeString"  />
-                                                                                 <ext:ModelField Name="employeeName"  />
-
-                                                                                  <ext:ModelField Name="notes" />
-                                                                                    <ext:ModelField Name="seqNo" />
-                                                                                 <ext:ModelField Name="tvId" />
-                                                                                  <ext:ModelField Name="activityId" />
-
-                                                                                
-                                                                                
-                                                                            </Fields>
-                                                                        </ext:Model>
-                                                                    </Model>
-
-                                                                </ext:Store>
-                                                            </Store>
-
+                                                        
 
                                                             <ColumnModel ID="ColumnModel24" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false">
                                                                 <Columns>
@@ -1887,9 +1908,44 @@
 
                                                                 </Columns>
                                                             </ColumnModel>
+                                                                <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar3" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar1" runat="server" />
+                                <ext:ToolbarFill />
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                                                                <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar1"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                               
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
                                                             <Listeners>
                                                                 <Render Handler="this.on('cellclick', cellClick);" />
-                                                                <Activate Handler="#{TimeStore}.reload();" />
+                                                            <Activate Handler="#{TimeStore}.reload();" />
                                                             </Listeners>
                                                             <DirectEvents>
 

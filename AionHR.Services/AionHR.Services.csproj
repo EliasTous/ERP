@@ -187,6 +187,7 @@
     <Compile Include="Messaging\System\XMLDictionaryListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\FlatPunchesListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\PendingPunchListRequest.cs" />
+    <Compile Include="Messaging\TimeAttendance\PendingTimeApprovalListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeApprovalRecordRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\TimeVariationListRequest.cs" />
     <Compile Include="Messaging\Employees\EmployeesRequests.cs" />
