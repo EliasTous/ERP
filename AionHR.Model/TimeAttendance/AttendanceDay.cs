@@ -79,5 +79,7 @@ namespace AionHR.Model.Attendance
         public string firstPunch { get; set; }
         public string lastPunch { get; set; }
         public string branchRef { get; set; }
+
+        public string dayStatus { get; set; }
     }
 }

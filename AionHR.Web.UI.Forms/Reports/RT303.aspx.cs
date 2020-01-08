@@ -258,6 +258,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     Item.effectiveTime = x.effectiveTime;
                     Item.firstPunch = x.firstPunch;
                     Item.lastPunch = x.lastPunch;
+                    Item.dayStatus = x.dayStatus;
                    
                   
                     Item.lateCheckin = x.variationsList.Where(y => y.timeCode == 31).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 31).First().duration, false) : "";
