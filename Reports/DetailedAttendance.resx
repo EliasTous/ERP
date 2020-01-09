@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="DevExpress.Data.v18.2" name="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>322.119354, 5</value>
+    <value>322.1194, 66.708374</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
@@ -129,7 +129,7 @@
     <value>xrLabel3</value>
   </data>
   <data name="xrLabel2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>243.785965, 5</value>
+    <value>243.78598, 66.708374</value>
   </data>
   <data name="xrLabel2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>78.33334, 23</value>
@@ -138,7 +138,7 @@
     <value>Printed By:</value>
   </data>
   <data name="pageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>0.000143051147, 5</value>
+    <value>0.000127156571, 66.708374</value>
   </data>
   <data name="pageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>222.903244, 22.9999981</value>
@@ -147,7 +147,7 @@
     <value>{0:dddd, MMMM d, yyyy H:mm}</value>
   </data>
   <data name="pageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1055.64917, 5</value>
+    <value>1055.64917, 66.708374</value>
   </data>
   <data name="pageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>115.5, 23</value>
@@ -448,6 +448,9 @@ Leave</value>
   <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="GroupFooter1.HeightF" type="System.Single, mscorlib">
+    <value>55.4583244</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
