@@ -99,9 +99,9 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         xrLabel23.WidthF = (float)206.82;
         xrLabel24.WidthF = (float)206.82;
 
-        xrLabel2.WidthF = (float)167.56;
-        xrLabel2.LocationF = new PointF((float)470.98, 0);
-        xrLabel25.WidthF = (float)167.56;
+        xrLabel2.WidthF = (float)127.56;
+        xrLabel2.LocationF = new PointF((float)40, 0);
+        xrLabel25.WidthF = (float)127.37;
         
         xrLabel5.LocationF = new PointF((float)471.16, 0);
         xrLabel5.WidthF = (float)167.56;
@@ -109,7 +109,8 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
 
         xrLabel9.LocationF = new PointF((float)167.37, 0);
-        xrLabel25.LocationF = new PointF((float)0, 0); 
+        xrLabel25.LocationF = new PointF((float)40, 0); 
+        xrLabel25.LocationF = new PointF((float)40, 0); 
 
         xrLabel3.LocationF = new PointF((float)638.53, 0);
         xrLabel4.LocationF = new PointF((float)638.53, 0);
@@ -132,7 +133,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         //xrLabel9.HeightF = (float)22;
 
         xrLabel48.LocationF = new PointF((float)167.56, 0);
-        xrLabel2.LocationF = new PointF((float)0, 0);
+        //xrLabel2.LocationF = new PointF((float)0, 0);
         xrLabel48.WidthF = (float)52.59;
 
         xrLabel20.LocationF = new PointF((float)220.15, 0);
@@ -255,7 +256,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     private void table_BeforePrint(object sender, PrintEventArgs e)
     {
         XRTable table = ((XRTable)sender);
-        table.LocationF = new DevExpress.Utils.PointFloat(0F, 0F);
+        table.LocationF = new DevExpress.Utils.PointFloat(40F, 10F);
         table.WidthF = this.PageWidth - this.Margins.Left - this.Margins.Right;
     }
     /// <summary> 

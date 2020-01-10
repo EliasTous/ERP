@@ -86,5 +86,62 @@ namespace Reports
             table.WidthF = this.PageWidth - this.Margins.Left - this.Margins.Right;
         }
 
+        private void xrLabel4_BeforePrint(object sender, PrintEventArgs e)
+        {
+            //if (GetCurrentColumnValue("xrLabel4") == null)
+            //{
+            //    XRLabel label = (XRLabel)sender;
+            //    label.Text = "0";
+            //    xrLabel4.Text = "0";
+            //}
+        }
+
+        private void xrLabel5_BeforePrint(object sender, PrintEventArgs e)
+        {
+            //if (GetCurrentColumnValue("xrLabel5") == null)
+            //{
+            //    XRLabel label = (XRLabel)sender;
+            //    label.Text = "0";
+            //}
+        }
+
+        private void xrLabel6_BeforePrint(object sender, PrintEventArgs e)
+        {
+            //if (GetCurrentColumnValue("xrLabel6") == null)
+            //{
+            //    XRLabel label = (XRLabel)sender;
+            //    label.Text = "0";
+            //}
+        }
+
+        private void xrLabel4_PrintOnPage(object sender, PrintOnPageEventArgs e)
+        {
+            //if(GetCurrentColumnValue("xrLabel4") == null)
+            //{
+            //    XRLabel label = (XRLabel)sender;
+            //    label.Text = "0";
+            //    xrLabel4.Text = "0";
+            //}
+        }
+
+        private void xrLabel5_PrintOnPage(object sender, PrintOnPageEventArgs e)
+        {
+            //if (GetCurrentColumnValue("xrLabel5") == null)
+            //{
+            //    XRLabel label = (XRLabel)sender;
+            //    label.Text = "0";
+            //    xrLabel5.Text = "0";
+            //}
+        }
+
+        private void xrLabel6_PrintOnPage(object sender, PrintOnPageEventArgs e)
+        {
+        //    if (GetCurrentColumnValue("xrLabel6") == null)
+        //    {
+        //        XRLabel label = (XRLabel)sender;
+        //        label.Text = "0";
+        //        xrLabel6.Text = "0";
+        //    }
+        }
     }
 }
