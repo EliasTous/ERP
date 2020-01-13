@@ -86,6 +86,16 @@ namespace Reports
             table.WidthF = this.PageWidth - this.Margins.Left - this.Margins.Right;
         }
 
+        public string timeformat(int time)
+        {
+            string hr, min;
+            min = Convert.ToString(time % 60);
+            hr = Convert.ToString(time / 60);
+            if (hr.Length == 1) hr = "0" + hr;
+            if (min.Length == 1) min = "0" + min;
+            return hr + ":" + min;
+        }
+
         private void xrLabel4_BeforePrint(object sender, PrintEventArgs e)
         {
             //if (GetCurrentColumnValue("xrLabel4") == null)
@@ -98,11 +108,15 @@ namespace Reports
 
         private void xrLabel5_BeforePrint(object sender, PrintEventArgs e)
         {
-            //if (GetCurrentColumnValue("xrLabel5") == null)
-            //{
-            //    XRLabel label = (XRLabel)sender;
-            //    label.Text = "0";
-            //}
+            if (string.IsNullOrEmpty((sender as XRLabel).Text))
+                return;
+            if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+                (sender as XRLabel).Text = TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            }
         }
 
         private void xrLabel6_BeforePrint(object sender, PrintEventArgs e)
@@ -142,6 +156,43 @@ namespace Reports
         //        label.Text = "0";
         //        xrLabel6.Text = "0";
         //    }
+        }
+
+        int hoursWorked, minsWorked, hoursLateness, minsLateness, hoursLeave, minsLeave, empLatenessHours, allLatenessHours;
+
+        private void xrLabel5_SummaryReset(object sender, EventArgs e)
+        {
+            //hoursLateness = minsLateness = 0;
+        }
+
+        int totalHoursWorked, totalMinsWorked, totalHoursLeave, toalMinsLeave, totalHoursLatenss, totalMinsLateness, empLatenessMins, allLatenessMins;
+
+        private void xrLabel5_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            if (string.IsNullOrEmpty((sender as XRLabel).Text))
+                return;
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
+        }
+
+        private void xrLabel5_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
+        {
+            //char sign = ' ';
+            //if (totalHoursLatenss < 0 || totalMinsLateness < 0)
+            //    sign = '-';
+            //totalHoursLatenss += totalMinsLateness / 60;
+            //totalMinsLateness = totalMinsLateness % 60;
+            //e.Result = sign + (Math.Abs(totalHoursLatenss).ToString().PadLeft(2, '0') + ":" + Math.Abs(minsLateness).ToString().PadLeft(2, '0'));
+            //e.Handled = true;
+
+            //hoursLateness = minsLateness = 0;
         }
     }
 }

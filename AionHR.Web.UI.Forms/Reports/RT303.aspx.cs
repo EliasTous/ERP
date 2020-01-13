@@ -201,8 +201,16 @@ namespace AionHR.Web.UI.Forms.Reports
             else return "1";
         }
 
+        public string timeformat(int time)
+        {
+            string hr, min;
+            min = Convert.ToString(time % 60);
+            hr = Convert.ToString(time / 60);
+            if (hr.Length == 1) hr = "0" + hr;
+            if (min.Length == 1) min = "0" + min;
+            return hr + ":" + min;
+        }
 
-       
         private void FillReport(bool isInitial = false, bool throwException = true)
         {
 
@@ -238,19 +246,21 @@ namespace AionHR.Web.UI.Forms.Reports
 
             }
             );
-          
-           
+
+            double OTL = 0;
+            double OTO = 0;
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             DetailedAttendance h = new DetailedAttendance(parameters);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            List<AionHR.Model.Reports.RT303> data = new List<AionHR.Model.Reports.RT303>();
             if (resp.Items.Count != 0)
             {
-                List<AionHR.Model.Reports.RT303> data = new List<AionHR.Model.Reports.RT303>();
+                
 
                 Model.Reports.RT303 Item;
                 resp.Items.ForEach(x =>
-                {
+                {                    
                     Item = new Model.Reports.RT303();
                     Item.dayId = x.dayId;
                     Item.employeeName = x.employeeName;
@@ -265,7 +275,8 @@ namespace AionHR.Web.UI.Forms.Reports
                     //Item.duringShiftLeave = x.variationsList.Where(y => y.timeCode == 32).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 32).First().duration, false) : "";
                     double dsl = 0;
                     double totalLatness = 0;
-                    double totalOverTime = 0; 
+                    double totalOverTime = 0;
+                    
                     foreach (DetailedAttendanceVariation obj in x.variationsList)
                     {
                         if (obj.timeCode == 32)
@@ -277,15 +288,26 @@ namespace AionHR.Web.UI.Forms.Reports
                     }
 
                     Item.duringShiftLeave = dsl.ToString();
-                    Item.totalLateness = totalLatness.ToString();
-                    Item.totalOvertime = totalOverTime.ToString();
+                    Item.totTotalLateness = totalLatness;
+                    Item.totTotalOvertime = totalOverTime;
+                    Item.bTotTotalLateness = totalLatness.ToString();
+                    Item.bTotTotalOvertime = totalOverTime.ToString();
+                    Item.totalLateness = timeformat(Convert.ToInt32(totalLatness));//totalLatness.ToString();
+                    Item.totalOvertime = timeformat(Convert.ToInt32(totalOverTime));//totalOverTime.ToString();
                     Item.earlyLeave = x.variationsList.Where(y => y.timeCode == 33).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 33).First().duration, false) : "";
                     Item.earlyCheckin = x.variationsList.Where(y => y.timeCode == 51).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 51).First().duration, false) : "";
                     Item.overtime = x.variationsList.Where(y => y.timeCode == 52).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 52).First().duration, false) : "";
+
+                    
                     data.Add(Item);
 
                 });
-                h.DataSource = data;
+
+                
+
+                h.DataSource = data;              
+
+                
             }
             else
                 h.DataSource = resp.Items;
@@ -293,11 +315,7 @@ namespace AionHR.Web.UI.Forms.Reports
             string user = _systemService.SessionHelper.GetCurrentUser();
 
         
-            h.Parameters["User"].Value = user;
-
-
-
-           
+            h.Parameters["User"].Value = user;       
 
 
            

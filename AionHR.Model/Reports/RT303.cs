@@ -30,5 +30,15 @@ namespace AionHR.Model.Reports
         public string totalLateness  { get; set; }
         public string totalOvertime { get; set; }
         public string dayStatus { get; set; }
+
+
+        public double totTotalLateness { get; set; }
+
+        public double totTotalOvertime { get; set; }
+
+        public string bTotTotalLateness { get; set; }
+
+        public string bTotTotalOvertime { get; set; }
+
     }
 }
