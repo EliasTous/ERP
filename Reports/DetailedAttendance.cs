@@ -54,6 +54,13 @@ namespace Reports
                 */
 
             }
+            else if (getLan == "fr")
+            {
+                xrTableCell3.Text = "status du jour";
+                xrTableCell5.Text = "Total Retard";
+                xrTableCell7.Text = "Total Supplementaire";
+            }
+               
         }
         private void printHeader(Dictionary<string, string> parameters)
         {
