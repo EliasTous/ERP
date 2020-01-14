@@ -40,5 +40,11 @@ namespace AionHR.Model.Reports
 
         public string bTotTotalOvertime { get; set; }
 
+        public double lineTotalOvertime { get; set; }
+        public double lineDuringShiftLeave { get; set; }
+        public double lineEarlyCheckIn { get; set; }
+        public double lineLateCheckIn { get; set; }
+        public double lineEarlyLeave { get; set; }
+
     }
 }

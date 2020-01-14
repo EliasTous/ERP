@@ -10,10 +10,50 @@ namespace Reports
 {
     public partial class DetailedAttendance : DevExpress.XtraReports.UI.XtraReport
     {
-        public DetailedAttendance(Dictionary<string, string> parameters)
+        public DetailedAttendance(Dictionary<string, string> parameters, string getLan)
         {
             InitializeComponent();
             printHeader(parameters);
+            //this.Landscape = true;
+            label1.Font = new Font(label1.Font.FontFamily, label1.Font.Size, FontStyle.Bold);
+            if (getLan == "ar")
+            {
+                tableCell1.Text = "الفروع";
+                tableCell10.Text = "مغادرة مبكرة";
+                tableCell2.Text = "الموظف";
+                tableCell3.Text = "التاريخ";
+                tableCell4.Text = "المدة";
+                tableCell5.Text = "البصمة الاولى";
+                tableCell6.Text = "البصمة الأخيرة";
+                tableCell7.Text = "حضور مبكر";
+                tableCell8.Text = "تأخير عن الدوام";
+                tableCell9.Text = "مغادرة خلال الدوام";
+                xrTableCell1.Text = "عمل إضافي";
+                xrTableCell3.Text = "حالة اليوم ";
+                xrTableCell5.Text = "مجموع الـتأخير ";
+                xrTableCell7.Text = "مجموع الوقت الاضافي ";
+                xrLabel1.Text = "فروقات الدوام";
+                label1.Text = "الحضور التفصيلي";
+
+                /*
+                xrLabel7.LocationF = new PointF((float)395, 5);
+                xrLabel8.LocationF = new PointF((float)457, 5);
+                xrLabel4.LocationF = new PointF((float)512.55, 5);
+                xrLabel9.LocationF = new PointF((float)562.41, 5);
+                xrLabel10.LocationF = new PointF((float)632, 5);
+                xrLabel5.LocationF = new PointF((float)768, 5);
+                xrLabel6.LocationF = new PointF((float)838, 5);
+
+                xrLabel7.WidthF = (float)62;
+                xrLabel8.WidthF = (float)57;
+                xrLabel4.WidthF = (float)51;
+                xrLabel9.WidthF = (float)69;
+                xrLabel10.WidthF = (float)70;
+                xrLabel5.WidthF = (float)70;
+                xrLabel6.WidthF = (float)70;
+                */
+
+            }
         }
         private void printHeader(Dictionary<string, string> parameters)
         {
@@ -74,7 +114,7 @@ namespace Reports
             table.AdjustSize();
             table.EndInit();
 
-
+            table.Font = new Font(table.Font.FontFamily, table.Font.Size, FontStyle.Bold);
 
             this.PageHeader.Controls.Add(table);
 
@@ -108,15 +148,15 @@ namespace Reports
 
         private void xrLabel5_BeforePrint(object sender, PrintEventArgs e)
         {
-            if (string.IsNullOrEmpty((sender as XRLabel).Text))
-                return;
-            if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
-                (sender as XRLabel).Text = "00:00";
-            else
-            {
-                (sender as XRLabel).Text = TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                    + ":" + TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
-            }
+            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
+            //    return;
+            //if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+            //    (sender as XRLabel).Text = "00:00";
+            //else
+            //{
+            //    (sender as XRLabel).Text = TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+            //        + ":" + TimeSpan.FromMinutes(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            //}
         }
 
         private void xrLabel6_BeforePrint(object sender, PrintEventArgs e)
@@ -158,19 +198,19 @@ namespace Reports
         //    }
         }
 
-        int hoursWorked, minsWorked, hoursLateness, minsLateness, hoursLeave, minsLeave, empLatenessHours, allLatenessHours;
+        //int hoursWorked, minsWorked, hoursLateness, minsLateness, hoursLeave, minsLeave, empLatenessHours, allLatenessHours;
 
         private void xrLabel5_SummaryReset(object sender, EventArgs e)
         {
             //hoursLateness = minsLateness = 0;
         }
 
-        int totalHoursWorked, totalMinsWorked, totalHoursLeave, toalMinsLeave, totalHoursLatenss, totalMinsLateness, empLatenessMins, allLatenessMins;
+        //int totalHoursWorked, totalMinsWorked, totalHoursLeave, toalMinsLeave, totalHoursLatenss, totalMinsLateness, empLatenessMins, allLatenessMins;
 
         private void xrLabel5_SummaryCalculated(object sender, TextFormatEventArgs e)
         {
-            if (string.IsNullOrEmpty((sender as XRLabel).Text))
-                return;
+            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
+            //    return;
             if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
                 (sender as XRLabel).Text = "00:00";
             else
@@ -193,6 +233,96 @@ namespace Reports
             //e.Handled = true;
 
             //hoursLateness = minsLateness = 0;
+        }
+
+        private void xrLabel6_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
+            //    return;
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
+        }
+
+        private void xrLabel4_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
+            //    return;
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
+        }
+
+        private void xrLabel7_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
+            //    return;
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
+        }
+
+        private void xrLabel8_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
+            //    return;
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
+        }
+
+        private void xrLabel9_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
+            //    return;
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
+        }
+
+        private void xrLabel10_SummaryCalculated(object sender, TextFormatEventArgs e)
+        {
+            if (e.Value == null)
+                return;
+            if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+                (sender as XRLabel).Text = "00:00";
+            else
+            {
+
+                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = hours + ":" + minutes;
+            }
         }
     }
 }

@@ -60,6 +60,9 @@ namespace AionHR.Model.Reports
 
         //public int missedPunches { get; set; }
 
+        public double totLateness { get; set; }
+        public double totOvertime { get; set; }
+
 
     }
 }

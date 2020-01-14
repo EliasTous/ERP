@@ -249,8 +249,9 @@ namespace AionHR.Web.UI.Forms.Reports
 
             double OTL = 0;
             double OTO = 0;
+            string getLan = _systemService.SessionHelper.getLangauge();
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            DetailedAttendance h = new DetailedAttendance(parameters);
+            DetailedAttendance h = new DetailedAttendance(parameters, getLan);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             List<AionHR.Model.Reports.RT303> data = new List<AionHR.Model.Reports.RT303>();
@@ -276,7 +277,10 @@ namespace AionHR.Web.UI.Forms.Reports
                     double dsl = 0;
                     double totalLatness = 0;
                     double totalOverTime = 0;
-                    
+                    double totEarlyCI = 0;
+                    double totlateCI = 0;
+                    double totEarlyLe = 0;
+
                     foreach (DetailedAttendanceVariation obj in x.variationsList)
                     {
                         if (obj.timeCode == 32)
@@ -285,14 +289,28 @@ namespace AionHR.Web.UI.Forms.Reports
                             totalLatness += obj.duration;
                         if (obj.timeCode == 51 || obj.timeCode == 52)
                             totalOverTime += obj.duration;
+                        if (obj.timeCode == 51)
+                            totEarlyCI += obj.duration;
+                        if (obj.timeCode == 31)
+                            totlateCI += obj.duration;
+                        if (obj.timeCode == 33)
+                            totEarlyLe += obj.duration;
                     }
 
                     Item.duringShiftLeave = dsl.ToString();
                     Item.totTotalLateness = totalLatness;
                     Item.totTotalOvertime = totalOverTime;
+                    Item.lineTotalOvertime = totalOverTime;
+
+                    Item.lineDuringShiftLeave = dsl;
+                    Item.lineEarlyCheckIn = totEarlyCI;
+                    Item.lineLateCheckIn = totlateCI;
+                    Item.lineEarlyLeave = totEarlyLe;
+
+                    Item.totTotalLateness = totlateCI + dsl + totEarlyLe;
                     Item.bTotTotalLateness = totalLatness.ToString();
                     Item.bTotTotalOvertime = totalOverTime.ToString();
-                    Item.totalLateness = timeformat(Convert.ToInt32(totalLatness));//totalLatness.ToString();
+                    Item.totalLateness = timeformat(Convert.ToInt32(totalLatness + dsl));//totalLatness.ToString();
                     Item.totalOvertime = timeformat(Convert.ToInt32(totalOverTime));//totalOverTime.ToString();
                     Item.earlyLeave = x.variationsList.Where(y => y.timeCode == 33).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 33).First().duration, false) : "";
                     Item.earlyCheckin = x.variationsList.Where(y => y.timeCode == 51).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 51).First().duration, false) : "";

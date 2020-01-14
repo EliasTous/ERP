@@ -216,10 +216,16 @@ namespace AionHR.Web.UI.Forms.Reports
                 //}
                 if (!resp.Success)
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-
+                string getLan = _systemService.SessionHelper.getLangauge();
+                
+                foreach(var item in resp.Items)
+                {
+                    item.totLateness = item.LATE_CHECKIN + item.DURING_SHIFT_LEAVE + item.EARLY_LEAVE;
+                    item.totOvertime = item.OVERTIME + item.EARLY_CHECKIN;
+                }
 
                 Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-                PeriodSummary h = new PeriodSummary(parameters);
+                PeriodSummary h = new PeriodSummary(parameters, getLan);
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
                 h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
                 h.DataSource = resp.Items;

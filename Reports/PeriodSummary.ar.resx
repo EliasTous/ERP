@@ -169,7 +169,7 @@
     <value>xrLabel18</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
-    <value>xrLabel19</value>
+    <value>إجمالي الإضافي</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>الفرع</value>
@@ -193,7 +193,7 @@
     <value>xrLabel25</value>
   </data>
   <data name="xrLabel26.Text" xml:space="preserve">
-    <value>xrLabel26</value>
+    <value>إجمالي التأخير</value>
   </data>
   <data name="xrLabel27.Text" xml:space="preserve">
     <value>xrLabel27</value>
@@ -271,7 +271,7 @@
     <value>xrLabel49</value>
   </data>
   <data name="xrLabel5.Text" xml:space="preserve">
-    <value>إجازات غير مدفوعة</value>
+    <value>المجموع</value>
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>أيام العمل الفعلية</value>
