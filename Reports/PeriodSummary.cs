@@ -1644,10 +1644,22 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             (sender as XRLabel).Text = "00:00";
         else
         {
-            (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            double _time1 = 24;
+            double _time2 = 100;
+            if (Convert.ToDouble((sender as XRLabel).Text) < _time1)
+            {
+                (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            }
+            else if (Convert.ToDouble((sender as XRLabel).Text) > _time1 && Convert.ToDouble((sender as XRLabel).Text) < _time2)
+            {
+                (sender as XRLabel).Text = (Convert.ToDouble((sender as XRLabel).Text).ToString().Substring(0, 2)) + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            }
+            else if (Convert.ToDouble((sender as XRLabel).Text) > _time2)
+            {
+                (sender as XRLabel).Text = (Convert.ToDouble((sender as XRLabel).Text).ToString().Substring(0, 3)) + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+            }
         }
-
     }
 
     private void xrLabel28_BeforePrint(object sender, PrintEventArgs e)
@@ -1676,10 +1688,35 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         else
         {
 
-            string hours = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
-            string minutes = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
-            e.Text = hours + ":" + minutes;
+            //string hours = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+            //string minutes = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+            //e.Text = timeformat(Convert.ToInt32(e.Value));//hours + ":" + minutes;
+            double _time1 = 24;
+            double _time2 = 100;
+            if (Convert.ToDouble(e.Value) < _time1)
+            {
+                e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0')
+                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+            }
+            else if (Convert.ToDouble(e.Value) > _time1 && Convert.ToDouble(e.Value) < _time2)
+            {
+                e.Text = (Convert.ToDouble(e.Value).ToString().Substring(0, 2)) + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+            }
+            else if (Convert.ToDouble(e.Value) > _time2)
+            {
+                e.Text = (Convert.ToDouble(e.Value).ToString().Substring(0, 3)) + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+            }
         }
+    }
+
+    public string timeformat(int time)
+    {
+        string hr, min;
+        min = Convert.ToString(time % 60);
+        hr = Convert.ToString(time / 60);
+        if (hr.Length == 1) hr = "0" + hr;
+        if (min.Length == 1) min = "0" + min;
+        return hr + ":" + min;
     }
 
     private void xrLabel30_SummaryCalculated(object sender, TextFormatEventArgs e)

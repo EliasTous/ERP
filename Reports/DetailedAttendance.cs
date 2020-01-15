@@ -223,9 +223,9 @@ namespace Reports
             else
             {
 
-                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
-                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
-                e.Text = hours + ":" + minutes;
+                //string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                //string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = timeformat(Convert.ToInt32(e.Value));// hours + ":" + minutes;
             }
         }
 
@@ -251,9 +251,9 @@ namespace Reports
             else
             {
 
-                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
-                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
-                e.Text = hours + ":" + minutes;
+                //string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                //string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = timeformat(Convert.ToInt32(e.Value));// hours + ":" + minutes;
             }
         }
 
@@ -266,9 +266,9 @@ namespace Reports
             else
             {
 
-                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
-                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
-                e.Text = hours + ":" + minutes;
+                //string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                //string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = timeformat(Convert.ToInt32(e.Value));//hours + ":" + minutes;
             }
         }
 
@@ -281,9 +281,9 @@ namespace Reports
             else
             {
 
-                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
-                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
-                e.Text = hours + ":" + minutes;
+                //string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                //string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = timeformat(Convert.ToInt32(e.Value));//hours + ":" + minutes;
             }
         }
 
@@ -296,9 +296,9 @@ namespace Reports
             else
             {
 
-                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
-                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
-                e.Text = hours + ":" + minutes;
+                //string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                //string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = timeformat(Convert.ToInt32(e.Value));//hours + ":" + minutes;
             }
         }
 
@@ -311,9 +311,9 @@ namespace Reports
             else
             {
 
-                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
-                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
-                e.Text = hours + ":" + minutes;
+                //string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                //string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = timeformat(Convert.ToInt32(e.Value));//hours + ":" + minutes;
             }
         }
 
@@ -326,9 +326,9 @@ namespace Reports
             else
             {
 
-                string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
-                string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
-                e.Text = hours + ":" + minutes;
+                //string hours = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
+                //string minutes = TimeSpan.FromMinutes(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
+                e.Text = timeformat(Convert.ToInt32(e.Value));//hours + ":" + minutes;
             }
         }
 
