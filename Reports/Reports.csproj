@@ -1149,6 +1149,12 @@
     <EmbeddedResource Include="TimeAttendanceSummary.resx">
       <DependentUpon>TimeAttendanceSummary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TimeAttendanceViewReport.ar.resx">
+      <DependentUpon>TimeAttendanceViewReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeAttendanceViewReport.fr.resx">
+      <DependentUpon>TimeAttendanceViewReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TimeAttendanceViewReport.resx">
       <DependentUpon>TimeAttendanceViewReport.cs</DependentUpon>
     </EmbeddedResource>

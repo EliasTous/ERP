@@ -291,6 +291,11 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             xrLabel19.Text = "إجمالي التأخير";
             xrLabel5.Text = "المجموع";
         }
+        else if (getLang == "fr")
+        {
+            xrLabel26.Text = "Total Retard";
+            xrLabel19.Text = "Total supplementaire";
+        }
 
     }
     private void printHeader(Dictionary<string, string> parameters)

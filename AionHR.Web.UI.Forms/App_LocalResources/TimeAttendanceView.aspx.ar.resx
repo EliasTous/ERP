@@ -351,4 +351,7 @@
   <data name="to" xml:space="preserve">
     <value>الى </value>
   </data>
+  <data name="effectiveTime" xml:space="preserve">
+    <value>المدة</value>
+  </data>
 </root>
