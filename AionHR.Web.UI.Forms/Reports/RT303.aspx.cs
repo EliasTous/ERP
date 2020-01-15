@@ -270,8 +270,10 @@ namespace AionHR.Web.UI.Forms.Reports
                     Item.firstPunch = x.firstPunch;
                     Item.lastPunch = x.lastPunch;
                     Item.dayStatus = x.dayStatus;
-                   
-                  
+                    Item.totEffectiveTime = calculateTimeInMinutes(x.effectiveTime);
+
+
+
                     Item.lateCheckin = x.variationsList.Where(y => y.timeCode == 31).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 31).First().duration, false) : "";
                     //Item.duringShiftLeave = x.variationsList.Where(y => y.timeCode == 32).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 32).First().duration, false) : "";
                     double dsl = 0;
@@ -344,6 +346,16 @@ namespace AionHR.Web.UI.Forms.Reports
             ASPxWebDocumentViewer1.DataBind();
 
         }
+        public double calculateTimeInMinutes(string currentTime)
+        {
+            double hours = Convert.ToInt32(currentTime.Substring(0, 2));
+            double HoursInminutes = ((hours % 60)) * 60;
+            string minutesInString = currentTime.Split(':')[1];
+            double minutes = Convert.ToInt32(minutesInString);
+            double totalMinutes = HoursInminutes + minutes;
+            return totalMinutes;      
+        }
+
 
         public string time(int _minutes, bool _signed)
         {

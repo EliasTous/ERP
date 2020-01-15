@@ -361,8 +361,8 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     private void table_BeforePrint(object sender, PrintEventArgs e)
     {
         XRTable table = ((XRTable)sender);
-        table.LocationF = new DevExpress.Utils.PointFloat(10F, 0F);        
-        table.WidthF = this.PageWidth - this.Margins.Left - this.Margins.Right;
+        table.LocationF = new DevExpress.Utils.PointFloat(40F, 20F);        
+        table.WidthF = this.PageWidth - 100 - this.Margins.Left - this.Margins.Right;
     }
     /// <summary> 
 
