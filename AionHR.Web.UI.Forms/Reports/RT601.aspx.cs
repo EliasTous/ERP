@@ -28,6 +28,7 @@ using Reports;
 using AionHR.Model.Reports;
 using AionHR.Model.Employees.Profile;
 using DevExpress.Web;
+using DevExpress.XtraReports.Web.Localization;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
@@ -124,6 +125,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     }
 
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
+                    //string bah = ASPxReportsStringId.DocumentViewer_RibbonCommandText_PrintPage.ToString();                    
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
                    
                     //FillReport(false, false);

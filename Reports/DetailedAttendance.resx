@@ -177,6 +177,9 @@
   <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
     <value>60</value>
   </data>
+  <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
+    <value>0</value>
+  </data>
   <data name="xrLabel1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
@@ -184,7 +187,7 @@
     <value>White</value>
   </data>
   <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>511.2052, 0</value>
+    <value>511.204346, 17.50002</value>
   </data>
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>393.5824, 23</value>
@@ -196,7 +199,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="table1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>0.0001430511, 23.00001</value>
+    <value>0, 40.50004</value>
   </data>
   <data name="tableCell1.Text" xml:space="preserve">
     <value>Branch</value>
@@ -337,9 +340,6 @@ Leave</value>
   <data name="table1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>1171.1499, 42.16667</value>
   </data>
-  <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
-    <value>65.49998</value>
-  </data>
   <data name="table2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>0, 0</value>
   </data>
@@ -449,7 +449,7 @@ Leave</value>
     <value>25</value>
   </data>
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
-    <value>31.66667</value>
+    <value>83.54171</value>
   </data>
   <data name="GroupFooter1.HeightF" type="System.Single, mscorlib">
     <value>55.4583244</value>
