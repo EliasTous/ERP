@@ -282,6 +282,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     double totEarlyCI = 0;
                     double totlateCI = 0;
                     double totEarlyLe = 0;
+                    double missedShift = 0;
 
                     foreach (DetailedAttendanceVariation obj in x.variationsList)
                     {
@@ -297,12 +298,15 @@ namespace AionHR.Web.UI.Forms.Reports
                             totlateCI += obj.duration;
                         if (obj.timeCode == 33)
                             totEarlyLe += obj.duration;
+                        if (obj.timeCode == 21)
+                            missedShift += obj.duration;
                     }
 
                     Item.duringShiftLeave = dsl.ToString();
                     Item.totTotalLateness = totalLatness;
                     Item.totTotalOvertime = totalOverTime;
                     Item.lineTotalOvertime = totalOverTime;
+                    Item.missedShift = missedShift;
 
                     Item.lineDuringShiftLeave = dsl;
                     Item.lineEarlyCheckIn = totEarlyCI;
@@ -312,6 +316,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     Item.totTotalLateness = totlateCI + dsl + totEarlyLe;
                     Item.bTotTotalLateness = totalLatness.ToString();
                     Item.bTotTotalOvertime = totalOverTime.ToString();
+                    Item.strMissedShift = timeformat(Convert.ToInt32(missedShift));//totalLatness.ToString();
                     Item.totalLateness = timeformat(Convert.ToInt32(totalLatness + dsl));//totalLatness.ToString();
                     Item.totalOvertime = timeformat(Convert.ToInt32(totalOverTime));//totalOverTime.ToString();
                     Item.earlyLeave = x.variationsList.Where(y => y.timeCode == 33).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 33).First().duration, false) : "";

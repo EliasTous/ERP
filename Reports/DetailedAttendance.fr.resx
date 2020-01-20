@@ -180,4 +180,7 @@
   <data name="xrTableCell7.Text" xml:space="preserve">
     <value>Heures supplémentaires totales</value>
   </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>Horraire manque</value>
+  </data>
 </root>

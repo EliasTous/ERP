@@ -417,4 +417,7 @@
   <data name="xrTableCell7.Text" xml:space="preserve">
     <value>مجموع الوقت الاضافي </value>
   </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>دوام ناقص</value>
+  </data>
 </root>

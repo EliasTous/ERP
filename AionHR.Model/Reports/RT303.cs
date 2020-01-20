@@ -46,6 +46,8 @@ namespace AionHR.Model.Reports
         public double lineLateCheckIn { get; set; }
         public double lineEarlyLeave { get; set; }
         public double totEffectiveTime { get; set; }
+        public double missedShift { get; set; }
+        public string strMissedShift { get; set; }
 
     }
 }
