@@ -67,7 +67,7 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    public RightToWork(Dictionary<string, string> parameters)
+    public RightToWork(Dictionary<string, string> parameters, string getLang)
     {
         InitializeComponent();
         //
@@ -113,6 +113,21 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
         xrTableCell18.LocationF = new PointF(400, 0);
         xrTableCell8.LocationF = new PointF(483, 0);
         xrTableCell22.LocationF = new PointF(566, 0);
+
+        if (getLang == "ar")
+        {
+            xrLabel11.Text = "نوع الوثيقة";
+            xrLabel12.Text = "رقم الوثيقة";
+            xrLabel13.Text = "تاريخ الانتهاء";
+            xrLabel14.Text = "الأيام";
+        }
+        else if (getLang == "fr")
+        {
+            xrLabel11.Text = "Type de document";
+            xrLabel12.Text = "Document Ref";
+            xrLabel13.Text = "Date d’expiration";
+            xrLabel14.Text = "Jour";
+        }
 
     }
     private void printHeader(Dictionary<string, string> parameters)

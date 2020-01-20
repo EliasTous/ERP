@@ -236,9 +236,9 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             );
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            string getLan = _systemService.SessionHelper.getLangauge();
 
-           
-            RightToWork h = new RightToWork(parameters);
+            RightToWork h = new RightToWork(parameters, getLan);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
             h.DataSource = resp.Items;
