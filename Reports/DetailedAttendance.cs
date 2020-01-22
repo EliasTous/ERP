@@ -36,14 +36,17 @@ namespace Reports
                 xrLabel1.Text = "فروقات الدوام";
                 label1.Text = "الحضور التفصيلي";
 
-                /*
+                
                 xrLabel7.LocationF = new PointF((float)395, 5);
-                xrLabel8.LocationF = new PointF((float)457, 5);
-                xrLabel4.LocationF = new PointF((float)512.55, 5);
-                xrLabel9.LocationF = new PointF((float)562.41, 5);
-                xrLabel10.LocationF = new PointF((float)632, 5);
-                xrLabel5.LocationF = new PointF((float)768, 5);
+                xrLabel8.LocationF = new PointF((float)435, 5);
+                xrLabel4.LocationF = new PointF((float)520.55, 5);
+                xrLabel9.LocationF = new PointF((float)573.41, 5);
+                xrLabel10.LocationF = new PointF((float)640, 5);
+                xrLabel5.LocationF = new PointF((float)773, 5);
                 xrLabel6.LocationF = new PointF((float)838, 5);
+
+                xrLabel11.LocationF = new PointF((float)215, 5);
+                xrLabel12.LocationF = new PointF((float)520, 5);
 
                 xrLabel7.WidthF = (float)62;
                 xrLabel8.WidthF = (float)57;
@@ -52,7 +55,10 @@ namespace Reports
                 xrLabel10.WidthF = (float)70;
                 xrLabel5.WidthF = (float)70;
                 xrLabel6.WidthF = (float)70;
-                */
+
+                xrLabel11.WidthF = (float)70;
+                xrLabel12.WidthF = (float)70;
+
 
             }
             else if (getLan == "fr")

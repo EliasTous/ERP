@@ -473,7 +473,7 @@ Leave</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel12.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>727.212036, 9.999974</value>
+    <value>727.2124, 9.999974</value>
   </data>
   <data name="xrLabel12.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>61.666687, 23</value>
