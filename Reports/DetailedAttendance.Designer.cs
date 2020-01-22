@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailedAttendance));
+            DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary2 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary3 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary4 = new DevExpress.XtraReports.UI.XRSummary();
@@ -38,7 +39,6 @@
             DevExpress.XtraReports.UI.XRSummary xrSummary7 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary8 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary9 = new DevExpress.XtraReports.UI.XRSummary();
-            DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             this.Title = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailCaption1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailData1 = new DevExpress.XtraReports.UI.XRControlStyle();
@@ -91,9 +91,8 @@
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.User = new DevExpress.XtraReports.Parameters.Parameter();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
-            this.groupHeaderBand1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.groupFooterBand1 = new DevExpress.XtraReports.UI.GroupFooterBand();
+            this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
@@ -104,7 +103,7 @@
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.calTotLatness = new DevExpress.XtraReports.UI.CalculatedField();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
+            this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -393,12 +392,14 @@
             this.table2});
             resources.ApplyResources(this.Detail, "Detail");
             this.Detail.Name = "Detail";
+            this.Detail.SortFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
+            new DevExpress.XtraReports.UI.GroupField("branchName", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending),
+            new DevExpress.XtraReports.UI.GroupField("employeeName", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             // 
             // table2
             // 
             resources.ApplyResources(this.table2, "table2");
             this.table2.Name = "table2";
-            this.table2.OddStyleName = "DetailData3_Odd";
             this.table2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.tableRow2});
             // 
@@ -578,34 +579,28 @@
             resources.ApplyResources(this.PageHeader, "PageHeader");
             this.PageHeader.Name = "PageHeader";
             // 
-            // GroupFooter1
-            // 
-            resources.ApplyResources(this.GroupFooter1, "GroupFooter1");
-            this.GroupFooter1.Level = 1;
-            this.GroupFooter1.Name = "GroupFooter1";
-            // 
-            // groupHeaderBand1
-            // 
-            this.groupHeaderBand1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
-            new DevExpress.XtraReports.UI.GroupField("employeeName", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
-            resources.ApplyResources(this.groupHeaderBand1, "groupHeaderBand1");
-            this.groupHeaderBand1.Level = 1;
-            this.groupHeaderBand1.Name = "groupHeaderBand1";
-            // 
             // groupFooterBand1
             // 
-            this.groupFooterBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel12,
-            this.xrLabel11,
-            this.xrLabel10,
-            this.xrLabel9,
-            this.xrLabel8,
-            this.xrLabel7,
-            this.xrLabel6,
-            this.xrLabel5,
-            this.xrLabel4});
             resources.ApplyResources(this.groupFooterBand1, "groupFooterBand1");
             this.groupFooterBand1.Name = "groupFooterBand1";
+            // 
+            // xrLabel12
+            // 
+            this.xrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([missedShift])")});
+            resources.ApplyResources(this.xrLabel12, "xrLabel12");
+            this.xrLabel12.Multiline = true;
+            this.xrLabel12.Name = "xrLabel12";
+            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel12.StylePriority.UseBorders = false;
+            this.xrLabel12.StylePriority.UseFont = false;
+            this.xrLabel12.StylePriority.UseTextAlignment = false;
+            xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
+            this.xrLabel12.Summary = xrSummary1;
+            this.xrLabel12.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel12_SummaryCalculated);
+            this.xrLabel12.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel12_SummaryGetResult);
+            this.xrLabel12.SummaryRowChanged += new System.EventHandler(this.xrLabel12_SummaryRowChanged);
             // 
             // xrLabel11
             // 
@@ -619,7 +614,7 @@
             this.xrLabel11.StylePriority.UseBorders = false;
             this.xrLabel11.StylePriority.UseFont = false;
             this.xrLabel11.StylePriority.UseTextAlignment = false;
-            xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
+            xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel11.Summary = xrSummary2;
             this.xrLabel11.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel11_SummaryCalculated);
             // 
@@ -635,7 +630,7 @@
             this.xrLabel10.StylePriority.UseBorders = false;
             this.xrLabel10.StylePriority.UseFont = false;
             this.xrLabel10.StylePriority.UseTextAlignment = false;
-            xrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
+            xrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel10.Summary = xrSummary3;
             this.xrLabel10.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel10_SummaryCalculated);
             // 
@@ -651,7 +646,7 @@
             this.xrLabel9.StylePriority.UseBorders = false;
             this.xrLabel9.StylePriority.UseFont = false;
             this.xrLabel9.StylePriority.UseTextAlignment = false;
-            xrSummary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
+            xrSummary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel9.Summary = xrSummary4;
             this.xrLabel9.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel9_SummaryCalculated);
             // 
@@ -667,7 +662,7 @@
             this.xrLabel8.StylePriority.UseBorders = false;
             this.xrLabel8.StylePriority.UseFont = false;
             this.xrLabel8.StylePriority.UseTextAlignment = false;
-            xrSummary5.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
+            xrSummary5.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel8.Summary = xrSummary5;
             this.xrLabel8.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel8_SummaryCalculated);
             // 
@@ -683,7 +678,7 @@
             this.xrLabel7.StylePriority.UseBorders = false;
             this.xrLabel7.StylePriority.UseFont = false;
             this.xrLabel7.StylePriority.UseTextAlignment = false;
-            xrSummary6.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
+            xrSummary6.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel7.Summary = xrSummary6;
             this.xrLabel7.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel7_SummaryCalculated);
             // 
@@ -699,7 +694,7 @@
             this.xrLabel6.StylePriority.UseBorders = false;
             this.xrLabel6.StylePriority.UseFont = false;
             this.xrLabel6.StylePriority.UseTextAlignment = false;
-            xrSummary7.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
+            xrSummary7.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel6.Summary = xrSummary7;
             this.xrLabel6.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel6_SummaryCalculated);
             this.xrLabel6.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel6_BeforePrint);
@@ -717,7 +712,7 @@
             this.xrLabel5.StylePriority.UseBorders = false;
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
-            xrSummary8.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
+            xrSummary8.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel5.Summary = xrSummary8;
             this.xrLabel5.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel5_SummaryCalculated);
             this.xrLabel5.SummaryGetResult += new DevExpress.XtraReports.UI.SummaryGetResultHandler(this.xrLabel5_SummaryGetResult);
@@ -737,7 +732,7 @@
             this.xrLabel4.StylePriority.UseBorders = false;
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            xrSummary9.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
+            xrSummary9.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel4.Summary = xrSummary9;
             this.xrLabel4.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel4_SummaryCalculated);
             this.xrLabel4.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel4_BeforePrint);
@@ -753,21 +748,20 @@
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT303);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // xrLabel12
+            // ReportFooter
             // 
-            this.xrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrLabel12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([missedShift])")});
-            resources.ApplyResources(this.xrLabel12, "xrLabel12");
-            this.xrLabel12.Multiline = true;
-            this.xrLabel12.Name = "xrLabel12";
-            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel12.StylePriority.UseBorders = false;
-            this.xrLabel12.StylePriority.UseFont = false;
-            this.xrLabel12.StylePriority.UseTextAlignment = false;
-            xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
-            this.xrLabel12.Summary = xrSummary1;
-            this.xrLabel12.SummaryCalculated += new DevExpress.XtraReports.UI.TextFormatEventHandler(this.xrLabel12_SummaryCalculated);
+            this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel12,
+            this.xrLabel11,
+            this.xrLabel10,
+            this.xrLabel4,
+            this.xrLabel8,
+            this.xrLabel7,
+            this.xrLabel6,
+            this.xrLabel5,
+            this.xrLabel9});
+            resources.ApplyResources(this.ReportFooter, "ReportFooter");
+            this.ReportFooter.Name = "ReportFooter";
             // 
             // DetailedAttendance
             // 
@@ -778,9 +772,8 @@
             this.GroupHeader1,
             this.Detail,
             this.PageHeader,
-            this.GroupFooter1,
-            this.groupHeaderBand1,
-            this.groupFooterBand1});
+            this.groupFooterBand1,
+            this.ReportFooter});
             this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
             this.calTotLatness});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
@@ -856,8 +849,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell6;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
-        private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter1;
-        private DevExpress.XtraReports.UI.GroupHeaderBand groupHeaderBand1;
         private DevExpress.XtraReports.UI.GroupFooterBand groupFooterBand1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
         private DevExpress.XtraReports.UI.XRLabel xrLabel6;
@@ -871,5 +862,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;
+        private DevExpress.XtraReports.UI.ReportFooterBand ReportFooter;
     }
 }

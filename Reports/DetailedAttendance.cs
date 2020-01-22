@@ -15,6 +15,7 @@ namespace Reports
             InitializeComponent();
             printHeader(parameters);
             //this.Landscape = true;
+            Detail.BackColor = Color.White;
             label1.Font = new Font(label1.Font.FontFamily, label1.Font.Size, FontStyle.Bold);
             if (getLan == "ar")
             {
@@ -361,6 +362,25 @@ namespace Reports
                 e.Text = timeformat(Convert.ToInt32(e.Value));//hours + ":" + minutes;
             }
 
+        }
+
+
+        int missedShitHours, missedShitMinutes;
+
+        private void xrLabel12_SummaryGetResult(object sender, SummaryGetResultEventArgs e)
+        {
+            //missedShitHours += missedShitMinutes / 60;
+            //missedShitMinutes = missedShitMinutes % 60;
+            //e.Result = (missedShitHours.ToString().PadLeft(2, '0') + ":" + missedShitMinutes.ToString().PadLeft(2, '0'));            
+            //e.Handled = true;
+
+            //missedShitHours = missedShitMinutes = 0;
+        }
+
+        private void xrLabel12_SummaryRowChanged(object sender, EventArgs e)
+        {
+            //missedShitHours += Convert.ToInt32(GetCurrentColumnValue("strMissedShift").ToString().Substring(0, 2));
+            //missedShitMinutes += Convert.ToInt32(GetCurrentColumnValue("strMissedShift").ToString().Substring(3, 2));
         }
     }
 }

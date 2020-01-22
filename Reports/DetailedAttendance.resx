@@ -466,17 +466,14 @@ Leave</value>
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
     <value>83.54171</value>
   </data>
-  <data name="GroupFooter1.HeightF" type="System.Single, mscorlib">
-    <value>55.4583244</value>
-  </data>
-  <data name="groupHeaderBand1.HeightF" type="System.Single, mscorlib">
+  <data name="groupFooterBand1.HeightF" type="System.Single, mscorlib">
     <value>0</value>
   </data>
   <data name="xrLabel12.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel12.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>727.2123, 5</value>
+    <value>727.212036, 9.999974</value>
   </data>
   <data name="xrLabel12.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>61.666687, 23</value>
@@ -494,7 +491,7 @@ Leave</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel11.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>303.78595, 4.999987</value>
+    <value>303.7857, 9.999974</value>
   </data>
   <data name="xrLabel11.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>81.33826, 23</value>
@@ -512,7 +509,7 @@ Leave</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel10.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>877.6664, 5</value>
+    <value>877.6662, 9.999974</value>
   </data>
   <data name="xrLabel10.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>88.78735, 23</value>
@@ -530,7 +527,7 @@ Leave</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel9.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>788.87915, 5</value>
+    <value>788.8789, 9.999974</value>
   </data>
   <data name="xrLabel9.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>88.78723, 23</value>
@@ -548,7 +545,7 @@ Leave</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel8.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>592.5436, 5</value>
+    <value>592.543335, 9.999974</value>
   </data>
   <data name="xrLabel8.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>73.0022, 23</value>
@@ -566,7 +563,7 @@ Leave</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel7.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>511.205261, 5</value>
+    <value>511.205048, 9.999974</value>
   </data>
   <data name="xrLabel7.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>81.33826, 23</value>
@@ -584,7 +581,7 @@ Leave</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1144.02844, 5</value>
+    <value>1144.0282, 9.999974</value>
   </data>
   <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>88.78674, 23</value>
@@ -602,7 +599,7 @@ Leave</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1055.241, 5</value>
+    <value>1055.2406, 9.999974</value>
   </data>
   <data name="xrLabel5.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>88.7874756, 23</value>
@@ -614,7 +611,7 @@ Leave</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>665.545837, 5</value>
+    <value>665.5456, 9.999974</value>
   </data>
   <data name="xrLabel4.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>61.666687, 23</value>
@@ -628,12 +625,12 @@ Leave</value>
   <data name="xrLabel4.TextFormatString" xml:space="preserve">
     <value>{0:#}</value>
   </data>
-  <data name="groupFooterBand1.HeightF" type="System.Single, mscorlib">
-    <value>47.12499</value>
-  </data>
   <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="ReportFooter.HeightF" type="System.Single, mscorlib">
+    <value>101.249947</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
