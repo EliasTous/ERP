@@ -293,8 +293,8 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         }
         else if (getLang == "fr")
         {
-            xrLabel26.Text = "Total Retard";
-            xrLabel19.Text = "Total supplementaire";
+            xrLabel19.Text = "Total Retard";
+            xrLabel26.Text = "Total supplementaire";
         }
 
     }

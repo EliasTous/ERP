@@ -14,59 +14,7 @@ namespace Reports
         {
             InitializeComponent();
             printHeader(parameters);
-            //this.Landscape = true;
-            Detail.BackColor = Color.White;
-            label1.Font = new Font(label1.Font.FontFamily, label1.Font.Size, FontStyle.Bold);
-            if (getLan == "ar")
-            {
-                tableCell1.Text = "الفروع";
-                tableCell10.Text = "مغادرة مبكرة";
-                tableCell2.Text = "الموظف";
-                tableCell3.Text = "التاريخ";
-                tableCell4.Text = "المدة";
-                tableCell5.Text = "البصمة الاولى";
-                tableCell6.Text = "البصمة الأخيرة";
-                tableCell7.Text = "حضور مبكر";
-                tableCell8.Text = "تأخير عن الدوام";
-                tableCell9.Text = "مغادرة خلال الدوام";
-                xrTableCell1.Text = "عمل إضافي";
-                xrTableCell3.Text = "حالة اليوم ";
-                xrTableCell5.Text = "مجموع الـتأخير ";
-                xrTableCell7.Text = "مجموع الوقت الاضافي ";
-                xrLabel1.Text = "فروقات الدوام";
-                label1.Text = "الحضور التفصيلي";
-
-                
-                xrLabel7.LocationF = new PointF((float)395, 5);
-                xrLabel8.LocationF = new PointF((float)435, 5);
-                xrLabel4.LocationF = new PointF((float)520.55, 5);
-                xrLabel9.LocationF = new PointF((float)573.41, 5);
-                xrLabel10.LocationF = new PointF((float)640, 5);
-                xrLabel5.LocationF = new PointF((float)773, 5);
-                xrLabel6.LocationF = new PointF((float)838, 5);
-
-                xrLabel11.LocationF = new PointF((float)215, 5);
-                xrLabel12.LocationF = new PointF((float)520, 5);
-
-                xrLabel7.WidthF = (float)62;
-                xrLabel8.WidthF = (float)57;
-                xrLabel4.WidthF = (float)51;
-                xrLabel9.WidthF = (float)69;
-                xrLabel10.WidthF = (float)70;
-                xrLabel5.WidthF = (float)70;
-                xrLabel6.WidthF = (float)70;
-
-                xrLabel11.WidthF = (float)70;
-                xrLabel12.WidthF = (float)70;
-
-
-            }
-            else if (getLan == "fr")
-            {
-                xrTableCell3.Text = "status du jour";
-                xrTableCell5.Text = "Total Retard";
-                xrTableCell7.Text = "Total Supplementaire";
-            }
+            
                
         }
         private void printHeader(Dictionary<string, string> parameters)

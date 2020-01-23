@@ -126,61 +126,61 @@
   <data name="pageInfo2.TextFormatString" xml:space="preserve">
     <value>Page {0} of {1}</value>
   </data>
-  <data name="tableCell1.Text" xml:space="preserve">
+  <data name="xrLabel13.Text" xml:space="preserve">
     <value>PDV</value>
   </data>
-  <data name="tableCell10.Text" xml:space="preserve">
-    <value>Plutot</value>
-  </data>
-  <data name="tableCell2.Text" xml:space="preserve">
+  <data name="xrLabel14.Text" xml:space="preserve">
     <value>Nom</value>
   </data>
-  <data name="tableCell3.Text" xml:space="preserve">
+  <data name="xrLabel15.Text" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="tableCell4.Text" xml:space="preserve">
+  <data name="xrLabel16.Text" xml:space="preserve">
     <value>Duree</value>
   </data>
-  <data name="tableCell5.Text" xml:space="preserve">
+  <data name="xrLabel17.Text" xml:space="preserve">
     <value>Arrivée</value>
   </data>
-  <data name="tableCell6.Text" xml:space="preserve">
+  <data name="xrLabel18.Text" xml:space="preserve">
     <value>Départ</value>
   </data>
-  <data name="tableCell7.Text" xml:space="preserve">
+  <data name="xrLabel19.Text" xml:space="preserve">
     <value>Avant horaire</value>
-  </data>
-  <data name="tableCell8.Text" xml:space="preserve">
-    <value>Apres horaire</value>
-  </data>
-  <data name="tableCell9.Text" xml:space="preserve">
-    <value>Pendant</value>
-  </data>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>variations du temps</value>
   </data>
   <data name="xrLabel2.Text" xml:space="preserve">
     <value>Par :</value>
   </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>Apres horaire</value>
+  </data>
+  <data name="xrLabel21.Text" xml:space="preserve">
+    <value>Pendant</value>
+  </data>
+  <data name="xrLabel22.Text" xml:space="preserve">
+    <value>Horraire manque</value>
+  </data>
+  <data name="xrLabel23.Text" xml:space="preserve">
+    <value>Plutot</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>HS</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>Statut de jour</value>
+  </data>
+  <data name="xrLabel26.Text" xml:space="preserve">
+    <value>Retard total</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>Heures supplémentaires totales</value>
+  </data>
+  <data name="xrLabel28.Text" xml:space="preserve">
+    <value>variations du temps</value>
+  </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>xrLabel3</value>
   </data>
-  <data name="xrTableCell1.Text" xml:space="preserve">
-    <value>HS</value>
-  </data>
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>xrTableCell2</value>
-  </data>
-  <data name="xrTableCell3.Text" xml:space="preserve">
-    <value>Statut de jour</value>
-  </data>
-  <data name="xrTableCell5.Text" xml:space="preserve">
-    <value>Retard total</value>
-  </data>
-  <data name="xrTableCell7.Text" xml:space="preserve">
-    <value>Heures supplémentaires totales</value>
-  </data>
-  <data name="xrTableCell9.Text" xml:space="preserve">
-    <value>Horraire manque</value>
   </data>
 </root>
