@@ -386,6 +386,8 @@
     <Compile Include="TimeAttendance\ImportOvertimeSetting.cs" />
     <Compile Include="TimeAttendance\ITimeAttendanceRepository.cs" />
     <Compile Include="TimeAttendance\LeaveCalendarDay.cs" />
+    <Compile Include="TimeAttendance\MonthlyLateness.cs" />
+    <Compile Include="TimeAttendance\MonthlyLatenessPeriod.cs" />
     <Compile Include="TimeAttendance\OverrideTimeVariation.cs" />
     <Compile Include="TimeAttendance\OvertimeSetting.cs" />
     <Compile Include="TimeAttendance\PendingPunch.cs" />

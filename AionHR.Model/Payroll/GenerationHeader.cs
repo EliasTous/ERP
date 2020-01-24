@@ -40,6 +40,9 @@ namespace AionHR.Model.Payroll
         public DateTime endDate { get; set; }
         public string payRefWithDateRange { get; set;  }
         public string payId { get; set; }
+        public string calendarDays { get; set; }
+
+
 
     }
 }

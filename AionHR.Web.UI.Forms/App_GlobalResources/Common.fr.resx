@@ -1452,4 +1452,10 @@
   <data name="RT311" xml:space="preserve">
     <value>Poinçon non traités</value>
   </data>
+  <data name="MonthlyLateness" xml:space="preserve">
+    <value>Retard mensuel</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Aperçu</value>
+  </data>
 </root>

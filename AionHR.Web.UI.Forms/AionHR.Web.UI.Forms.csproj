@@ -193,6 +193,7 @@
     <Content Include="LeaveReturns.aspx" />
     <Content Include="MediaCategories.aspx" />
     <Content Include="MediaItems.aspx" />
+    <Content Include="MonthlyLatenesses.aspx" />
     <Content Include="PayrollArguments.aspx" />
     <Content Include="PayrollBenefits.aspx" />
     <Content Include="PayrollBenefitSchedules.aspx" />
@@ -674,6 +675,9 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Reports.fr.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="App_LocalResources\MonthlyLatenesses.aspx.resx" />
+    <Content Include="App_LocalResources\MonthlyLatenesses.aspx.ar.resx" />
+    <Content Include="App_LocalResources\MonthlyLatenesses.aspx.fr.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -971,6 +975,13 @@
     </Compile>
     <Compile Include="MediaItems.aspx.designer.cs">
       <DependentUpon>MediaItems.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonthlyLatenesses.aspx.cs">
+      <DependentUpon>MonthlyLatenesses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonthlyLatenesses.aspx.designer.cs">
+      <DependentUpon>MonthlyLatenesses.aspx</DependentUpon>
     </Compile>
     <Compile Include="PayrollArguments.aspx.cs">
       <DependentUpon>PayrollArguments.aspx</DependentUpon>

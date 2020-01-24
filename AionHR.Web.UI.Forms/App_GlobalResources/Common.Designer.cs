@@ -2284,6 +2284,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Monthly Lateness.
+        /// </summary>
+        internal static string MonthlyLateness {
+            get {
+                return ResourceManager.GetString("MonthlyLateness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nationalities.
         /// </summary>
         internal static string Nationalities {
@@ -2568,6 +2577,15 @@ namespace Resources {
         internal static string Positions {
             get {
                 return ResourceManager.GetString("Positions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        internal static string Preview {
+            get {
+                return ResourceManager.GetString("Preview", resourceCulture);
             }
         }
         

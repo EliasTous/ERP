@@ -1422,4 +1422,10 @@
   <data name="confirmProcess" xml:space="preserve">
     <value>are you sure you want to process ?</value>
   </data>
+  <data name="MonthlyLateness" xml:space="preserve">
+    <value>Monthly Lateness</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
 </root>

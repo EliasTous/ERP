@@ -4,6 +4,7 @@ using AionHR.Model;
 using AionHR.Model.Attendance;
 using AionHR.Model.Dashboard;
 using AionHR.Model.HelpFunction;
+using AionHR.Model.Payroll;
 using AionHR.Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(Geofence), "getGF");
             ChildGetLookup.Add(typeof(Time), "getTA");
             ChildGetLookup.Add(typeof(DashBoardTimeVariation), "getTV");
-            
+            ChildGetLookup.Add(typeof(MonthlyLatenessPeriod), "getMLP");
+
 
 
             ChildGetAllLookup.Add(typeof(DayType), "qryDT");
@@ -64,6 +66,8 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(TimePerformance), "qryTP");
             ChildGetAllLookup.Add(typeof(FlatPunch), "qryFP");
             ChildGetAllLookup.Add(typeof(UnschedulePunch), "qryUP");
+            ChildGetAllLookup.Add(typeof(MonthlyLateness), "qryML");
+            ChildGetAllLookup.Add(typeof(MonthlyLatenessPeriod), "getMLP");
 
 
             ChildAddOrUpdateLookup.Add(typeof(DayType), "setDT");
@@ -95,6 +99,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildAddOrUpdateLookup.Add(typeof(processUnscheduledPunch), "processUP");
             ChildAddOrUpdateLookup.Add(typeof(SyncActivity), "syncTV");
             ChildAddOrUpdateLookup.Add(typeof(ResetFlatSchedule), "resFS");
+            ChildAddOrUpdateLookup.Add(typeof(GenerationHeader), "genML");
 
             ChildDeleteLookup.Add(typeof(AttendanceBreak), "delSB");
             ChildDeleteLookup.Add(typeof(AttendanceSchedule), "delSC");

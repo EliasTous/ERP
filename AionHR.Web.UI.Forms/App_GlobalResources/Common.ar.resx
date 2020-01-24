@@ -1452,4 +1452,10 @@
   <data name="RT311" xml:space="preserve">
     <value>بصمات غير معالجة</value>
   </data>
+  <data name="MonthlyLateness" xml:space="preserve">
+    <value>التأخير الشهري</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>عرض</value>
+  </data>
 </root>
