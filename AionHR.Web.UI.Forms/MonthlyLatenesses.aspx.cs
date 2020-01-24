@@ -353,7 +353,7 @@ namespace AionHR.Web.UI.Forms
             ReportGenericRequest req = new ReportGenericRequest();
             req.paramString = "1|"+ id + "^2|" + ColStartDate.Value.ToString().Substring(6,4) + ColStartDate.Value.ToString().Substring(3, 2) +
                 ColStartDate.Value.ToString().Substring(0, 2) + "^3|" + ColEndDate.Value.ToString().Substring(6, 4) + ColEndDate.Value.ToString().Substring(3, 2) +
-                ColEndDate.Value.ToString().Substring(0, 2) + "^4|31^5|2";
+                ColEndDate.Value.ToString().Substring(0, 2) + "^4|35^5|2";
 
             ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
 

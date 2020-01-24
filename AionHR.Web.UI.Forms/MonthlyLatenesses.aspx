@@ -167,7 +167,7 @@
                                     AllowBlank="true" ReadOnly="true" ></ext:DateColumn>--%>
                               
                               
-                                <ext:Button runat="server" Text="<%$ Resources: Common,Preview%>" MarginSpec="0 10 0 650" Width="100" >
+                                <ext:Button runat="server" Text="<%$ Resources: Common,Preview%>" MarginSpec="0 10 0 0" Width="100" >
                                    <%-- <Listeners>
                                         <Click Handler="#{Store1}.reload();">
                                         </Click>
