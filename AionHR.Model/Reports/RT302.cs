@@ -25,9 +25,13 @@ namespace AionHR.Model.Reports
 
         public int workingDays { get; set; }
         public double UNPAID_LEAVE { get; set; }
+
+        public double Absent { get; set; }
+        public double Total_Absent { get; set; }
         public double PAID_LEAVE { get; set; }
         public double DAY_LEAVE_WITHOUT_EXCUSE { get; set; }
         public double SHIFT_LEAVE_WITHOUT_EXCUSE { get; set; }
+        public string SHIFT_LEAVE_WITHOUT_EXCUSE_String { get; set; }
         public double MISSED_PUNCH { get; set; }
         public double LATE_CHECKIN { get; set; }
         public double DURING_SHIFT_LEAVE { get; set; }

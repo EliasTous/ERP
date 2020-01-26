@@ -755,6 +755,9 @@
     <EmbeddedResource Include="PeriodSummary.fr.resx">
       <DependentUpon>PeriodSummary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PeriodSummary.resx">
+      <DependentUpon>PeriodSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PointInTimeSalary.fr.resx">
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
@@ -1063,9 +1066,6 @@
       <DependentUpon>PayrollTimeSchedulesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PeriodSummary.ar.resx">
-      <DependentUpon>PeriodSummary.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PeriodSummary.resx">
       <DependentUpon>PeriodSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointInTimeSalary.ar.resx">

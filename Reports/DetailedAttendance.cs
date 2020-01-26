@@ -336,5 +336,42 @@ namespace Reports
             //missedShitHours += Convert.ToInt32(GetCurrentColumnValue("strMissedShift").ToString().Substring(0, 2));
             //missedShitMinutes += Convert.ToInt32(GetCurrentColumnValue("strMissedShift").ToString().Substring(3, 2));
         }
+
+        private void xrLabel36_BeforePrint(object sender, PrintEventArgs e)
+        {
+            string value = (sender as XRLabel).Text;
+            int a = 0;
+            if (int.TryParse(value, out a))
+            {
+                (sender as XRLabel).Text = time(a, false);
+            }
+
+        }
+
+        private string time(int _minutes, bool _signed)
+        {
+            if (_minutes == 0)
+                return "00:00";
+
+            bool isNegative = _minutes < 0 ? true : false;
+
+            _minutes = Math.Abs(_minutes);
+
+            string hours = (_minutes / 60).ToString(), minutes = (_minutes % 60).ToString(), formattedTime;
+
+            if (hours.Length == 1)
+                hours = "0" + hours;
+
+            if (minutes.Length == 1)
+                minutes = "0" + minutes;
+
+            formattedTime = hours + ':' + minutes;
+
+            if (isNegative && _signed)
+                formattedTime = "-" + formattedTime;
+
+            return formattedTime;
+        }
+
     }
 }

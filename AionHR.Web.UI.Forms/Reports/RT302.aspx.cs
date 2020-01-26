@@ -219,9 +219,12 @@ namespace AionHR.Web.UI.Forms.Reports
                 string getLan = _systemService.SessionHelper.getLangauge();
                 
                 foreach(var item in resp.Items)
+
                 {
-                    item.totLateness = item.LATE_CHECKIN + item.DURING_SHIFT_LEAVE + item.EARLY_LEAVE;
+                    item.Absent = item.calendarDays - item.workingDays;
+                    item.totLateness = item.LATE_CHECKIN + item.DURING_SHIFT_LEAVE + item.EARLY_LEAVE+item.SHIFT_LEAVE_WITHOUT_EXCUSE;
                     item.totOvertime = item.OVERTIME + item.EARLY_CHECKIN;
+                    item.Total_Absent += item.Absent;
                 }
 
                 Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);

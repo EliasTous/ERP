@@ -313,11 +313,11 @@ namespace AionHR.Web.UI.Forms.Reports
                     Item.lineLateCheckIn = totlateCI;
                     Item.lineEarlyLeave = totEarlyLe;
 
-                    Item.totTotalLateness = totlateCI + dsl + totEarlyLe;
+                    Item.totTotalLateness = totlateCI + dsl + totEarlyLe+missedShift ;
                     Item.bTotTotalLateness = totalLatness.ToString();
                     Item.bTotTotalOvertime = totalOverTime.ToString();
                     Item.strMissedShift = timeformat(Convert.ToInt32(missedShift));//totalLatness.ToString();
-                    Item.totalLateness = timeformat(Convert.ToInt32(totalLatness + dsl));//totalLatness.ToString();
+                    Item.totalLateness = timeformat(Convert.ToInt32(totalLatness + dsl+missedShift));//totalLatness.ToString();
                     Item.totalOvertime = timeformat(Convert.ToInt32(totalOverTime));//totalOverTime.ToString();
                     Item.earlyLeave = x.variationsList.Where(y => y.timeCode == 33).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 33).First().duration, false) : "";
                     Item.earlyCheckin = x.variationsList.Where(y => y.timeCode == 51).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 51).First().duration, false) : "";

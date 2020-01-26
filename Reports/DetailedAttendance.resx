@@ -566,10 +566,10 @@ Check in</value>
     <value>Arial, 8.25pt</value>
   </data>
   <data name="xrLabel38.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>788.87915, 0</value>
+    <value>788.8789, 0</value>
   </data>
   <data name="xrLabel38.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>88.78735, 43.83335</value>
+    <value>88.7876, 43.83335</value>
   </data>
   <data name="xrLabel38.Text" xml:space="preserve">
     <value>xrLabel1</value>
@@ -584,7 +584,7 @@ Check in</value>
     <value>727.2124, 0</value>
   </data>
   <data name="xrLabel37.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>61.666687, 43.83335</value>
+    <value>61.6661377, 43.83335</value>
   </data>
   <data name="xrLabel37.Text" xml:space="preserve">
     <value>xrLabel1</value>
@@ -719,7 +719,7 @@ Check in</value>
     <value>88.33342</value>
   </data>
   <data name="groupFooterBand1.HeightF" type="System.Single, mscorlib">
-    <value>0</value>
+    <value>1.95800781</value>
   </data>
   <data name="xrLabel12.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 8.25pt, style=Bold</value>
@@ -833,10 +833,10 @@ Check in</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1144.0282, 9.999974</value>
+    <value>1144.02856, 10</value>
   </data>
   <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>88.78674, 23</value>
+    <value>88.78735, 23</value>
   </data>
   <data name="xrLabel6.Text" xml:space="preserve">
     <value>xrLabel5</value>
@@ -851,10 +851,10 @@ Check in</value>
     <value>Arial, 8.25pt, style=Bold</value>
   </data>
   <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1055.2406, 9.999974</value>
+    <value>1055.648, 10</value>
   </data>
   <data name="xrLabel5.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>88.7874756, 23</value>
+    <value>88.3806152, 23</value>
   </data>
   <data name="xrLabel5.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -877,12 +877,12 @@ Check in</value>
   <data name="xrLabel4.TextFormatString" xml:space="preserve">
     <value>{0:#}</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="ReportFooter.HeightF" type="System.Single, mscorlib">
     <value>101.249947</value>
   </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
