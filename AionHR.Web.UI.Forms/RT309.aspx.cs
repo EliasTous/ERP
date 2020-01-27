@@ -310,9 +310,12 @@ namespace AionHR.Web.UI.Forms.Reports
                                 record = new Model.Reports.RT309();
                                 record.employeeName = y.employeeName;
                                 record.dayIdDateTime = y.dayIdDateTime;
+                                record.branchName = y.branchName;
+                                record.departmentName = y.departmentName;
+                                record.positionName = y.positionName;
                                 record.duration = y.duration;
                                 record.shiftLog = new List<ShiftLog>();
-                                record.shiftLog.Add(new ShiftLog { start = z.start, end = z.end });
+                                record.shiftLog.Add(new ShiftLog { start = z.start, end = z.end, shiftStatus = z.shiftStatus });
 
                                 //if (_systemService.SessionHelper.CheckIfArabicSession())
                                 if (getLan == "ar")

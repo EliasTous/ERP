@@ -267,14 +267,25 @@ namespace AionHR.Web.UI.Forms.Reports
                     Item.employeeName = x.employeeName;
                     Item.branchName = x.branchName;
                     Item.effectiveTime = x.effectiveTime;
-                    Item.firstPunch = x.firstPunch;
-                    Item.lastPunch = x.lastPunch;
+                    if (x.firstPunch == null)
+                    { Item.firstPunch = "00:00"; }
+                    else
+                    { Item.firstPunch = x.firstPunch; }
+
+                    if (x.lastPunch == null)
+                    { Item.lastPunch = "00:00"; }
+                    else
+                    { Item.lastPunch = x.lastPunch; }
+
                     Item.dayStatus = x.dayStatus;
                     Item.totEffectiveTime = calculateTimeInMinutes(x.effectiveTime);
 
 
-
-                    Item.lateCheckin = x.variationsList.Where(y => y.timeCode == 31).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 31).First().duration, false) : "";
+                    if (x.LATE_CHECKIN == 0)
+                    { Item.lateCheckin = "00:00"; }
+                    else
+                    { Item.lateCheckin = time(Convert.ToInt32(x.LATE_CHECKIN), false); }
+                    //Item.lateCheckin = x.variationsList.Where(y => y.timeCode == 31).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 31).First().duration, false) : "00:00";
                     //Item.duringShiftLeave = x.variationsList.Where(y => y.timeCode == 32).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 32).First().duration, false) : "";
                     double dsl = 0;
                     double totalLatness = 0;
@@ -302,26 +313,42 @@ namespace AionHR.Web.UI.Forms.Reports
                             missedShift += obj.duration;
                     }
 
-                    Item.duringShiftLeave = dsl.ToString();
-                    Item.totTotalLateness = totalLatness;
-                    Item.totTotalOvertime = totalOverTime;
-                    Item.lineTotalOvertime = totalOverTime;
+                    Item.duringShiftLeave = x.DURING_SHIFT_LEAVE.ToString();//dsl.ToString();
+                    Item.totTotalLateness = x.NET_LATENESS;//totalLatness;
+                    Item.totTotalOvertime = x.NET_OVERTIME;// totalOverTime;
+                    Item.lineTotalOvertime = x.OVERTIME;//totalOverTime;
                     Item.missedShift = missedShift;
 
-                    Item.lineDuringShiftLeave = dsl;
-                    Item.lineEarlyCheckIn = totEarlyCI;
-                    Item.lineLateCheckIn = totlateCI;
-                    Item.lineEarlyLeave = totEarlyLe;
+                    Item.lineDuringShiftLeave = x.DURING_SHIFT_LEAVE;
+                    Item.lineEarlyCheckIn = x.EARLY_CHECKIN;//totEarlyCI;
+                    Item.lineLateCheckIn = x.LATE_CHECKIN;//totlateCI;
+                    Item.lineEarlyLeave = x.EARLY_LEAVE;
 
-                    Item.totTotalLateness = totlateCI + dsl + totEarlyLe+missedShift ;
-                    Item.bTotTotalLateness = totalLatness.ToString();
-                    Item.bTotTotalOvertime = totalOverTime.ToString();
+                    Item.totTotalLateness = x.NET_LATENESS;
+                    Item.bTotTotalLateness = x.NET_LATENESS.ToString();//totalLatness.ToString();
+                    Item.bTotTotalOvertime = x.NET_OVERTIME.ToString();//totalOverTime.ToString();
                     Item.strMissedShift = timeformat(Convert.ToInt32(missedShift));//totalLatness.ToString();
-                    Item.totalLateness = timeformat(Convert.ToInt32(totalLatness + dsl+missedShift));//totalLatness.ToString();
-                    Item.totalOvertime = timeformat(Convert.ToInt32(totalOverTime));//totalOverTime.ToString();
-                    Item.earlyLeave = x.variationsList.Where(y => y.timeCode == 33).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 33).First().duration, false) : "";
-                    Item.earlyCheckin = x.variationsList.Where(y => y.timeCode == 51).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 51).First().duration, false) : "";
-                    Item.overtime = x.variationsList.Where(y => y.timeCode == 52).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 52).First().duration, false) : "";
+                    Item.totalLateness = timeformat(Convert.ToInt32(x.NET_LATENESS));//timeformat(Convert.ToInt32(totalLatness + dsl+missedShift));//totalLatness.ToString();
+                    Item.totalOvertime = timeformat(Convert.ToInt32(x.NET_OVERTIME));//timeformat(Convert.ToInt32(totalOverTime));//totalOverTime.ToString();
+                    //Item.earlyLeave = x.variationsList.Where(y => y.timeCode == 33).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 33).First().duration, false) : "00:00";
+                    //Item.earlyCheckin = x.variationsList.Where(y => y.timeCode == 51).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 51).First().duration, false) : "00:00";
+
+                    if (x.EARLY_LEAVE == 0)
+                    { Item.earlyLeave = "00:00"; }
+                    else
+                    { Item.earlyLeave = time(Convert.ToInt32(x.EARLY_LEAVE), false); }
+
+                    if (x.EARLY_CHECKIN == 0)
+                    { Item.earlyCheckin = "00:00"; }
+                    else
+                    { Item.earlyCheckin = time(Convert.ToInt32(x.EARLY_CHECKIN), false); }
+
+                    if (x.OVERTIME == 0)
+                    { Item.overtime = "00:00"; }
+                    else
+                    { Item.overtime = time(Convert.ToInt32(x.OVERTIME), false); }
+
+                    //Item.overtime = time(Convert.ToInt32(x.netOvertime),false);//x.variationsList.Where(y => y.timeCode == 52).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 52).First().duration, false) : "";
 
                     
                     data.Add(Item);

@@ -350,16 +350,16 @@ namespace AionHR.Web.UI.Forms
             string type = e.ExtraParams["type"];
 
 
-            ReportGenericRequest req = new ReportGenericRequest();
-            req.paramString = "1|"+ id + "^2|" + ColStartDate.Value.ToString().Substring(6,4) + ColStartDate.Value.ToString().Substring(3, 2) +
-                ColStartDate.Value.ToString().Substring(0, 2) + "^3|" + ColEndDate.Value.ToString().Substring(6, 4) + ColEndDate.Value.ToString().Substring(3, 2) +
-                ColEndDate.Value.ToString().Substring(0, 2) + "^4|35^5|2";
+            //ReportGenericRequest req = new ReportGenericRequest();
+            //req.paramString = "1|"+ id + "^2|" + ColStartDate.Value.ToString().Substring(6,4) + ColStartDate.Value.ToString().Substring(3, 2) +
+            //    ColStartDate.Value.ToString().Substring(0, 2) + "^3|" + ColEndDate.Value.ToString().Substring(6, 4) + ColEndDate.Value.ToString().Substring(3, 2) +
+            //    ColEndDate.Value.ToString().Substring(0, 2) + "^4|35^5|2";
 
-            ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
+            MLDListRequest mlLR = new MLDListRequest();
+            mlLR.PayId = payId.SelectedItem.Value;
+            mlLR.EmployeeId = id.ToString();
 
-            //ActiveAttendanceRequest r = GetActiveAttendanceRequest();
-
-            //ListResponse<ActiveAbsence> daysResponse = _timeAttendanceService.ChildGetAll<ActiveAbsence>(r);
+            ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(mlLR);            
             if (!daysResponse.Success)
             {
                 Common.errorMessage(daysResponse);

@@ -222,8 +222,8 @@ namespace AionHR.Web.UI.Forms.Reports
 
                 {
                     item.Absent = item.calendarDays - item.workingDays;
-                    item.totLateness = item.LATE_CHECKIN + item.DURING_SHIFT_LEAVE + item.EARLY_LEAVE+item.SHIFT_LEAVE_WITHOUT_EXCUSE;
-                    item.totOvertime = item.OVERTIME + item.EARLY_CHECKIN;
+                    item.totLateness = item.NET_LATENESS;//item.LATE_CHECKIN + item.DURING_SHIFT_LEAVE + item.EARLY_LEAVE+item.SHIFT_LEAVE_WITHOUT_EXCUSE;
+                    item.totOvertime = item.NET_OVERTIME;//item.OVERTIME + item.EARLY_CHECKIN;
                     item.Total_Absent += item.Absent;
                 }
 

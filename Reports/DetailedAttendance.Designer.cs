@@ -562,6 +562,7 @@
             this.xrLabel38.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel38.StylePriority.UseFont = false;
             this.xrLabel38.StylePriority.UseTextAlignment = false;
+            this.xrLabel38.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel38_BeforePrint);
             // 
             // xrLabel37
             // 
@@ -596,6 +597,7 @@
             this.xrLabel35.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel35.StylePriority.UseFont = false;
             this.xrLabel35.StylePriority.UseTextAlignment = false;
+            this.xrLabel35.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel35_BeforePrint);
             // 
             // xrLabel34
             // 
@@ -607,6 +609,7 @@
             this.xrLabel34.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel34.StylePriority.UseFont = false;
             this.xrLabel34.StylePriority.UseTextAlignment = false;
+            this.xrLabel34.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel34_BeforePrint);
             // 
             // xrLabel33
             // 

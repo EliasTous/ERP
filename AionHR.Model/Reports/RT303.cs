@@ -49,5 +49,10 @@ namespace AionHR.Model.Reports
         public double missedShift { get; set; }
         public string strMissedShift { get; set; }
 
+
+        public int punchCount { get; set; }
+        public double netLateness { get; set; }
+        public double netOvertime { get; set; }
+        public int dayStatusId { get; set; }
     }
 }

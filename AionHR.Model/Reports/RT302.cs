@@ -67,6 +67,9 @@ namespace AionHR.Model.Reports
         public double totLateness { get; set; }
         public double totOvertime { get; set; }
 
+        public double NET_LATENESS { get; set; }
+        public double NET_OVERTIME { get; set; }
+
 
     }
 }

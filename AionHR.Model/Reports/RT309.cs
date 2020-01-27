@@ -16,6 +16,9 @@ namespace AionHR.Model.Reports
         public DateTime dayIdDateTime { get; set; }
         public int duration { get; set; }
         public string employeeRef { get; set; }
+        public string branchName { get; set; }
+        public string departmentName { get; set; }
+        public string positionName { get; set; }
 
     }
 }

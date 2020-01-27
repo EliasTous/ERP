@@ -130,107 +130,114 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         xrLabel23.LocationF = new PointF((float)364.01, 0);
         xrLabel24.LocationF = new PointF((float)364.01, 0);
 
-        xrLabel3.WidthF = (float)61.04;
-        xrLabel4.WidthF = (float)61.04;
+        xrLabel3.WidthF = (float)51.04;
+        xrLabel4.WidthF = (float)51.04;
         xrLabel3.LocationF = new PointF((float)517.7, 0);
         xrLabel4.LocationF = new PointF((float)517.7, 0);
-        xrLabel7.WidthF = (float)61.04;
+        xrLabel7.WidthF = (float)51.04;
         xrLabel7.LocationF = new PointF((float)517.7, 0);
 
 
         xrLabel6.WidthF = (float)66.81;
         xrLabel8.WidthF = (float)66.81;
-        xrLabel6.LocationF = new PointF((float)578.74, 0);
-        xrLabel8.LocationF = new PointF((float)578.74, 0);
+        xrLabel6.LocationF = new PointF((float)568.74, 0);
+        xrLabel8.LocationF = new PointF((float)568.74, 0);
         xrLabel18.WidthF = (float)66.81;
-        xrLabel18.LocationF = new PointF((float)578.74, 0);
+        xrLabel18.LocationF = new PointF((float)568.74, 0);
+
+        xrLabel31.WidthF = (float)55;
+        xrLabel38.WidthF = (float)55;
+        xrLabel31.LocationF = new PointF((float)635.55, 0);
+        xrLabel38.LocationF = new PointF((float)635.55, 0);
+        xrLabel49.WidthF = (float)55;
+        xrLabel49.LocationF = new PointF((float)635.55, 0);
 
         xrLabel36.WidthF = (float)59.38;
         xrLabel11.WidthF = (float)59.38;
-        xrLabel36.LocationF = new PointF((float)645.55, 0);
-        xrLabel11.LocationF = new PointF((float)645.55, 0);
+        xrLabel36.LocationF = new PointF((float)690.55, 0);
+        xrLabel11.LocationF = new PointF((float)690.55, 0);
         xrLabel35.WidthF = (float)59.38;
-        xrLabel35.LocationF = new PointF((float)645.55, 0);
+        xrLabel35.LocationF = new PointF((float)690.55, 0);
 
 
         xrLabel42.WidthF = (float)73.19;
         xrLabel12.WidthF = (float)73.19;
-        xrLabel42.LocationF = new PointF((float)704.92, 0);
-        xrLabel12.LocationF = new PointF((float)704.92, 0);
+        xrLabel42.LocationF = new PointF((float)749.92, 0);
+        xrLabel12.LocationF = new PointF((float)749.92, 0);
         xrLabel37.WidthF = (float)73.19;
-        xrLabel37.LocationF = new PointF((float)704.92, 0);
+        xrLabel37.LocationF = new PointF((float)749.92, 0);
 
 
-        xrLabel10.WidthF = (float)76.53;
-        xrLabel40.WidthF = (float)76.53;
-        xrLabel10.LocationF = new PointF((float)778.12, 0);
-        xrLabel40.LocationF = new PointF((float)778.12, 0);
-        xrLabel39.WidthF = (float)76.53;
-        xrLabel39.LocationF = new PointF((float)778.12, 0);
+        xrLabel10.WidthF = (float)58.19;
+        xrLabel40.WidthF = (float)58.19;
+        xrLabel10.LocationF = new PointF((float)823.12, 0);
+        xrLabel40.LocationF = new PointF((float)823.12, 0);
+        xrLabel39.WidthF = (float)58.19;
+        xrLabel39.LocationF = new PointF((float)823.12, 0);
 
 
-        xrLabel13.WidthF = (float)85.1;
-        xrLabel41.WidthF = (float)85.1;
-        xrLabel13.LocationF = new PointF((float)854.64, 0);
-        xrLabel41.LocationF = new PointF((float)854.64, 0);
-        xrLabel43.WidthF = (float)85.1;
-        xrLabel43.LocationF = new PointF((float)854.64, 0);
+        xrLabel13.WidthF = (float)55;
+        xrLabel41.WidthF = (float)55;
+        xrLabel13.LocationF = new PointF((float)881.31, 0);
+        xrLabel41.LocationF = new PointF((float)881.31, 0);
+        xrLabel43.WidthF = (float)55;
+        xrLabel43.LocationF = new PointF((float)881.31, 0);
 
 
         xrLabel14.WidthF = (float)50.14;
         xrLabel44.WidthF = (float)50.14;
-        xrLabel14.LocationF = new PointF((float)939.75, 0);
-        xrLabel44.LocationF = new PointF((float)939.75, 0);
+        xrLabel14.LocationF = new PointF((float)936.31, 0);
+        xrLabel44.LocationF = new PointF((float)936.31, 0);
         xrLabel47.WidthF = (float)50.14;
-        xrLabel47.LocationF = new PointF((float)939.75, 0);
+        xrLabel47.LocationF = new PointF((float)936.31, 0);
 
 
-        xrLabel15.WidthF = (float)96.74;
-        xrLabel45.WidthF = (float)96.74;
-        xrLabel15.LocationF = new PointF((float)989.89, 0);
-        xrLabel45.LocationF = new PointF((float)989.89, 0);
-        xrLabel51.WidthF = (float)96.74;
-        xrLabel51.LocationF = new PointF((float)989.89, 0);
+        xrLabel15.WidthF = (float)68.4;
+        xrLabel45.WidthF = (float)68.4;
+        xrLabel15.LocationF = new PointF((float)986.45, 0);
+        xrLabel45.LocationF = new PointF((float)986.45, 0);
+        xrLabel51.WidthF = (float)68.4;
+        xrLabel51.LocationF = new PointF((float)986.45, 0);
 
 
         xrLabel16.WidthF = (float)60;
         xrLabel46.WidthF = (float)60;
-        xrLabel16.LocationF = new PointF((float)1086.62, 0);
-        xrLabel46.LocationF = new PointF((float)1086.62, 0);
+        xrLabel16.LocationF = new PointF((float)1054.85, 0);
+        xrLabel46.LocationF = new PointF((float)1054.85, 0);
         xrLabel52.WidthF = (float)60;
-        xrLabel52.LocationF = new PointF((float)1086.62, 0);
+        xrLabel52.LocationF = new PointF((float)1054.85, 0);
 
 
         xrLabel17.WidthF = (float)59.38;
         xrLabel50.WidthF = (float)59.38;
-        xrLabel17.LocationF = new PointF((float)1146.62, 0);
-        xrLabel50.LocationF = new PointF((float)1146.62, 0);
+        xrLabel17.LocationF = new PointF((float)1114.85, 0);
+        xrLabel50.LocationF = new PointF((float)1114.85, 0);
         xrLabel53.WidthF = (float)59.38;
-        xrLabel53.LocationF = new PointF((float)1146.62, 0);
+        xrLabel53.LocationF = new PointF((float)1114.85, 0);
 
 
         xrLabel22.WidthF = (float)55;
         xrLabel34.WidthF = (float)55;
-        xrLabel22.LocationF = new PointF((float)1206, 0);
-        xrLabel34.LocationF = new PointF((float)1206, 0);
+        xrLabel22.LocationF = new PointF((float)1174.23, 0);
+        xrLabel34.LocationF = new PointF((float)1174.23, 0);
         xrLabel54.WidthF = (float)55;
-        xrLabel54.LocationF = new PointF((float)1206, 0);
+        xrLabel54.LocationF = new PointF((float)1174.23, 0);
 
 
-        xrLabel19.WidthF = (float)60.67;
-        xrLabel27.WidthF = (float)60.67;
-        xrLabel19.LocationF = new PointF((float)1260.67, 0);
-        xrLabel27.LocationF = new PointF((float)1260.67, 0);
-        xrLabel29.WidthF = (float)60.67;
-        xrLabel29.LocationF = new PointF((float)1260.67, 0);
+        xrLabel19.WidthF = (float)55;
+        xrLabel27.WidthF = (float)55;
+        xrLabel19.LocationF = new PointF((float)1229.23, 0);
+        xrLabel27.LocationF = new PointF((float)1229.23, 0);
+        xrLabel29.WidthF = (float)55;
+        xrLabel29.LocationF = new PointF((float)1229.23, 0);
 
 
         xrLabel26.WidthF = (float)55;
         xrLabel28.WidthF = (float)55;
-        xrLabel26.LocationF = new PointF((float)1321.34, 0);
-        xrLabel28.LocationF = new PointF((float)1321.34, 0);
+        xrLabel26.LocationF = new PointF((float)1284.23, 0);
+        xrLabel28.LocationF = new PointF((float)1284.23, 0);
         xrLabel30.WidthF = (float)55;
-        xrLabel30.LocationF = new PointF((float)1321.34, 0);
+        xrLabel30.LocationF = new PointF((float)1284.23, 0);
 
 
         xrLabel5.WidthF = (float)297.55;
@@ -253,6 +260,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             xrLabel22.HeightF = 52;
             xrLabel26.HeightF = 52;
             xrLabel28.HeightF = 52;
+            xrLabel31.HeightF = 52;
 
 
             xrLabel27.HeightF = 52;
@@ -272,6 +280,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             xrLabel46.HeightF = 52;
             xrLabel50.HeightF = 52;
             xrLabel34.HeightF = 52;
+            xrLabel38.HeightF = 52;
 
             xrLabel5.HeightF = 32;
             xrLabel7.HeightF = 32;
@@ -285,6 +294,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             xrLabel52.HeightF = 32;
             xrLabel53.HeightF = 32;
             xrLabel54.HeightF = 32;
+            xrLabel49.HeightF = 31;
         }
 
         if (getLang == "ar")
@@ -397,6 +407,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PeriodSummary));
+            DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary2 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary3 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary4 = new DevExpress.XtraReports.UI.XRSummary();
@@ -410,7 +421,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             DevExpress.XtraReports.UI.XRSummary xrSummary12 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary13 = new DevExpress.XtraReports.UI.XRSummary();
             DevExpress.XtraReports.UI.XRSummary xrSummary14 = new DevExpress.XtraReports.UI.XRSummary();
-            DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel38 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
@@ -470,6 +480,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
+            this.xrLabel49 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel30 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel29 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel54 = new DevExpress.XtraReports.UI.XRLabel();
@@ -487,7 +498,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrLabel49 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -1177,6 +1187,21 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             resources.ApplyResources(this.ReportFooter, "ReportFooter");
             this.ReportFooter.Name = "ReportFooter";
             // 
+            // xrLabel49
+            // 
+            this.xrLabel49.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel49.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Absent")});
+            resources.ApplyResources(this.xrLabel49, "xrLabel49");
+            this.xrLabel49.Name = "xrLabel49";
+            this.xrLabel49.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel49.StylePriority.UseBorders = false;
+            this.xrLabel49.StylePriority.UseTextAlignment = false;
+            xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
+            this.xrLabel49.Summary = xrSummary1;
+            // 
             // xrLabel30
             // 
             this.xrLabel30.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -1413,21 +1438,6 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             // 
             this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT302);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // xrLabel49
-            // 
-            this.xrLabel49.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrLabel49.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Absent")});
-            resources.ApplyResources(this.xrLabel49, "xrLabel49");
-            this.xrLabel49.Name = "xrLabel49";
-            this.xrLabel49.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel49.StylePriority.UseBorders = false;
-            this.xrLabel49.StylePriority.UseTextAlignment = false;
-            xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
-            this.xrLabel49.Summary = xrSummary1;
             // 
             // PeriodSummary
             // 

@@ -105,11 +105,11 @@ namespace AionHR.Web.UI.Forms
                     loaderUrl.Text = "ReportParameterBrowser.aspx?_reportName=SSAD&values=";
                     Panel8.Loader.Url = "ReportParameterBrowser.aspx?_reportName=SSAD";
 
-                    vals.Text = "2|" + new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).ToString("yyyyMMdd") + "^3|" + DateTime.Today.ToString("yyyyMMdd");
+                    vals.Text = "6|" + new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).ToString("yyyyMMdd") + "^7|" + DateTime.Today.ToString("yyyyMMdd");
                 }
                 else
                 {
-                    vals.Text = "2|" + DateTime.Today.ToString("yyyyMMdd") + "^3|" + DateTime.Today.ToString("yyyyMMdd");
+                    vals.Text = "6|" + DateTime.Today.ToString("yyyyMMdd") + "^7|" + DateTime.Today.ToString("yyyyMMdd");
                     FromSelfService.Text = "false";
                 }
 

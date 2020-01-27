@@ -348,6 +348,36 @@ namespace Reports
 
         }
 
+        private void xrLabel35_BeforePrint(object sender, PrintEventArgs e)
+        {
+            string value = (sender as XRLabel).Text;
+            int a = 0;
+            if (int.TryParse(value, out a))
+            {
+                (sender as XRLabel).Text = time(a, false);
+            }
+        }
+
+        private void xrLabel34_BeforePrint(object sender, PrintEventArgs e)
+        {
+            string value = (sender as XRLabel).Text;
+            int a = 0;
+            if (int.TryParse(value, out a))
+            {
+                (sender as XRLabel).Text = time(a, false);
+            }
+        }
+
+        private void xrLabel38_BeforePrint(object sender, PrintEventArgs e)
+        {
+            string value = (sender as XRLabel).Text;
+            int a = 0;
+            if (int.TryParse(value, out a))
+            {
+                (sender as XRLabel).Text = time(a, false);
+            }
+        }
+
         private string time(int _minutes, bool _signed)
         {
             if (_minutes == 0)
