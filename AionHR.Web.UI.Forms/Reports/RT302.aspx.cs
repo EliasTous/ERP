@@ -225,7 +225,16 @@ namespace AionHR.Web.UI.Forms.Reports
                     item.totLateness = item.NET_LATENESS;//item.LATE_CHECKIN + item.DURING_SHIFT_LEAVE + item.EARLY_LEAVE+item.SHIFT_LEAVE_WITHOUT_EXCUSE;
                     item.totOvertime = item.NET_OVERTIME;//item.OVERTIME + item.EARLY_CHECKIN;
                     item.Total_Absent += item.Absent;
-                }
+                    //if (item.SHIFT_LEAVE_WITHOUT_EXCUSE >= 1)
+                    //{
+                    //    item.SHIFT_LEAVE_WITHOUT_EXCUSE = item.SHIFT_LEAVE_WITHOUT_EXCUSE * 60;
+                    //}
+
+                    //if (item.LATE_CHECKIN >= 1)
+                    //{
+                    //    item.LATE_CHECKIN = item.LATE_CHECKIN * 60;
+                    //}
+            }
 
                 Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
                 PeriodSummary h = new PeriodSummary(parameters, getLan);

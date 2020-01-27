@@ -171,8 +171,8 @@ namespace Reports
 
         private void xrLabel5_SummaryCalculated(object sender, TextFormatEventArgs e)
         {
-            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
-            //    return;
+            if (e.Value == null)
+                return;
             if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
                 (sender as XRLabel).Text = "00:00";
             else
@@ -199,8 +199,8 @@ namespace Reports
 
         private void xrLabel6_SummaryCalculated(object sender, TextFormatEventArgs e)
         {
-            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
-            //    return;
+            if (e.Value == null)
+                return;
             if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
                 (sender as XRLabel).Text = "00:00";
             else
@@ -214,8 +214,8 @@ namespace Reports
 
         private void xrLabel4_SummaryCalculated(object sender, TextFormatEventArgs e)
         {
-            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
-            //    return;
+            if (e.Value == null)
+                return;
             if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
                 (sender as XRLabel).Text = "00:00";
             else
@@ -229,8 +229,8 @@ namespace Reports
 
         private void xrLabel7_SummaryCalculated(object sender, TextFormatEventArgs e)
         {
-            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
-            //    return;
+            if (e.Value == null)
+                return;
             if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
                 (sender as XRLabel).Text = "00:00";
             else
@@ -244,8 +244,8 @@ namespace Reports
 
         private void xrLabel8_SummaryCalculated(object sender, TextFormatEventArgs e)
         {
-            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
-            //    return;
+            if (e.Value == null)
+                return;
             if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
                 (sender as XRLabel).Text = "00:00";
             else
@@ -259,8 +259,8 @@ namespace Reports
 
         private void xrLabel9_SummaryCalculated(object sender, TextFormatEventArgs e)
         {
-            //if (string.IsNullOrEmpty((sender as XRLabel).Text))
-            //    return;
+            if (e.Value == null)
+                return;
             if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
                 (sender as XRLabel).Text = "00:00";
             else
@@ -369,6 +369,16 @@ namespace Reports
         }
 
         private void xrLabel38_BeforePrint(object sender, PrintEventArgs e)
+        {
+            string value = (sender as XRLabel).Text;
+            int a = 0;
+            if (int.TryParse(value, out a))
+            {
+                (sender as XRLabel).Text = time(a, false);
+            }
+        }
+
+        private void xrLabel31_BeforePrint(object sender, PrintEventArgs e)
         {
             string value = (sender as XRLabel).Text;
             int a = 0;

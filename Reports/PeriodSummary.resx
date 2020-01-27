@@ -823,11 +823,11 @@
   <data name="xrLabel39.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>58.1932373, 31.3333187</value>
   </data>
-  <data name="xrSummary10.FormatString" xml:space="preserve">
-    <value>{0:n0}</value>
-  </data>
   <data name="xrLabel39.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
+  </data>
+  <data name="xrLabel39.TextFormatString" xml:space="preserve">
+    <value>{0:#.00}</value>
   </data>
   <data name="xrLabel37.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>749.9221, 0</value>

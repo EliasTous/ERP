@@ -643,6 +643,7 @@
             this.xrLabel31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel31.StylePriority.UseFont = false;
             this.xrLabel31.StylePriority.UseTextAlignment = false;
+            this.xrLabel31.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel31_BeforePrint);
             // 
             // xrLabel30
             // 

@@ -278,7 +278,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     { Item.lastPunch = x.lastPunch; }
 
                     Item.dayStatus = x.dayStatus;
-                    Item.totEffectiveTime = calculateTimeInMinutes(x.effectiveTime);
+                    Item.totEffectiveTime = Convert.ToDouble(x.effectiveTime);//calculateTimeInMinutes(x.effectiveTime);
 
 
                     if (x.LATE_CHECKIN == 0)
