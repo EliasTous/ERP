@@ -87,7 +87,7 @@ namespace AionHR.Model.Attendance
         public double NET_OVERTIME { get; set; }
         public int dayStatusId { get; set; }
 
-        public double DAY_LEAVE_WITHOUT_EXCUSE { get; set; }
+        public bool DAY_LEAVE_WITHOUT_EXCUSE { get; set; }
         public double MISSED_PUNCH { get; set; }
 
         public double SHIFT_LEAVE_WITHOUT_EXCUSE { get; set; }

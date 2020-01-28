@@ -93,7 +93,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-        [DirectMethod]
+        //[DirectMethod]
         //public object FillPayId(string action, Dictionary<string, object> extraParams)
         //{
 
@@ -359,7 +359,7 @@ namespace AionHR.Web.UI.Forms
             mlLR.PayId = payId.SelectedItem.Value;
             mlLR.EmployeeId = id.ToString();
 
-            ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(mlLR);            
+            ListResponse<DashBoardTimeVariation2> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation2>(mlLR);            
             if (!daysResponse.Success)
             {
                 Common.errorMessage(daysResponse);

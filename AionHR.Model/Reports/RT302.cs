@@ -70,6 +70,8 @@ namespace AionHR.Model.Reports
         public double NET_LATENESS { get; set; }
         public double NET_OVERTIME { get; set; }
 
+        public int absentDays { get; set; }
+
 
     }
 }

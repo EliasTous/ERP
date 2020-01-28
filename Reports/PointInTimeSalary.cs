@@ -63,7 +63,7 @@ namespace Reports
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        public PointInTimeSalary(Dictionary<string, string> parameters)
+        public PointInTimeSalary(Dictionary<string, string> parameters, string _getLan)
         {
             InitializeComponent();
             //
@@ -73,6 +73,43 @@ namespace Reports
             xrTableCell8.RightToLeft = RightToLeft.No;
             xrTableCell3.RightToLeft = RightToLeft.No;
             printHeader(parameters);
+
+            if (_getLan == "fr")
+            {
+                xrTableCell1.WidthF = (float)163.41;
+                xrTableCell1.LocationF = new PointF((float)0, 0);
+                xrTableCell1.HeightF = 25;
+
+                xrTableCell2.WidthF = (float)165.35;
+                xrTableCell2.LocationF = new PointF((float)163.41, 0);
+                xrTableCell2.HeightF = 25;
+
+                xrTableCell4.WidthF = (float)100.35;
+                xrTableCell4.LocationF = new PointF((float)328.76, 0);
+                xrTableCell4.HeightF = 25;
+
+                xrTableCell7.WidthF = (float)57.99;
+                xrTableCell7.LocationF = new PointF((float)429.11, 0);
+                xrTableCell7.HeightF = 25;
+
+                xrTableCell8.WidthF = (float)115;
+                xrTableCell8.LocationF = new PointF((float)429.11, 0);
+                xrTableCell8.HeightF = 25;
+
+                xrTableCell3.WidthF = (float)78;
+                xrTableCell3.LocationF = new PointF((float)601, 0);
+                xrTableCell3.HeightF = 25;
+
+                xrTableCell5.WidthF = (float)78;
+                xrTableCell5.LocationF = new PointF((float)679, 0);
+                xrTableCell5.HeightF = 25;
+
+                xrTableCell6.WidthF = (float)95.67;
+                xrTableCell6.LocationF = new PointF((float)757, 0);
+                xrTableCell6.HeightF = 25;
+
+                xrLabel13.Text = "Salaires à un temps specifique";
+            }
 
         }
         private void printHeader(Dictionary<string, string> parameters)

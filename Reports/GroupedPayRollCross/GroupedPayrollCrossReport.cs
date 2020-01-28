@@ -24,7 +24,7 @@ namespace Reports.GroupedPayRollCross
         private double netSalary { get; set; }
 
 
-        public GroupedPayrollCrossReport(List<RT503> items, bool isArabic, GroupType grpType, Dictionary<string,string> parameters)
+        public GroupedPayrollCrossReport(List<RT503> items, bool isArabic, GroupType grpType, Dictionary<string,string> parameters, string _getLan)
         {
             try
             {
@@ -75,6 +75,8 @@ namespace Reports.GroupedPayRollCross
                     groupedItems = items.GroupBy(u => u.positionName);
                 }
 
+                if (_getLan == "fr")
+                { xrLabel1.Text = "Paie par information d'emploi"; }
 
 
                 foreach (var employee in groupedItems)

@@ -131,6 +131,7 @@
     <Compile Include="Dashboard\DashBoardPE.cs" />
     <Compile Include="Dashboard\DashBoardPL.cs" />
     <Compile Include="Dashboard\DashBoardTimeVariation .cs" />
+    <Compile Include="Dashboard\DashBoardTimeVariation2.cs" />
     <Compile Include="Dashboard\DashBoardUL.cs" />
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />

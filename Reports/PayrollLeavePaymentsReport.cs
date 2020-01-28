@@ -10,7 +10,7 @@ namespace Reports
 {
     public partial class PayrollLeavePaymentsReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public PayrollLeavePaymentsReport(Dictionary<string, string> parameters)
+        public PayrollLeavePaymentsReport(Dictionary<string, string> parameters, string _getLan)
         {
             InitializeComponent();
             xrLabel21.RightToLeft = RightToLeft.No;
@@ -27,6 +27,10 @@ namespace Reports
             xrLabel10.HeightF = (float)50.71;
             xrLabel11.HeightF = (float)50.71;
             xrLabel23.HeightF = (float)50.71;
+
+            if (_getLan == "fr")
+            { xrLabel1.Text = "Paiement Congés"; }
+
             printHeader(parameters);
 
         }

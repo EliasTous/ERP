@@ -172,10 +172,10 @@
     <value>Times New Roman, 12pt, style=Bold</value>
   </data>
   <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>409.833344, 10.0000067</value>
+    <value>10.00001, 10.0000067</value>
   </data>
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>208.333282, 36.5416679</value>
+    <value>1131, 36.5416679</value>
   </data>
   <data name="xrLabel1.Text" xml:space="preserve">
     <value>Grouped Payroll Report</value>

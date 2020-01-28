@@ -94,6 +94,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
+    string _lang = "";
     public PeriodSummary(Dictionary<string, string> parameters, string getLang)
     {
         InitializeComponent();
@@ -106,7 +107,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         //
         // TODO: Add constructor logic here
         //
-
+        _lang = getLang;
         if (getLang == "fr")
         {
 
@@ -1495,7 +1496,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             return;
         }
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
@@ -1521,7 +1522,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             return;
         }
 
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
@@ -1620,7 +1621,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             return;
         }
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
@@ -1652,7 +1653,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             return;
         }
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
@@ -1667,7 +1668,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             return;
         }
-        if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00")
+        if ((e.Value).ToString() == "0" || (e.Value).ToString() == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
@@ -1686,24 +1687,55 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             return;
         }
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
-            if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 24)
+            if (_lang == "fr")
             {
-                (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 10)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 24)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) >= 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
             }
-            else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 100)
+            else
             {
-                (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) >= 100)
-            {
-                (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 24)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 100 )
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) >= 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
             }
         }
 
@@ -1730,21 +1762,42 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             //string minutes = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
             //e.Text = hours + ":" + minutes;
             //e.Text = timeformat(Convert.ToInt32(e.Value));
+            if (_lang == "fr")
+            {
+                if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) < 24)
+                {
+                    e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) < 100)
+                {
+                    e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) >= 100)
+                {
+                    e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else
+                {
+                    if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 24)
+                    {
+                        e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                    else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 100)
+                    {
+                        e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                    else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) >= 100)
+                    {
+                        e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                }
 
-            if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 24)
-            {
-                e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 100)
-            {
-                e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) >= 100)
-            {
-                e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
             }
         }
     }
@@ -1755,7 +1808,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             return;
         }
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
@@ -1783,7 +1836,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             return;
         }
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
@@ -1886,29 +1939,55 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             return;
         }
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
-            if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
+            if (_lang == "fr")
             {
-                (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 10)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 24)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) >= 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
             }
-            else  if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 24)
+            else
             {
-                (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 100)
-            {
-                (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) >= 100)
-            {
-                (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 24)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) >= 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
             }
         }
 
@@ -1986,29 +2065,41 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         else
         {
 
-            //string hours = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
-            //string minutes = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
-            //e.Text = hours + ":" + minutes;
-            //e.Text = timeformat(Convert.ToInt32(e.Value));
-            if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 10)
+            if (_lang == "fr")
             {
-                e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
-            } 
-            else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 24)
-            {
-                e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 100)
-            {
-                e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) >= 100)
-            {
-                e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) < 24)
+                {
+                    e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) < 100)
+                {
+                    e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) >= 100)
+                {
+                    e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else
+                {
+                    if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 24)
+                    {
+                        e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                    else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 100)
+                    {
+                        e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                    else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) >= 100)
+                    {
+                        e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                }
             }
         }
 
@@ -2033,30 +2124,56 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             return;
         }
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
 
-            if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
+            if (_lang == "fr")
             {
-                (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 10)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 24)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) >= 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
             }
-            else if(Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 24)
+            else
             {
-                (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 100)
-            {
-                (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) >= 100)
-            {
-                (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 24)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) >= 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
             }
         }
 
@@ -2069,29 +2186,55 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             return;
         }
-        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00")
+        if ((sender as XRLabel).Text == "0" || (sender as XRLabel).Text == ".00" || (sender as XRLabel).Text == ",00")
             (sender as XRLabel).Text = "00:00";
         else
         {
-            if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
+            if (_lang == "fr")
             {
-                (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 10)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 24)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) >= 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
             }
-            else if(Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 24)
+            else
             {
-                (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 100)
-            {
-                (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) >= 100)
-            {
-                (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 24)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) > 24 && Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) >= 100)
+                {
+                    (sender as XRLabel).Text = (sender as XRLabel).Text.ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
             }
         }
 
@@ -2119,32 +2262,43 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         else
         {
 
-            //string hours = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Hours.ToString().PadLeft(2, '0');
-            //string minutes = TimeSpan.FromHours(Convert.ToDouble((e.Value))).Minutes.ToString().PadLeft(2, '0');
-            //e.Text = hours + ":" + minutes;
-            //e.Text = timeformat(Convert.ToInt32(e.Value));
-
-            if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 10)
+            if (_lang == "fr")
             {
-                e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) < 24)
+                {
+                    e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) < 100)
+                {
+                    e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) >= 100)
+                {
+                    e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else
+                {
+                    if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 24)
+                    {
+                        e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                    else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 100)
+                    {
+                        e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                    else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) >= 100)
+                    {
+                        e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                }
             }
-            else if(Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 24)
-            {
-                e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
             }
-            else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 100)
-            {
-                e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) >= 100)
-            {
-                e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
-            }
-        }
     }
 
     private void xrLabel35_SummaryCalculated(object sender, TextFormatEventArgs e)
@@ -2163,25 +2317,41 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             //e.Text = hours + ":" + minutes;
             //e.Text = timeformat(Convert.ToInt32(e.Value));
 
-            if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 10)
+            if (_lang == "fr")
             {
-                e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if(Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 24)
-            {
-                e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 100)
-            {
-                e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
-            }
-            else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) >= 100)
-            {
-                e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
-                + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) < 24)
+                {
+                    e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) < 100)
+                {
+                    e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split(',')[0]) >= 100)
+                {
+                    e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                    + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                }
+                else
+                {
+                    if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 24)
+                    {
+                        e.Text = TimeSpan.FromHours(Convert.ToDouble((e.Text))).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                    else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) > 24 && Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) < 100)
+                    {
+                        e.Text = (e.Text).ToString().Substring(0, 2) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                    else if (Convert.ToInt32(Convert.ToDouble(e.Text).ToString().Split('.')[0]) >= 100)
+                    {
+                        e.Text = (e.Text).ToString().Substring(0, 3) //TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                        + ":" + TimeSpan.FromHours(Convert.ToDouble((e.Text))).Minutes.ToString().PadLeft(2, '0');
+                    }
+                }
             }
         }
     }

@@ -251,8 +251,10 @@ namespace AionHR.Web.UI.Forms.Reports
             if (filterBy.Value != null)
                 int.TryParse(filterBy.Value.ToString(), out bulk);
 
+            string getLan = _systemService.SessionHelper.getLangauge();
+
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
-            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, (GroupedPayrollCrossReport.GroupType)bulk, parameters);
+            GroupedPayrollCrossReport h = new GroupedPayrollCrossReport(resp.Items, isArabic, (GroupedPayrollCrossReport.GroupType)bulk, parameters, getLan);
             h.PrintingSystem.Document.AutoFitToPagesWidth = 1;
 
           

@@ -62,6 +62,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(PendingTA), "pendingTA");
             ChildGetAllLookup.Add(typeof(Time), "qryTA");
             ChildGetAllLookup.Add(typeof(DashBoardTimeVariation), "qryTV");
+            ChildGetAllLookup.Add(typeof(DashBoardTimeVariation2), "qryMLD");
             ChildGetAllLookup.Add(typeof(PendingPunch), "qryPP");
             ChildGetAllLookup.Add(typeof(TimePerformance), "qryTP");
             ChildGetAllLookup.Add(typeof(FlatPunch), "qryFP");

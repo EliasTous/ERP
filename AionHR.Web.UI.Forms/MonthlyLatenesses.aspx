@@ -291,7 +291,7 @@
                             runat="server"
                             PaddingSpec="0 0 1 0"
                             Header="false"
-                            MaxHeight="350"
+                            MaxHeight="650"
                             Layout="FitLayout"
                             Scroll="Vertical"
                             Border="false"
