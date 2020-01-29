@@ -474,4 +474,10 @@
   <data name="lastReceivedPunch" xml:space="preserve">
     <value>البصمات الأخيرة المستلمة</value>
   </data>
+  <data name="dayWorkHrs" xml:space="preserve">
+    <value>عدد ساعات العمل في اليوم</value>
+  </data>
+  <data name="monthWorkHrs" xml:space="preserve">
+    <value>عدد ساعات العمل في الشهر</value>
+  </data>
 </root>

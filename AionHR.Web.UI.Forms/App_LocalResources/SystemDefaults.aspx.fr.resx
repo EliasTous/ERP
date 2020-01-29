@@ -528,4 +528,10 @@
   <data name="lastReceivedPunch" xml:space="preserve">
     <value>Dernier poincons reçu</value>
   </data>
+  <data name="dayWorkHrs" xml:space="preserve">
+    <value>Jour heure de travail</value>
+  </data>
+  <data name="monthWorkHrs" xml:space="preserve">
+    <value>Mois heure de travail</value>
+  </data>
 </root>

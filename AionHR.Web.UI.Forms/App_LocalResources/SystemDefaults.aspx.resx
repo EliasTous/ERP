@@ -534,4 +534,10 @@
   <data name="FirstNameFamilyName" xml:space="preserve">
     <value>First Name , Family Name</value>
   </data>
+  <data name="dayWorkHrs" xml:space="preserve">
+    <value>Day Working Hours</value>
+  </data>
+  <data name="monthWorkHrs" xml:space="preserve">
+    <value>Month Working Hours</value>
+  </data>
 </root>

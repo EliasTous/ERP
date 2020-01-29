@@ -904,6 +904,24 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.NumberField monthWorkDays;
         
         /// <summary>
+        /// monthWorkHrs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField monthWorkHrs;
+        
+        /// <summary>
+        /// dayWorkHrs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.NumberField dayWorkHrs;
+        
+        /// <summary>
         /// bsId control.
         /// </summary>
         /// <remarks>

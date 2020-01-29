@@ -752,9 +752,9 @@
                                      </ext:FieldSet>
                                 <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources:Common,TimeCode%>">
                                     <Items>
-                                      <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="pyalDays" Name="pyalDays" FieldLabel="<%$ Resources: pyalDays %>" MinValue="30"  MaxValue="360"/>
-                                      <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="pyaaDays" Name="pyaaDays" FieldLabel="<%$ Resources: pyaaDays %>" MinValue="30" MaxValue="360"/>
-                                      <ext:NumberField Width="400" runat="server" LabelWidth="160" ID="pylvDays" Name="pylvDays" FieldLabel="<%$ Resources: pylvDays %>" MinValue="30" MaxValue="360" />
+                                      <ext:NumberField Width="600" runat="server" LabelWidth="350" ID="pyalDays" Name="pyalDays" FieldLabel="<%$ Resources: pyalDays %>" MinValue="30"  MaxValue="360"/>
+                                      <ext:NumberField Width="600" runat="server" LabelWidth="350" ID="pyaaDays" Name="pyaaDays" FieldLabel="<%$ Resources: pyaaDays %>" MinValue="30" MaxValue="360"/>
+                                      <ext:NumberField Width="600" runat="server" LabelWidth="350" ID="pylvDays" Name="pylvDays" FieldLabel="<%$ Resources: pylvDays %>" MinValue="30" MaxValue="360" />
                      
                                         </Items>
                                     </ext:FieldSet>
@@ -905,7 +905,7 @@
                                         </Items>
                                   </ext:FieldSet>
                                
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: PYFSLeaveBalEDId %>" Name="PYFSLeaveBalEDId" runat="server" DisplayField="name" ValueField="recordId" ID="PYFSLeaveBalEDId">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="600" LabelWidth="350" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: PYFSLeaveBalEDId %>" Name="PYFSLeaveBalEDId" runat="server" DisplayField="name" ValueField="recordId" ID="PYFSLeaveBalEDId">
                                             <Store>
                                                 <ext:Store runat="server" ID="PYFSLeaveBalEDId_Store">
                                                     <Model>
@@ -935,7 +935,7 @@
                                                 <FocusLeave Handler="this.rightButtons[0].setHidden(true);" />
                                             </Listeners>
                                         </ext:ComboBox>
-                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: payrollIndemnityEntitlement  %>" Name="PYINEDId" runat="server" DisplayField="name" ValueField="recordId" ID="PYINEDId">
+                                        <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="600" LabelWidth="350" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: payrollIndemnityEntitlement  %>" Name="PYINEDId" runat="server" DisplayField="name" ValueField="recordId" ID="PYINEDId">
                                             <Store>
                                                 <ext:Store runat="server" ID="PYINEDId_store">
                                                     <Model>
@@ -968,7 +968,7 @@
                                 
                                  <ext:FieldSet Collapsible="true" runat="server" Title="<%$ Resources: IndemnitySchedules %>">
                                     <Items>
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: PYISmale  %>" Name="PYISmale" runat="server" DisplayField="name" ValueField="recordId" ID="PYISmale">
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="600" LabelWidth="350" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: PYISmale  %>" Name="PYISmale" runat="server" DisplayField="name" ValueField="recordId" ID="PYISmale">
                                             <Store>
                                                 <ext:Store runat="server" ID="PYISmale_store">
                                                     <Model>
@@ -999,7 +999,7 @@
                                             </Listeners>
                                         </ext:ComboBox>
                                       
-                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="400" LabelWidth="160" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: PYISfemale  %>" Name="PYISfemale" runat="server" DisplayField="name" ValueField="recordId" ID="PYISfemale">
+                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" Width="600" LabelWidth="350" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: PYISfemale  %>" Name="PYISfemale" runat="server" DisplayField="name" ValueField="recordId" ID="PYISfemale">
                                             <Store>
                                                 <ext:Store runat="server" ID="PYISfemale_store">
                                                     <Model>
@@ -1035,6 +1035,10 @@
                          
                               
                                <ext:NumberField Width="400" runat="server" LabelWidth="150" ID="monthWorkDays" Name="monthWorkDays" FieldLabel="<%$ Resources: monthWorkDays  %>" MinValue="20" MaxValue="30" />
+
+                                <ext:NumberField Width="400" runat="server" LabelWidth="150" ID="monthWorkHrs" Name="monthWorkHrs" FieldLabel="<%$ Resources: monthWorkHrs  %>" MinValue="200" MaxValue="300" />
+                                <ext:NumberField Width="400" runat="server" LabelWidth="150" ID="dayWorkHrs" Name="dayWorkHrs" FieldLabel="<%$ Resources: dayWorkHrs  %>" MinValue="6" MaxValue="24" />
+
                                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  Enabled="true" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="bsId" Name="bsId" FieldLabel="<%$ Resources: benefitSchedule%>" LabelWidth="150">
                                                     <Store>
                                                         <ext:Store runat="server" ID="bsIdStore">

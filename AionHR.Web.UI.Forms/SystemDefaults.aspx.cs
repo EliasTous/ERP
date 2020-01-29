@@ -644,6 +644,30 @@ namespace AionHR.Web.UI.Forms
             }
 
             catch { }
+
+            try
+            {
+                monthWorkHrs.Text = (items.Where(s => s.Key == "monthWorkHrs ").First().Value);
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "monthWorkHrs ").First().Value.ToString()))
+                {
+                    monthWorkHrs.Text = "240";
+                }
+            }
+
+            catch { }
+
+            try
+            {
+                dayWorkHrs.Text = (items.Where(s => s.Key == "dayWorkHrs ").First().Value);
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "dayWorkHrs ").First().Value.ToString()))
+                {
+                    dayWorkHrs.Text = "8";
+                }
+            }
+
+            catch { }
+
+
             try
             {
                 bsId.Select(items.Where(s => s.Key == "bsId").First().Value.ToString());
@@ -1134,6 +1158,16 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("monthWorkDays ", values.monthWorkDays.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("monthWorkDays ", ""));
+
+            if (values.monthWorkHrs != null && !string.IsNullOrEmpty(values.monthWorkHrs.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("monthWorkHrs", values.monthWorkHrs.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("monthWorkHrs", ""));
+
+            if (values.dayWorkHrs != null && !string.IsNullOrEmpty(values.dayWorkHrs.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("dayWorkHrs", values.dayWorkHrs.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("dayWorkHrs", ""));
 
 
 
