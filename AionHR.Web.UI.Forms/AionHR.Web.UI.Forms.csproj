@@ -229,6 +229,7 @@
     <Content Include="Reports\RT113.aspx" />
     <Content Include="Reports\RT114.aspx" />
     <Content Include="Reports\RT115.aspx" />
+    <Content Include="Reports\RT303b.aspx" />
     <Content Include="Reports\RT303.aspx" />
     <Content Include="Reports\RT307.aspx" />
     <Content Include="Reports\RT308.aspx" />
@@ -1228,6 +1229,13 @@
     </Compile>
     <Compile Include="Reports\RT115.aspx.designer.cs">
       <DependentUpon>RT115.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RT303b.aspx.cs">
+      <DependentUpon>RT303b.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\RT303b.aspx.designer.cs">
+      <DependentUpon>RT303b.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\RT303.aspx.cs">
       <DependentUpon>RT303.aspx</DependentUpon>

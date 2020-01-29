@@ -67,7 +67,7 @@
                 </ext:Model>
             </Model>
             <Sorters>
-                <ext:DataSorter Property="employeeName" Direction="ASC" />
+                <ext:DataSorter Property="employeeRef" Direction="ASC" />
             </Sorters>
         </ext:Store>
 
@@ -340,6 +340,9 @@
                                             </Fields>
                                         </ext:Model>
                                     </Model>
+                                        <Sorters>
+                                            <ext:DataSorter Property="dayId" Direction="ASC" />
+                                        </Sorters>
                                 </ext:Store>
                             </Store>
 

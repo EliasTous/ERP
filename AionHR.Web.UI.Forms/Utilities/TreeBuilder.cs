@@ -346,7 +346,10 @@ namespace AionHR.Web.UI.Forms.Utilities
             //Ext.Net.Node rt301B = BuildLeafNode("report_rt301B", Resources.Common.RT301B, "", true, rt3);
             Ext.Net.Node rt302 = BuildLeafNode("report_rt302", Resources.Common.RT302, "", true, rt3);
             Ext.Net.Node rt303= BuildLeafNode("report_rt303", Resources.Common.RT303, "", true, rt3);
-        //    Ext.Net.Node rt304 = BuildLeafNode("report_rt304", Resources.Common.RT304, "", true, rt3);
+
+            Ext.Net.Node rt303b = BuildLeafNode("report_rt303b", Resources.Common.RT303b, "", true, rt3);
+
+            //    Ext.Net.Node rt304 = BuildLeafNode("report_rt304", Resources.Common.RT304, "", true, rt3);
             Ext.Net.Node rt305 = BuildLeafNode("report_rt305", Resources.Common.RT305, "", true, rt3);
        //    Ext.Net.Node rt306 = BuildLeafNode("report_rt306", Resources.Common.RT306, "", true, rt3);
             Ext.Net.Node rt306 = BuildLeafNode("report_rt306", Resources.Common.RT306, "", true, rt3);
@@ -408,7 +411,8 @@ namespace AionHR.Web.UI.Forms.Utilities
             //FillConfigItem(rt301B, "rt301b", "Reports/RT301B.aspx", Resources.Common.RT301B, "icon-Employees", "1");
             FillConfigItem(rt302, "rt302", "Reports/RT302.aspx", Resources.Common.RT302, "icon-Employees", "1");
             FillConfigItem(rt303, "rt303", "Reports/RT303.aspx", Resources.Common.RT303, "icon-Employees", "1");
-         //   FillConfigItem(rt304, "rt304", "Reports/RT304.aspx", Resources.Common.RT304, "icon-Employees", "1");
+            FillConfigItem(rt303b, "rt303b", "Reports/RT303b.aspx", Resources.Common.RT303b, "icon-Employees", "1");
+            //   FillConfigItem(rt304, "rt304", "Reports/RT304.aspx", Resources.Common.RT304, "icon-Employees", "1");
             FillConfigItem(rt305, "rt305", "Reports/RT305.aspx", Resources.Common.RT305, "icon-Employees", "1");
             // FillConfigItem(rt306, "rt306", "Reports/RT306.aspx", Resources.Common.RT306, "icon-Employees", "1");
             FillConfigItem(rt306, "rt306", "Reports/RT306.aspx", Resources.Common.RT306, "icon-Employees", "1");

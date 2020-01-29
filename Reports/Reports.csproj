@@ -111,6 +111,12 @@
     <Compile Include="ApproverPerformance.Designer.cs">
       <DependentUpon>ApproverPerformance.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetailedAttendanceWOVariation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DetailedAttendanceWOVariation.Designer.cs">
+      <DependentUpon>DetailedAttendanceWOVariation.cs</DependentUpon>
+    </Compile>
     <Compile Include="DetailedAttendance.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -516,6 +522,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ApproverPerformance.resx">
       <DependentUpon>ApproverPerformance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendanceWOVariation.ar.resx">
+      <DependentUpon>DetailedAttendanceWOVariation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendanceWOVariation.fr.resx">
+      <DependentUpon>DetailedAttendanceWOVariation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedAttendanceWOVariation.resx">
+      <DependentUpon>DetailedAttendanceWOVariation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetailedAttendance.ar.resx">
       <DependentUpon>DetailedAttendance.cs</DependentUpon>

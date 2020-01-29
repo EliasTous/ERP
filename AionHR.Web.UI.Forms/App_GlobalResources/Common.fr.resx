@@ -1458,4 +1458,7 @@
   <data name="Preview" xml:space="preserve">
     <value>Aperçu</value>
   </data>
+  <data name="RT303b" xml:space="preserve">
+    <value>Présence quotidienne</value>
+  </data>
 </root>

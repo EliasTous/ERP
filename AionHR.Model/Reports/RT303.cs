@@ -54,5 +54,11 @@ namespace AionHR.Model.Reports
         public double netLateness { get; set; }
         public double netOvertime { get; set; }
         public int dayStatusId { get; set; }
+
+
+        public string departmentName { get; set; }
+
+        public string positionName { get; set; }
+        public string employeeRef { get; set; }
     }
 }

@@ -1458,4 +1458,7 @@
   <data name="Preview" xml:space="preserve">
     <value>عرض</value>
   </data>
+  <data name="RT303b" xml:space="preserve">
+    <value>الدوام اليومي</value>
+  </data>
 </root>

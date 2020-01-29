@@ -98,5 +98,7 @@ namespace AionHR.Model.Attendance
 
         public double EARLY_CHECKIN { get; set; }
         public double OVERTIME { get; set; }
+
+        public string employeeRef { get; set; }
     }
 }

@@ -3049,6 +3049,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Daily Attendance.
+        /// </summary>
+        internal static string RT303b {
+            get {
+                return ResourceManager.GetString("RT303b", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Departments Activity.
         /// </summary>
         internal static string RT304 {
