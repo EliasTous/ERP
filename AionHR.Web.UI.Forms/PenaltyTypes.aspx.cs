@@ -27,6 +27,7 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.Payroll;
 using System.Reflection;
 using AionHR.Web.UI.Forms.ConstClasses;
+using AionHR.Services.Messaging.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -686,9 +687,29 @@ namespace AionHR.Web.UI.Forms
 
                 actionStore.DataSource = action;
                 actionStore.DataBind();
+
+                XMLDictionaryListRequest request2 = new XMLDictionaryListRequest();
+                request2.database = "45";
+                ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request2);
+                if (!resp.Success)
+                {
+                    Common.errorMessage(resp);
+                    return;
+                }
+
                 List<object> deduction = new List<object>();
-                deduction.Add(new { name = GetLocalResourceObject("deductionType_percentage").ToString(), recordId = "1"});
-                deduction.Add(new { name = GetLocalResourceObject("deductionType_fixedAmount").ToString(), recordId ="2" });
+                //deduction.Add(new { name = GetLocalResourceObject("deductionType_percentage").ToString(), recordId = "1"});
+                //deduction.Add(new { name = GetLocalResourceObject("deductionType_fixedAmount").ToString(), recordId ="2" });
+
+                foreach (var item in resp.Items)
+                {
+                    deduction.Add(new { name = item.value, recordId = item.key.ToString() });
+                }
+
+
+                //List<object> deduction = new List<object>();
+                //deduction.Add(new { name = GetLocalResourceObject("deductionType_percentage").ToString(), recordId = "1"});
+                //deduction.Add(new { name = GetLocalResourceObject("deductionType_fixedAmount").ToString(), recordId ="2" });
                 deductionTypeStore.DataSource = deduction;
                 deductionTypeStore.DataBind();
             }

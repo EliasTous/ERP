@@ -139,10 +139,10 @@
     <value>Nombre d'heure</value>
   </data>
   <data name="xrLabel17.Text" xml:space="preserve">
-    <value>Heure Fin</value>
+    <value>Heure Début</value>
   </data>
   <data name="xrLabel18.Text" xml:space="preserve">
-    <value>Heure Début</value>
+    <value>Heure Fin</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
     <value>Reference</value>
