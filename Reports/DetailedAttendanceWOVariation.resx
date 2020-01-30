@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>565.2377, 23</value>
+    <value>139.0072, 23</value>
   </data>
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>xrLabel3</value>
@@ -141,19 +141,19 @@
     <value>TopCenter</value>
   </data>
   <data name="pageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>0.000127156571, 66.708374</value>
+    <value>0.000127156571, 43.7917061</value>
   </data>
   <data name="pageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>414.256134, 23</value>
+    <value>164.4731, 45.9166832</value>
   </data>
   <data name="pageInfo1.TextFormatString" xml:space="preserve">
     <value>{0:dddd, MMMM d, yyyy H:mm}</value>
   </data>
   <data name="pageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1137.01392, 66.708374</value>
+    <value>1137.014, 66.708374</value>
   </data>
   <data name="pageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>89.1943359, 23</value>
+    <value>89.1942139, 23</value>
   </data>
   <data name="pageInfo2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopRight</value>
@@ -395,17 +395,14 @@
   <data name="ReportFooter.HeightF" type="System.Single, mscorlib">
     <value>101.249947</value>
   </data>
-  <data name="PageHeader.HeightF" type="System.Single, mscorlib">
-    <value>88.3334351</value>
-  </data>
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 14.25pt, style=Bold</value>
   </data>
   <data name="label1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>5.00014639, 10</value>
+    <value>414.2563, 10.0000067</value>
   </data>
   <data name="label1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>1248.99976, 24.1943283</value>
+    <value>296.527039, 24.1943283</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Daily Attendance</value>

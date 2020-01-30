@@ -195,7 +195,7 @@
   <data name="table1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>0.0001430511, 23.00001</value>
   </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
+  <data name="xrTableCell5.Text" xml:space="preserve">
     <value>الفروع</value>
   </data>
   <data name="tableCell1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -204,7 +204,7 @@
   <data name="tableCell1.Weight" type="System.Double, mscorlib">
     <value>0.13154539219506417</value>
   </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
+  <data name="xrTableCell3.Text" xml:space="preserve">
     <value>الموظف</value>
   </data>
   <data name="tableCell2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -213,7 +213,7 @@
   <data name="tableCell2.Weight" type="System.Double, mscorlib">
     <value>0.14774766299727665</value>
   </data>
-  <data name="xrLabel15.Text" xml:space="preserve">
+  <data name="xrTableCell1.Text" xml:space="preserve">
     <value>التاريخ</value>
   </data>
   <data name="tableCell3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -222,7 +222,7 @@
   <data name="tableCell3.Weight" type="System.Double, mscorlib">
     <value>0.092993534037098882</value>
   </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
+  <data name="xrTableCell9.Text" xml:space="preserve">
     <value>المدة</value>
   </data>
   <data name="tableCell4.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -231,7 +231,7 @@
   <data name="tableCell4.Weight" type="System.Double, mscorlib">
     <value>0.0909073880868676</value>
   </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
+  <data name="xrTableCell7.Text" xml:space="preserve">
     <value>البصمة الاولى</value>
   </data>
   <data name="tableCell5.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -240,7 +240,7 @@
   <data name="tableCell5.Weight" type="System.Double, mscorlib">
     <value>0.078592348224715544</value>
   </data>
-  <data name="xrLabel18.Text" xml:space="preserve">
+  <data name="xrTableCell8.Text" xml:space="preserve">
     <value>البصمة الأخيرة</value>
   </data>
   <data name="tableCell6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -267,7 +267,7 @@
   <data name="tableCell8.Weight" type="System.Double, mscorlib">
     <value>0.0894635696942238</value>
   </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
+  <data name="xrTableCell4.Text" xml:space="preserve">
     <value>الوظيفة</value>
   </data>
   <data name="tableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -276,7 +276,7 @@
   <data name="tableCell9.Weight" type="System.Double, mscorlib">
     <value>0.075571862121122171</value>
   </data>
-  <data name="xrLabel23.Text" xml:space="preserve">
+  <data name="xrTableCell6.Text" xml:space="preserve">
     <value>القسم</value>
   </data>
   <data name="tableCell10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
@@ -367,7 +367,7 @@
     <value>0.10794038864381161</value>
   </data>
   <data name="xrTableCell2.Text" xml:space="preserve">
-    <value>xrTableCell2</value>
+    <value>الرمز</value>
   </data>
   <data name="xrTableCell2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
@@ -408,7 +408,7 @@
   <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
     <value>A4Extra</value>
   </data>
-  <data name="xrLabel25.Text" xml:space="preserve">
+  <data name="xrTableCell10.Text" xml:space="preserve">
     <value>حالة اليوم </value>
   </data>
   <data name="xrLabel26.Text" xml:space="preserve">

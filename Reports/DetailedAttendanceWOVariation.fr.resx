@@ -126,24 +126,6 @@
   <data name="pageInfo2.TextFormatString" xml:space="preserve">
     <value>Page {0} of {1}</value>
   </data>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>Branche</value>
-  </data>
-  <data name="xrLabel14.Text" xml:space="preserve">
-    <value>Nom</value>
-  </data>
-  <data name="xrLabel15.Text" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="xrLabel16.Text" xml:space="preserve">
-    <value>Nombre d'heure</value>
-  </data>
-  <data name="xrLabel17.Text" xml:space="preserve">
-    <value>Heure Début</value>
-  </data>
-  <data name="xrLabel18.Text" xml:space="preserve">
-    <value>Heure Fin</value>
-  </data>
   <data name="xrLabel19.Text" xml:space="preserve">
     <value>Reference</value>
   </data>
@@ -153,20 +135,11 @@
   <data name="xrLabel20.Text" xml:space="preserve">
     <value>Apres horaire</value>
   </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>Position</value>
-  </data>
   <data name="xrLabel22.Text" xml:space="preserve">
     <value>Horraire manque</value>
   </data>
-  <data name="xrLabel23.Text" xml:space="preserve">
-    <value>Departement</value>
-  </data>
   <data name="xrLabel24.Text" xml:space="preserve">
     <value>HS</value>
-  </data>
-  <data name="xrLabel25.Text" xml:space="preserve">
-    <value>Statut de jour</value>
   </data>
   <data name="xrLabel26.Text" xml:space="preserve">
     <value>Retard total</value>
@@ -180,7 +153,34 @@
   <data name="xrLabel3.Text" xml:space="preserve">
     <value>xrLabel3</value>
   </data>
+  <data name="xrTableCell1.Text" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="xrTableCell10.Text" xml:space="preserve">
+    <value>Statut de jour</value>
+  </data>
   <data name="xrTableCell2.Text" xml:space="preserve">
-    <value>xrTableCell2</value>
+    <value>Reference</value>
+  </data>
+  <data name="xrTableCell3.Text" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="xrTableCell4.Text" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="xrTableCell5.Text" xml:space="preserve">
+    <value>Branche</value>
+  </data>
+  <data name="xrTableCell6.Text" xml:space="preserve">
+    <value>Departement</value>
+  </data>
+  <data name="xrTableCell7.Text" xml:space="preserve">
+    <value>Heure Début</value>
+  </data>
+  <data name="xrTableCell8.Text" xml:space="preserve">
+    <value>Heure Fin</value>
+  </data>
+  <data name="xrTableCell9.Text" xml:space="preserve">
+    <value>Nombre d'heure</value>
   </data>
 </root>
