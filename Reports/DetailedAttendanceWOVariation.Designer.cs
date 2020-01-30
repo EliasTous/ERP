@@ -469,6 +469,7 @@
             this.xrTableCell19.StylePriority.UseBorders = false;
             this.xrTableCell19.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.xrTableCell19, "xrTableCell19");
+            this.xrTableCell19.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel31_BeforePrint);
             // 
             // xrTableCell20
             // 

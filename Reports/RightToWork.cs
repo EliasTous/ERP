@@ -73,46 +73,49 @@ public class RightToWork : DevExpress.XtraReports.UI.XtraReport
         //
         // TODO: Add constructor logic here
         printHeader(parameters);
-        
-        xrLabel4.LocationF = new PointF(6,75);
-        xrLabel7.LocationF = new PointF(36,75);
-        xrLabel8.LocationF = new PointF(189,75);
-        xrLabel9.LocationF = new PointF(291,75);
-        xrLabel10.LocationF = new PointF(397,75);
-        xrLabel11.LocationF = new PointF(498,75);
-        xrLabel12.LocationF = new PointF(589,75);
-        xrLabel13.LocationF = new PointF(672,75);
-        xrLabel14.LocationF = new PointF(755,75);
-        //xrLabel4.LocationF = new PointF(0, 30);
+        if (getLang == "fr")
+        {
+            xrLabel1.LocationF = new PointF(6, 75);
+            xrLabel4.LocationF = new PointF(6, 75);
+            xrLabel7.LocationF = new PointF(36, 75);
+            xrLabel8.LocationF = new PointF(189, 75);
+            xrLabel9.LocationF = new PointF(291, 75);
+            xrLabel10.LocationF = new PointF(397, 75);
+            xrLabel11.LocationF = new PointF(498, 75);
+            xrLabel12.LocationF = new PointF(589, 75);
+            xrLabel13.LocationF = new PointF(672, 75);
+            xrLabel14.LocationF = new PointF(755, 75);
+            //xrLabel4.LocationF = new PointF(0, 30);
 
-        xrLabel7.WidthF = 153;
-        xrLabel7.HeightF = 36;
-        xrLabel8.WidthF = 102;
-        xrLabel8.HeightF = 36;
-        xrLabel9.WidthF = 106;
-        xrLabel9.HeightF = 36;
-        xrLabel10.WidthF = 101;
-        xrLabel10.HeightF = 36;
-        xrLabel11.WidthF = 91;
-        xrLabel11.HeightF = 36;
-        xrLabel12.WidthF = 83;
-        xrLabel12.HeightF = 36;
-        xrLabel13.WidthF = 83;
-        xrLabel13.HeightF = 36;
-        xrLabel14.WidthF = 42;
-        xrLabel14.HeightF = 36;
+            xrLabel7.WidthF = 153;
+            xrLabel7.HeightF = 36;
+            xrLabel8.WidthF = 102;
+            xrLabel8.HeightF = 36;
+            xrLabel9.WidthF = 106;
+            xrLabel9.HeightF = 36;
+            xrLabel10.WidthF = 101;
+            xrLabel10.HeightF = 36;
+            xrLabel11.WidthF = 91;
+            xrLabel11.HeightF = 36;
+            xrLabel12.WidthF = 83;
+            xrLabel12.HeightF = 36;
+            xrLabel13.WidthF = 83;
+            xrLabel13.HeightF = 36;
+            xrLabel14.WidthF = 42;
+            xrLabel14.HeightF = 36;
 
 
 
-        xrLabel5.LocationF = new PointF(6, 0);
-        xrLabel6.LocationF = new PointF(36, 0);
-        xrTableCell10.LocationF = new PointF(0, 0);
-        xrTableCell12.LocationF = new PointF(102, 0);
-        xrTableCell14.LocationF = new PointF(208, 0);
-        xrTableCell16.LocationF = new PointF(309, 0);
-        xrTableCell18.LocationF = new PointF(400, 0);
-        xrTableCell8.LocationF = new PointF(483, 0);
-        xrTableCell22.LocationF = new PointF(566, 0);
+            xrLabel5.LocationF = new PointF(6, 0);
+            xrLabel6.LocationF = new PointF(36, 0);
+            xrTableCell10.LocationF = new PointF(0, 0);
+            xrTableCell12.LocationF = new PointF(102, 0);
+            xrTableCell14.LocationF = new PointF(208, 0);
+            xrTableCell16.LocationF = new PointF(309, 0);
+            xrTableCell18.LocationF = new PointF(400, 0);
+            xrTableCell8.LocationF = new PointF(483, 0);
+            xrTableCell22.LocationF = new PointF(566, 0);
+        }
 
         if (getLang == "ar")
         {
