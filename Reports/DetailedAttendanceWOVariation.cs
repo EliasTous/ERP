@@ -78,7 +78,7 @@ namespace Reports
 
             table.Font = new Font(table.Font.FontFamily, table.Font.Size, FontStyle.Bold);
 
-            this.PageHeader.Controls.Add(table);
+           this.PageHeader.Controls.Add(table);
 
         }
         private void table_BeforePrint(object sender, PrintEventArgs e)
