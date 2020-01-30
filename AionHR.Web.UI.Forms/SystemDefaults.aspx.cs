@@ -647,8 +647,8 @@ namespace AionHR.Web.UI.Forms
 
             try
             {
-                monthWorkHrs.Text = (items.Where(s => s.Key == "monthWorkHrs ").First().Value);
-                if (string.IsNullOrEmpty(items.Where(s => s.Key == "monthWorkHrs ").First().Value.ToString()))
+                monthWorkHrs.Text = (items.Where(s => s.Key == "monthWorkHrs").First().Value);
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "monthWorkHrs").First().Value.ToString()))
                 {
                     monthWorkHrs.Text = "240";
                 }
@@ -658,8 +658,8 @@ namespace AionHR.Web.UI.Forms
 
             try
             {
-                dayWorkHrs.Text = (items.Where(s => s.Key == "dayWorkHrs ").First().Value);
-                if (string.IsNullOrEmpty(items.Where(s => s.Key == "dayWorkHrs ").First().Value.ToString()))
+                dayWorkHrs.Text = (items.Where(s => s.Key == "dayWorkHrs").First().Value);
+                if (string.IsNullOrEmpty(items.Where(s => s.Key == "dayWorkHrs").First().Value.ToString()))
                 {
                     dayWorkHrs.Text = "8";
                 }
