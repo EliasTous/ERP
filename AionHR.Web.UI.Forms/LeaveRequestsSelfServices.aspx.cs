@@ -1017,8 +1017,9 @@ namespace AionHR.Web.UI.Forms
              res.AddRule("leaveRequest1_status", "status");
 
             settings.ContractResolver = res;
-            LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
-           // b.status = Convert.ToInt16(status1);
+            //LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
+            LeaveReplacementApproval b = JsonConvert.DeserializeObject<LeaveReplacementApproval>(obj, settings);
+            // b.status = Convert.ToInt16(status1);
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
             if (!b.isPaid.HasValue)
@@ -1044,10 +1045,11 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
+                    PostRequest<LeaveReplacementApproval> request = new PostRequest<LeaveReplacementApproval>();
 
                     request.entity = b;
-                    PostResponse<LeaveRequest> r = _selfServiceService.ChildAddOrUpdate<LeaveRequest>(request);
+                    //PostResponse<LeaveRequest> r = _selfServiceService.ChildAddOrUpdate<LeaveRequest>(request);
+                    PostResponse<LeaveReplacementApproval> r = _selfServiceService.ChildAddOrUpdate<LeaveReplacementApproval>(request);
 
 
                     //check if the insert failed
@@ -1109,7 +1111,8 @@ namespace AionHR.Web.UI.Forms
 
                         RecordRequest rec = new RecordRequest();
                         rec.RecordID = id;
-                        RecordResponse<LeaveRequest> recordResponse = _selfServiceService.ChildGetRecord<LeaveRequest>(rec);
+                        //RecordResponse<LeaveRequest> recordResponse = _selfServiceService.ChildGetRecord<LeaveRequest>(rec);
+                        RecordResponse<LeaveReplacementApproval> recordResponse = _selfServiceService.ChildGetRecord<LeaveReplacementApproval>(rec);
                         if (!recordResponse.Success)
                         {
                             X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();
