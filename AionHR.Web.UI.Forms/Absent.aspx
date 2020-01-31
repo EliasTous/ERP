@@ -115,9 +115,9 @@
                     </Fields>
                 </ext:Model>
             </Model>
-            <Sorters>
+            <%--<Sorters>
                 <ext:DataSorter Property="recordId" Direction="ASC" />
-            </Sorters>
+            </Sorters>--%>
         </ext:Store>
 
 

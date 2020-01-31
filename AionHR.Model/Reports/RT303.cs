@@ -60,5 +60,9 @@ namespace AionHR.Model.Reports
 
         public string positionName { get; set; }
         public string employeeRef { get; set; }
+
+        public string strEffectiveTime { get; set; }
+
+        public string ttEffTime { get; set; }
     }
 }

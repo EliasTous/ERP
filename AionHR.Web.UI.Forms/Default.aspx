@@ -84,6 +84,7 @@
     <ext:Hidden runat="server" ID="scTitle" Text="<%$Resources:Common , AttendanceSchedule %>" />
     <ext:Hidden runat="server" ID="bmTitle" Text="<%$Resources:Common , BiometricDevices %>" />
     <ext:Hidden runat="server" ID="tadtTitle" Text="<%$Resources:Common , DayTypes %>" />
+    <ext:Hidden runat="server" ID="caavTitle" Text="<%$Resources:Common , ChangeAutoApprovedVariations %>" />
       <ext:Hidden runat="server" ID="UPTitle" Text="<%$Resources:Common , UnschedulePunches %>" />
     <ext:Hidden runat="server" ID="gfTitle" Text="<%$Resources:Common , Geofences %>" />
     <ext:Hidden runat="server" ID="vsTitle" Text="<%$Resources:Common , VacationSchedules %>" />
@@ -603,6 +604,11 @@
                                                                         <ext:MenuItem runat="server" Text="<%$Resources: Common , DayTypes%>">
                                                                             <Listeners>
                                                                                 <Click Handler="openNewTab('dayTypes', 'DayTypes.aspx', #{tadtTitle}.value, 'icon-Employees')" />
+                                                                            </Listeners>
+                                                                        </ext:MenuItem>
+                                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , ChangeAutoApprovedVariations%>">
+                                                                            <Listeners>
+                                                                                <Click Handler="openNewTab('ChangeAutoApprovedVariations', 'ChangeAutoApprovedVariations.aspx', #{caavTitle}.value, 'icon-Employees')" />
                                                                             </Listeners>
                                                                         </ext:MenuItem>
 

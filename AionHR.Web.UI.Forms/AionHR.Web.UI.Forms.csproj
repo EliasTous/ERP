@@ -178,6 +178,7 @@
     <Content Include="BusinessPartneres.aspx" />
     <Content Include="Cases.aspx" />
     <Content Include="CertificateLevels.aspx" />
+    <Content Include="ChangeAutoApprovedVariations.aspx" />
     <Content Include="CheckTypes.aspx" />
     <Content Include="BranchAvailabilities.aspx" />
     <Content Include="Controls\TimeVariationHistoryControl.ascx" />
@@ -679,6 +680,7 @@
     <Content Include="App_LocalResources\MonthlyLatenesses.aspx.resx" />
     <Content Include="App_LocalResources\MonthlyLatenesses.aspx.ar.resx" />
     <Content Include="App_LocalResources\MonthlyLatenesses.aspx.fr.resx" />
+    <Content Include="App_LocalResources\ChangeAutoApprovedVariations.aspx.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -876,6 +878,13 @@
     </Compile>
     <Compile Include="CertificateLevels.aspx.designer.cs">
       <DependentUpon>CertificateLevels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeAutoApprovedVariations.aspx.cs">
+      <DependentUpon>ChangeAutoApprovedVariations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeAutoApprovedVariations.aspx.designer.cs">
+      <DependentUpon>ChangeAutoApprovedVariations.aspx</DependentUpon>
     </Compile>
     <Compile Include="CheckTypes.aspx.cs">
       <DependentUpon>CheckTypes.aspx</DependentUpon>
@@ -2586,6 +2595,7 @@
     </Compile>
     <Compile Include="Utilities\AccessDeniedException.cs" />
     <Compile Include="Utilities\DashboardAccessDenied.cs" />
+    <Compile Include="Utilities\Functions.cs" />
     <Compile Include="Utilities\LocalisationManager.cs" />
     <Compile Include="Utilities\ModulesFileWrapper.cs" />
     <Compile Include="Utilities\PageLookup.cs" />

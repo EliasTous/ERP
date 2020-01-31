@@ -29,6 +29,7 @@ using AionHR.Services.Messaging.Reports;
 using AionHR.Model.TimeAttendance;
 using AionHR.Model.Reports;
 
+
 namespace AionHR.Web.UI.Forms
 {
     public partial class UnschedulePunches : System.Web.UI.Page
@@ -148,7 +149,7 @@ namespace AionHR.Web.UI.Forms
         /// </summary>
         private void HideShowColumns()
         {
-            this.colAttach.Visible = false;
+            //this.colAttach.Visible = false;
         }
 
 
@@ -191,7 +192,8 @@ namespace AionHR.Web.UI.Forms
 
             FillStore2(employeeId);
 
-            EditRecordWindow.Show();
+            //EditRecordWindow.Show();
+            Window1.Show();
 
 
         }
@@ -290,7 +292,7 @@ namespace AionHR.Web.UI.Forms
                 string filter = string.Empty;
                 int totalCount = 1;
 
-
+                string _getLan = _systemService.SessionHelper.getLangauge();
 
                 //Fetching the corresponding list
 
@@ -307,7 +309,60 @@ namespace AionHR.Web.UI.Forms
                 }
                 resp.Items.ForEach(x =>
                 {
-                    x.AttendedHours = time(Convert.ToInt32(x.variation), true);
+                    //x.AttendedHours = time(Convert.ToInt32(x.variation), true);
+                    
+                    if (_getLan == "fr")
+                    {
+                        if (Convert.ToInt32((x.AttendedHours).ToString().Split(',')[0]) < 10)
+                        {
+                            x.AttendedHours = TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Hours.ToString().PadLeft(2, '0')
+                            + ":" + TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Minutes.ToString().PadLeft(2, '0');
+                        }
+                        else if (Convert.ToInt32((x.AttendedHours).ToString().Split(',')[0]) < 24)
+                        {
+                            x.AttendedHours = TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Hours.ToString().PadLeft(2, '0')
+                             + ":" + TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Minutes.ToString().PadLeft(2, '0');
+                        }
+                        else if (Convert.ToInt32((x.AttendedHours).ToString().Split(',')[0]) > 24 && Convert.ToInt32((x.AttendedHours).ToString().Split(',')[0]) < 100)
+                        {
+                            x.AttendedHours = Convert.ToDouble(x.AttendedHours).ToString().Substring(0,2)
+                            + ":" + TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Minutes.ToString().PadLeft(2, '0');
+                            
+                        }
+                        else if (Convert.ToInt32((x.AttendedHours).ToString().Split(',')[0]) >= 100)
+                        {
+                            x.AttendedHours = Convert.ToDouble(x.AttendedHours).ToString().Substring(0,3)
+                            + ":" + TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Minutes.ToString().PadLeft(2, '0');
+
+                        }
+                    }
+                    else
+                    {
+                        if (Convert.ToInt32((x.AttendedHours).ToString().Split('.')[0]) < 10)
+                        {
+                            x.AttendedHours = TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Hours.ToString().PadLeft(2, '0')
+                            + ":" + TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Minutes.ToString().PadLeft(2, '0');
+                        }
+                        else if (Convert.ToInt32((x.AttendedHours).ToString().Split('.')[0]) < 24)
+                        {
+                            x.AttendedHours = TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Hours.ToString().PadLeft(2, '0')
+                             + ":" + TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Minutes.ToString().PadLeft(2, '0');
+                        }
+                        else if (Convert.ToInt32((x.AttendedHours).ToString().Split('.')[0]) > 24 && Convert.ToInt32((x.AttendedHours).ToString().Split('.')[0]) < 100)
+                        {
+                            x.AttendedHours = Convert.ToDouble(x.AttendedHours).ToString().Substring(0, 2)
+                            + ":" + TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Minutes.ToString().PadLeft(2, '0');
+
+                        }
+                        else if (Convert.ToInt32((x.AttendedHours).ToString().Split('.')[0]) >= 100)
+                        {
+                            x.AttendedHours = Convert.ToDouble(x.AttendedHours).ToString().Substring(0, 3)
+                            + ":" + TimeSpan.FromHours(Convert.ToDouble(x.AttendedHours)).Minutes.ToString().PadLeft(2, '0');
+
+                        }
+                    }
+
+
                     x.variation = time(Convert.ToInt32(x.variation), true);
                 });
                 this.Store1.DataSource = resp.Items;
@@ -439,23 +494,45 @@ namespace AionHR.Web.UI.Forms
             {
                 req.paramString = vals.Text+ "^3|" + employeeId;
             }
-            ListResponse<AionHR.Model.Reports.RT309> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT309>(req);
+
+            bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
+
+            //ListResponse<AionHR.Model.Reports.RT309> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT309>(req);
+            //if (!resp.Success)
+            //{
+            //    Common.errorMessage(resp);
+            //    return;
+            //}
+
+            ListResponse<UnschedulePunchDetails> resp = _timeAttendanceService.ChildGetAll<UnschedulePunchDetails>(req);
             if (!resp.Success)
             {
                 Common.errorMessage(resp);
                 return;
             }
-            DateTime temp;
+            AionHR.Web.UI.Forms.Utilities.Functions test = new Functions();
+            //DateTime temp;
             resp.Items.ForEach(x =>
             {
-                x.shiftId = buildShiftValue(x.shiftLog);
-                if (DateTime.TryParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out temp))
-                x.dayIdDateTime = temp;
+                //x.shiftId = buildShiftValue(x.shiftLog);
+                //if (DateTime.TryParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en"), DateTimeStyles.AdjustToUniversal, out temp))
+                //x.dayIdDateTime = temp;
+
+                if (rtl)
+                    x.dayIdDateTime = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
+                else
+                    x.dayIdDateTime = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("en-US"));
+                
+                x.strDuration = test.timeformat(Convert.ToInt32(x.duration));
             }
+
  
             );
-            store2.DataSource = resp.Items;
-            store2.DataBind(); 
+            //store2.DataSource = resp.Items;
+            //store2.DataBind();
+
+            store3.DataSource = resp.Items;
+            store3.DataBind();
 
         }
 

@@ -549,4 +549,13 @@
   <data name="emptyLdMethod" xml:space="preserve">
     <value>Please contact with system administrator for set default loan coverage value</value>
   </data>
+  <data name="FillJustification" xml:space="preserve">
+    <value>Fill Justification</value>
+  </data>
+  <data name="SelectApproval" xml:space="preserve">
+    <value>Select Approval First</value>
+  </data>
+  <data name="SelectDamage" xml:space="preserve">
+    <value>Select Damage First</value>
+  </data>
 </root>

@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BasicInfoTabEditWindowTitle" xml:space="preserve">
+    <value>Change Auto Approved Variations</value>
+  </data>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="CA" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="DamageWITHOUT_DAMAGE" xml:space="preserve">
+    <value>Without Damage</value>
+  </data>
+  <data name="DamageWITH_DAMAGE" xml:space="preserve">
+    <value>With Damage</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DayShifts" xml:space="preserve">
+    <value>Shifts</value>
+  </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>Delete Branch Attendances</value>
+  </data>
+  <data name="dtext" xml:space="preserve">
+    <value>Disappear</value>
+  </data>
+  <data name="EditWindowsTimeApproval" xml:space="preserve">
+    <value>Time Approval</value>
+  </data>
+  <data name="EditWindowsTitle" xml:space="preserve">
+    <value>Edit Time Variation</value>
+  </data>
+  <data name="FieldAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="FieldApprovalStatus" xml:space="preserve">
+    <value>Approval Status</value>
+  </data>
+  <data name="FieldApproved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="FieldApproverName" xml:space="preserve">
+    <value>Approver</value>
+  </data>
+  <data name="FieldApptoved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="FieldBiometric" xml:space="preserve">
+    <value>Biometric Device</value>
+  </data>
+  <data name="FieldBirthPlace" xml:space="preserve">
+    <value>Place of Birth</value>
+  </data>
+  <data name="FieldBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="FieldBreaks" xml:space="preserve">
+    <value>Breaks</value>
+  </data>
+  <data name="FieldCheckIn" xml:space="preserve">
+    <value>Check In</value>
+  </data>
+  <data name="FieldCheckOut" xml:space="preserve">
+    <value>Check Out</value>
+  </data>
+  <data name="FieldClockDuration" xml:space="preserve">
+    <value>Clock Duration</value>
+  </data>
+  <data name="FieldClockStamp" xml:space="preserve">
+    <value>Clock Stamp</value>
+  </data>
+  <data name="FieldDamageLevel" xml:space="preserve">
+    <value>Damage </value>
+  </data>
+  <data name="FieldDate" xml:space="preserve">
+    <value>Select a Date</value>
+  </data>
+  <data name="FieldDateFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="FieldDateOfBirth" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="FieldDateTo" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="FieldDay" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="FieldDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="FieldDivision" xml:space="preserve">
+    <value>Select a Division</value>
+  </data>
+  <data name="FieldDuration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="FieldEmployee" xml:space="preserve">
+    <value>Select an Employee</value>
+  </data>
+  <data name="FieldEmployeeName" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="FieldEmployeeRef" xml:space="preserve">
+    <value>Employee Ref</value>
+  </data>
+  <data name="FieldEndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="FieldFamilyName" xml:space="preserve">
+    <value>Family Name</value>
+  </data>
+  <data name="FieldFirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="FieldFullName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FieldGender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="FieldHireDate" xml:space="preserve">
+    <value>Hire Date</value>
+  </data>
+  <data name="FieldHomeEmail" xml:space="preserve">
+    <value>Home Email</value>
+  </data>
+  <data name="FieldHoursWorked" xml:space="preserve">
+    <value>Hours Worked</value>
+  </data>
+  <data name="FieldInOut" xml:space="preserve">
+    <value>Check Type</value>
+  </data>
+  <data name="FieldIsInactive" xml:space="preserve">
+    <value>Is Inactive?</value>
+  </data>
+  <data name="FieldJustification" xml:space="preserve">
+    <value>Justification</value>
+  </data>
+  <data name="FieldLastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="FieldltimeCode" xml:space="preserve">
+    <value>Time Code</value>
+  </data>
+  <data name="FieldMiddleName" xml:space="preserve">
+    <value>Middle Name</value>
+  </data>
+  <data name="FieldMobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="FieldNationality" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="FieldNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="FieldNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="FieldPending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="FieldPosition" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Fieldpunches" xml:space="preserve">
+    <value>Punches</value>
+  </data>
+  <data name="FieldReference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="FieldRejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="FieldReligion" xml:space="preserve">
+    <value>Religion</value>
+  </data>
+  <data name="FieldShift" xml:space="preserve">
+    <value>Shift</value>
+  </data>
+  <data name="FieldStartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="FieldStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FieldTimeCode" xml:space="preserve">
+    <value>Time Code</value>
+  </data>
+  <data name="FieldTimeVariationType" xml:space="preserve">
+    <value>Time Variation Type</value>
+  </data>
+  <data name="FieldVacationSchedule" xml:space="preserve">
+    <value>Vacation Schedule</value>
+  </data>
+  <data name="FieldWorkEmail" xml:space="preserve">
+    <value>Work Email</value>
+  </data>
+  <data name="FieldWorkingCalendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="fromDuration" xml:space="preserve">
+    <value>From Duration</value>
+  </data>
+  <data name="Go" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="LeaveType" xml:space="preserve">
+    <value>Leave Type</value>
+  </data>
+  <data name="ltext" xml:space="preserve">
+    <value>Lateness</value>
+  </data>
+  <data name="mtext" xml:space="preserve">
+    <value>Missed Punch </value>
+  </data>
+  <data name="otext" xml:space="preserve">
+    <value>Overtime</value>
+  </data>
+  <data name="overrideWindow" xml:space="preserve">
+    <value>Override Time Variation</value>
+  </data>
+  <data name="RejectRecord" xml:space="preserve">
+    <value>Are you sure you want to reject the selected record ?</value>
+  </data>
+  <data name="SC" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="status1" xml:space="preserve">
+    <value>Working Day</value>
+  </data>
+  <data name="status2" xml:space="preserve">
+    <value>Paid Leave</value>
+  </data>
+  <data name="status3" xml:space="preserve">
+    <value>Incomplete(missed checkout)</value>
+  </data>
+  <data name="status4" xml:space="preserve">
+    <value>Unpaid Leave</value>
+  </data>
+  <data name="status5" xml:space="preserve">
+    <value>Absense</value>
+  </data>
+  <data name="toDuration" xml:space="preserve">
+    <value>To Duration</value>
+  </data>
+  <data name="TotalBreaks" xml:space="preserve">
+    <value>Total Breaks</value>
+  </data>
+  <data name="TotalText" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Employees</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="FillJustification" xml:space="preserve">
+    <value>Fill Justification</value>
+  </data>
+  <data name="SelectApproval" xml:space="preserve">
+    <value>Select Approval First</value>
+  </data>
+  <data name="SelectDamage" xml:space="preserve">
+    <value>Select Damage First</value>
+  </data>
+</root>

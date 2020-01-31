@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace AionHR.Model.Dashboard
 {
-    [ClassIdentifier("41066", "41")]
-    public  class DashBoardTimeVariation :ModelBase
+    public class DashBoardTimeVariation3 : ModelBase
     {
         public string timeName;
 
-        public string primaryKey { get { if (!string.IsNullOrEmpty(dayId)){ return employeeId.ToString() + dayId.ToString() + shiftId.ToString() + timeCode.ToString(); } else return employeeId.ToString() + shiftId.ToString() + timeCode.ToString(); } }
+        public string primaryKey { get { if (!string.IsNullOrEmpty(dayId)) { return employeeId.ToString() + dayId.ToString() + shiftId.ToString() + timeCode.ToString(); } else return employeeId.ToString() + shiftId.ToString() + timeCode.ToString(); } }
         public int employeeId { get; set; }
         public string dayId { get; set; }
         public DateTime dayIdDate { get; set; }
@@ -41,7 +40,6 @@ namespace AionHR.Model.Dashboard
         public string employeeRef { get; set; }
         public DateTime? date { get; set; }
         public string apId { get; set; }
-
 
     }
 }

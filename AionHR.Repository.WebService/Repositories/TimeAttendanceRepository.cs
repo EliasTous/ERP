@@ -67,8 +67,10 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(TimePerformance), "qryTP");
             ChildGetAllLookup.Add(typeof(FlatPunch), "qryFP");
             ChildGetAllLookup.Add(typeof(UnschedulePunch), "qryUP");
+            ChildGetAllLookup.Add(typeof(UnschedulePunchDetails), "qryUPD");
             ChildGetAllLookup.Add(typeof(MonthlyLateness), "qryML");
             ChildGetAllLookup.Add(typeof(MonthlyLatenessPeriod), "getMLP");
+            ChildGetAllLookup.Add(typeof(DashBoardTimeVariation3), "qryATV");
 
 
             ChildAddOrUpdateLookup.Add(typeof(DayType), "setDT");

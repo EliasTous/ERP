@@ -371,26 +371,20 @@
   <data name="groupFooterBand1.HeightF" type="System.Single, mscorlib">
     <value>1.95800781</value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="xrLabel11.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 8.25pt, style=Bold</value>
+  <data name="xrLabel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9pt, style=Bold</value>
   </data>
-  <data name="xrLabel11.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1048.25049, 10</value>
+  <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>1048.25049, 9.999974</value>
   </data>
-  <data name="xrLabel11.SizeF" type="System.Drawing.SizeF, System.Drawing">
+  <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>88.76343, 23</value>
   </data>
-  <data name="xrLabel11.Text" xml:space="preserve">
-    <value>xrLabel4</value>
+  <data name="xrLabel1.Text" xml:space="preserve">
+    <value>xrLabel1</value>
   </data>
-  <data name="xrLabel11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+  <data name="xrLabel1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
-  </data>
-  <data name="xrLabel11.TextFormatString" xml:space="preserve">
-    <value>{0:#}</value>
   </data>
   <data name="ReportFooter.HeightF" type="System.Single, mscorlib">
     <value>101.249947</value>
@@ -413,6 +407,9 @@
   <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
     <value>60</value>
   </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

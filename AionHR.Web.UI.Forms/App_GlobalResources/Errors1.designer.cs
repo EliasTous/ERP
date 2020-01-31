@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option or rebuild the Visual Studio project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Errors {
@@ -1339,6 +1339,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fill Justification.
+        /// </summary>
+        internal static string FillJustification {
+            get {
+                return ResourceManager.GetString("FillJustification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee has loans .
         /// </summary>
         internal static string FinalSettlementForEmployeeHaveLoans {
@@ -1353,6 +1362,24 @@ namespace Resources {
         internal static string inactiveUser {
             get {
                 return ResourceManager.GetString("inactiveUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Approval First.
+        /// </summary>
+        internal static string SelectApproval {
+            get {
+                return ResourceManager.GetString("SelectApproval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Damage First.
+        /// </summary>
+        internal static string SelectDamage {
+            get {
+                return ResourceManager.GetString("SelectDamage", resourceCulture);
             }
         }
     }

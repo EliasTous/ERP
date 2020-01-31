@@ -158,7 +158,7 @@
                         
                            
 
-                            <ext:Column runat="server"
+                           <%-- <ext:Column runat="server"
                                 ID="colDelete" Visible="false"
                                 Text="<%$ Resources: Common , Delete %>"
                                 Width="100"
@@ -182,10 +182,10 @@
                                 MenuDisabled="true"
                                 Resizable="false">
                                 <Renderer Fn="attachRender" />
-                            </ext:Column>
+                            </ext:Column>--%>
                             
                            <ext:Column runat="server"
-                                ID="colEdit"  Visible="false"
+                                ID="colEdit"  Visible="true"
                                 Text=""
                                 Width="100"
                                 Hideable="false"
@@ -196,7 +196,6 @@
                                 Resizable="false">
 
                                 <Renderer handler="return editRender();" />
-
                             </ext:Column>
 
 
@@ -461,6 +460,181 @@
                 </ext:Button>
             </Buttons>
         </ext:Window>
+
+         <ext:Window 
+            ID="Window1"
+            runat="server"
+            Icon="PageEdit"
+            Title="<%$ Resources:EditWindowsTitle %>"
+            Width="650"
+            Height="650"
+            AutoShow="false"
+            Modal="true"
+            Hidden="true"
+            Layout="Fit" >
+            
+            <Items>
+              
+                     
+
+                  <ext:GridPanel 
+                    ID="GridPanel3"
+                    runat="server"
+                  
+                    PaddingSpec="0 0 1 0"
+                    Header="false" 
+                    Title="<%$ Resources: WindowTitle %>"
+                    Layout="FitLayout"
+                    Scroll="Vertical"
+                    Border="false"  
+                    Icon="User"
+                    ColumnLines="True" IDMode="Explicit" RenderXType="True">
+
+                   
+                           <Store>
+                                <ext:Store runat="server" ID="store3">
+                                    <Model>
+                                        <ext:Model runat="server">
+                                            <Fields>
+                                               
+                                                 <ext:ModelField Name="dayId" />
+                                                   <ext:ModelField Name="checkIn" />
+                                                   <ext:ModelField Name="checkOut" />
+                                                   <ext:ModelField Name="duration" />
+                                                <ext:ModelField Name="dayIdDateTime" />
+                                                <ext:ModelField Name="strDuration" />
+
+                                               
+                                            </Fields>
+                                        </ext:Model>
+                                    </Model>
+                                </ext:Store>
+                            </Store>
+                   
+
+
+                    <ColumnModel ID="ColumnModel3" runat="server" SortAscText="<%$ Resources:Common , SortAscText %>" SortDescText="<%$ Resources:Common ,SortDescText  %>" SortClearText="<%$ Resources:Common ,SortClearText  %>" ColumnsText="<%$ Resources:Common ,ColumnsText  %>" EnableColumnHide="false" Sortable="false" >
+                        <Columns>
+                         
+                            <%--<ext:DateColumn    ID="ColDayId" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="dayIdDateTime" Flex="2" Hideable="false" />--%>
+                            <ext:Column    CellCls="cellLink" ID="ColDayId2" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDate%>" DataIndex="dayIdDateTime" Flex="2" Hideable="false" />
+                            <ext:Column    CellCls="cellLink" ID="ColCheckIn" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckIn%>" DataIndex="checkIn" Flex="1" Hideable="false" />
+                             <ext:Column    CellCls="cellLink" ID="ColCheckOut" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldCheckOut%>" DataIndex="checkOut" Flex="1" Hideable="false" />
+                             <ext:Column    CellCls="cellLink" ID="ColDuration" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldDuration%>" DataIndex="strDuration" Flex="1" Hideable="false" />
+                               
+                           
+                      
+                         
+                             
+                        
+                           
+
+                          <%--  <ext:Column runat="server"
+                                ID="Column18" Visible="false"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="100"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                Hideable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="deleteRender" />
+                              
+                            </ext:Column>
+                            <ext:Column runat="server"
+                                ID="Column19" Visible="false"
+                                Text="<%$ Resources:Common, Attach %>"
+                                Hideable="false"
+                                Width="60"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+                                <Renderer Fn="attachRender" />
+                            </ext:Column>
+                            
+                           <ext:Column runat="server"
+                                ID="Column20"  Visible="false"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer handler="return editRender();" />
+
+                            </ext:Column>--%>
+
+
+
+                        </Columns>
+                    </ColumnModel>
+                    <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar1" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar3" runat="server" />
+                                <ext:ToolbarFill />
+                                
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                    <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar3"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                               
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
+                
+                    <View>
+                        <ext:GridView ID="GridView3" runat="server" />
+                    </View>
+
+                  
+                    <SelectionModel>
+                        <ext:RowSelectionModel ID="rowSelectionModel2" runat="server" Mode="Single"  StopIDModeInheritance="true" />
+                        <%--<ext:CheckboxSelectionModel ID="CheckboxSelectionModel1" runat="server" Mode="Multi" StopIDModeInheritance="true" />--%>
+                    </SelectionModel>
+                </ext:GridPanel>
+               
+                     
+            </Items>
+                    
+            <Buttons>
+           
+                <ext:Button ID="Button1" runat="server" Text="<%$ Resources:Common , Cancel %>" Icon="Cancel">
+                    <Listeners>
+                        <Click Handler="this.up('window').hide();" />
+                    </Listeners>
+                </ext:Button>
+            </Buttons>
+        </ext:Window>
+
+
           <ext:Window runat="server"  Icon="PageEdit"
             ID="reportsParams"
             Width="600"

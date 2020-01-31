@@ -249,6 +249,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             double OTL = 0;
             double OTO = 0;
+            double TET = 0;
             string getLan = _systemService.SessionHelper.getLangauge();
             Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             DetailedAttendanceWOVariation h = new DetailedAttendanceWOVariation(parameters, getLan);
@@ -271,21 +272,29 @@ namespace AionHR.Web.UI.Forms.Reports
                     Item.departmentName = x.departmentName;
                     Item.effectiveTime = x.effectiveTime;
                     if (x.firstPunch == null)
-                    { Item.firstPunch = "00:00"; }
+                    { Item.firstPunch = ""; }
                     else
                     { Item.firstPunch = x.firstPunch; }
 
                     if (x.lastPunch == null)
-                    { Item.lastPunch = "00:00"; }
+                    { Item.lastPunch = ""; }
                     else
                     { Item.lastPunch = x.lastPunch; }
 
                     Item.dayStatus = x.dayStatus;
                     Item.totEffectiveTime = Convert.ToDouble(x.effectiveTime);//calculateTimeInMinutes(x.effectiveTime);
+                    if (timeformat(Convert.ToInt32(x.effectiveTime)) == "00:00")
+                    {
+                        Item.strEffectiveTime = "";
+                    }
+                    else
+                    {
+                        Item.strEffectiveTime = timeformat(Convert.ToInt32(x.effectiveTime));
+                    }
 
 
                     if (x.LATE_CHECKIN == 0)
-                    { Item.lateCheckin = "00:00"; }
+                    { Item.lateCheckin = ""; }
                     else
                     { Item.lateCheckin = time(Convert.ToInt32(x.LATE_CHECKIN), false); }
                     //Item.lateCheckin = x.variationsList.Where(y => y.timeCode == 31).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 31).First().duration, false) : "00:00";
@@ -353,12 +362,15 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     //Item.overtime = time(Convert.ToInt32(x.netOvertime),false);//x.variationsList.Where(y => y.timeCode == 52).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 52).First().duration, false) : "";
 
-                    
+                    TET += Convert.ToDouble(x.effectiveTime);
+
+                    Item.ttEffTime = timeformat(Convert.ToInt32(TET));
+
                     data.Add(Item);
 
                 });
 
-                
+                //data[data.Count - 1].ttEffTime = timeformat(Convert.ToInt32(TET));
 
                 h.DataSource = data;              
 

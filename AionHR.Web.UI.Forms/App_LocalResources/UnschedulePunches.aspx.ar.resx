@@ -129,6 +129,12 @@
   <data name="FieldBranch" xml:space="preserve">
     <value>فرع</value>
   </data>
+  <data name="FieldCheckIn" xml:space="preserve">
+    <value>دخول</value>
+  </data>
+  <data name="FieldCheckOut" xml:space="preserve">
+    <value>خروج</value>
+  </data>
   <data name="FieldDate" xml:space="preserve">
     <value>تاريخ</value>
   </data>

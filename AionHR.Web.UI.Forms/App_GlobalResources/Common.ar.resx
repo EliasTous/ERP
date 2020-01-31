@@ -1461,4 +1461,7 @@
   <data name="RT303b" xml:space="preserve">
     <value>الدوام اليومي</value>
   </data>
+  <data name="ChangeAutoApprovedVariations" xml:space="preserve">
+    <value>تعديل الفروقات تلقائياً</value>
+  </data>
 </root>

@@ -312,8 +312,12 @@ namespace AionHR.Web.UI.Forms
                 //GEtting the filter from the page
 
                 string rep_params = vals.Text;
-                ReportGenericRequest req = new ReportGenericRequest();
+                //ReportGenericRequest req = new ReportGenericRequest();
+                TVListRequest req = new TVListRequest();
                 req.paramString = rep_params;
+                req.size = "5000";
+                req.startAt = "0";
+                req.sortBy = "date,employeeRef";
 
                 ListResponse<DashBoardTimeVariation> daysResponse = _timeAttendanceService.ChildGetAll<DashBoardTimeVariation>(req);
 

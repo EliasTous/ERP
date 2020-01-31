@@ -1431,4 +1431,16 @@
   <data name="RT303b" xml:space="preserve">
     <value>Daily Attendance</value>
   </data>
+  <data name="ChangeAutoApprovedVariations" xml:space="preserve">
+    <value>Change Auto Approved Variations</value>
+  </data>
+  <data name="FillJustification" xml:space="preserve">
+    <value>Fill Justification</value>
+  </data>
+  <data name="SelectApproval" xml:space="preserve">
+    <value>Select Approval First</value>
+  </data>
+  <data name="SelectDamage" xml:space="preserve">
+    <value>Select Damage</value>
+  </data>
 </root>

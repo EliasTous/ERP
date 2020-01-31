@@ -129,6 +129,12 @@
   <data name="FieldBranch" xml:space="preserve">
     <value>Branch</value>
   </data>
+  <data name="FieldCheckIn" xml:space="preserve">
+    <value>Check In</value>
+  </data>
+  <data name="FieldCheckOut" xml:space="preserve">
+    <value>Check Out</value>
+  </data>
   <data name="FieldDate" xml:space="preserve">
     <value>Date</value>
   </data>

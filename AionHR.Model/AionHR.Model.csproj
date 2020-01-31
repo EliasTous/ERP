@@ -132,6 +132,7 @@
     <Compile Include="Dashboard\DashBoardPL.cs" />
     <Compile Include="Dashboard\DashBoardTimeVariation .cs" />
     <Compile Include="Dashboard\DashBoardTimeVariation2.cs" />
+    <Compile Include="Dashboard\DashBoardTimeVariation3.cs" />
     <Compile Include="Dashboard\DashBoardUL.cs" />
     <Compile Include="Dashboard\DepartmentActivity.cs" />
     <Compile Include="Dashboard\EmployeeBirthday.cs" />
@@ -437,6 +438,7 @@
     <Compile Include="TimeAttendance\TimeAttendanceCompositeObject.cs" />
     <Compile Include="TimeAttendance\TimePerformance.cs" />
     <Compile Include="TimeAttendance\UnschedulePunch.cs" />
+    <Compile Include="TimeAttendance\UnschedulePunchDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Readme\Ext.NET\CHANGELOG.md" />

@@ -529,6 +529,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Auto Approved Variations.
+        /// </summary>
+        internal static string ChangeAutoApprovedVariations {
+            get {
+                return ResourceManager.GetString("ChangeAutoApprovedVariations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
         internal static string ChangePassword {
@@ -1407,6 +1416,15 @@ namespace Resources {
         internal static string Files {
             get {
                 return ResourceManager.GetString("Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill Justification.
+        /// </summary>
+        internal static string FillJustification {
+            get {
+                return ResourceManager.GetString("FillJustification", resourceCulture);
             }
         }
         
@@ -3333,6 +3351,24 @@ namespace Resources {
         internal static string SecurityGroups {
             get {
                 return ResourceManager.GetString("SecurityGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Approval First.
+        /// </summary>
+        internal static string SelectApproval {
+            get {
+                return ResourceManager.GetString("SelectApproval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Damage.
+        /// </summary>
+        internal static string SelectDamage {
+            get {
+                return ResourceManager.GetString("SelectDamage", resourceCulture);
             }
         }
         
