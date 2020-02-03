@@ -526,7 +526,15 @@ namespace AionHR.Web.UI.Forms
 
                             }
                         string scriptCode = "App.direct.DisplayApprovals(\"" + x.dayId + "\",\"" + x.employeeId + "\",\"" + tv.shiftId + "\",\"" + tv.timeCode + "\");";
-                        tvstring += "<span class='time-variation-link' style='color:" + color + "' onclick='" + scriptCode + "'>" + tv.timeName + " : " + tv.duration.ToString() + " " + minutesText.Text + "</span>" + "|"; });
+                        if (tv.timeCode == 20 || tv.timeCode == 41)
+                        {
+                            tvstring += "<span class='time-variation-link' style='color:" + color + "' onclick='" + scriptCode + "'>" + tv.timeName + " : " + tv.duration.ToString() + "</span>" + "|";
+                        }
+                        else
+                        {
+                            tvstring += "<span class='time-variation-link' style='color:" + color + "' onclick='" + scriptCode + "'>" + tv.timeName + " : " + tv.duration.ToString() + " " + minutesText.Text + "</span>" + "|";
+                        }
+                         });
                     if (tvstring.Length > 1)
                         tvstring = tvstring.Substring(0, tvstring.Length - 1);
                     objs.Add(new TimeAttendanceCompositeObject()
