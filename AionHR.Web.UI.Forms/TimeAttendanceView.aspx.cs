@@ -528,7 +528,7 @@ namespace AionHR.Web.UI.Forms
                         string scriptCode = "App.direct.DisplayApprovals(\"" + x.dayId + "\",\"" + x.employeeId + "\",\"" + tv.shiftId + "\",\"" + tv.timeCode + "\");";
                         if (tv.timeCode == 20 || tv.timeCode == 41)
                         {
-                            tvstring += "<span class='time-variation-link' style='color:" + color + "' onclick='" + scriptCode + "'>" + tv.timeName + " : " + tv.duration.ToString() + "</span>" + "|";
+                            tvstring += "<span class='time-variation-link' style='color:" + color + "' onclick='" + scriptCode + "'>" + tv.timeName + "</span>" + "|";
                         }
                         else
                         {
