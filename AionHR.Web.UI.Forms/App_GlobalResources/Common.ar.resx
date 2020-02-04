@@ -1464,4 +1464,10 @@
   <data name="ChangeAutoApprovedVariations" xml:space="preserve">
     <value>تعديل الفروقات تلقائياً</value>
   </data>
+  <data name="RT115A" xml:space="preserve">
+    <value>بصمات قيد الإنتظار</value>
+  </data>
+  <data name="RT308A" xml:space="preserve">
+    <value>سجل البصمات مفصل</value>
+  </data>
 </root>

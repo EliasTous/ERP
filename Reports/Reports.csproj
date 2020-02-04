@@ -244,6 +244,18 @@
     <Compile Include="PayrollPeriodSummary.Designer.cs">
       <DependentUpon>PayrollPeriodSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="PendingPunches.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PendingPunches.Designer.cs">
+      <DependentUpon>PendingPunches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PunchLogDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PunchLogDetails.Designer.cs">
+      <DependentUpon>PunchLogDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="PunchLog\PunchLogReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -767,6 +779,15 @@
     <EmbeddedResource Include="PayrollTimeSchedulesReport.fr.resx">
       <DependentUpon>PayrollTimeSchedulesReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PendingPunches.ar.resx">
+      <DependentUpon>PendingPunches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PendingPunches.fr.resx">
+      <DependentUpon>PendingPunches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PendingPunches.resx">
+      <DependentUpon>PendingPunches.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PeriodSummary.fr.resx">
       <DependentUpon>PeriodSummary.cs</DependentUpon>
     </EmbeddedResource>
@@ -777,6 +798,9 @@
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="PunchLogDetails.resx">
+      <DependentUpon>PunchLogDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PunchLog\PunchLogReport.ar.resx">
       <DependentUpon>PunchLogReport.cs</DependentUpon>
       <SubType>Designer</SubType>

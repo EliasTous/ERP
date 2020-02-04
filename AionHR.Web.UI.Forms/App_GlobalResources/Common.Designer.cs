@@ -2995,6 +2995,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pending Punches.
+        /// </summary>
+        internal static string RT115A {
+            get {
+                return ResourceManager.GetString("RT115A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Payroll.
         /// </summary>
         internal static string RT200 {
@@ -3117,6 +3126,15 @@ namespace Resources {
         internal static string RT308 {
             get {
                 return ResourceManager.GetString("RT308", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punch Log Details.
+        /// </summary>
+        internal static string RT308A {
+            get {
+                return ResourceManager.GetString("RT308A", resourceCulture);
             }
         }
         

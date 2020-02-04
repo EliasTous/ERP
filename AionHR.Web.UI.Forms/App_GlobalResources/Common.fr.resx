@@ -1464,4 +1464,10 @@
   <data name="ChangeAutoApprovedVariations" xml:space="preserve">
     <value>Modifier les variantes approuvées automatiquement</value>
   </data>
+  <data name="RT115A" xml:space="preserve">
+    <value>Poinçons en attente</value>
+  </data>
+  <data name="RT308A" xml:space="preserve">
+    <value>Journal de poinçon détaillé</value>
+  </data>
 </root>

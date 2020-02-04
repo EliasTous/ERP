@@ -1443,4 +1443,10 @@
   <data name="SelectDamage" xml:space="preserve">
     <value>Select Damage</value>
   </data>
+  <data name="RT115A" xml:space="preserve">
+    <value>Pending Punches</value>
+  </data>
+  <data name="RT308A" xml:space="preserve">
+    <value>Punch Log Details</value>
+  </data>
 </root>
