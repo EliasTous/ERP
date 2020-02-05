@@ -312,6 +312,9 @@
   <data name="tableCell15.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
   </data>
+  <data name="tableCell15.TextFormatString" xml:space="preserve">
+    <value>{0:dd/MM/yyyy hh:mm tt}</value>
+  </data>
   <data name="tableCell15.Weight" type="System.Double, mscorlib">
     <value>0.13852374063154158</value>
   </data>

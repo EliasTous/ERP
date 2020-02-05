@@ -228,132 +228,6 @@
   <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopLeft</value>
   </data>
-  <data name="xrLabel30.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>862.1666, 62.87203</value>
-  </data>
-  <data name="xrLabel30.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>100, 23.0000038</value>
-  </data>
-  <data name="xrLabel30.Text" xml:space="preserve">
-    <value>Salary Type</value>
-  </data>
-  <data name="SalaryType.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="xrLabel31.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>962.1666, 62.87203</value>
-  </data>
-  <data name="xrLabel31.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>128.125, 23.0000038</value>
-  </data>
-  <data name="xrLabel31.Text" xml:space="preserve">
-    <value>xrLabel20</value>
-  </data>
-  <data name="Employee.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="xrLabel28.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>962.1666, 10.0000067</value>
-  </data>
-  <data name="xrLabel28.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>128.125, 23.0000038</value>
-  </data>
-  <data name="xrLabel28.Text" xml:space="preserve">
-    <value>xrLabel20</value>
-  </data>
-  <data name="xrLabel29.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>862.1666, 10.0000067</value>
-  </data>
-  <data name="xrLabel29.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>100, 23.0000038</value>
-  </data>
-  <data name="xrLabel29.Text" xml:space="preserve">
-    <value>Employee</value>
-  </data>
-  <data name="xrLabel24.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>510.599274, 10.0000067</value>
-  </data>
-  <data name="xrLabel24.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>100, 23.0000038</value>
-  </data>
-  <data name="xrLabel24.Text" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="Department.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="xrLabel25.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>610.599243, 10.0000067</value>
-  </data>
-  <data name="xrLabel25.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>154.599, 23.0000038</value>
-  </data>
-  <data name="xrLabel25.Text" xml:space="preserve">
-    <value>xrLabel20</value>
-  </data>
-  <data name="Branch.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="xrLabel26.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>610.599243, 62.87203</value>
-  </data>
-  <data name="xrLabel26.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>154.599, 23.0000038</value>
-  </data>
-  <data name="xrLabel26.Text" xml:space="preserve">
-    <value>xrLabel20</value>
-  </data>
-  <data name="xrLabel27.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>510.599274, 62.87203</value>
-  </data>
-  <data name="xrLabel27.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>100, 23.0000038</value>
-  </data>
-  <data name="xrLabel27.Text" xml:space="preserve">
-    <value>Branch</value>
-  </data>
-  <data name="xrLabel22.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>47.9166679, 62.87203</value>
-  </data>
-  <data name="xrLabel22.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>100, 23.0000038</value>
-  </data>
-  <data name="xrLabel22.Text" xml:space="preserve">
-    <value>To</value>
-  </data>
-  <data name="To.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="xrLabel23.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>147.916672, 62.872036</value>
-  </data>
-  <data name="xrLabel23.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>159.455826, 23.0000038</value>
-  </data>
-  <data name="xrLabel23.Text" xml:space="preserve">
-    <value>xrLabel20</value>
-  </data>
-  <data name="From.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="xrLabel21.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>147.916672, 10</value>
-  </data>
-  <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>159.455826, 23.0000038</value>
-  </data>
-  <data name="xrLabel21.Text" xml:space="preserve">
-    <value>xrLabel20</value>
-  </data>
-  <data name="xrLabel20.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>47.9166679, 10.0000067</value>
-  </data>
-  <data name="xrLabel20.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>100, 23.0000038</value>
-  </data>
-  <data name="xrLabel20.Text" xml:space="preserve">
-    <value>From</value>
-  </data>
   <data name="xrLabel17.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>1050.68262, 120.916649</value>
   </data>
@@ -579,6 +453,24 @@
   <data name="pageHeaderBand1.HeightF" type="System.Single, mscorlib">
     <value>142.494049</value>
   </data>
+  <data name="SalaryType.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="Employee.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="Department.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="Branch.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="To.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
+  <data name="From.Description" xml:space="preserve">
+    <value>Parameter1</value>
+  </data>
   <data name="xrTableCell1.Text" xml:space="preserve">
     <value>xrTableCell1</value>
   </data>
@@ -798,12 +690,12 @@
   <data name="ReportFooter.HeightF" type="System.Single, mscorlib">
     <value>54.1666679</value>
   </data>
-  <data name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.Landscape" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

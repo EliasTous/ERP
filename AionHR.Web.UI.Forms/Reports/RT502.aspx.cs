@@ -111,9 +111,9 @@ namespace AionHR.Web.UI.Forms.Reports
                     //   dateRange1.DefaultStartDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                     format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                     ASPxWebDocumentViewer1.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-                    fiscalyearStore.DataSource = GetYears();
-                    fiscalyearStore.DataBind();
-                    fillSalaryType();
+                    //fiscalyearStore.DataSource = GetYears();
+                    //fiscalyearStore.DataBind();
+                    //fillSalaryType();
                 }
                 catch { }
             }
@@ -176,6 +176,24 @@ namespace AionHR.Web.UI.Forms.Reports
             }
         }
 
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
+        }
+
 
 
         [DirectMethod]
@@ -189,96 +207,96 @@ namespace AionHR.Web.UI.Forms.Reports
         }
 
 
-        private ReportCompositeRequest GetRequest()
-        {
-            ReportCompositeRequest req = new ReportCompositeRequest();
+        //private ReportCompositeRequest GetRequest()
+        //{
+        //    ReportCompositeRequest req = new ReportCompositeRequest();
 
-            req.Size = "1000";
-            req.StartAt = "0";
+        //    req.Size = "1000";
+        //    req.StartAt = "0";
 
-            req.Add(jobInfo1.GetJobInfo());
-            req.Add(employeeCombo1.GetEmployee());
-            //  req.Add(dateRange1.GetRange());
-            SalaryTypeParameterSet STP = new SalaryTypeParameterSet();
-            if (string.IsNullOrEmpty(salaryType.Value.ToString()))
-                STP.SalaryTypeId = 0;
-            else
-                STP.SalaryTypeId = Convert.ToInt32(salaryType.Value);
-            req.Add(STP);
-            FiscalYearParameter FYP = new FiscalYearParameter();
-            FYP.fiscalYear = Convert.ToInt32(fiscalYear.SelectedItem.Value);
-            req.Add(FYP);
-            PeriodIdParameter PIP = new PeriodIdParameter();
-            PIP.periodId = Convert.ToInt32(periodId.SelectedItem.Value);
-            req.Add(PIP);
+        //    req.Add(jobInfo1.GetJobInfo());
+        //    req.Add(employeeCombo1.GetEmployee());
+        //    //  req.Add(dateRange1.GetRange());
+        //    SalaryTypeParameterSet STP = new SalaryTypeParameterSet();
+        //    if (string.IsNullOrEmpty(salaryType.Value.ToString()))
+        //        STP.SalaryTypeId = 0;
+        //    else
+        //        STP.SalaryTypeId = Convert.ToInt32(salaryType.Value);
+        //    req.Add(STP);
+        //    FiscalYearParameter FYP = new FiscalYearParameter();
+        //    FYP.fiscalYear = Convert.ToInt32(fiscalYear.SelectedItem.Value);
+        //    req.Add(FYP);
+        //    PeriodIdParameter PIP = new PeriodIdParameter();
+        //    PIP.periodId = Convert.ToInt32(periodId.SelectedItem.Value);
+        //    req.Add(PIP);
 
-            return req;
-        }
+        //    return req;
+        //}
 
-        private void FillReport(bool isInitial = false, bool throwException = true)
-        {
+        //private void FillReport(bool isInitial = false, bool throwException = true)
+        //{
 
-            ReportCompositeRequest req = GetRequest();
+        //    ReportCompositeRequest req = GetRequest();
 
-            ListResponse<AionHR.Model.Reports.RT502> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT502>(req);
-            if (!resp.Success)
-                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
-            resp.Items.ForEach(x =>
-            {
-                x.cvOvertime = Math.Round(x.cvOvertime, 2);
-                x.cvLateness = Math.Round(x.cvLateness, 2);
-                x.cvAbsence = Math.Round(x.cvAbsence, 2);
-                x.cvDisappearance = Math.Round(x.cvDisappearance, 2);
-                x.cvMissedPunches = Math.Round(x.cvMissedPunches, 2);
-            });
-
-
-
-            PayrollPeriodTimeCodes h = new PayrollPeriodTimeCodes();
-            h.DataSource = resp.Items;
-
-            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
-            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
-            string d = periodId.SelectedItem.Text.ToString().Split('(')[1].Split(')')[0];
-
-
-            string user = _systemService.SessionHelper.GetCurrentUser();
-            h.Parameters["From"].Value = d.Split('-')[0].ToString().Trim();
-            h.Parameters["To"].Value = d.Split('-')[1].Trim();
-            h.Parameters["User"].Value = user;
-            if (resp.Items.Count > 0)
-            {
-                if (req.Parameters["_departmentId"] != "0")
-                    h.Parameters["Department"].Value = jobInfo1.GetDepartment();
-                else
-                    h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_branchId"] != "0")
-                    h.Parameters["Branch"].Value = jobInfo1.GetBranch();
-                else
-                    h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_employeeId"] != "0")
-                    h.Parameters["Employee"].Value = resp.Items[0].employeeName;
-                else
-                    h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
-
-                if (req.Parameters["_salaryType"] != "0")
-                    h.Parameters["SalaryType"].Value = salaryType.SelectedItem.Text;
-                else
-                    h.Parameters["SalaryType"].Value = GetGlobalResourceObject("Common", "All");
+        //    ListResponse<AionHR.Model.Reports.RT502> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT502>(req);
+        //    if (!resp.Success)
+        //        Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+        //    resp.Items.ForEach(x =>
+        //    {
+        //        x.cvOvertime = Math.Round(x.cvOvertime, 2);
+        //        x.cvLateness = Math.Round(x.cvLateness, 2);
+        //        x.cvAbsence = Math.Round(x.cvAbsence, 2);
+        //        x.cvDisappearance = Math.Round(x.cvDisappearance, 2);
+        //        x.cvMissedPunches = Math.Round(x.cvMissedPunches, 2);
+        //    });
 
 
 
-            }
+        //    PayrollPeriodTimeCodes h = new PayrollPeriodTimeCodes();
+        //    h.DataSource = resp.Items;
+
+        //    h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+        //    h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+        //    string d = periodId.SelectedItem.Text.ToString().Split('(')[1].Split(')')[0];
 
 
-            h.CreateDocument();
+        //    string user = _systemService.SessionHelper.GetCurrentUser();
+        //    h.Parameters["From"].Value = d.Split('-')[0].ToString().Trim();
+        //    h.Parameters["To"].Value = d.Split('-')[1].Trim();
+        //    h.Parameters["User"].Value = user;
+        //    if (resp.Items.Count > 0)
+        //    {
+        //        if (req.Parameters["_departmentId"] != "0")
+        //            h.Parameters["Department"].Value = jobInfo1.GetDepartment();
+        //        else
+        //            h.Parameters["Department"].Value = GetGlobalResourceObject("Common", "All");
+
+        //        if (req.Parameters["_branchId"] != "0")
+        //            h.Parameters["Branch"].Value = jobInfo1.GetBranch();
+        //        else
+        //            h.Parameters["Branch"].Value = GetGlobalResourceObject("Common", "All");
+
+        //        if (req.Parameters["_employeeId"] != "0")
+        //            h.Parameters["Employee"].Value = resp.Items[0].employeeName;
+        //        else
+        //            h.Parameters["Employee"].Value = GetGlobalResourceObject("Common", "All");
+
+        //        if (req.Parameters["_salaryType"] != "0")
+        //            h.Parameters["SalaryType"].Value = salaryType.SelectedItem.Text;
+        //        else
+        //            h.Parameters["SalaryType"].Value = GetGlobalResourceObject("Common", "All");
 
 
-            ASPxWebDocumentViewer1.DataBind();
-            ASPxWebDocumentViewer1.OpenReport(h);
-        }
+
+        //    }
+
+
+        //    h.CreateDocument();
+
+
+        //    ASPxWebDocumentViewer1.DataBind();
+        //    ASPxWebDocumentViewer1.OpenReport(h);
+        //}
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
@@ -292,6 +310,48 @@ namespace AionHR.Web.UI.Forms.Reports
             }
 
         }
+
+        private void FillReport(bool isInitial = false, bool throwException = true)
+        {
+
+            string rep_params = vals.Text;
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
+            ListResponse<AionHR.Model.Reports.RT502> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT502>(req);
+
+            if (!resp.Success)
+                Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
+
+            resp.Items.ForEach(x =>
+                {
+                    x.cvOvertime = Math.Round(x.cvOvertime, 2);
+                    x.cvLateness = Math.Round(x.cvLateness, 2);
+                    x.cvAbsence = Math.Round(x.cvAbsence, 2);
+                    x.cvDisappearance = Math.Round(x.cvDisappearance, 2);
+                    x.cvMissedPunches = Math.Round(x.cvMissedPunches, 2);
+                });
+
+            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+
+            PayrollPeriodTimeCodes h = new PayrollPeriodTimeCodes(parameters);
+            h.DataSource = resp.Items;
+
+            h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
+            h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+
+
+            string user = _systemService.SessionHelper.GetCurrentUser();
+            //h.Parameters["User"].Value = _systemService.SessionHelper.GetCurrentUser();
+            //   h.Parameters["Filters"].Value = texts.Text;
+            h.DataSource = resp.Items;
+
+            h.CreateDocument();
+
+
+            ASPxWebDocumentViewer1.DataBind();
+            ASPxWebDocumentViewer1.OpenReport(h);
+        }
+
         protected void Unnamed_Click(object sender, EventArgs e)
         {
 
@@ -320,42 +380,42 @@ namespace AionHR.Web.UI.Forms.Reports
             return _systemService.SessionHelper.Get("nameFormat").ToString();
         }
 
-        protected void fiscalPeriodsStore_ReadData(object sender, StoreReadDataEventArgs e)
-        {
-            FiscalPeriodsListRequest req = new FiscalPeriodsListRequest();
-            try
-            {
-                req.Year = fiscalYear.Value.ToString();
-                if (!string.IsNullOrEmpty(salaryType.Value.ToString()))
-                    req.PeriodType = Convert.ToInt32(salaryType.Value.ToString());
-                else
-                {
-                    return;
-                }
-                if (string.IsNullOrEmpty(req.Year))
-                {
-                    //    X.Call("FiscalYearError", Resources.Errors.);
-                    return;
+        //protected void fiscalPeriodsStore_ReadData(object sender, StoreReadDataEventArgs e)
+        //{
+        //    FiscalPeriodsListRequest req = new FiscalPeriodsListRequest();
+        //    try
+        //    {
+        //        req.Year = fiscalYear.Value.ToString();
+        //        if (!string.IsNullOrEmpty(salaryType.Value.ToString()))
+        //            req.PeriodType = Convert.ToInt32(salaryType.Value.ToString());
+        //        else
+        //        {
+        //            return;
+        //        }
+        //        if (string.IsNullOrEmpty(req.Year))
+        //        {
+        //            //    X.Call("FiscalYearError", Resources.Errors.);
+        //            return;
 
-                }
-                req.Status = "0";
+        //        }
+        //        req.Status = "0";
 
-                ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
-                if (!resp.Success)
-                {
-                    X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
-                    X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
-                    return;
-                }
-                List<object> obs = new List<Object>();
-                resp.Items.ForEach(x => obs.Add(new { recordId = x.periodId, name = x.GetFriendlyName(GetLocalResourceObject("Month").ToString(), GetLocalResourceObject("Week").ToString(), GetLocalResourceObject("Weeks").ToString(), _systemService.SessionHelper.GetDateformat()) }));
-                fiscalPeriodsStore.DataSource = obs;
-                fiscalPeriodsStore.DataBind();
+        //        ListResponse<FiscalPeriod> resp = _payrollService.ChildGetAll<FiscalPeriod>(req);
+        //        if (!resp.Success)
+        //        {
+        //            X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
+        //            X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", resp.ErrorCode) != null ? GetGlobalResourceObject("Errors", resp.ErrorCode).ToString() + "<br>" + GetGlobalResourceObject("Errors", "ErrorLogId") + resp.LogId : resp.Summary).Show();
+        //            return;
+        //        }
+        //        List<object> obs = new List<Object>();
+        //        resp.Items.ForEach(x => obs.Add(new { recordId = x.periodId, name = x.GetFriendlyName(GetLocalResourceObject("Month").ToString(), GetLocalResourceObject("Week").ToString(), GetLocalResourceObject("Weeks").ToString(), _systemService.SessionHelper.GetDateformat()) }));
+        //        fiscalPeriodsStore.DataSource = obs;
+        //        fiscalPeriodsStore.DataBind();
 
 
-            }
-            catch { }
-        }
+        //    }
+        //    catch { }
+        //}
         private List<FiscalYear> GetYears()
         {
             ListRequest l = new ListRequest();
@@ -368,19 +428,19 @@ namespace AionHR.Web.UI.Forms.Reports
             }
             return resp.Items;
         }
-        private void fillSalaryType()
-        {
-            //XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+        //private void fillSalaryType()
+        //{
+        //    //XMLDictionaryListRequest request = new XMLDictionaryListRequest();
 
-            //request.database = "2";
-            //ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
-            //if (!resp.Success)
-            //{
-            //    Common.errorMessage(resp);
-            //    return;
-            //}
-            salaryTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "2");
-            salaryTypeStore.DataBind();
-        }
+        //    //request.database = "2";
+        //    //ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+        //    //if (!resp.Success)
+        //    //{
+        //    //    Common.errorMessage(resp);
+        //    //    return;
+        //    //}
+        //    salaryTypeStore.DataSource = Common.XMLDictionaryList(_systemService, "2");
+        //    salaryTypeStore.DataBind();
+        //}
     }
 }

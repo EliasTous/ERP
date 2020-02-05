@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
+using System.Collections.Generic;
+using System.Drawing.Printing;
 
 /// <summary>
 /// Summary description for PayrollPeriodTimeCodes
@@ -64,24 +66,12 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel4;
     private XRLabel xrLabel3;
     private XRLabel xrLabel2;
-    private XRLabel xrLabel30;
-    private XRLabel xrLabel31;
     private DevExpress.XtraReports.Parameters.Parameter SalaryType;
-    private XRLabel xrLabel28;
     private DevExpress.XtraReports.Parameters.Parameter Employee;
-    private XRLabel xrLabel29;
-    private XRLabel xrLabel24;
-    private XRLabel xrLabel25;
     private DevExpress.XtraReports.Parameters.Parameter Department;
-    private XRLabel xrLabel26;
     private DevExpress.XtraReports.Parameters.Parameter Branch;
-    private XRLabel xrLabel27;
-    private XRLabel xrLabel22;
-    private XRLabel xrLabel23;
     private DevExpress.XtraReports.Parameters.Parameter To;
-    private XRLabel xrLabel21;
     private DevExpress.XtraReports.Parameters.Parameter From;
-    private XRLabel xrLabel20;
     private XRLabel xrLabel33;
     private DevExpress.XtraReports.Parameters.Parameter User;
     private XRLabel xrLabel32;
@@ -104,12 +94,86 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    public PayrollPeriodTimeCodes()
+    public PayrollPeriodTimeCodes(Dictionary<string, string> parameters)
     {
         InitializeComponent();
+        printHeader(parameters);
         //
         // TODO: Add constructor logic here
         //
+    }
+
+    private void printHeader(Dictionary<string, string> parameters)
+    {
+        if (parameters.Count == 0)
+            return;
+
+
+        XRTable table = new XRTable();
+        table.BeginInit();
+
+
+        table.LocationF = new PointF(0, 0);
+        int count = 0;
+        XRTableRow row = new XRTableRow();
+
+        foreach (KeyValuePair<string, string> item in parameters)
+        {
+
+            XRTableCell cell = new XRTableCell();
+
+            cell.Text = item.Key;
+
+            cell.BackColor = Color.Gray;
+            cell.ForeColor = Color.White;
+
+            XRTableCell valueCell = new XRTableCell();
+
+            valueCell.Text = item.Value;
+
+            row.Cells.Add(cell);
+            row.Cells.Add(valueCell);
+
+            count++;
+            if (count % 4 == 0)
+            {
+                table.Rows.Add(row);
+                row = new XRTableRow();
+            }
+
+
+
+
+
+        }
+        if (count % 4 != 0)
+        {
+            for (int i = 0; i < (4 - (count % 4)) * 2; i++)
+            {
+                XRTableCell cell = new XRTableCell();
+
+
+
+                row.Cells.Add(cell);
+            }
+            table.Rows.Add(row);
+        }
+        table.BeforePrint += new PrintEventHandler(table_BeforePrint);
+        table.AdjustSize();
+        table.EndInit();
+
+
+
+        this.pageHeaderBand1.Controls.Add(table);
+
+
+    }
+
+    private void table_BeforePrint(object sender, PrintEventArgs e)
+    {
+        XRTable table = ((XRTable)sender);
+        table.LocationF = new DevExpress.Utils.PointFloat(0F, 0F);
+        table.WidthF = this.PageWidth - this.Margins.Left - this.Margins.Right;
     }
 
     /// <summary> 
@@ -164,24 +228,12 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.pageHeaderBand1 = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.xrLabel30 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
             this.SalaryType = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             this.Employee = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel29 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
             this.Department = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
             this.Branch = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
             this.To = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
             this.From = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
@@ -411,18 +463,6 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             // pageHeaderBand1
             // 
             this.pageHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel30,
-            this.xrLabel31,
-            this.xrLabel28,
-            this.xrLabel29,
-            this.xrLabel24,
-            this.xrLabel25,
-            this.xrLabel26,
-            this.xrLabel27,
-            this.xrLabel22,
-            this.xrLabel23,
-            this.xrLabel21,
-            this.xrLabel20,
             this.xrLabel17,
             this.xrLabel18,
             this.xrLabel19,
@@ -445,20 +485,6 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.pageHeaderBand1.Name = "pageHeaderBand1";
             this.pageHeaderBand1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.pageHeaderBand1_BeforePrint);
             // 
-            // xrLabel30
-            // 
-            resources.ApplyResources(this.xrLabel30, "xrLabel30");
-            this.xrLabel30.Name = "xrLabel30";
-            this.xrLabel30.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel31
-            // 
-            this.xrLabel31.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.SalaryType, "Text", "")});
-            resources.ApplyResources(this.xrLabel31, "xrLabel31");
-            this.xrLabel31.Name = "xrLabel31";
-            this.xrLabel31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
             // SalaryType
             // 
             resources.ApplyResources(this.SalaryType, "SalaryType");
@@ -466,39 +492,11 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.SalaryType.ValueInfo = " ";
             this.SalaryType.Visible = false;
             // 
-            // xrLabel28
-            // 
-            this.xrLabel28.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Employee, "Text", "")});
-            resources.ApplyResources(this.xrLabel28, "xrLabel28");
-            this.xrLabel28.Name = "xrLabel28";
-            this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
             // Employee
             // 
             resources.ApplyResources(this.Employee, "Employee");
             this.Employee.Name = "Employee";
             this.Employee.Visible = false;
-            // 
-            // xrLabel29
-            // 
-            resources.ApplyResources(this.xrLabel29, "xrLabel29");
-            this.xrLabel29.Name = "xrLabel29";
-            this.xrLabel29.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel24
-            // 
-            resources.ApplyResources(this.xrLabel24, "xrLabel24");
-            this.xrLabel24.Name = "xrLabel24";
-            this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel25
-            // 
-            this.xrLabel25.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Department, "Text", "")});
-            resources.ApplyResources(this.xrLabel25, "xrLabel25");
-            this.xrLabel25.Name = "xrLabel25";
-            this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
             // Department
             // 
@@ -506,39 +504,11 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.Department.Name = "Department";
             this.Department.Visible = false;
             // 
-            // xrLabel26
-            // 
-            this.xrLabel26.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Branch, "Text", "")});
-            resources.ApplyResources(this.xrLabel26, "xrLabel26");
-            this.xrLabel26.Name = "xrLabel26";
-            this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
             // Branch
             // 
             resources.ApplyResources(this.Branch, "Branch");
             this.Branch.Name = "Branch";
             this.Branch.Visible = false;
-            // 
-            // xrLabel27
-            // 
-            resources.ApplyResources(this.xrLabel27, "xrLabel27");
-            this.xrLabel27.Name = "xrLabel27";
-            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel22
-            // 
-            resources.ApplyResources(this.xrLabel22, "xrLabel22");
-            this.xrLabel22.Name = "xrLabel22";
-            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
-            // xrLabel23
-            // 
-            this.xrLabel23.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.To, "Text", "")});
-            resources.ApplyResources(this.xrLabel23, "xrLabel23");
-            this.xrLabel23.Name = "xrLabel23";
-            this.xrLabel23.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
             // To
             // 
@@ -546,25 +516,11 @@ public class PayrollPeriodTimeCodes : DevExpress.XtraReports.UI.XtraReport
             this.To.Name = "To";
             this.To.Visible = false;
             // 
-            // xrLabel21
-            // 
-            this.xrLabel21.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.From, "Text", "")});
-            resources.ApplyResources(this.xrLabel21, "xrLabel21");
-            this.xrLabel21.Name = "xrLabel21";
-            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            // 
             // From
             // 
             resources.ApplyResources(this.From, "From");
             this.From.Name = "From";
             this.From.Visible = false;
-            // 
-            // xrLabel20
-            // 
-            resources.ApplyResources(this.xrLabel20, "xrLabel20");
-            this.xrLabel20.Name = "xrLabel20";
-            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
             // xrLabel17
             // 

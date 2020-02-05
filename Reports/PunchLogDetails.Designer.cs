@@ -46,7 +46,6 @@
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -55,7 +54,6 @@
             this.table2 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -180,7 +178,6 @@
             // 
             this.tableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.tableCell1,
-            this.tableCell2,
             this.tableCell3,
             this.tableCell4,
             this.tableCell5,
@@ -196,13 +193,6 @@
             this.tableCell1.StylePriority.UseBorders = false;
             this.tableCell1.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.tableCell1, "tableCell1");
-            // 
-            // tableCell2
-            // 
-            this.tableCell2.Name = "tableCell2";
-            this.tableCell2.StyleName = "DetailCaption1";
-            this.tableCell2.StylePriority.UseTextAlignment = false;
-            resources.ApplyResources(this.tableCell2, "tableCell2");
             // 
             // tableCell3
             // 
@@ -251,7 +241,6 @@
             // 
             this.tableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.tableCell7,
-            this.tableCell8,
             this.tableCell9,
             this.tableCell10,
             this.tableCell11,
@@ -269,15 +258,6 @@
             this.tableCell7.StylePriority.UseBorders = false;
             this.tableCell7.StylePriority.UseTextAlignment = false;
             resources.ApplyResources(this.tableCell7, "tableCell7");
-            // 
-            // tableCell8
-            // 
-            this.tableCell8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[employeeName]")});
-            this.tableCell8.Name = "tableCell8";
-            this.tableCell8.StyleName = "DetailData1";
-            this.tableCell8.StylePriority.UseTextAlignment = false;
-            resources.ApplyResources(this.tableCell8, "tableCell8");
             // 
             // tableCell9
             // 
@@ -365,7 +345,6 @@
         private DevExpress.XtraReports.UI.XRTable table1;
         private DevExpress.XtraReports.UI.XRTableRow tableRow1;
         private DevExpress.XtraReports.UI.XRTableCell tableCell1;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell2;
         private DevExpress.XtraReports.UI.XRTableCell tableCell3;
         private DevExpress.XtraReports.UI.XRTableCell tableCell4;
         private DevExpress.XtraReports.UI.XRTableCell tableCell5;
@@ -374,7 +353,6 @@
         private DevExpress.XtraReports.UI.XRTable table2;
         private DevExpress.XtraReports.UI.XRTableRow tableRow2;
         private DevExpress.XtraReports.UI.XRTableCell tableCell7;
-        private DevExpress.XtraReports.UI.XRTableCell tableCell8;
         private DevExpress.XtraReports.UI.XRTableCell tableCell9;
         private DevExpress.XtraReports.UI.XRTableCell tableCell10;
         private DevExpress.XtraReports.UI.XRTableCell tableCell11;
