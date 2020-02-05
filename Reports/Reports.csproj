@@ -798,6 +798,12 @@
       <DependentUpon>PointInTimeSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="PunchLogDetails.ar.resx">
+      <DependentUpon>PunchLogDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PunchLogDetails.fr.resx">
+      <DependentUpon>PunchLogDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PunchLogDetails.resx">
       <DependentUpon>PunchLogDetails.cs</DependentUpon>
     </EmbeddedResource>

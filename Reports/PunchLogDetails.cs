@@ -14,7 +14,7 @@ namespace Reports
         {
             InitializeComponent();
             printHeader(parameters);
-
+            /*
             if (getLan == "fr")
             {
                 tableCell1.Text = "Reference";
@@ -37,6 +37,7 @@ namespace Reports
                 label1.Text = "سجل البصمات مفصل";
 
             }
+            */
         }
 
         private void printHeader(Dictionary<string, string> parameters)

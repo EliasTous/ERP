@@ -118,27 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>Poinçons en attente</value>
+    <value>Journal de poinçon détaillé</value>
+  </data>
+  <data name="pageInfo2.TextFormatString" xml:space="preserve">
+    <value>Page {0} of {1}</value>
   </data>
   <data name="tableCell1.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="tableCell2.Text" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="tableCell3.Text" xml:space="preserve">
     <value>Reference</value>
   </data>
-  <data name="tableCell5.Text" xml:space="preserve">
-    <value>nom</value>
+  <data name="tableCell2.Text" xml:space="preserve">
+    <value>Employé</value>
   </data>
-  <data name="tableCell6.Text" xml:space="preserve">
+  <data name="tableCell3.Text" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="tableCell4.Text" xml:space="preserve">
+    <value>UDID</value>
+  </data>
+  <data name="tableCell5.Text" xml:space="preserve">
     <value>Numero Serie</value>
   </data>
-  <data name="tableCell7.text" xml:space="preserve">
-    <value>Temps</value>
-  </data>
-  <data name="tableCell8.Text" xml:space="preserve">
-    <value>UDID</value>
+  <data name="tableCell6.Text" xml:space="preserve">
+    <value>ID</value>
   </data>
 </root>

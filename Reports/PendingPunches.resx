@@ -120,4 +120,235 @@
   <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="TopMargin.HeightF" type="System.Single, mscorlib">
+    <value>44.79167</value>
+  </data>
+  <assembly alias="DevExpress.Data.v18.2" name="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="pageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>6, 6</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>159.5547, 23</value>
+  </data>
+  <data name="pageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>521.1204, 6</value>
+  </data>
+  <data name="pageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>95.87964, 23</value>
+  </data>
+  <data name="pageInfo2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopRight</value>
+  </data>
+  <data name="pageInfo2.TextFormatString" xml:space="preserve">
+    <value>Page {0} of {1}</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 17pt, style=Bold</value>
+  </data>
+  <data name="label1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>165.5547, 6</value>
+  </data>
+  <data name="label1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>268.7113, 34.20834</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Pending Punches</value>
+  </data>
+  <data name="label1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>TopCenter</value>
+  </data>
+  <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
+    <value>40.20834</value>
+  </data>
+  <data name="table1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>0, 0</value>
+  </data>
+  <data name="tableCell1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 10pt, style=Bold</value>
+  </data>
+  <data name="tableCell1.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="tableCell1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell1.Weight" type="System.Double, mscorlib">
+    <value>0.073929336862483749</value>
+  </data>
+  <data name="tableCell2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 10pt, style=Bold</value>
+  </data>
+  <data name="tableCell2.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="tableCell2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell2.Weight" type="System.Double, mscorlib">
+    <value>0.19011332427811634</value>
+  </data>
+  <data name="tableCell3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 10pt, style=Bold</value>
+  </data>
+  <data name="tableCell3.Text" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="tableCell3.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell3.Weight" type="System.Double, mscorlib">
+    <value>0.17205708334890849</value>
+  </data>
+  <data name="tableCell5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 10pt, style=Bold</value>
+  </data>
+  <data name="tableCell5.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="tableCell5.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell5.Weight" type="System.Double, mscorlib">
+    <value>0.15041716361159913</value>
+  </data>
+  <data name="tableCell6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 10pt, style=Bold</value>
+  </data>
+  <data name="tableCell6.Text" xml:space="preserve">
+    <value>Serial</value>
+  </data>
+  <data name="tableCell6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell6.Weight" type="System.Double, mscorlib">
+    <value>0.10609237695234625</value>
+  </data>
+  <data name="tableCell7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 10pt, style=Bold</value>
+  </data>
+  <data name="tableCell7.Text" xml:space="preserve">
+    <value>Clock </value>
+  </data>
+  <data name="tableCell7.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell7.Weight" type="System.Double, mscorlib">
+    <value>0.13852375279963491</value>
+  </data>
+  <data name="tableCell8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 10pt, style=Bold</value>
+  </data>
+  <data name="tableCell8.Text" xml:space="preserve">
+    <value>UDID</value>
+  </data>
+  <data name="tableCell8.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell8.Weight" type="System.Double, mscorlib">
+    <value>0.15291803203509627</value>
+  </data>
+  <data name="tableRow1.Weight" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="table1.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>617, 28</value>
+  </data>
+  <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="table2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>0, 0</value>
+  </data>
+  <data name="tableCell9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9pt</value>
+  </data>
+  <data name="tableCell9.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell9.Weight" type="System.Double, mscorlib">
+    <value>0.073929331451158847</value>
+  </data>
+  <data name="tableCell10.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9pt</value>
+  </data>
+  <data name="tableCell10.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell10.Weight" type="System.Double, mscorlib">
+    <value>0.19011330535325452</value>
+  </data>
+  <data name="tableCell11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9pt</value>
+  </data>
+  <data name="tableCell11.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell11.Weight" type="System.Double, mscorlib">
+    <value>0.17205707118081515</value>
+  </data>
+  <data name="tableCell13.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9pt</value>
+  </data>
+  <data name="tableCell13.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell13.Weight" type="System.Double, mscorlib">
+    <value>0.15041715144350579</value>
+  </data>
+  <data name="tableCell14.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9pt</value>
+  </data>
+  <data name="tableCell14.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell14.Weight" type="System.Double, mscorlib">
+    <value>0.10609236478425289</value>
+  </data>
+  <data name="tableCell15.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9pt</value>
+  </data>
+  <data name="tableCell15.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell15.Weight" type="System.Double, mscorlib">
+    <value>0.13852374063154158</value>
+  </data>
+  <data name="tableCell16.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 9pt</value>
+  </data>
+  <data name="tableCell16.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="tableCell16.Weight" type="System.Double, mscorlib">
+    <value>0.15291808512031468</value>
+  </data>
+  <data name="tableRow2.Weight" type="System.Double, mscorlib">
+    <value>11.5</value>
+  </data>
+  <data name="table2.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>617, 40.12499</value>
+  </data>
+  <data name="Detail.HeightF" type="System.Single, mscorlib">
+    <value>40.12499</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9.75pt</value>
+  </data>
+  <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
+    <value>100, 100, 45, 100</value>
+  </data>
+  <data name="$this.PageHeight" type="System.Int32, mscorlib">
+    <value>1169</value>
+  </data>
+  <data name="$this.PageWidth" type="System.Int32, mscorlib">
+    <value>827</value>
+  </data>
+  <data name="$this.PaperKind" type="System.Drawing.Printing.PaperKind, System.Drawing">
+    <value>A4</value>
+  </data>
 </root>

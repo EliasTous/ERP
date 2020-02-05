@@ -14,6 +14,7 @@ namespace Reports
         public PendingPunches(Dictionary<string, string> parameters, string getLan)
         {
             InitializeComponent();
+            /*
             if (getLan == "fr")
             {
                 tableCell1.Text = "ID";
@@ -38,7 +39,7 @@ namespace Reports
                 tableCell8.Text = "UDID";
                 label1.Text = "بصمات قيد الإنتظار";
             }
-
+            */
         }
 
     }
