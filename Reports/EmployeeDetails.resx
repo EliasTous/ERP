@@ -256,7 +256,7 @@
     <value>TopLeft</value>
   </data>
   <data name="TopMargin.HeightF" type="System.Single, mscorlib">
-    <value>27</value>
+    <value>18.6666641</value>
   </data>
   <data name="TopMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopLeft</value>
@@ -602,20 +602,11 @@
   <data name="pageFooterBand1.HeightF" type="System.Single, mscorlib">
     <value>76.46484</value>
   </data>
-  <data name="xrLabel39.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>723.798157, 56.6986847</value>
-  </data>
-  <data name="xrLabel39.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>235.2221, 23</value>
-  </data>
-  <data name="xrLabel39.Text" xml:space="preserve">
-    <value>No Results Found</value>
-  </data>
   <data name="xrLabel52.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>723.798157, 7.19870138</value>
+    <value>542.8836, 0</value>
   </data>
   <data name="xrLabel52.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>235.2221, 35</value>
+    <value>579.378845, 35</value>
   </data>
   <data name="xrLabel52.Text" xml:space="preserve">
     <value>Employee Details</value>
@@ -626,8 +617,17 @@
   <data name="reportHeaderBand1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopCenter</value>
   </data>
+  <data name="xrLabel39.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
+    <value>723.798157, 109.932785</value>
+  </data>
+  <data name="xrLabel39.SizeF" type="System.Drawing.SizeF, System.Drawing">
+    <value>235.2221, 23</value>
+  </data>
+  <data name="xrLabel39.Text" xml:space="preserve">
+    <value>No Results Found</value>
+  </data>
   <data name="PageHeader.HeightF" type="System.Single, mscorlib">
-    <value>43.20511</value>
+    <value>132.932785</value>
   </data>
   <data name="PageHeader.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopCenter</value>
@@ -642,7 +642,7 @@
     <value>True</value>
   </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>0, 0, 27, 22</value>
+    <value>0, 0, 19, 22</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
     <value>1169</value>

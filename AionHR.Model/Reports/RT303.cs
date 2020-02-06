@@ -53,7 +53,6 @@ namespace AionHR.Model.Reports
         public int punchCount { get; set; }
         public double netLateness { get; set; }
         public double netOvertime { get; set; }
-        public int dayStatusId { get; set; }
 
 
         public string departmentName { get; set; }

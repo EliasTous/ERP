@@ -260,8 +260,7 @@
     <value>161.583191, 22.9999924</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
-    <value>Shift Leave Without Excuse
-</value>
+    <value>Absence</value>
   </data>
   <data name="xrLabel19.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>

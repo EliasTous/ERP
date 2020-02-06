@@ -327,6 +327,11 @@ namespace Reports.ShiftLogs
             
 
         }
+
+        private void xrPivotGrid1_CustomRowHeight(object sender, PivotCustomRowHeightEventArgs e)
+        {
+            e.RowHeight = 40;
+        }
     }
 
 }

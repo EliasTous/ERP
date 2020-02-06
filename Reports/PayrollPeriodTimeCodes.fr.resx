@@ -484,7 +484,7 @@
     <value>134.408844, 23</value>
   </data>
   <data name="xrLabel19.Text" xml:space="preserve">
-    <value>disparaître</value>
+    <value>Absence</value>
   </data>
   <data name="xrLabel19.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>

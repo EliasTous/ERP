@@ -104,6 +104,7 @@
             this.xrPivotGrid1.CustomCellDisplayText += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotCellDisplayTextEventArgs>(this.xrPivotGrid1_CustomCellDisplayText);
             this.xrPivotGrid1.CustomCellValue += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotCellValueEventArgs>(this.xrPivotGrid1_CustomCellValue);
             this.xrPivotGrid1.CustomColumnWidth += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotCustomColumnWidthEventArgs>(this.xrPivotGrid1_CustomColumnWidth);
+            this.xrPivotGrid1.CustomRowHeight += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotCustomRowHeightEventArgs>(this.xrPivotGrid1_CustomRowHeight);
             this.xrPivotGrid1.CustomSummary += new System.EventHandler<DevExpress.XtraReports.UI.PivotGrid.PivotGridCustomSummaryEventArgs>(this.ASPxPivotGrid1_CustomSummary);
             // 
             // shiftLogsDS1
