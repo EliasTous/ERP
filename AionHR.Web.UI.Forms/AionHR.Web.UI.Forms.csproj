@@ -204,6 +204,7 @@
     <Content Include="PayrollGenerationSelfServices.aspx" />
     <Content Include="ProcessNotifications.aspx" />
     <Content Include="ReportParameterBrowser.aspx" />
+    <Content Include="Reports\Controls\BiometricFilter.ascx" />
     <Content Include="Reports\Controls\ExpressionFilter.ascx" />
     <Content Include="Reports\Controls\CertificateLevelFilter.ascx" />
     <Content Include="Reports\Controls\FiscalYearFilter.ascx" />
@@ -1057,6 +1058,13 @@
     </Compile>
     <Compile Include="ReportParameterBrowser.aspx.designer.cs">
       <DependentUpon>ReportParameterBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Controls\BiometricFilter.ascx.cs">
+      <DependentUpon>BiometricFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Controls\BiometricFilter.ascx.designer.cs">
+      <DependentUpon>BiometricFilter.ascx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Controls\ExpressionFilter.ascx.cs">
       <DependentUpon>ExpressionFilter.ascx</DependentUpon>

@@ -221,10 +221,11 @@ namespace AionHR.Web.UI.Forms.Reports
           
             req.Size = "1000";
             req.sortBy = "dayId";
-           
 
 
-            ListResponse<AttendanceDay> resp = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+
+            //ListResponse<AttendanceDay> resp = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+            ListResponse<AttendanceDay> resp = _reportsService.ChildGetAll<AttendanceDay>(req);
             //if (!resp.Success)
             //{
 

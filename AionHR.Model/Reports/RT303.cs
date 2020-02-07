@@ -63,5 +63,26 @@ namespace AionHR.Model.Reports
         public string strEffectiveTime { get; set; }
 
         public string ttEffTime { get; set; }
+
+        public double NET_LATENESS { get; set; }
+        public double NET_OVERTIME { get; set; }
+        public int dayStatusId { get; set; }
+
+        public bool DAY_LEAVE_WITHOUT_EXCUSE { get; set; }
+        public double MISSED_PUNCH { get; set; }
+
+        public double SHIFT_LEAVE_WITHOUT_EXCUSE { get; set; }
+        public double LATE_CHECKIN { get; set; }
+
+        public double DURING_SHIFT_LEAVE { get; set; }
+        public double EARLY_LEAVE { get; set; }
+
+        public double EARLY_CHECKIN { get; set; }
+        public double OVERTIME { get; set; }
+
+        public List<AionHR.Model.TimeAttendance.DetailedAttendanceVariation> variationsList { get; set; }
+
+
+
     }
 }

@@ -212,16 +212,18 @@ namespace AionHR.Web.UI.Forms.Reports
         {
 
             string rep_params = vals.Text;
-            PendingPunchListRequest req = new PendingPunchListRequest();
-            if (vals.Text == "")
-            {
-                req.ppTypeParam = "0";
-            }
-            else
-            {
-                req.ppTypeParam = rep_params.Substring(2, 1);
-            }
-            req.udid = "0";
+            //PendingPunchListRequest req = new PendingPunchListRequest();
+            //if (vals.Text == "")
+            //{
+            //    req.ppTypeParam = "0";
+            //}
+            //else
+            //{
+            //    req.ppTypeParam = rep_params.Substring(2, 1);
+            //}
+            //req.udid = "0";
+            ReportGenericRequest req = new ReportGenericRequest();
+            req.paramString = rep_params;
             ListResponse<AionHR.Model.TimeAttendance.PendingPunch> resp = _timeAttendanceService.ChildGetAll<AionHR.Model.TimeAttendance.PendingPunch>(req);
 
             if (!resp.Success)

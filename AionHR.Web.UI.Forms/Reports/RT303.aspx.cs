@@ -221,10 +221,11 @@ namespace AionHR.Web.UI.Forms.Reports
           
             req.Size = "1000";
             req.sortBy = "dayId";
-           
 
 
-            ListResponse<AttendanceDay> resp = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+
+            //ListResponse<AttendanceDay> resp = _timeAttendanceService.ChildGetAll<AttendanceDay>(req);
+            ListResponse<AionHR.Model.Reports.RT303> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT303>(req);
             //if (!resp.Success)
             //{
 
@@ -254,6 +255,7 @@ namespace AionHR.Web.UI.Forms.Reports
             DetailedAttendance h = new DetailedAttendance(parameters, getLan);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;
+            
             List<AionHR.Model.Reports.RT303> data = new List<AionHR.Model.Reports.RT303>();
             if (resp.Items.Count != 0)
             {
@@ -294,7 +296,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     double totlateCI = 0;
                     double totEarlyLe = 0;
                     double missedShift = 0;
-
+                    
                     foreach (DetailedAttendanceVariation obj in x.variationsList)
                     {
                         if (obj.timeCode == 32)
@@ -354,7 +356,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     data.Add(Item);
 
                 });
-
+                
                 
 
                 h.DataSource = data;              
@@ -362,7 +364,8 @@ namespace AionHR.Web.UI.Forms.Reports
                 
             }
             else
-                h.DataSource = resp.Items;
+
+            h.DataSource = resp.Items;
 
             string user = _systemService.SessionHelper.GetCurrentUser();
 
