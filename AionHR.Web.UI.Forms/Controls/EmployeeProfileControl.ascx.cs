@@ -155,6 +155,7 @@ namespace AionHR.Web.UI.Forms
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
                 date.Format= gregCalBirthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
+                date.MaxDate = DateTime.Now;
                 civilStatus.Select(0);
 
                 pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();

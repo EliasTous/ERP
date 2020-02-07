@@ -43,7 +43,7 @@ namespace AionHR.Web.UI.Forms
     public partial class TimeApprovalsSelfServices : System.Web.UI.Page
     {
 
-       
+
         [DirectMethod]
         public object FillEmployee(string action, Dictionary<string, object> extraParams)
         {
@@ -111,7 +111,7 @@ namespace AionHR.Web.UI.Forms
         public void SetVals(string labels)
         {
             this.vals.Text = labels;
-         
+
             labelbar.Hidden = false;
         }
 
@@ -163,7 +163,7 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -174,7 +174,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
 
-               
+
 
                 TimeStore.Reload();
 
@@ -183,7 +183,7 @@ namespace AionHR.Web.UI.Forms
                 //    X.Msg.Alert(Resources.Common.Error, Resources.Common.ErrorOperation).Show();
                 //CurrentEmployee.Text = Request.QueryString["employeeId"];
 
-                DateColumn5.Format= TimedayIdDate.Format = _systemService.SessionHelper.GetDateformat();
+                DateColumn5.Format = TimedayIdDate.Format = _systemService.SessionHelper.GetDateformat();
                 if (!string.IsNullOrEmpty(Request.QueryString["_employeeId"]) && !string.IsNullOrEmpty(Request.QueryString["_loanId"]))
                 {
                     var p1 = new Ext.Net.Parameter("id", Request.QueryString["_loanId"]);
@@ -191,7 +191,7 @@ namespace AionHR.Web.UI.Forms
                     var col = new Ext.Net.ParameterCollection();
                     col.Add(p1);
                     col.Add(p2);
-                 //   PoPuP(null, new DirectEventArgs(col));
+                    //   PoPuP(null, new DirectEventArgs(col));
 
                 }
                 //try
@@ -228,7 +228,7 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-       
+
 
 
 
@@ -324,7 +324,7 @@ namespace AionHR.Web.UI.Forms
             string shiftId = e.ExtraParams["shiftId"];
             string seqNo = e.ExtraParams["seqNo"];
             string activityId = e.ExtraParams["activityId"];
-            
+
 
             string notes = e.ExtraParams["notes"];
 
@@ -350,17 +350,18 @@ namespace AionHR.Web.UI.Forms
 
 
             TimeEmployeeName.Text = employeeName;
-           // TimedayIdDate.Text = dayIdDate;
+            // TimedayIdDate.Text = dayIdDate;
             TimeTimeCodeString.Text = timeCodeString;
 
             shiftIdTF.Text = shiftId;
             TimeemployeeIdTF.Text = employeeId;
-            
+
             TimeTimeCodeTF.Text = timeCode;
-         
+
 
 
             FillTimeApproval(activityId);
+            tvId.Text = activityId;
 
             this.TimeWindow.Title = Resources.Common.EditWindowsTitle;
             this.TimeWindow.Show();
@@ -430,12 +431,12 @@ namespace AionHR.Web.UI.Forms
             }
 
         }
-     
+
         protected void SaveTimeRecord(object sender, DirectEventArgs e)
         {
             string obj = e.ExtraParams["values"];
             string seqNo = e.ExtraParams["seqNo"];
-            string tvId= e.ExtraParams["tvId"];
+            string tvId = e.ExtraParams["tvId"];
             Time TI = JsonConvert.DeserializeObject<Time>(obj);
             try
             {
@@ -460,7 +461,7 @@ namespace AionHR.Web.UI.Forms
                     return;
                 request.entity.status = TI.status;
                 request.entity.notes = TI.notes;
-            
+
 
                 PostResponse<TimeSelfService> r = _selfServiceService.ChildAddOrUpdate<TimeSelfService>(request);
 
@@ -483,7 +484,7 @@ namespace AionHR.Web.UI.Forms
                         Icon = Icon.Information,
                         Html = Resources.Common.RecordSavingSucc
                     });
-                  
+
                     this.TimeWindow.Close();
                 }
 
@@ -519,7 +520,7 @@ namespace AionHR.Web.UI.Forms
             return R;
         }
 
-      
+
 
         /// <summary>
         /// the detailed tabs for the edit form. I put two tabs by default so hide unecessary or add addional
@@ -540,7 +541,7 @@ namespace AionHR.Web.UI.Forms
         /// <summary>
         /// hiding uncessary column in the grid. 
         /// </summary>
-       
+
 
 
         private void SetExtLanguage()
@@ -559,14 +560,14 @@ namespace AionHR.Web.UI.Forms
         }
 
 
-       
+
 
 
         [DirectMethod]
-     
 
 
-    
+
+
 
 
 
@@ -601,7 +602,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-       
+
 
         [DirectMethod(ShowMask = true)]
         public void DoYes()
@@ -641,8 +642,8 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
-     
-       
+
+
 
 
 
@@ -669,68 +670,82 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-      
-      
+
+
         protected void Timebatch(object sender, DirectEventArgs e)
         {
-            string approve = e.ExtraParams["approve"];
-            string rep_params = vals.Text;
-            TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
-            req.paramString = rep_params;
-            req.StartAt = "0";
-            req.Size = "1000";
-            req.sortBy = "dayId";
-            ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(req);
-
-            //DashboardTimeListRequest r = new DashboardTimeListRequest();
-            //r.dayId = "";
-            //r.employeeId = 0;
-            //if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-            //    r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
-
-            //else
-            //{
-            //    TimeStore.DataSource = new List<Time>();
-            //    TimeStore.DataBind();
-            //    return;
-            //}
-            //r.timeCode = timeVariationType.GetTimeCode();
-            //r.shiftId = "0";
-            //r.apStatus = "1";
-            //r.BranchId = req.BranchId;
-            //r.DivisionId = req.DivisionId;
-            //r.PositionId = req.PositionId;
-            //r.DepartmentId = req.DepartmentId;
-            //r.EsId = req.EsId;
-            //r.StartAt = "0";
-            //r.Size = "50";
-
-            //ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(r);
-            if (!Times.Success)
-            {
-                Common.errorMessage(Times);
-                return;
-            }
-            PostRequest<TimeSelfService> request = new PostRequest<TimeSelfService>();
-            PostResponse<TimeSelfService> resp;
-            Times.Items.ForEach(x =>
+            try
             {
 
-                request.entity = x;
-                if (approve == "true")
-                    request.entity.status = 2;
-                else
-                    request.entity.status = -1;
-                resp = _selfServiceService.ChildAddOrUpdate<TimeSelfService>(request);
-                if (!resp.Success)
+
+
+                string approve = e.ExtraParams["approve"];
+                string rep_params = vals.Text;
+                TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
+                req.paramString = rep_params;
+                req.StartAt = "0";
+                req.Size = "1000";
+                req.sortBy = "dayId";
+                ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(req);
+
+                //DashboardTimeListRequest r = new DashboardTimeListRequest();
+                //r.dayId = "";
+                //r.employeeId = 0;
+                //if (!string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
+                //    r.approverId = Convert.ToInt32(_systemService.SessionHelper.GetEmployeeId());
+
+                //else
+                //{
+                //    TimeStore.DataSource = new List<Time>();
+                //    TimeStore.DataBind();
+                //    return;
+                //}
+                //r.timeCode = timeVariationType.GetTimeCode();
+                //r.shiftId = "0";
+                //r.apStatus = "1";
+                //r.BranchId = req.BranchId;
+                //r.DivisionId = req.DivisionId;
+                //r.PositionId = req.PositionId;
+                //r.DepartmentId = req.DepartmentId;
+                //r.EsId = req.EsId;
+                //r.StartAt = "0";
+                //r.Size = "50";
+
+                //ListResponse<TimeSelfService> Times = _selfServiceService.ChildGetAll<TimeSelfService>(r);
+                if (!Times.Success)
                 {
-                    Common.errorMessage(resp);
+                    Common.errorMessage(Times);
                     return;
                 }
-            });
-            TimeStore.Reload();
-           
-        }
+                PostRequest<TimeSelfService> request = new PostRequest<TimeSelfService>();
+                PostResponse<TimeSelfService> resp;
+                Times.Items.ForEach(x =>
+                {
+
+                    request.entity = x;
+                    if (approve == "true")
+                        request.entity.status = 2;
+                    else
+                        request.entity.status = -1;
+                    resp = _selfServiceService.ChildAddOrUpdate<TimeSelfService>(request);
+                    if (!resp.Success)
+                    {
+                        Common.errorMessage(resp);
+                        throw new Exception();
+                    }
+                });
+                TimeStore.Reload();
+
+            }
+
+            catch(Exception exp)
+            {
+                if (!string.IsNullOrEmpty(exp.Message))
+                    X.MessageBox.Alert(Resources.Common.Error, exp.Message).Show();
+
+            }
+    }
        
     }
+   
 }

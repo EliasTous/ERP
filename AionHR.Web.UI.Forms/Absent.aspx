@@ -333,6 +333,7 @@
                                   <ext:Parameter Name="timeCode" Value="record.data['timeCode']" Mode="Raw" />
                                  <ext:Parameter Name="apStatus" Value="record.data['apStatus']" Mode="Raw" />
                                 <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
+                                   <ext:Parameter Name="clockDuration" Value="record.data['clockDurationString']" Mode="Raw" />
                                   
 
                                   <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
@@ -399,10 +400,11 @@
                                     </Items>
                                     
                                 </ext:ComboBox>--%>
+                                 <ext:TextField ID="clock" runat="server" FieldLabel="<%$ Resources:FieldClockDuration%>" ReadOnly="true"/>
                                 <ext:TextArea ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification"   AllowBlank="true" />
                              
                                  
-                                <%--<ext:TextField ID="intName" runat="server" FieldLabel="<%$ Resources:IntName%>" Name="intName"   AllowBlank="false"/>--%>
+                               
                             </Items>
 
                         </ext:FormPanel>

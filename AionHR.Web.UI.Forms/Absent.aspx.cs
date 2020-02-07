@@ -336,6 +336,7 @@ namespace AionHR.Web.UI.Forms
                 daysResponse.Items.ForEach(
                     x =>
                     {
+                        
                         x.clockDurationString = time(x.clockDuration, true);
                         x.durationString = time(x.duration, true);
                         x.timeCodeString = timeCode.Where(y => y.key == Convert.ToInt16(x.timeCode)).Count() != 0 ? timeCode.Where(y => y.key == Convert.ToInt32(x.timeCode)).First().value : string.Empty;
@@ -529,7 +530,8 @@ namespace AionHR.Web.UI.Forms
                 string apStatus = e.ExtraParams["apStatus"];
                 string type = e.ExtraParams["type"];
                 string justificationParam = e.ExtraParams["justification"];
-           
+                string clockDuration = e.ExtraParams["clockDuration"];
+
 
                 switch (type)
                 {
@@ -540,6 +542,7 @@ namespace AionHR.Web.UI.Forms
                        
                         damage.Select(damageLavel);
                         duration.Text = durationValue;
+                        clock.Text = clockDuration;
                        // recordId.Text = id;
                         justification.Text = justificationParam;
                         if (apStatus=="2" || apStatus=="-1")
