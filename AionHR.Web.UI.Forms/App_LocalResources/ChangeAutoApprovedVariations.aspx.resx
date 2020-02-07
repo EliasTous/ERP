@@ -390,4 +390,7 @@
   <data name="SelectDamage" xml:space="preserve">
     <value>Select Damage First</value>
   </data>
+  <data name="FieldApprReas" xml:space="preserve">
+    <value>Approval Reason</value>
+  </data>
 </root>

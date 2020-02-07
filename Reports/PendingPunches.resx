@@ -122,7 +122,7 @@
   </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="TopMargin.HeightF" type="System.Single, mscorlib">
-    <value>44.79167</value>
+    <value>45</value>
   </data>
   <assembly alias="DevExpress.Data.v18.2" name="DevExpress.Data.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="pageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
@@ -133,7 +133,7 @@
     <value>159.5547, 23</value>
   </data>
   <data name="pageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>521.1204, 6</value>
+    <value>697.120239, 6</value>
   </data>
   <data name="pageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>95.87964, 23</value>
@@ -148,7 +148,7 @@
     <value>Arial, 17pt, style=Bold</value>
   </data>
   <data name="label1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>165.5547, 6</value>
+    <value>232.80957, 6</value>
   </data>
   <data name="label1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>268.7113, 34.20834</value>
@@ -199,7 +199,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell3.Weight" type="System.Double, mscorlib">
-    <value>0.17205708334890849</value>
+    <value>0.10726446635806226</value>
   </data>
   <data name="tableCell5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
@@ -211,7 +211,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell5.Weight" type="System.Double, mscorlib">
-    <value>0.15041716361159913</value>
+    <value>0.32652027779121245</value>
   </data>
   <data name="tableCell6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
@@ -223,7 +223,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell6.Weight" type="System.Double, mscorlib">
-    <value>0.10609237695234625</value>
+    <value>0.11273777450279923</value>
   </data>
   <data name="tableCell7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
@@ -235,7 +235,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell7.Weight" type="System.Double, mscorlib">
-    <value>0.13852375279963491</value>
+    <value>0.21501984922824455</value>
   </data>
   <data name="tableCell8.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 10pt, style=Bold</value>
@@ -247,13 +247,13 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell8.Weight" type="System.Double, mscorlib">
-    <value>0.15291803203509627</value>
+    <value>0.23916770738041038</value>
   </data>
   <data name="tableRow1.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="table1.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>617, 28</value>
+    <value>792.999939, 28</value>
   </data>
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
     <value>28</value>
@@ -286,7 +286,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell11.Weight" type="System.Double, mscorlib">
-    <value>0.17205707118081515</value>
+    <value>0.10726444333368278</value>
   </data>
   <data name="tableCell13.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9pt</value>
@@ -295,7 +295,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell13.Weight" type="System.Double, mscorlib">
-    <value>0.15041715144350579</value>
+    <value>0.32652033506625305</value>
   </data>
   <data name="tableCell14.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9pt</value>
@@ -304,7 +304,7 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell14.Weight" type="System.Double, mscorlib">
-    <value>0.10609236478425289</value>
+    <value>0.11273777436825502</value>
   </data>
   <data name="tableCell15.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9pt</value>
@@ -316,7 +316,7 @@
     <value>{0:dd/MM/yyyy hh:mm tt}</value>
   </data>
   <data name="tableCell15.Weight" type="System.Double, mscorlib">
-    <value>0.13852374063154158</value>
+    <value>0.21501994502423391</value>
   </data>
   <data name="tableCell16.Font" type="System.Drawing.Font, System.Drawing">
     <value>Times New Roman, 9pt</value>
@@ -325,13 +325,13 @@
     <value>MiddleCenter</value>
   </data>
   <data name="tableCell16.Weight" type="System.Double, mscorlib">
-    <value>0.15291808512031468</value>
+    <value>0.23916747885324569</value>
   </data>
   <data name="tableRow2.Weight" type="System.Double, mscorlib">
     <value>11.5</value>
   </data>
   <data name="table2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>617, 40.12499</value>
+    <value>792.9999, 40.12499</value>
   </data>
   <data name="Detail.HeightF" type="System.Single, mscorlib">
     <value>40.12499</value>
@@ -343,7 +343,7 @@
     <value>Arial, 9.75pt</value>
   </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>100, 100, 45, 100</value>
+    <value>16, 8, 45, 100</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
     <value>1169</value>

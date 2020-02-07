@@ -243,6 +243,25 @@
                                     </Store>
                                 </ext:ComboBox>
 
+                                 <ext:ToolbarSeparator />
+
+                                
+                                <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" Width="120" ForceSelection="true" TypeAhead="true" 
+                                    MinChars="1" ValueField="recordId" DisplayField="name" ID="arId"  EmptyText="<%$ Resources: FieldApprReas %>">
+                                    <Store>
+                                        <ext:Store runat="server" ID="Store3">
+                                            <Model>
+                                                <ext:Model runat="server">
+                                                    <Fields>
+                                                        <ext:ModelField Name="recordId" />
+                                                        <ext:ModelField Name="name" />
+                                                    </Fields>
+                                                </ext:Model>
+                                            </Model>
+                                        </ext:Store>
+                                    </Store>
+                                </ext:ComboBox>
+
                                 <ext:ToolbarSeparator />
                                
                                   <ext:TextField ID="justification" runat="server" FieldLabel="<%$ Resources:FieldJustification%>" Name="justification"   AllowBlank="true" />

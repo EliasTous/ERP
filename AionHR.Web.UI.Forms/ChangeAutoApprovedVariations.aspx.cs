@@ -93,6 +93,7 @@ namespace AionHR.Web.UI.Forms
                 SetExtLanguage();
                 HideShowButtons();
                 HideShowColumns();
+                FillAppReasStore();
 
                 try
                 {
@@ -134,6 +135,23 @@ namespace AionHR.Web.UI.Forms
 
         }
 
+
+        private void FillAppReasStore()
+        {
+            ListRequest request = new ListRequest();
+
+            request.Filter = "";
+
+            ListResponse<ApprovalReason> Items = _companyStructureService.ChildGetAll<ApprovalReason>(request);
+            if (!Items.Success)
+            {
+                Common.errorMessage(Items);
+                return;
+            }
+            this.Store3.DataSource = Items.Items;
+
+            this.Store3.DataBind();
+        }
 
         private void HideShowTabs()
         {
@@ -445,6 +463,15 @@ namespace AionHR.Web.UI.Forms
                                b.branchName = x.branchName;
                                b.clockDuration = x.clockDuration;
                                b.clockDurationString = x.clockDurationString;
+                               if (arId.SelectedItem.Value == null)
+                               {
+                                   b.arId = x.arId;
+                               }
+                               else
+                               {
+                                   b.arId = Convert.ToInt16(arId.SelectedItem.Value);
+                               }
+
                                if (DamageLevelId.SelectedItem.Value == null)
                                {
                                    b.damageLevel = x.damageLevel;
@@ -455,6 +482,7 @@ namespace AionHR.Web.UI.Forms
                                    b.damageLevel = Convert.ToInt16(DamageLevelId.SelectedItem.Value);
                                    b.damageLevelString = DamageLevelId.SelectedItem.Text;
                                }
+
                                b.date = x.date;
                                b.dayId = x.dayId;
                                b.dayIdDate = x.dayIdDate;
@@ -542,6 +570,7 @@ namespace AionHR.Web.UI.Forms
 
                         x.apStatusString = statusList.Where(y => y.key == x.apStatus).Count() != 0 ? statusList.Where(y => y.key == x.apStatus).First().value : "";
                         x.damageLevelString = damageList.Where(y => y.key == x.damageLevel).Count() != 0 ? damageList.Where(y => y.key == x.damageLevel).First().value : "";
+                        //x.arString = damageList.Where(y => y.key == x.arId).Count() != 0 ? damageList.Where(y => y.key == x.arId).First().value : "";
                         if (rtl)
                             x.dayIdString = DateTime.ParseExact(x.dayId, "yyyyMMdd", new CultureInfo("en")).ToString("dddd  dd MMMM yyyy ", new System.Globalization.CultureInfo("ar-AE"));
                         else
