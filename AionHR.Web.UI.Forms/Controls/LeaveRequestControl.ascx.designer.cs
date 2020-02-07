@@ -454,15 +454,6 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.Store ltStore;
         
         /// <summary>
-        /// Button9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Button Button9;
-        
-        /// <summary>
         /// LeaveApprovalStatusControl control.
         /// </summary>
         /// <remarks>

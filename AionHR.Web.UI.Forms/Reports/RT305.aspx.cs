@@ -257,6 +257,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 {
                    // x.justification = "test" + System.Environment.NewLine + "test1" + System.Environment.NewLine + "test2";
                     x.edAmount = Math.Round(x.edAmount, 2);
+                  
                     x.clockDurationString = ConstTimeVariationType.time(x.clockDuration, true);
                     x.durationString = ConstTimeVariationType.time(x.duration, true);
 

@@ -684,6 +684,7 @@
     <Content Include="App_LocalResources\MonthlyLatenesses.aspx.ar.resx" />
     <Content Include="App_LocalResources\MonthlyLatenesses.aspx.fr.resx" />
     <Content Include="App_LocalResources\ChangeAutoApprovedVariations.aspx.resx" />
+    <Content Include="App_LocalResources\SyncActivities.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />

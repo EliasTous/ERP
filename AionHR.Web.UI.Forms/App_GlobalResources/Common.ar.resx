@@ -1470,4 +1470,22 @@
   <data name="RT308A" xml:space="preserve">
     <value>سجل البصمات مفصل</value>
   </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>حجج الرواتب</value>
+  </data>
+  <data name="Constants" xml:space="preserve">
+    <value>الثوابت</value>
+  </data>
+  <data name="expressions" xml:space="preserve">
+    <value>التعبيرات</value>
+  </data>
+  <data name="Formulas" xml:space="preserve">
+    <value>صيغة</value>
+  </data>
+  <data name="Functions" xml:space="preserve">
+    <value>المهام</value>
+  </data>
+  <data name="SyncActivities" xml:space="preserve">
+    <value>مزامنة النشاط</value>
+  </data>
 </root>
