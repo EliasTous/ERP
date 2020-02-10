@@ -25,4 +25,22 @@ namespace AionHR.Services.Messaging.System
             }
         }
     }
+
+
+    public class ReportsListRequest : ListRequest
+    {
+        public string moduleId { get; set; }
+
+
+
+        public override Dictionary<string, string> Parameters
+        {
+            get
+            {
+                parameters = new Dictionary<string, string>();                
+                parameters.Add("_moduleId", moduleId);
+                return parameters;
+            }
+        }
+    }
 }
