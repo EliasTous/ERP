@@ -349,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automated Emails.
+        /// </summary>
+        internal static string AutomatedEmails {
+            get {
+                return ResourceManager.GetString("AutomatedEmails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         internal static string Back {
@@ -3648,6 +3657,15 @@ namespace Resources {
         internal static string Tasks {
             get {
                 return ResourceManager.GetString("Tasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task Schedule.
+        /// </summary>
+        internal static string TaskSchedule {
+            get {
+                return ResourceManager.GetString("TaskSchedule", resourceCulture);
             }
         }
         

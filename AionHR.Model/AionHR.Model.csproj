@@ -232,6 +232,10 @@
     <Compile Include="Employees\ShareAttachment.cs" />
     <Compile Include="System\TimeVariationHistory.cs" />
     <Compile Include="System\XMLDictionary.cs" />
+    <Compile Include="TaskSchedule\ITaskScheduleRepository.cs" />
+    <Compile Include="TaskSchedule\Receiver.cs" />
+    <Compile Include="TaskSchedule\Report.cs" />
+    <Compile Include="TaskSchedule\Service.cs" />
     <Compile Include="TimeAttendance\DetailedAttendanceVariation.cs" />
     <Compile Include="TimeAttendance\FlatPunch.cs" />
     <Compile Include="TimeAttendance\MailFlatShedule.cs" />

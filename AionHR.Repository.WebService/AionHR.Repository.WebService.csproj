@@ -68,6 +68,7 @@
     <Compile Include="Repositories\SystemRepository.cs" />
     <Compile Include="Repositories\LeaveManagementRepository.cs" />
     <Compile Include="Repositories\TaskManagementRepository.cs" />
+    <Compile Include="Repositories\TaskScheduleRepository.cs" />
     <Compile Include="Repositories\TimeAttendanceRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -101,6 +101,7 @@
     <Compile Include="Implementations\MathematicalService.cs" />
     <Compile Include="Implementations\SelfServiceService.cs" />
     <Compile Include="Implementations\TaskManagementService.cs" />
+    <Compile Include="Implementations\TaskScheduleService.cs" />
     <Compile Include="Implementations\TimeAttendanceService.cs" />
     <Compile Include="Interfaces\IAccessControlService.cs" />
     <Compile Include="Interfaces\IAdministrationService.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Implementations\SystemService.cs" />
     <Compile Include="Interfaces\IMasterService.cs" />
     <Compile Include="Interfaces\ITaskManagementService.cs" />
+    <Compile Include="Interfaces\ITaskScheduleService.cs" />
     <Compile Include="Interfaces\ITimeAttendanceService.cs" />
     <Compile Include="Messaging\AccessControl\AccessControlRequests.cs" />
     <Compile Include="Messaging\AdministrativeAffairs\AdminDepartmentListRequest.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Messaging\System\TimeVariationHistoryListRequest.cs" />
     <Compile Include="Messaging\System\UrlKeyRequest.cs" />
     <Compile Include="Messaging\System\XMLDictionaryListRequest.cs" />
+    <Compile Include="Messaging\TaskSchedule\TaskScheduleRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\FlatPunchesListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\MonthlyLatenessListRequest.cs" />
     <Compile Include="Messaging\TimeAttendance\PendingPunchListRequest.cs" />

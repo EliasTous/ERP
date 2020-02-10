@@ -31,6 +31,7 @@ using AionHR.Model.Benefits;
 using AionHR.Model.Dashboard;
 using AionHR.Model.AdminTemplates;
 using AionHR.Model.AssetManagementRepository;
+using AionHR.Model.TaskSchedule;
 using System.Configuration;
 
 namespace AionHR.Web.UI.Forms
@@ -85,6 +86,7 @@ namespace AionHR.Web.UI.Forms
                 For<IAdministrationRepository>().Use<AdministrationRepository>();
                 For<IAssetManagementRepository>().Use<AssetManagementRepository>();
                 For<IMathematicalRepository>().Use<MathematicalRepository>();
+                For<ITaskScheduleRepository>().Use <TaskScheduleRepository>();
 
                 //Services
                 For<ISystemService>().Use<SystemService>();
@@ -110,6 +112,7 @@ namespace AionHR.Web.UI.Forms
                 For<IAdministrationService>().Use<AdministrationService>();
                 For<IAssetManagementService>().Use<AssetManagementService>();
                 For<IMathematicalService>().Use<MathematicalService>();
+                For<ITaskScheduleService>().Use<TaskScheduleService>();
 
             }
         }

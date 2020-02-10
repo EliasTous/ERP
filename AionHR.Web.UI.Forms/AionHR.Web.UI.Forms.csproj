@@ -172,6 +172,7 @@
     <Content Include="AssetManagementPurchaseOrders.aspx" />
     <Content Include="AssetManagementSuppliers.aspx" />
     <Content Include="AssetPropertyExplorer.aspx" />
+    <Content Include="AutomatedEmails.aspx" />
     <Content Include="BlankPage.aspx" />
     <Content Include="BonusTypes.aspx" />
     <Content Include="BusinessPartnerCategories.aspx" />
@@ -685,6 +686,9 @@
     <Content Include="App_LocalResources\MonthlyLatenesses.aspx.fr.resx" />
     <Content Include="App_LocalResources\ChangeAutoApprovedVariations.aspx.resx" />
     <Content Include="App_LocalResources\SyncActivities.aspx.ar.resx" />
+    <Content Include="App_LocalResources\AutomatedEmails.aspx.resx" />
+    <Content Include="App_LocalResources\AutomatedEmails.aspx.fr.resx" />
+    <Content Include="App_LocalResources\AutomatedEmails.aspx.ar.resx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="App_Readme\Ext.NET\README.md" />
     <Content Include="App_Readme\Ext.NET\LICENSE" />
@@ -840,6 +844,13 @@
     </Compile>
     <Compile Include="AssetPropertyExplorer.aspx.designer.cs">
       <DependentUpon>AssetPropertyExplorer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AutomatedEmails.aspx.cs">
+      <DependentUpon>AutomatedEmails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutomatedEmails.aspx.designer.cs">
+      <DependentUpon>AutomatedEmails.aspx</DependentUpon>
     </Compile>
     <Compile Include="BlankPage.aspx.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>

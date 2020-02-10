@@ -140,6 +140,7 @@
      <ext:Hidden runat="server" ID="GADTitle" Text="<%$Resources:Common ,GenerateAttendanceDays  %>" />
      <ext:Hidden runat="server" ID="SADTitle" Text="<%$Resources:Common ,SynchronizeAttendanceDays  %>" />
       <ext:Hidden runat="server" ID="AFPN" Text="<%$Resources:Common ,ProcessNotifications  %>" />
+    <ext:Hidden runat="server" ID="TSAE" Text="<%$Resources:Common ,AutomatedEmails  %>" />
     <ext:Hidden runat="server" ID="AMSU" Text="<%$Resources:Common ,Suppliers  %>" />
      <ext:Hidden runat="server" ID="AMCA" Text="<%$Resources:Common ,AssetManagementCategory  %>" />
   
@@ -1000,6 +1001,24 @@
                                             </Menu>
                                         </ext:MenuItem>
 
+                                          <ext:MenuItem runat="server" Text="<%$ Resources:Common , TaskSchedule %>">
+                                            <Menu>
+                                                <ext:Menu runat="server">
+                                                    <Items>
+                                                                                                        
+                                                        <ext:MenuItem runat="server" Text="<%$Resources: Common , AutomatedEmails%>">
+                                                              <Listeners>
+                                                                <Click Handler="openNewTab('AutomatedEmails', 'AutomatedEmails.aspx', #{TSAE}.value, 'icon-Employees')" />
+                                                            </Listeners>
+                                                        </ext:MenuItem>
+
+                                                          
+                                                    
+
+                                                    </Items>
+                                                </ext:Menu>
+                                            </Menu>
+                                        </ext:MenuItem>
 
 
                                     </Items>
