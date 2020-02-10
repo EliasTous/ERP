@@ -8,7 +8,7 @@
             MinChars="3" EmptyText="<%$ Resources: FilterEmployee%>"
             TriggerAction="Query" ForceSelection="true">
             <Store>
-                <ext:Store runat="server" ID="Store2" AutoLoad="false">
+                <ext:Store runat="server" ID="Store2" >
                     <Model>
                         <ext:Model runat="server">
                             <Fields>
