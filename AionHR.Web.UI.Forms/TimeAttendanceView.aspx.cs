@@ -624,7 +624,7 @@ namespace AionHR.Web.UI.Forms
         public void DisplayApprovals(string dayId, string employeeId, string shiftId, string code)
         {
             ReportGenericRequest req = new ReportGenericRequest();
-            req.paramString = "1|" + employeeId + "^2|" + dayId + "^3|" + dayId + "^4|" + shiftId + "^5|" + code;
+            req.paramString = "1|" + employeeId + "^2|" + dayId + "^3|" + dayId  + "^5|" + code;
             ListResponse<Time> resp = _timeAttendanceService.ChildGetAll<Time>(req);
 
             if (!resp.Success)

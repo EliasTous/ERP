@@ -205,7 +205,7 @@ namespace AionHR.Web.UI.Forms
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                         DateColumn4.Format = _systemService.SessionHelper.GetDateformat() + " HH:mm:ss";
-                         dtTo.Format=dtFrom.Format= PADate.Format= ColDate.Format= DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format =  _systemService.SessionHelper.GetDateformat();
+                     fromDate.Format=toDate.Format=    dtTo.Format=dtFrom.Format= PADate.Format= ColDate.Format= DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format =  _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
@@ -1478,53 +1478,35 @@ namespace AionHR.Web.UI.Forms
             {
 
 
-                //if (string.IsNullOrEmpty(_systemService.SessionHelper.GetEmployeeId()))
-                //    return;
-
-                //string rep_params = "";
-                //Dictionary<string, string> parameters = Common.FetchParametersAsDictionary(vals.Text);
-                //if (parameters.ContainsKey("2"))
-                //    parameters.ChangeKey("2", "8");
-                //if (parameters.ContainsKey("3"))
-                //    parameters.ChangeKey("3", "9");
-                //if (parameters.ContainsKey("5"))
-                //    parameters.ChangeKey("5", "10");
-                //if (parameters.ContainsKey("1"))
-                //    parameters.Remove("1");
-                //if (parameters.ContainsKey("4"))
-                //    parameters.Remove("4");
-
-
-                //parameters.Add("1", "0");
-
-                //parameters.Add("6", _systemService.SessionHelper.GetEmployeeId());
-                //parameters.Add("5", timeVariationType.GetTimeCode());
-                //parameters.Add("4", "0");
-                //parameters.Add("7", "1");
-
-
-
-                //foreach (KeyValuePair<string, string> entry in parameters)
-                //{
-                //    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
-                //}
-                //if (rep_params.Length > 0)
-                //{
-                //    if (rep_params[rep_params.Length - 1] == '^')
-                //        rep_params = rep_params.Remove(rep_params.Length - 1);
-                //}
+              
+                string rep_params = "";
+        
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("1", ppType.SelectedItem.Value == null ? "0" : ppType.SelectedItem.Value.ToString());
+                parameters.Add("2", udid.SelectedItem.Value == null ? "0" : udid.SelectedItem.Value.ToString());
+                if(fromDate.SelectedDate.ToString("yyyyMMdd")!="00010101")
+                parameters.Add("3", fromDate.SelectedDate.ToString("yyyyMMdd"));
+                if (toDate.SelectedDate.ToString("yyyyMMdd") != "00010101")
+                    parameters.Add("4", toDate.SelectedDate.ToString("yyyyMMdd"));
 
 
 
 
 
-                //ReportGenericRequest r = new ReportGenericRequest();
-                //r.paramString = rep_params;
-                PendingPunchListRequest req = new PendingPunchListRequest();
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    rep_params += entry.Key.ToString() + "|" + entry.Value + "^";
+                }
+                if (rep_params.Length > 0)
+                {
+                    if (rep_params[rep_params.Length - 1] == '^')
+                        rep_params = rep_params.Remove(rep_params.Length - 1);
+                }
 
-                req.ppTypeParam = ppType.SelectedItem.Value==null ? "0" : ppType.SelectedItem.Value.ToString();
-                req.udid= udid.SelectedItem.Value == null ? "0" : udid.SelectedItem.Value.ToString();
 
+
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = rep_params;
 
                 ListResponse<PendingPunch> punches = _timeAttendanceService.ChildGetAll<PendingPunch>(req);
                 if (!punches.Success)
@@ -3520,9 +3502,10 @@ namespace AionHR.Web.UI.Forms
             {
                 if (ppType.SelectedItem.Value != "4")
                     return;
-                PendingPunchListRequest req = new PendingPunchListRequest();
+                ReportGenericRequest req = new ReportGenericRequest();
+                req.paramString = "1^"+ppType.SelectedItem.Value == null ? "0" : ppType.SelectedItem.Value.ToString();
 
-                req.ppTypeParam = ppType.SelectedItem.Value == null ? "0" : ppType.SelectedItem.Value.ToString();
+             
 
 
                 ListResponse<PendingPunch> punches = _timeAttendanceService.ChildGetAll<PendingPunch>(req);

@@ -2476,6 +2476,9 @@
                                       </Listeners>
                                        </ext:ComboBox>
 
+                              <ext:DateField ID="fromDate" runat="server" EmptyText="<%$ Resources:FieldStartDate%>" Name="fromDate" />
+                                <ext:DateField ID="toDate" runat="server" EmptyText="<%$ Resources:FieldendDate%>" Name="toDate"  />
+
                             </Items>
                         </ext:Toolbar>
 
@@ -2581,6 +2584,41 @@
                                                                 <ext:RowSelectionModel ID="rowSelectionModel4" runat="server" Mode="Single" StopIDModeInheritance="true" />
                                                                
                                                             </SelectionModel>
+                                                              <DockedItems>
+
+                        <ext:Toolbar ID="Toolbar4" runat="server" Dock="Bottom">
+                            <Items>
+                                <ext:StatusBar ID="StatusBar2" runat="server" />
+                                <ext:ToolbarFill />
+
+                            </Items>
+                        </ext:Toolbar>
+
+                    </DockedItems>
+                                                                <BottomBar>
+
+                        <ext:PagingToolbar ID="PagingToolbar2"
+                            runat="server"
+                            FirstText="<%$ Resources:Common , FirstText %>"
+                            NextText="<%$ Resources:Common , NextText %>"
+                            PrevText="<%$ Resources:Common , PrevText %>"
+                            LastText="<%$ Resources:Common , LastText %>"
+                            RefreshText="<%$ Resources:Common ,RefreshText  %>"
+                            BeforePageText="<%$ Resources:Common ,BeforePageText  %>"
+                            AfterPageText="<%$ Resources:Common , AfterPageText %>"
+                            DisplayInfo="true"
+                            DisplayMsg="<%$ Resources:Common , DisplayMsg %>"
+                            Border="true"
+                            EmptyMsg="<%$ Resources:Common , EmptyMsg %>">
+                            <Items>
+                               
+                            </Items>
+                            <Listeners>
+                                <BeforeRender Handler="this.items.removeAt(this.items.length - 2);" />
+                            </Listeners>
+                        </ext:PagingToolbar>
+
+                    </BottomBar>
                                                         </ext:GridPanel>
                                                      
 

@@ -199,6 +199,10 @@ namespace AionHR.Web.UI.Forms
 
                                 break;
                             }
+                            
+                             
+                                
+                           
                             Control cont = LoadControl("Reports/Controls/" + GetControlNameByClassId(item.classId));
                             IComboControl contAsCombo = cont as IComboControl;
                             if (contAsCombo != null)
@@ -208,13 +212,18 @@ namespace AionHR.Web.UI.Forms
                             }
                             if(item.classId== 31201)
                             {
-                                ((EmployeeFilter)cont).EmployeeComboBox.FieldLabel = item.caption;
+                                ((EmployeeFilter)cont).SetLabel(  item.caption );
                                 ((EmployeeFilter)cont).EmployeeComboBox.EmptyText = "";
+
+
+
                             }
                             if (item.classId == 31107)
                             {
                                 ((EmploymentStatusFilter)cont).Filter.FieldLabel = ((EmploymentStatusFilter)cont).Filter.EmptyText;
                                 ((EmploymentStatusFilter)cont).Filter.EmptyText = "";
+                             
+                                
                             }
                             cont.ID= "control_" + item.id;
                             

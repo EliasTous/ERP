@@ -66,9 +66,9 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                                     fullName =response.result.name.fullName
                                 }
                            });
-            employeeFilter.SetValue(response.result.recordId);
-            employeeFilter.SetText(response.result.name.fullName);
 
+
+            employeeFilter.SelectedItem.Text = response.result.name.fullName;
         }
 
         public void SetLabel(string newLabel)
