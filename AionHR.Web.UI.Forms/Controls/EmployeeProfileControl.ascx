@@ -1469,7 +1469,7 @@
                     BodyPadding="5">
                     <Items>
                         <ext:TextField ID="terminationRecordId" Hidden="true" runat="server" Disabled="true" DataIndex="recordId" Name="recordId" />
-                        <ext:DateField runat="server" ID="date" Name="date" AllowBlank="false" FieldLabel="<%$ Resources: FieldTerminationDate %>"  />
+                        <ext:DateField runat="server" ID="date1" Name="date1" AllowBlank="false" FieldLabel="<%$ Resources: FieldTerminationDate %>"  />
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  ID="ttId" runat="server" FieldLabel="<%$ Resources:FieldTerminationType%>" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" Name="ttId" AllowBlank="false">
                             <Items>
                                  <ext:ListItem Text="<%$ Resources:RESIGNATION %>" Value="1"></ext:ListItem>
@@ -1522,6 +1522,7 @@
                     <ExtraParams>
                         <ext:Parameter Name="employeeId" Value="#{recordId}.getValue()" Mode="Raw" />
                           <ext:Parameter Name="terminationRecordId" Value="#{terminationRecordId}.getValue()" Mode="Raw" />
+                         <ext:Parameter Name="date1" Value="#{date1}.getValue()" Mode="Raw" />
                      
                         <ext:Parameter Name="values" Value="#{terminationForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                     </ExtraParams>

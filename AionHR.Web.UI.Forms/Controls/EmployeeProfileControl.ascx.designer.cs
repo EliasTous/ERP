@@ -1093,13 +1093,13 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.TextField terminationRecordId;
         
         /// <summary>
-        /// date control.
+        /// date1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.DateField date;
+        protected global::Ext.Net.DateField date1;
         
         /// <summary>
         /// ttId control.

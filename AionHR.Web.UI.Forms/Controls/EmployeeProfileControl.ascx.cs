@@ -154,8 +154,8 @@ namespace AionHR.Web.UI.Forms
                 
                 CurrentClassId.Text = ClassId.EPEM.ToString();
 
-                date.Format= gregCalBirthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
-                date.MaxDate = DateTime.Now;
+                date1.Format= gregCalBirthDate.Format = hireDate.Format = _systemService.SessionHelper.GetDateformat();
+                date1.MaxDate = DateTime.Now;
                 civilStatus.Select(0);
 
                 pRTL.Text = _systemService.SessionHelper.CheckIfArabicSession().ToString();
@@ -944,10 +944,16 @@ namespace AionHR.Web.UI.Forms
             string id = CurrentEmployee.Text;
             string obj = e.ExtraParams["values"];
             string terminationRecordId= e.ExtraParams["terminationRecordId"];
-           
-            EmployeeTermination t = JsonConvert.DeserializeObject<EmployeeTermination>(obj);
+            string date1 = e.ExtraParams["date1"];
+            
+             EmployeeTermination t = JsonConvert.DeserializeObject<EmployeeTermination>(obj);
             t.employeeId = Convert.ToInt32(CurrentEmployee.Text);
-            PostResponse<EmployeeTermination> resp;
+            DateTime dateValue;
+            if (DateTime.TryParse(date1, out dateValue))
+            {
+                t.date = dateValue;
+            }
+                PostResponse<EmployeeTermination> resp;
             if (terminated.Text=="0")
             {
                 PostRequest<EmployeeTermination> request = new PostRequest<EmployeeTermination>();
@@ -1181,7 +1187,7 @@ namespace AionHR.Web.UI.Forms
                 saveTerminationButton.Hidden = isInactive;
             }
             //    TextField1.ReadOnly = isInactive;
-                date.ReadOnly = isInactive;
+                date1.ReadOnly = isInactive;
                 ttId.ReadOnly = isInactive;
                 trId.ReadOnly = isInactive;
                 rehire.ReadOnly = isInactive;
@@ -1630,7 +1636,7 @@ namespace AionHR.Web.UI.Forms
             if (resp.result!=null)
             {
                 if (resp.result.date != null)
-                    date.Value = resp.result.date;
+                    date1.Value = resp.result.date;
                 terminationRecordId.Text = resp.result.recordId;
                 ttId.Select(resp.result.ttId);
                 rehire.Select(resp.result.rehire);
@@ -1682,7 +1688,7 @@ namespace AionHR.Web.UI.Forms
             }
             else
             {
-                date.Value = DateTime.Now;
+                date1.Value = DateTime.Now;
                 setTerminationWindow(ActiveStatus.ACTIVE);
             }
 
