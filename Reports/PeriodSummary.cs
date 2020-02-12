@@ -1693,7 +1693,12 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             if (_lang == "fr")
             {
-                if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 10)
+                if (Convert.ToDouble((sender as XRLabel).Text) < 1)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                   + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 10)
                 {
                     (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
                     + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
@@ -1716,7 +1721,12 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             }
             else
             {
-                if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
+                if (Convert.ToDouble((sender as XRLabel).Text) < 1)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                   + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
                 {
                     (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
                     + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
@@ -2130,7 +2140,12 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
 
             if (_lang == "fr")
             {
-                if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 10)
+                if (Convert.ToDouble((sender as XRLabel).Text) < 1)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                   + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 10)
                 {
                     (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
                     + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
@@ -2153,7 +2168,12 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             }
             else
             {
-                if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
+                if (Convert.ToDouble((sender as XRLabel).Text) < 1)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                   + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
                 {
                     (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
                     + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
@@ -2191,7 +2211,12 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
         {
             if (_lang == "fr")
             {
-                if (Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 10)
+                if (Convert.ToDouble((sender as XRLabel).Text) < 1)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                   + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if(Convert.ToInt32((sender as XRLabel).Text.Split(',')[0]) < 10)
                 {
                     (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
                     + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
@@ -2214,7 +2239,12 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             }
             else
             {
-                if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
+                if (Convert.ToDouble((sender as XRLabel).Text) < 1)
+                {
+                    (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
+                   + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
+                }
+                else if (Convert.ToInt32((sender as XRLabel).Text.Split('.')[0]) < 10)
                 {
                     (sender as XRLabel).Text = TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Hours.ToString().PadLeft(2, '0')
                     + ":" + TimeSpan.FromHours(Convert.ToDouble((sender as XRLabel).Text)).Minutes.ToString().PadLeft(2, '0');
