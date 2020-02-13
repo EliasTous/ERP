@@ -399,7 +399,7 @@
     <value>296.527039, 24.1943283</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Daily Attendance</value>
+    <value>Attendance Quick View</value>
   </data>
   <data name="label1.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>

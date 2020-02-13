@@ -3085,7 +3085,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Daily Attendance.
+        ///   Looks up a localized string similar to Attendance Quick View.
         /// </summary>
         internal static string RT303b {
             get {

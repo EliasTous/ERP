@@ -1459,7 +1459,7 @@
     <value>عرض</value>
   </data>
   <data name="RT303b" xml:space="preserve">
-    <value>الدوام اليومي</value>
+    <value>عرض سريع الحضور</value>
   </data>
   <data name="ChangeAutoApprovedVariations" xml:space="preserve">
     <value>تعديل الفروقات تلقائياً</value>

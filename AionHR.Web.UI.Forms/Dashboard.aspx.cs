@@ -205,7 +205,8 @@ namespace AionHR.Web.UI.Forms
                         //checkMontierStore.Reload();
                         format.Text = _systemService.SessionHelper.GetDateformat().ToUpper();
                         DateColumn4.Format = _systemService.SessionHelper.GetDateformat() + " HH:mm:ss";
-                     fromDate.Format=toDate.Format=    dtTo.Format=dtFrom.Format= PADate.Format= ColDate.Format= DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format =  _systemService.SessionHelper.GetDateformat();
+                     //fromDate.Format=toDate.Format=    
+                            dtTo.Format=dtFrom.Format= PADate.Format= ColDate.Format= DateColumn12.Format= DateColumn10.Format=DateColumn11.Format = DateColumn9.Format  =  ColtermEndDate.Format = ColNextReviewDate.Format = ColProbationEndDate.Format = DateColumn5.Format = DateColumn1.Format = DateColumn2.Format =  _systemService.SessionHelper.GetDateformat();
                         periodToDate.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         //CountDateTo.SelectedDate = DateTime.Now.AddDays(-DateTime.Now.Day);
                         CountDateTo.SelectedDate = DateTime.Now;
@@ -3503,12 +3504,13 @@ namespace AionHR.Web.UI.Forms
                 if (ppType.SelectedItem.Value != "4")
                     return;
                 ReportGenericRequest req = new ReportGenericRequest();
-                req.paramString = "1^"+ppType.SelectedItem.Value == null ? "0" : ppType.SelectedItem.Value.ToString();
+                //req.paramString = "1^"+ppType.SelectedItem.Value == null ? "0" : ppType.SelectedItem.Value.ToString();
+                req.paramString = "1|" + ppType.SelectedItem.Value;
 
-             
 
 
-                ListResponse<PendingPunch> punches = _timeAttendanceService.ChildGetAll<PendingPunch>(req);
+
+                ListResponse <PendingPunch> punches = _timeAttendanceService.ChildGetAll<PendingPunch>(req);
                 if (!punches.Success)
                 {
                     Common.errorMessage(punches);

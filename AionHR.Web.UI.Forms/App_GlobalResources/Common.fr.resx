@@ -1459,7 +1459,7 @@
     <value>Aperçu</value>
   </data>
   <data name="RT303b" xml:space="preserve">
-    <value>Présence quotidienne</value>
+    <value>Présence aperçu rapide</value>
   </data>
   <data name="ChangeAutoApprovedVariations" xml:space="preserve">
     <value>Modifier les variantes approuvées automatiquement</value>
