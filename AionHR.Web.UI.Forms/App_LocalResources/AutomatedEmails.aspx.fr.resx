@@ -174,4 +174,19 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Emails automatisés</value>
   </data>
+  <data name="languageName" xml:space="preserve">
+    <value>langage</value>
+  </data>
+  <data name="csv" xml:space="preserve">
+    <value>CSV</value>
+  </data>
+  <data name="pdf" xml:space="preserve">
+    <value>PDF</value>
+  </data>
+  <data name="xls" xml:space="preserve">
+    <value>XLS</value>
+  </data>
+  <data name="SelectPay" xml:space="preserve">
+    <value>Vous devez spécifier au moins 1 type de fichier</value>
+  </data>
 </root>

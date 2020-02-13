@@ -16,5 +16,10 @@ namespace AionHR.Model.TaskSchedule
         public string rtName { get; set; }
         public string sgName { get; set; }
 
+        public int? languageId { get; set; }
+        public bool pdf { get; set; }
+        public bool xls { get; set; }
+        public bool csv { get; set; }
+
     }
 }

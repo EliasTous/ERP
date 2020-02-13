@@ -856,6 +856,11 @@ namespace AionHR.Web.UI.Forms
 
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
 
+            if (!pdf.Checked && !xls.Checked && !csv.Checked)
+            {
+                X.Msg.Alert(Resources.Common.Error, (string)GetLocalResourceObject("SelectPay")).Show();
+                return;
+            }
 
             string obj = e.ExtraParams["values"];
             Receiver b = new Receiver();//JsonConvert.DeserializeObject<Receiver>(obj);
@@ -868,7 +873,10 @@ namespace AionHR.Web.UI.Forms
             b.sgId = Convert.ToInt32(sgId.SelectedItem.Value);
             b.email = email.Text;
             b.seqNo = Convert.ToInt32(seqNo);
-
+            b.languageId = Convert.ToInt32(languageId.SelectedItem.Value);
+            b.pdf = pdf.Checked;
+            b.xls = xls.Checked;
+            b.csv = csv.Checked;
 
             // Define the object to add or edit as null
 
@@ -1148,7 +1156,22 @@ namespace AionHR.Web.UI.Forms
             return Succeed;
         }
 
+        protected void LanguageStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
 
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+
+            request.database = "23";
+            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            LanguageStore.DataSource = resp.Items;
+            LanguageStore.DataBind();
+
+        }
 
 
 

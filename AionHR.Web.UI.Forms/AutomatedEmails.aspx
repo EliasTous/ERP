@@ -60,6 +60,33 @@
         </ext:Store>
 
 
+         <ext:Store
+            ID="LanguageStore"
+            runat="server"
+            RemoteSort="False"
+            RemoteFilter="true"
+            OnReadData="LanguageStore_RefreshData"
+            PageSize="30" IDMode="Explicit" Namespace="App">
+            <Proxy>
+                <ext:PageProxy>
+                    <Listeners>
+                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                    </Listeners>
+                </ext:PageProxy>
+            </Proxy>
+            <Model>
+                <ext:Model ID="Model2" runat="server" IDProperty="key">
+                    <Fields>
+
+                        <ext:ModelField Name="key" />
+                        <ext:ModelField Name="value" />
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+        
+        </ext:Store>
+
     
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
             <Items>
@@ -433,6 +460,10 @@
                                                         <ext:ModelField Name="email" />
                                                         <ext:ModelField Name="rtName" />
                                                         <ext:ModelField Name="sgName" />
+                                                        <ext:ModelField Name="languageId" />
+                                                        <ext:ModelField Name="pdf" />
+                                                        <ext:ModelField Name="xls" />
+                                                        <ext:ModelField Name="csv" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -452,7 +483,7 @@
                             <ext:Column ID="ColseqNo" Visible="false" DataIndex="seqNo" runat="server" />   
 
                             <ext:Column    CellCls="cellLink" ID="ColrtName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldrtName%>" DataIndex="rtName" Flex="2" Hideable="false" /> 
-                            <ext:Column    CellCls="cellLink" ID="ColsgName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldsgName%>" DataIndex="sgName" Flex="2" Hideable="false" /> 
+                            <ext:Column    CellCls="cellLink" ID="ColsgName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldsgName%>" DataIndex="sgName" Flex="2" Hideable="false" />                             
                             <ext:Column    CellCls="cellLink" ID="Colemail" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldemail%>" DataIndex="email" Flex="2" Hideable="false" /> 
 
 
@@ -642,7 +673,7 @@
             Icon="PageEdit"
             Title="<%$ Resources:EditMessageTitle %>"
             Width="450"
-            Height="330"
+            Height="400"
             AutoShow="false"
             Modal="true"
             Hidden="true"
@@ -695,8 +726,20 @@
                                     </Store>
                                   
                                 </ext:ComboBox>
-                             
+
+                                 <ext:ComboBox AnyMatch="true" TabIndex="5" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="false"  Name="languageId" DisplayField="value" ValueField="key" 
+                                    SubmitValue="true"  StoreID="LanguageStore"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: languageName%>"/>
+
+                                                            
                                 <ext:TextArea ID="email" runat="server" FieldLabel="<%$ Resources:Fieldemail%>" Name="email" MinHeight="20" AllowBlank="false"  />
+
+                                <ext:Checkbox FieldLabel="<%$ Resources: pdf %>" LabelWidth="150" runat="server" InputValue="True" Name="pdf" ID="pdf" Hidden="false"/>
+
+                                <ext:Checkbox FieldLabel="<%$ Resources: xls %>" LabelWidth="150" runat="server" InputValue="True" Name="xls" ID="xls" Hidden="false"/>
+
+                                <ext:Checkbox FieldLabel="<%$ Resources: csv %>" LabelWidth="150" runat="server" InputValue="True" Name="csv" ID="csv" Hidden="false"/>
                               
                             </Items>
 
