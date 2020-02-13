@@ -870,7 +870,11 @@ namespace AionHR.Web.UI.Forms
 
             b.taskId = Convert.ToInt32(id);
             b.receiverType = Convert.ToInt32(receiverType.SelectedItem.Value);
-            b.sgId = Convert.ToInt32(sgId.SelectedItem.Value);
+            if (Convert.ToInt32(sgId.SelectedItem.Value) == 0)
+            { b.sgId = null; }
+            else
+            { b.sgId = Convert.ToInt32(sgId.SelectedItem.Value); }
+            
             b.email = email.Text;
             b.seqNo = Convert.ToInt32(seqNo);
             b.languageId = Convert.ToInt32(languageId.SelectedItem.Value);

@@ -695,7 +695,7 @@
                                 <ext:TextField runat="server" ID="taskId" Name="taskId" Hidden="true" />
 
                                 <ext:ComboBox AllowBlank="false" AnyMatch="true" CaseSensitive="false"  QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" 
-                                    FieldLabel="<%$ Resources: FieldfrequencyName%>"  runat="server" DisplayField="value" ValueField="key"   Name="receiverType" ID="receiverType" >
+                                    FieldLabel="<%$ Resources: FieldrtName%>"  runat="server" DisplayField="value" ValueField="key"   Name="receiverType" ID="receiverType" >
                                              <Store>
                                                 <ext:Store runat="server" ID="receiverTypeStore">
                                                     <Model>
@@ -733,7 +733,7 @@
                                     FieldLabel="<%$ Resources: languageName%>"/>
 
                                                             
-                                <ext:TextArea ID="email" runat="server" FieldLabel="<%$ Resources:Fieldemail%>" Name="email" MinHeight="20" AllowBlank="false"  />
+                                <ext:TextArea ID="email" runat="server" FieldLabel="<%$ Resources:Fieldemail%>" Name="email" MinHeight="20" AllowBlank="true"  />
 
                                 <ext:Checkbox FieldLabel="<%$ Resources: pdf %>" LabelWidth="150" runat="server" InputValue="True" Name="pdf" ID="pdf" Hidden="false"/>
 
