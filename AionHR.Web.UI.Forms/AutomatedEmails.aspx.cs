@@ -896,7 +896,11 @@ namespace AionHR.Web.UI.Forms
 
                     request.entity = b;
                     request.entity.taskId = Convert.ToInt32(currentRuId.Text);
-                    request.entity.seqNo = Convert.ToInt32(lineSeq.Text);
+                    if (lineSeq.Text == "")
+                    { request.entity.seqNo = 1; }
+                    else
+                    { request.entity.seqNo = Convert.ToInt32(lineSeq.Text); }
+                    
                     //request.entity.ruleId = currentRuId.Text;
                     PostResponse<Receiver> r = _taskScheduleService.ChildAddOrUpdate<Receiver>(request);
 
