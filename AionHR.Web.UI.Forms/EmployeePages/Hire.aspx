@@ -67,7 +67,7 @@
                        <%-- <ext:Panel ID="actualPanel" runat="server" Flex="6"><Items>--%>
                             <ext:Panel runat="server" MarginSpec="0 20 0 0" ID="left">
                                        <Items>
-                            <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" AllowBlank="false" ValueField="recordId" QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">
+                            <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server"  ValueField="recordId" QueryMode="Local"  LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="npId" Name="npId" FieldLabel="<%$ Resources:FieldNP%>" SimpleSubmit="true">
                             <Store>
                                 <ext:Store runat="server" ID="npStore">
                                     <Model>

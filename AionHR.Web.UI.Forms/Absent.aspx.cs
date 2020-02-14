@@ -531,7 +531,8 @@ namespace AionHR.Web.UI.Forms
                 string type = e.ExtraParams["type"];
                 string justificationParam = e.ExtraParams["justification"];
                 string clockDuration = e.ExtraParams["clockDuration"];
-
+                string arId = e.ExtraParams["arId"];
+                
 
                 switch (type)
                 {
@@ -545,6 +546,7 @@ namespace AionHR.Web.UI.Forms
                         clock.Text = clockDuration;
                        // recordId.Text = id;
                         justification.Text = justificationParam;
+                        TimeApprovalReasonControl.setApprovalReason(arId);
                         if (apStatus=="2" || apStatus=="-1")
                         {
                             disableEditing(false);
@@ -850,8 +852,8 @@ namespace AionHR.Web.UI.Forms
         {
             duration.ReadOnly = !isActive;
             damage.ReadOnly = !isActive;
-           
-            
+         //  TimeApprovalReasonControl.changeReadOnlyStatus (!isActive);
+
 
         }
 
@@ -976,7 +978,9 @@ namespace AionHR.Web.UI.Forms
                         request.entity.damageLevel = Convert.ToInt16(damage.Value);
                         request.entity.duration = Convert.ToInt16(duration.Text);
                         request.entity.justification = b.justification;
-                        
+                        request.entity.arId = TimeApprovalReasonControl.getApprovalReason()=="0"?null: TimeApprovalReasonControl.getApprovalReason();
+
+
                         PostResponse<DashBoardTimeVariation> response = _timeAttendanceService.ChildAddOrUpdate<DashBoardTimeVariation>(request);
                         if (!response.Success)//it maybe another check
                         {

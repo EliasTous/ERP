@@ -13,22 +13,25 @@ using System.Web.UI.WebControls;
 
 namespace AionHR.Web.UI.Forms.Reports
 {
-   
+
     public partial class ApprovalReasonFilter : System.Web.UI.UserControl
     {
         public string FieldLabel { get; set; }
+      
         ISystemService _systemService = ServiceLocator.Current.GetInstance<ISystemService>();
         ICompanyStructureService _companyStructureService = ServiceLocator.Current.GetInstance<ICompanyStructureService>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                 FillArStore();
+                FillArStore();
             if (!string.IsNullOrEmpty(FieldLabel))
                 arId.FieldLabel = FieldLabel;
+
+         
         }
         protected void Page_Init(object sender, EventArgs e)
         {
-           
+
         }
         private void FillArStore()
         {
@@ -41,9 +44,9 @@ namespace AionHR.Web.UI.Forms.Reports
                     Common.errorMessage(resp);
                 arStore.DataSource = resp.Items;
                 arStore.DataBind();
-            }catch(Exception exp)
+            } catch (Exception exp)
             {
-                Common.errorMessage(new ListResponse <ApprovalReason>());
+                Common.errorMessage(new ListResponse<ApprovalReason>());
             }
         }
 
@@ -69,11 +72,19 @@ namespace AionHR.Web.UI.Forms.Reports
 
         public void setApprovalReason(string id)
         {
-            
-                arId.SetValue(id);
-                arId.Select(id);
-              
-            
+
+            arId.SetValue(id);
+            arId.Select(id);
+
+
+
+        }
+        public void changeReadOnlyStatus (bool status)
+        {
+
+            arId.ReadOnly = status;
+
+
 
         }
     }

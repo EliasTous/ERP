@@ -489,8 +489,7 @@
 
 
                             <ext:Column ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FullName %>" DataIndex="employeeName" Flex="3" Hideable="false">
-                                <Renderer Handler=" return  record.data['employeeName'].fullName ">
-                                </Renderer>
+                              
                             </ext:Column>
 
 

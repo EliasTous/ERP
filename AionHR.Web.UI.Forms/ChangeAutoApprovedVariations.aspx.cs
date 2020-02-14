@@ -469,7 +469,7 @@ namespace AionHR.Web.UI.Forms
                                }
                                else
                                {
-                                   b.arId = Convert.ToInt16(arId.SelectedItem.Value);
+                                   b.arId = arId.SelectedItem.Value;
                                }
 
                                if (DamageLevelId.SelectedItem.Value == null)

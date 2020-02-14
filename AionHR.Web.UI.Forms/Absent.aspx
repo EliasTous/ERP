@@ -101,6 +101,7 @@
                         <ext:ModelField Name="dayIdString" />
                            <ext:ModelField Name="justification" />
                          <ext:ModelField Name="activityId" />
+                         <ext:ModelField Name="arId" />
                       
                                          
                         
@@ -277,7 +278,7 @@
                                 Filterable="false"
                                 MenuDisabled="true"
                                 Resizable="true">
-                                      <Renderer handler="if ((record.data['timeCode']===41 || record.data['timeCode']===21) && record.data['apStatus']!=-1) { if (record.data['apStatus']==2) return editRender()+'&nbsp;&nbsp;' +attachRender()+'&nbsp;&nbsp;'+rejectRender()+'&nbsp;&nbsp;'+historeRender(); else return editRender()+'&nbsp;&nbsp;' +attachRender()+'&nbsp;&nbsp;'+historeRender();   }else { if ( record.data['apStatus']==2 && App.isSuperUser.getValue()=='true'){return rejectRender()+'&nbsp;&nbsp;'+ editRender()+'&nbsp;&nbsp;'+historeRender();  }else   return editRender()+'&nbsp;&nbsp;'+historeRender(); } " />
+                                      <Renderer handler="if ((record.data['timeCode']===41 || record.data['timeCode']===21 ||record.data['timeCode']===20) && record.data['apStatus']!=-1) { if (record.data['apStatus']==2) return editRender()+'&nbsp;&nbsp;' +attachRender()+'&nbsp;&nbsp;'+rejectRender()+'&nbsp;&nbsp;'+historeRender(); else return editRender()+'&nbsp;&nbsp;' +attachRender()+'&nbsp;&nbsp;'+historeRender();   }else { if ( record.data['apStatus']==2 && App.isSuperUser.getValue()=='true'){return rejectRender()+'&nbsp;&nbsp;'+ editRender()+'&nbsp;&nbsp;'+historeRender();  }else   return editRender()+'&nbsp;&nbsp;'+historeRender(); } " />
                                   </ext:Column>
 
 
@@ -335,8 +336,9 @@
                                 <ext:Parameter Name="justification" Value="record.data['justification']" Mode="Raw" />
                                    <ext:Parameter Name="clockDuration" Value="record.data['clockDurationString']" Mode="Raw" />
                                   
-
+                                
                                   <ext:Parameter Name="shiftId" Value="record.data['shiftId']" Mode="Raw" />
+                                    <ext:Parameter Name="arId" Value="record.data['arId']" Mode="Raw" />
                                 <ext:Parameter Name="type" Value="getCellType( this, rowIndex, cellIndex)" Mode="Raw" />
                             </ExtraParams>
 
@@ -392,6 +394,14 @@
                                                 </ext:Store>
                                             </Store>
                                        </ext:ComboBox>
+                                 <ext:Container runat="server"  Layout="FitLayout">
+                                            <Content>
+                                             
+                                                <uc:ApprovalReasonControl  runat="server" ID="TimeApprovalReasonControl" FieldLabel="<%$ Resources:Common, ApprovalReason %>" />
+                                            </Content>
+                                        </ext:Container>  
+
+
                                   <%-- <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" FieldLabel="<%$ Resources: FieldDamageLevel%>"  IDMode="Static" SubmitValue="true" ForceSelection="true">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: DamageWITH_DAMAGE%>" Value="<%$ Resources:ComboBoxValues, Damage_WITH_DAMAGE%>"></ext:ListItem>

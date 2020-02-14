@@ -41,7 +41,7 @@ namespace AionHR.Model.Dashboard
         public DateTime? date { get; set; }
         public string apId { get; set; }
 
-        public short? arId { get; set; }
+        public string arId { get; set; }
         public string arString { get; set; }
 
     }

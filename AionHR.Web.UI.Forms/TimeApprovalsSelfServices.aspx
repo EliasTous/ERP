@@ -99,7 +99,7 @@
                                         <Click Handler="CheckSession();" />
                                     </Listeners>
                                     <DirectEvents>
-                                        <Click OnEvent="Timebatch">
+                                        <Click OnEvent="TimebatchPopUp">
                                             <EventMask ShowMask="true" CustomTarget="={#{TimeGridPanel}.body}" />
                                             <ExtraParams>
                                                 <ext:Parameter Name="approve" Value="true" Mode="Raw" />
@@ -114,7 +114,7 @@
                                         <Click Handler="CheckSession();" />
                                     </Listeners>      
                                       <DirectEvents>
-                                        <Click OnEvent="Timebatch">
+                                        <Click OnEvent="TimebatchPopUp">
                                             <EventMask ShowMask="true" CustomTarget="={#{TimeGridPanel}.body}" />
                                              <ExtraParams>
                                                 <ext:Parameter Name="approve" Value="false" Mode="Raw" />

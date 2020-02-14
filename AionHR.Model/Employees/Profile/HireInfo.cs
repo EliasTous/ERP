@@ -25,7 +25,7 @@ namespace AionHR.Model.Employees.Profile
         public DateTime? nextReviewDate { get; set; }
         [PropertyID("31141_01")]
         [ApplySecurity]
-        public int npId { get; set; }
+        public int? npId { get; set; }
         [PropertyID("31141_04")]
         [ApplySecurity]
         public DateTime? termEndDate { get; set; }

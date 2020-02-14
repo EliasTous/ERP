@@ -670,16 +670,15 @@ namespace AionHR.Web.UI.Forms
         {
 
         }
-
-
-        protected void Timebatch(object sender, DirectEventArgs e)
+        [DirectMethod]
+        public void Timebatch(string index)
         {
             try
             {
 
 
 
-                string approve = e.ExtraParams["approve"];
+                string approve = index;
                 string rep_params = vals.Text;
                 TimeAttendanceViewListRequest req = new TimeAttendanceViewListRequest();
                 req.paramString = rep_params;
@@ -738,12 +737,36 @@ namespace AionHR.Web.UI.Forms
 
             }
 
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 if (!string.IsNullOrEmpty(exp.Message))
                     X.MessageBox.Alert(Resources.Common.Error, exp.Message).Show();
 
             }
+
+        }
+
+        protected void TimebatchPopUp(object sender, DirectEventArgs e)
+        {
+            string approve = e.ExtraParams["approve"];
+            X.Msg.Confirm(Resources.Common.Confirmation, Resources.Common.confirmProcess, new MessageBoxButtonsConfig
+            {
+                Yes = new MessageBoxButtonConfig
+                {
+                    //We are call a direct request metho for deleting a record
+                    Handler = String.Format("App.direct.Timebatch({0})", approve),
+                    Text = Resources.Common.Yes
+                },
+                No = new MessageBoxButtonConfig
+                {
+                    Text = Resources.Common.No
+                }
+
+            }).Show();
+          
+
+
+       
     }
        
     }
