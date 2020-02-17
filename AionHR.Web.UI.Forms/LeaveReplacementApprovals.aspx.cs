@@ -593,7 +593,7 @@ namespace AionHR.Web.UI.Forms
                 //res.AddRule("leaveRequest1_ltId", "ltId");
                 // res.AddRule("leaveRequest1_status", "status");
                 settings.ContractResolver = res;
-                LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
+                LeaveReplacementApproval b = JsonConvert.DeserializeObject<LeaveReplacementApproval>(obj, settings);
                 b.apStatus = Convert.ToInt16(LeaveApprovalStatusControl.GetApprovalStatus());
                 //  b.leaveDays = Convert.ToDouble(leaveDaysField.Text);
                 //b.status = Convert.ToInt16(status1); 
@@ -617,7 +617,7 @@ namespace AionHR.Web.UI.Forms
                     {
                     LeaveReturnRecordRequest rec = new LeaveReturnRecordRequest();
                     rec.leaveId = CurrentLeaveId.Text;
-                    RecordResponse<LeaveRequest> recordResponse = _selfServiceService.ChildGetRecord<LeaveRequest>(rec);
+                    RecordResponse<LeaveReplacementApproval> recordResponse = _selfServiceService.ChildGetRecord<LeaveReplacementApproval>(rec);
 
 
                     if (!recordResponse.Success)
@@ -625,11 +625,11 @@ namespace AionHR.Web.UI.Forms
                         Common.errorMessage(recordResponse);
                         return;
                     }
-                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
+                    PostRequest<LeaveReplacementApproval> request = new PostRequest<LeaveReplacementApproval>();
 
                     request.entity = recordResponse.result;
                        request.entity.replApStatus = apStatus.GetApprovalStatus();
-                        PostResponse<LeaveRequest> r = _selfServiceService.ChildAddOrUpdate<LeaveRequest>(request);
+                        PostResponse<LeaveReplacementApproval> r = _selfServiceService.ChildAddOrUpdate<LeaveReplacementApproval>(request);
 
 
                         //check if the insert failed

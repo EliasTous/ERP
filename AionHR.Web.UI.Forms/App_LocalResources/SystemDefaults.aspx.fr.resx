@@ -534,4 +534,7 @@
   <data name="monthWorkHrs" xml:space="preserve">
     <value>Mois heure de travail</value>
   </data>
+  <data name="prevDayVariation" xml:space="preserve">
+    <value>Variation du jour précédent</value>
+  </data>
 </root>

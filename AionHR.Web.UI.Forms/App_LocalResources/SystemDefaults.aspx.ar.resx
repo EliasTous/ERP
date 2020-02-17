@@ -480,4 +480,7 @@
   <data name="monthWorkHrs" xml:space="preserve">
     <value>عدد ساعات العمل في الشهر</value>
   </data>
+  <data name="prevDayVariation" xml:space="preserve">
+    <value>تباين اليوم السابق</value>
+  </data>
 </root>

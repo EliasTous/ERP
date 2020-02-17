@@ -568,6 +568,7 @@
                                 </ext:ComboBox>
                                <%--    <ext:Checkbox FieldLabel="<%$ Resources: FieldEnableCamera %>" LabelWidth="150" runat="server" InputValue="True" Name="enableCamera" ID="enableCameraCheck" />--%>
                                        <ext:NumberField  runat="server" LabelWidth="150" ID="weeklyTAHours" Name="weeklyTAHours" FieldLabel="<%$ Resources: weeklyTAHours %>" MinValue="0"  />
+                                       <ext:NumberField  runat="server" LabelWidth="150" ID="prevDayTVTime" Name="prevDayTVTime" FieldLabel="<%$ Resources: prevDayVariation %>" MinValue="7" MaxValue="15"  />
                             </Items>
                             <Buttons>
                                 <ext:Button Hidden="true"  ID="SaveAttendanceBtn" runat="server" Text="<%$ Resources:Common, Save %>" Icon="Disk">

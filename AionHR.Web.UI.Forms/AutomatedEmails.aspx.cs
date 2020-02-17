@@ -671,7 +671,6 @@ namespace AionHR.Web.UI.Forms
             //moduleId.Hidden = false;
             //classId.Hidden = false;
             //keyName.ReadOnly = false;
-
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             this.reportsWindow.Show();
         }
@@ -867,8 +866,11 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["taskId"];
             string seqNo = e.ExtraParams["seqNo"];
-
-            b.taskId = Convert.ToInt32(id);
+            if (id != "")
+            { b.taskId = Convert.ToInt32(id); }
+            if (seqNo != "")
+            { b.seqNo = Convert.ToInt32(seqNo); }
+            
             b.receiverType = Convert.ToInt32(receiverType.SelectedItem.Value);
             if (Convert.ToInt32(sgId.SelectedItem.Value) == 0)
             { b.sgId = null; }
@@ -876,8 +878,12 @@ namespace AionHR.Web.UI.Forms
             { b.sgId = Convert.ToInt32(sgId.SelectedItem.Value); }
             
             b.email = email.Text;
-            b.seqNo = Convert.ToInt32(seqNo);
-            b.languageId = Convert.ToInt32(languageId.SelectedItem.Value);
+            
+            if (languageId.SelectedItem.Value == null)
+            { b.languageId = null; }
+            else
+            { b.languageId = Convert.ToInt32(languageId.SelectedItem.Value); }
+            
             b.pdf = pdf.Checked;
             b.xls = xls.Checked;
             b.csv = csv.Checked;
@@ -969,7 +975,7 @@ namespace AionHR.Web.UI.Forms
                     {
 
                         //FillMessageStore();
-                        //this.receiversWindow.Close();
+                        this.receiversWindow.Close();
                         Notification.Show(new NotificationConfig
                         {
                             Title = Resources.Common.Notification,
@@ -1035,6 +1041,10 @@ namespace AionHR.Web.UI.Forms
                         currentRuId.Text = b.recordId;
                         reportsGrid.Disabled = false;
                         ReceiversGrid.Disabled = false;
+
+                        FillReportStore();
+                        FillReceiverStore();
+
                         //Display successful notification
                         Notification.Show(new NotificationConfig
                         {
@@ -1043,7 +1053,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordSavingSucc
                         });
 
-
+                        
 
 
 
@@ -1091,7 +1101,10 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordUpdatedSucc
                         });
                         this.EditRecordWindow.Close();
-                        currentRuId.Text = "";
+                        //currentRuId.Text = "";
+
+                        FillReportStore();
+                        FillReceiverStore();
 
                     }
 
@@ -1182,7 +1195,43 @@ namespace AionHR.Web.UI.Forms
         }
 
 
+        protected void EnableLang(object sender, DirectEventArgs e)
+        {
+            try
+            {
+                string recType = receiverType.SelectedItem.Value;
+                if (string.IsNullOrEmpty(recType))
+                    return;
 
+                if (recType == "2")
+                {
+                    languageId.AllowBlank = false;
+                    languageId.Disabled = false;
+                    sgId.Disabled = true;
+                    sgId.SelectedItem.Value = null;
+                    email.Disabled = false;
+                }
+                else
+                {
+                    languageId.AllowBlank = true;
+                    languageId.Disabled = true;
+                    languageId.Text = "";
+                    languageId.SelectedItem.Value = null;
+                    email.Text = "";
+                    email.Disabled = true;
+                    sgId.Disabled = false;
+                }
+
+                
+
+            }
+            catch (Exception exp)
+            {
+                X.MessageBox.Alert(GetGlobalResourceObject("Common", "Error").ToString(), exp.Message);
+            }
+
+
+        }
 
 
 

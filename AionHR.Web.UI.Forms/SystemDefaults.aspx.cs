@@ -746,6 +746,12 @@ namespace AionHR.Web.UI.Forms
             }
             catch { }
 
+            try
+            {
+                prevDayTVTime.Text = (items.Where(s => s.Key == "prevDayTVTime").First().Value);
+            }
+            catch { }
+
             try { pp_storeType.Select(items.Where(s => s.Key == "pp_storeType").First().Value); }
 
             catch { }
@@ -1064,6 +1070,11 @@ namespace AionHR.Web.UI.Forms
                 submittedValues.Add(new KeyValuePair<string, string>("weeklyTAHours", values.weeklyTAHours.ToString()));
             else
                 submittedValues.Add(new KeyValuePair<string, string>("weeklyTAHours", "0"));
+
+            if (values.prevDayTVTime != null && !string.IsNullOrEmpty(values.prevDayTVTime.ToString()))
+                submittedValues.Add(new KeyValuePair<string, string>("prevDayTVTime", values.prevDayTVTime.ToString()));
+            else
+                submittedValues.Add(new KeyValuePair<string, string>("prevDayTVTime", "7"));
 
             return submittedValues;
         }

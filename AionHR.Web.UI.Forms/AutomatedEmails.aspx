@@ -708,6 +708,10 @@
                                                     </Model>
                                                 </ext:Store>
                                             </Store>
+                                            <DirectEvents>                                                       
+                                                <Change OnEvent="EnableLang">
+                                                </Change>
+                                    </DirectEvents>
                                        </ext:ComboBox>
 
                                  <ext:ComboBox   AnyMatch="true" CaseSensitive="false" runat="server" AllowBlank="true" ValueField="recordId" QueryMode="Local" 
@@ -723,11 +727,11 @@
                                                 </ext:Model>
                                             </Model>
                                          </ext:Store>
-                                    </Store>
-                                  
+                                    </Store>                                  
                                 </ext:ComboBox>
 
-                                 <ext:ComboBox AnyMatch="true" TabIndex="5" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="false"  Name="languageId" DisplayField="value" ValueField="key" 
+                                 <ext:ComboBox AnyMatch="true" TabIndex="5" CaseSensitive="false" runat="server" ID="languageId" AllowBlank="false"  
+                                    Name="languageId" DisplayField="value" ValueField="key" 
                                     SubmitValue="true"  StoreID="LanguageStore"
                                     TypeAhead="false"
                                     FieldLabel="<%$ Resources: languageName%>"/>
@@ -761,7 +765,8 @@
                         <Click OnEvent="SaveNewReceiverRecord" Failure="Ext.MessageBox.alert('#{titleSavingError}.value', '#{titleSavingErrorMessage}.value');">
                             <EventMask ShowMask="true" Target="CustomTarget" CustomTarget="={#{receiversWindow}.body}" />
                             <ExtraParams>
-                              
+                                <ext:Parameter Name="taskId" Value="#{taskId}.getValue()" Mode="Raw" />
+                                <ext:Parameter Name="seqNo" Value="#{seqNo}.getValue()" Mode="Raw" />
                                 <ext:Parameter Name="values" Value ="#{receiversForm}.getForm().getValues()" Mode="Raw" Encode="true" />
                             </ExtraParams>
                         </Click>

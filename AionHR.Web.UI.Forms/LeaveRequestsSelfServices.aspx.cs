@@ -1018,7 +1018,7 @@ namespace AionHR.Web.UI.Forms
 
             settings.ContractResolver = res;
             //LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
-            LeaveReplacementApproval b = JsonConvert.DeserializeObject<LeaveReplacementApproval>(obj, settings);
+            LeaveRequest b = JsonConvert.DeserializeObject<LeaveRequest>(obj, settings);
             // b.status = Convert.ToInt16(status1);
             string id = e.ExtraParams["id"];
             // Define the object to add or edit as null
@@ -1045,11 +1045,11 @@ namespace AionHR.Web.UI.Forms
                 {
                     //New Mode
                     //Step 1 : Fill The object and insert in the store 
-                    PostRequest<LeaveReplacementApproval> request = new PostRequest<LeaveReplacementApproval>();
+                    PostRequest<LeaveRequest> request = new PostRequest<LeaveRequest>();
 
                     request.entity = b;
                     //PostResponse<LeaveRequest> r = _selfServiceService.ChildAddOrUpdate<LeaveRequest>(request);
-                    PostResponse<LeaveReplacementApproval> r = _selfServiceService.ChildAddOrUpdate<LeaveReplacementApproval>(request);
+                    PostResponse<LeaveRequest> r = _selfServiceService.ChildAddOrUpdate<LeaveRequest>(request);
 
 
                     //check if the insert failed
@@ -1112,7 +1112,7 @@ namespace AionHR.Web.UI.Forms
                         RecordRequest rec = new RecordRequest();
                         rec.RecordID = id;
                         //RecordResponse<LeaveRequest> recordResponse = _selfServiceService.ChildGetRecord<LeaveRequest>(rec);
-                        RecordResponse<LeaveReplacementApproval> recordResponse = _selfServiceService.ChildGetRecord<LeaveReplacementApproval>(rec);
+                        RecordResponse<LeaveRequest> recordResponse = _selfServiceService.ChildGetRecord<LeaveRequest>(rec);
                         if (!recordResponse.Success)
                         {
                             X.Msg.Alert(Resources.Common.Error, recordResponse.Summary).Show();
