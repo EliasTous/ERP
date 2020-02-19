@@ -674,6 +674,7 @@ namespace AionHR.Web.UI.Forms
             //moduleId.Hidden = false;
             //classId.Hidden = false;
             //keyName.ReadOnly = false;
+            classId.Disabled = false;
             this.EditRecordWindow.Title = Resources.Common.AddNewRecord;
             this.reportsWindow.Show();
         }
