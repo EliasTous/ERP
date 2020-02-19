@@ -133,7 +133,7 @@
                             <ext:Column    CellCls="cellLink" ID="ColName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldName%>" DataIndex="name" Flex="2" Hideable="false" />                               
                             <ext:Column    CellCls="cellLink" ID="ColfrequencyName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldfrequencyName%>" DataIndex="frequencyName" Flex="2" Hideable="false" />
                             <ext:Column    CellCls="cellLink" ID="Coltime" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldtime%>" DataIndex="time" Flex="1" Hideable="false" />
-                            <ext:Column    CellCls="cellLink" ID="Colflags" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldflags%>" DataIndex="flags" Flex="1" Hideable="false" />
+                            <%--<ext:Column    CellCls="cellLink" ID="Colflags" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldflags%>" DataIndex="flags" Flex="1" Hideable="false" />--%>
                             
 
                                
@@ -333,10 +333,7 @@
                                                         <ext:ModelField Name="reportName" />
                                                         <ext:ModelField Name="taskId" />
                                                         <ext:ModelField Name="reportId" />
-                                                        
-                                                    
-                       
-                       
+                                                        <ext:ModelField Name="parameters" />                       
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
@@ -354,21 +351,37 @@
 
                              <ext:Column ID="ColtaskId" Visible="false" DataIndex="taskId" runat="server" />
                              <ext:Column    CellCls="cellLink" ID="ColreportName" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldreportName%>" DataIndex="reportName" Flex="2" Hideable="false" /> 
+                            <ext:Column    CellCls="cellLink" ID="ColParamters" MenuDisabled="true" runat="server" Text="<%$ Resources: Fieldparameters%>" DataIndex="parameters" Flex="1" Hideable="false" /> 
 
 
                                                       
                             
-                             <ext:Column runat="server"
-                                ID="Column17"  Visible="true"
-                                Text=""
-                                MinWidth="60"
+                            <ext:Column runat="server"
+                                ID="Column1" Visible="false"
+                                Text="<%$ Resources: Common , Delete %>"
+                                Width="100"
                                 Align="Center"
                                 Fixed="true"
                                 Filterable="false"
                                 Hideable="false"
                                 MenuDisabled="true"
                                 Resizable="false">
-                                <Renderer Handler="return  deleteRender();" />
+                                <Renderer Fn="deleteRender" />
+                              
+                            </ext:Column>
+                            
+                            <ext:Column runat="server"
+                                ID="Column2"  Visible="true"
+                                Text=""
+                                Width="100"
+                                Hideable="false"
+                                Align="Center"
+                                Fixed="true"
+                                Filterable="false"
+                                MenuDisabled="true"
+                                Resizable="false">
+
+                                <Renderer handler="return editRender()+'&nbsp;&nbsp;' +deleteRender(); " />
 
                             </ext:Column>
 
@@ -631,7 +644,7 @@
                                       
                                        </ext:ComboBox>
 
-
+                                    <ext:TextField ID="parameters" runat="server" FieldLabel="<%$ Resources:Fieldparameters%>" Name="parameters" AllowBlank="true"   />
                               
                             </Items>
 

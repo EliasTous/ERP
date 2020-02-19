@@ -202,15 +202,6 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column Coltime;
         
         /// <summary>
-        /// Colflags control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Ext.Net.Column Colflags;
-        
-        /// <summary>
         /// colDelete control.
         /// </summary>
         /// <remarks>
@@ -400,13 +391,31 @@ namespace AionHR.Web.UI.Forms {
         protected global::Ext.Net.Column ColreportName;
         
         /// <summary>
-        /// Column17 control.
+        /// ColParamters control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.Column Column17;
+        protected global::Ext.Net.Column ColParamters;
+        
+        /// <summary>
+        /// Column1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column1;
+        
+        /// <summary>
+        /// Column2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Column Column2;
         
         /// <summary>
         /// Toolbar6 control.
@@ -641,6 +650,15 @@ namespace AionHR.Web.UI.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Store ReportComboStore;
+        
+        /// <summary>
+        /// parameters control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField parameters;
         
         /// <summary>
         /// saveReport control.

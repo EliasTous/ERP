@@ -189,4 +189,7 @@
   <data name="SelectPay" xml:space="preserve">
     <value>يجب عليك تحديد نوع ملف واحد على الأقل</value>
   </data>
+  <data name="Fieldparameters" xml:space="preserve">
+    <value>المعلمات</value>
+  </data>
 </root>

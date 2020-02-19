@@ -11,5 +11,7 @@ namespace AionHR.Model.TaskSchedule
         public int taskId { get; set; }
         public int reportId { get; set; }
         public string reportName { get; set; }
+
+        public string parameters { get; set; }
     }
 }

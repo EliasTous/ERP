@@ -51,4 +51,28 @@ namespace AionHR.Services.Messaging.TaskSchedule
             }
         }
     }
+
+    public class TaskReportListRequest : RecordRequest
+    {
+        public string taskId { get; set; }
+        public string reportId { get; set; }
+
+        /// <summary>
+        /// /// parameter list shipped with the web request
+        /// </summary>
+        public override Dictionary<string, string> Parameters
+        {
+
+            get
+            {
+                parameters = new Dictionary<string, string>();
+
+                parameters.Add("_taskId", taskId);
+                parameters.Add("_reportId", reportId);
+
+
+                return parameters;
+            }
+        }
+    }
 }

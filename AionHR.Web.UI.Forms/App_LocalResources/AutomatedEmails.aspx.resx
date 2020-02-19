@@ -189,4 +189,7 @@
   <data name="SelectPay" xml:space="preserve">
     <value>You must specify at least 1 file type</value>
   </data>
+  <data name="Fieldparameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
 </root>

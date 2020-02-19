@@ -200,8 +200,9 @@ namespace AionHR.Web.UI.Forms
             {
                 case "imgEdit":
                     //Step 1 : get the object from the Web Service 
-                    RecordRequest r = new RecordRequest();
-                    r.RecordID = id;
+                    TaskReportListRequest r = new TaskReportListRequest();
+                    r.reportId = reportId;
+                    r.taskId = id;
 
                     RecordResponse<Report> response = _taskScheduleService.ChildGetRecord<Report>(r);
                     if (!response.Success)
@@ -213,7 +214,9 @@ namespace AionHR.Web.UI.Forms
                     //Step 2 : call setvalues with the retrieved object
 
                     this.reportsForm.SetValues(response.result);
-                   
+                    classId.SetValue(response.result.reportId);
+                    classId.Disabled = true;
+
                     this.reportsWindow.Title = Resources.Common.EditWindowsTitle;
                     this.reportsWindow.Show();
                     break;
@@ -743,7 +746,7 @@ namespace AionHR.Web.UI.Forms
 
             string id = e.ExtraParams["id"];
             b.reportId = Convert.ToInt32(classId.SelectedItem.Value);
-
+            b.parameters = parameters.Text;
             // Define the object to add or edit as null
 
             if (string.IsNullOrEmpty(id))
@@ -872,6 +875,9 @@ namespace AionHR.Web.UI.Forms
             { b.seqNo = Convert.ToInt32(seqNo); }
             
             b.receiverType = Convert.ToInt32(receiverType.SelectedItem.Value);
+            if (Convert.ToInt32(receiverType.SelectedItem.Value)==2)
+            { sgId.SelectedItem.Value = "0"; }
+
             if (Convert.ToInt32(sgId.SelectedItem.Value) == 0)
             { b.sgId = null; }
             else
@@ -983,6 +989,7 @@ namespace AionHR.Web.UI.Forms
                             Html = Resources.Common.RecordUpdatedSucc
                         });
 
+                        FillReceiverStore();
 
 
                     }
@@ -1209,6 +1216,7 @@ namespace AionHR.Web.UI.Forms
                     languageId.Disabled = false;
                     sgId.Disabled = true;
                     sgId.SelectedItem.Value = null;
+                    sgId.SelectedItem.Text = "";
                     email.Disabled = false;
                 }
                 else
