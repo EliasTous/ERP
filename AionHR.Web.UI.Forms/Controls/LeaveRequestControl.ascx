@@ -340,7 +340,7 @@
 
                      <%--   <ext:Checkbox runat="server" Name="isPaid" InputValue="true" ID="isPaid" DataIndex="isPaid" FieldLabel="<%$ Resources:FieldIsPaid%>" />--%>
                         
-
+                        
 
 
                         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="ltId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1"
@@ -428,6 +428,7 @@
                                                 <ext:ModelField Name="workingHours" />
                                                 <ext:ModelField Name="leaveHours" />
                                                  <ext:ModelField Name="replacementId" />
+                                                <ext:ModelField Name="isWorkingDay" />
                                                
                                             </Fields>
                                         </ext:Model>
@@ -489,9 +490,14 @@
 
                                         </Listeners>
                                     </ext:ComponentColumn>
-                                      <ext:Column ID="Column1" DataIndex="replacementName" Text="<%$ Resources: FieldReplacementEmployeeName%>" runat="server" Flex="2">
-                                                
-                                    </ext:Column>
+                                      <ext:Column ID="Column1" DataIndex="replacementName" Text="<%$ Resources: FieldReplacementEmployeeName%>" runat="server" Flex="2"></ext:Column>
+
+                                    
+
+                                    <ext:CheckColumn ID="ColIsWorkingDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsWorkingDay%>" DataIndex="isWorkingDay" Width="100" Hideable="false" />
+                                   
+
+                                    
                                   
                                     <ext:Column runat="server"
                                 ID="colEdit" Visible="true"

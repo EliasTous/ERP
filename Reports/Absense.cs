@@ -692,6 +692,7 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             // 
             // GroupFooter1
             // 
+            resources.ApplyResources(this.GroupFooter1, "GroupFooter1");
             this.GroupFooter1.Level = 1;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
@@ -701,6 +702,7 @@ public class Absense : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel31,
             this.xrLabel30,
             this.xrLabel29});
+            resources.ApplyResources(this.GroupFooter2, "GroupFooter2");
             this.GroupFooter2.Name = "GroupFooter2";
             this.GroupFooter2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.groupHeaderBand1_BeforePrint);
             // 

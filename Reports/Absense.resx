@@ -393,7 +393,7 @@ fdsfsdfs
     <value>Parameter1</value>
   </data>
   <data name="xrLabel22.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>359.46344, 96.91147</value>
+    <value>359.46344, 10.0000534</value>
   </data>
   <data name="xrLabel22.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>376.042969, 23.0000076</value>
@@ -402,7 +402,7 @@ fdsfsdfs
     <value>xrLabel22</value>
   </data>
   <data name="xrLabel21.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>256.0157, 96.9114151</value>
+    <value>256.0157, 10</value>
   </data>
   <data name="xrLabel21.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>103.447754, 23.0000076</value>
@@ -411,7 +411,7 @@ fdsfsdfs
     <value>Printed by : </value>
   </data>
   <data name="xrPageInfo1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>9.999993, 96.9114151</value>
+    <value>9.999993, 10</value>
   </data>
   <data name="xrPageInfo1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>178.677109, 23.0000076</value>
@@ -420,10 +420,10 @@ fdsfsdfs
     <value>{0:dddd, MMMM d, yyyy H:mm}</value>
   </data>
   <data name="xrPageInfo2.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
-    <value>1005.12988, 96.9114151</value>
+    <value>1045.45264, 9.999974</value>
   </data>
   <data name="xrPageInfo2.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>63.651123, 23.0000076</value>
+    <value>96.54724, 23.0000076</value>
   </data>
   <data name="xrPageInfo2.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>TopRight</value>
@@ -432,7 +432,7 @@ fdsfsdfs
     <value>Page {0} of {1}</value>
   </data>
   <data name="pageFooterBand1.HeightF" type="System.Single, mscorlib">
-    <value>129.911469</value>
+    <value>45.5364876</value>
   </data>
   <data name="xrLabel23.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>1.90734863E-05, 62.9947929</value>
@@ -482,6 +482,9 @@ fdsfsdfs
   <data name="Division.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
+  <data name="GroupFooter1.HeightF" type="System.Single, mscorlib">
+    <value>0</value>
+  </data>
   <data name="xrLabel31.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v18.2">
     <value>1005.12988, 0</value>
   </data>
@@ -514,6 +517,9 @@ fdsfsdfs
   </data>
   <data name="xrLabel29.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v18.2">
     <value>MiddleCenter</value>
+  </data>
+  <data name="GroupFooter2.HeightF" type="System.Single, mscorlib">
+    <value>36.5780525</value>
   </data>
   <data name="GroupHeader1.HeightF" type="System.Single, mscorlib">
     <value>5.83333349</value>

@@ -288,4 +288,7 @@
   <data name="FieldApproverName" xml:space="preserve">
     <value>المعمد</value>
   </data>
+  <data name="FieldIsWorkingDay" xml:space="preserve">
+    <value>يوم عمل</value>
+  </data>
 </root>

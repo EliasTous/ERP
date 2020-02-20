@@ -29,6 +29,8 @@ namespace AionHR.Model.LeaveManagement
         public string replacementId { set; get; }
         public string replacementName { set; get; }
         public string fullName { set; get; }
+
+        public bool isWorkingDay { get; set; }
     }
 
 }

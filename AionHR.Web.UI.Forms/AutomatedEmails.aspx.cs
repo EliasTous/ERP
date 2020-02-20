@@ -366,7 +366,7 @@ namespace AionHR.Web.UI.Forms
 
             if (routers.Items.Count > 0)
             {
-                lineSeq.Text = (routers.Items.Count + 1).ToString();
+                lineSeq.Text = (routers.Items[routers.Items.Count - 1].seqNo + 1).ToString();
             }
             else
             {
