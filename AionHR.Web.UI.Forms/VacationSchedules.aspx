@@ -60,6 +60,32 @@
             </Sorters>
         </ext:Store>
 
+         <ext:Store
+            ID="calcMethodStore"
+            runat="server"
+            RemoteSort="False"
+            RemoteFilter="true"
+            OnReadData="CalcMethodStore_RefreshData"
+            PageSize="30" IDMode="Explicit" Namespace="App">
+            <Proxy>
+                <ext:PageProxy>
+                    <Listeners>
+                        <Exception Handler="Ext.MessageBox.alert('#{textLoadFailed}.value', response.statusText);" />
+                    </Listeners>
+                </ext:PageProxy>
+            </Proxy>
+            <Model>
+                <ext:Model ID="Model2" runat="server" IDProperty="key">
+                    <Fields>
+
+                        <ext:ModelField Name="key" />
+                        <ext:ModelField Name="value" />
+
+                    </Fields>
+                </ext:Model>
+            </Model>
+        
+        </ext:Store>
 
 
         <ext:Viewport ID="Viewport1" runat="server" Layout="Fit">
@@ -261,6 +287,11 @@
                             <Items>
                                 <ext:TextField ID="recordId" Hidden="true" runat="server"  Disabled="true" DataIndex="recordId" />
                                 <ext:TextField ID="name" runat="server" FieldLabel="<%$ Resources:FieldName%>" DataIndex="name" AllowBlank="false" BlankText="<%$ Resources:Common, MandatoryField%>" />
+
+                                <ext:ComboBox AnyMatch="true" TabIndex="5" CaseSensitive="false" runat="server" ID="calcMethod" AllowBlank="false"  Name="calcMethod" DisplayField="value" ValueField="key" 
+                                    SubmitValue="true"  StoreID="calcMethodStore"
+                                    TypeAhead="false"
+                                    FieldLabel="<%$ Resources: CalcMethod%>"/>
 
                             </Items>
 

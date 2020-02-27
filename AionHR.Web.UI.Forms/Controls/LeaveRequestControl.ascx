@@ -428,7 +428,8 @@
                                                 <ext:ModelField Name="workingHours" />
                                                 <ext:ModelField Name="leaveHours" />
                                                  <ext:ModelField Name="replacementId" />
-                                                <ext:ModelField Name="isWorkingDay" />
+                                                <%--<ext:ModelField Name="isWorkingDay" />--%>
+                                                <ext:ModelField Name="ldtName" />
                                                
                                             </Fields>
                                         </ext:Model>
@@ -492,9 +493,11 @@
                                     </ext:ComponentColumn>
                                       <ext:Column ID="Column1" DataIndex="replacementName" Text="<%$ Resources: FieldReplacementEmployeeName%>" runat="server" Flex="2"></ext:Column>
 
+                                    <ext:Column ID="Column5" DataIndex="ldtName" Text="<%$ Resources: FieldldtName%>" runat="server" Width="100"></ext:Column>
+
                                     
 
-                                    <ext:CheckColumn ID="ColIsWorkingDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsWorkingDay%>" DataIndex="isWorkingDay" Width="100" Hideable="false" />
+                                    <%--<ext:CheckColumn ID="ColIsWorkingDay" MenuDisabled="true" runat="server" Text="<%$ Resources: FieldIsWorkingDay%>" DataIndex="isWorkingDay" Width="100" Hideable="false" />--%>
                                    
 
                                     

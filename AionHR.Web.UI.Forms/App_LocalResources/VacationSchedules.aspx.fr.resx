@@ -129,6 +129,9 @@
   <data name="BtnUpdate" xml:space="preserve">
     <value>sauvegarder</value>
   </data>
+  <data name="CalcMethod" xml:space="preserve">
+    <value>Méthode de calcul</value>
+  </data>
   <data name="Days" xml:space="preserve">
     <value>Jours gagnés</value>
   </data>

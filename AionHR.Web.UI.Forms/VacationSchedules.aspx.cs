@@ -24,6 +24,8 @@ using AionHR.Model.Employees.Profile;
 using AionHR.Model.Employees.Leaves;
 using AionHR.Model.Attributes;
 using AionHR.Model.Access_Control;
+using AionHR.Services.Messaging.System;
+using AionHR.Model.System;
 
 namespace AionHR.Web.UI.Forms
 {
@@ -75,6 +77,25 @@ namespace AionHR.Web.UI.Forms
                     break;
             }
         }
+
+
+        protected void CalcMethodStore_RefreshData(object sender, StoreReadDataEventArgs e)
+        {
+
+            XMLDictionaryListRequest request = new XMLDictionaryListRequest();
+
+            request.database = "48";
+            ListResponse<XMLDictionary> resp = _systemService.ChildGetAll<XMLDictionary>(request);
+            if (!resp.Success)
+            {
+                Common.errorMessage(resp);
+                return;
+            }
+            calcMethodStore.DataSource = resp.Items;
+            calcMethodStore.DataBind();
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

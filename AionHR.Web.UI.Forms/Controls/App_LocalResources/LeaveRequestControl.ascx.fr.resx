@@ -288,4 +288,7 @@
   <data name="FieldIsWorkingDay" xml:space="preserve">
     <value>Jour Travail</value>
   </data>
+  <data name="FieldldtName" xml:space="preserve">
+    <value>Type de jour</value>
+  </data>
 </root>

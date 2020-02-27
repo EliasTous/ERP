@@ -291,4 +291,7 @@
   <data name="FieldIsWorkingDay" xml:space="preserve">
     <value>يوم عمل</value>
   </data>
+  <data name="FieldldtName" xml:space="preserve">
+    <value>نوع يوم الغياب</value>
+  </data>
 </root>

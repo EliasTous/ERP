@@ -580,13 +580,13 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.Column Column1;
         
         /// <summary>
-        /// ColIsWorkingDay control.
+        /// Column5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.CheckColumn ColIsWorkingDay;
+        protected global::Ext.Net.Column Column5;
         
         /// <summary>
         /// colEdit control.

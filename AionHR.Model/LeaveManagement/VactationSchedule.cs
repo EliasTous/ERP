@@ -14,6 +14,8 @@ namespace AionHR.Model.Employees.Leaves
         [PropertyID("42010_01")]
         [ApplySecurity]
         public string name { get; set; }
+
+        public short? calcMethod { get; set; }
     }
     [ClassIdentifier("42012", "42")]
     public  class VacationSchedulePeriod 
@@ -32,5 +34,7 @@ namespace AionHR.Model.Employees.Leaves
         public int vsId { get; set; }
 
         public short seqNo { get; set; }
+
+        
     }
 }
