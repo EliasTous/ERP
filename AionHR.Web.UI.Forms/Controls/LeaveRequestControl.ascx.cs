@@ -200,7 +200,7 @@ namespace AionHR.Web.UI.Forms.Controls
                                 }
                        });
                     employeeId.SetValue(response.result.employeeId);
-
+                    currentEmpID.Text = response.result.employeeId;
                 }
                 LoadQuickViewInfo(response.result.employeeId,response.result.startDate);
 
@@ -887,9 +887,12 @@ namespace AionHR.Web.UI.Forms.Controls
                 int bulk;
                 if (string.IsNullOrEmpty(employeeId.Value.ToString()) || !int.TryParse(employeeId.Value.ToString(), out bulk))
                 {
-                    X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorSelectEmployee")).Show();
-                    panelRecordDetails.ActiveTabIndex = 0;
-                    return;
+                    if (currentEmpID.Text == "")
+                    {
+                        X.Msg.Alert(Resources.Common.Error, GetLocalResourceObject("ErrorSelectEmployee")).Show();
+                        panelRecordDetails.ActiveTabIndex = 0;
+                        return;
+                    }
                 }
 
             }

@@ -184,6 +184,15 @@ namespace AionHR.Web.UI.Forms.Controls {
         protected global::Ext.Net.Hidden shouldDisableLastDay;
         
         /// <summary>
+        /// currentEmpID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Hidden currentEmpID;
+        
+        /// <summary>
         /// GridDisabled control.
         /// </summary>
         /// <remarks>

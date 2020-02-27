@@ -156,6 +156,7 @@
 <ext:Hidden ID="DateFormat" runat="server" />
 <ext:Hidden ID="approved" runat="server" />
 <ext:Hidden ID="shouldDisableLastDay" runat="server" />
+<ext:Hidden ID="currentEmpID" runat="server" />
 <ext:Hidden ID="GridDisabled" runat="server" />
 <ext:Hidden ID="LeaveChanged" runat="server" Text="1" EnableViewState="true" />
 <ext:Hidden ID="TotalText" runat="server" Text="<%$ Resources: TotalText %>" />
