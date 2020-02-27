@@ -549,7 +549,7 @@
                                        
                                     </Items>
                                 </ext:ComboBox>
-                                 <ext:NumberField  runat="server" LabelWidth="150" ID="minPunchInterval" Name="minPunchInterval" FieldLabel="<%$ Resources: minPunchInterval %>" MinValue="0"  MaxValue="600"/>
+                                 <ext:NumberField  runat="server" LabelWidth="150" ID="minPunchInterval" Name="minPunchInterval" FieldLabel="<%$ Resources: minPunchInterval %>" MinValue="5"  MaxValue="15"/>
                                        <ext:ComboBox AnyMatch="true"  CaseSensitive="false" QueryMode="Local" LabelWidth="150" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources: FieldDailySchedule %>" Name="dailySchedule" runat="server" ID="dailySchedule">
                                     <Items>
                                         <ext:ListItem Text="<%$ Resources: dailySchedule_15 %>" Value="<%$ Resources:ComboBoxValues, dailySchedule_15 %>" />
