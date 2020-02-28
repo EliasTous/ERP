@@ -530,7 +530,9 @@ namespace AionHR.Web.UI.Forms
                 X.MessageBox.Alert(Resources.Common.Error, exp.Message);
             }
 
-            ReloadData(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
+            //ReloadData(new object(), new DirectEventArgs(new Ext.Net.ParameterCollection()));
+
+            Store1.RemoveAll();
 
 
         }

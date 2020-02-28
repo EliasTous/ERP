@@ -296,6 +296,17 @@ namespace AionHR.Web.UI.Forms
                     }
                     if (string.IsNullOrEmpty(x.notes))
                         x.notes = " ";
+
+                    //if (x.status == 2 || x.status == -1)
+                    //{
+                    //    btnApprovals.Disabled = true;
+                    //    btnReject.Disabled = true;
+                    //}
+                    //else
+                    //{
+                    //    btnApprovals.Disabled = false;
+                    //    btnReject.Disabled = false;
+                    //}
                 });
 
                 // TimeStore.DataSource = Times.Items.Where(x=>x.status==1).ToList<Time>();
@@ -304,6 +315,10 @@ namespace AionHR.Web.UI.Forms
 
                 TimeStore.DataSource = Times.Items;
                 TimeStore.DataBind();
+
+               
+               
+
             }
             catch (Exception exp)
             {
@@ -720,20 +735,23 @@ namespace AionHR.Web.UI.Forms
                 PostResponse<TimeSelfService> resp;
                 Times.Items.ForEach(x =>
                 {
-
-                    request.entity = x;
-                    if (approve == "true")
-                        request.entity.status = 2;
-                    else
-                        request.entity.status = -1;
-                    resp = _selfServiceService.ChildAddOrUpdate<TimeSelfService>(request);
-                    if (!resp.Success)
+                    if (x.status != 2 && x.status != -1)
                     {
-                        Common.errorMessage(resp);
-                        throw new Exception();
+                        request.entity = x;
+                        if (approve == "true")
+                            request.entity.status = 2;
+                        else
+                            request.entity.status = -1;
+                        resp = _selfServiceService.ChildAddOrUpdate<TimeSelfService>(request);
+                        if (!resp.Success)
+                        {
+                            Common.errorMessage(resp);
+                            throw new Exception();
+                        }
                     }
                 });
                 TimeStore.Reload();
+                //TimeStore.RemoveAll();
 
             }
 
