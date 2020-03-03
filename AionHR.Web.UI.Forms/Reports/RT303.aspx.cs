@@ -319,7 +319,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     Item.totTotalLateness = x.NET_LATENESS;//totalLatness;
                     Item.totTotalOvertime = x.NET_OVERTIME;// totalOverTime;
                     Item.lineTotalOvertime = x.OVERTIME;//totalOverTime;
-                    Item.missedShift = missedShift;
+                    Item.missedShift = x.SHIFT_LEAVE_WITHOUT_EXCUSE;//missedShift;
 
                     Item.lineDuringShiftLeave = x.DURING_SHIFT_LEAVE;
                     Item.lineEarlyCheckIn = x.EARLY_CHECKIN;//totEarlyCI;
@@ -329,7 +329,7 @@ namespace AionHR.Web.UI.Forms.Reports
                     Item.totTotalLateness = x.NET_LATENESS;
                     Item.bTotTotalLateness = x.NET_LATENESS.ToString();//totalLatness.ToString();
                     Item.bTotTotalOvertime = x.NET_OVERTIME.ToString();//totalOverTime.ToString();
-                    Item.strMissedShift = timeformat(Convert.ToInt32(missedShift));//totalLatness.ToString();
+                    Item.strMissedShift = timeformat(Convert.ToInt32(x.SHIFT_LEAVE_WITHOUT_EXCUSE.ToString()));//missedShift//totalLatness.ToString();
                     Item.totalLateness = timeformat(Convert.ToInt32(x.NET_LATENESS));//timeformat(Convert.ToInt32(totalLatness + dsl+missedShift));//totalLatness.ToString();
                     Item.totalOvertime = timeformat(Convert.ToInt32(x.NET_OVERTIME));//timeformat(Convert.ToInt32(totalOverTime));//totalOverTime.ToString();
                     //Item.earlyLeave = x.variationsList.Where(y => y.timeCode == 33).Count() != 0 ? time(x.variationsList.Where(y => y.timeCode == 33).First().duration, false) : "00:00";
