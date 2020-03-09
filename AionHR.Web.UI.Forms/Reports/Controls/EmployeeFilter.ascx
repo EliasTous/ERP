@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmployeeFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter" %>
 
-        <ext:ComboBox   AnyMatch="true"   CaseSensitive="false"  runat="server" ID="employeeFilter"  LabelAlign="Left"
+        <ext:ComboBox   AnyMatch="true"   CaseSensitive="false"  runat="server" ID="employeeId"  LabelAlign="Left"
             DisplayField="fullName"
             ValueField="recordId" AllowBlank="true"
             TypeAhead="false"

@@ -226,14 +226,15 @@ namespace AionHR.Web.UI.Forms
                                 
                             }
                             cont.ID= "control_" + item.id;
-                            
-                            if(valuesDict!=null && valuesDict.ContainsKey(item.id))
+                            contAsCombo.GetComboBox().AllowBlank = !item.mandatory;
+                            if (valuesDict!=null && valuesDict.ContainsKey(item.id))
                             {
                                
                                 if (contAsCombo != null)
                                     contAsCombo.Select(valuesDict[item.id]);
+                                contAsCombo.GetComboBox().Select(0);
                             }
-                            contAsCombo.GetComboBox().AllowBlank = !item.mandatory;
+                           
                             Container c = new Container() { Layout = "FitLayout" };
                             c.ContentControls.Add(cont);
                             FormPanel1.Items.Add(c);
