@@ -871,7 +871,11 @@
         }
         function displayRTW(s) {
             var str = "<div style=" + getStyle() + ">";
-            str += s.documentRef + '- ' + s.expiryDateString;
+            if (s.branchName == null) {
+            str += s.dtName + ' - ' + s.documentRef;}
+            else {
+                str += s.dtName + ' - ' + s.branchName + ' - ' + s.documentRef;
+            }
             return str;
         }
         function displayEmployeeRTW(s) {
@@ -3039,6 +3043,17 @@
                                         <ext:ModelField Name="expiryDate" />
                                         <ext:ModelField Name="days" />
                                          <ext:ModelField Name="expiryDateString" />
+
+                                         <ext:ModelField Name="dtName" />
+                                        <ext:ModelField Name="branchName" />
+                                        <ext:ModelField Name="fileUrl" />
+                                         <ext:ModelField Name="fileName" />
+
+                                         <ext:ModelField Name="dtId" />
+                                        <ext:ModelField Name="branchId" />
+                                        <ext:ModelField Name="issueDate" />
+                                         <ext:ModelField Name="hijriCal" />
+                                        <ext:ModelField Name="remarks" />
                                         
 
                                     </Fields>
