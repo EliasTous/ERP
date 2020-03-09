@@ -640,6 +640,8 @@ namespace AionHR.Web.UI.Forms
                             Common.errorMessage(UdIdResp);
                             return;
                         }
+                        udIdStore.DataSource = UdIdResp.Items;
+                        udIdStore.DataBind();
                         FlatPunchesListRequest FPreq = new FlatPunchesListRequest();
                         FPreq.shiftId = shiftId;
                         FPreq.sortBy = "clockStamp";

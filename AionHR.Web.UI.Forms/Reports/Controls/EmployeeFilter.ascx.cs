@@ -23,13 +23,13 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         }
         public ComboBox EmployeeComboBox { get
             {
-                return employeeFilter;
+                return employeeId;
             } }
         public EmployeeParameterSet GetEmployee()
         {
             EmployeeParameterSet s = new EmployeeParameterSet();
             int bulk;
-            if (employeeFilter.Value == null || !int.TryParse(employeeFilter.Value.ToString(), out bulk))
+            if (employeeId.Value == null || !int.TryParse(employeeId.Value.ToString(), out bulk))
 
                 s.employeeId = 0;
             else
@@ -41,11 +41,11 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
         {
            
             int bulk;
-            if (employeeFilter.Value == null || !int.TryParse(employeeFilter.Value.ToString(), out bulk))
+            if (employeeId.Value == null || !int.TryParse(employeeId.Value.ToString(), out bulk))
 
                 return "";
             else
-                return employeeFilter.SelectedItem.Text.ToString();
+                return employeeId.SelectedItem.Text.ToString();
 
 
         }
@@ -58,7 +58,7 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
             RecordResponse < Employee > response= _employeeService.Get<Employee>(req);
             List<Employee> onlyone = new List<Employee>();
             response.result.fullName = response.result.name.fullName;
-            employeeFilter.GetStore().Add(new object[]
+            employeeId.GetStore().Add(new object[]
                            {
                                 new
                                 {
@@ -68,17 +68,17 @@ namespace AionHR.Web.UI.Forms.Reports.Controls
                            });
 
 
-            employeeFilter.SelectedItem.Text = response.result.name.fullName;
+           
         }
 
         public void SetLabel(string newLabel)
         {
-            employeeFilter.FieldLabel = newLabel;
+            employeeId.FieldLabel = newLabel;
         }
 
         public ComboBox GetComboBox()
         {
-            return employeeFilter;
+            return employeeId;
         }
     }
 }

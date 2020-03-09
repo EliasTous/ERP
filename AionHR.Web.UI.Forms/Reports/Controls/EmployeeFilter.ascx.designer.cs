@@ -13,13 +13,13 @@ namespace AionHR.Web.UI.Forms.Reports.Controls {
     public partial class EmployeeFilter {
         
         /// <summary>
-        /// employeeFilter control.
+        /// employeeId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Ext.Net.ComboBox employeeFilter;
+        protected global::Ext.Net.ComboBox employeeId;
         
         /// <summary>
         /// Store2 control.

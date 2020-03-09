@@ -663,7 +663,7 @@
                                             </Model>
                                         </ext:Store>
                                     </Store>
-                                      <DirectEvents>
+                                   <%--   <DirectEvents>
                                   <Change OnEvent="FillUdId">
                                   <EventMask ShowMask="true" /> 
                                       <ExtraParams>
@@ -671,18 +671,18 @@
                                           </ExtraParams>
                                   </Change>
 
-                                 </DirectEvents>
+                                 </DirectEvents>--%>
                                  
                                 </ext:ComboBox>
 
-                                  <ext:ComboBox  AllowBlank="false"   AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="name" ID="udId" Name="udId" FieldLabel="<%$ Resources:FieldBiometric%>" >
+                                  <ext:ComboBox  AllowBlank="false"   AnyMatch="true" CaseSensitive="false"   runat="server"  ValueField="recordId" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" DisplayField="reference" ID="udId" Name="udId" FieldLabel="<%$ Resources:FieldBiometric%>" >
                                     <Store>
                                         <ext:Store runat="server" ID="udIdStore">
                                             <Model>
                                                 <ext:Model runat="server">
                                                     <Fields>
                                                         <ext:ModelField Name="recordId" />
-                                                        <ext:ModelField Name="name" />
+                                                        <ext:ModelField Name="reference" />
                                                     </Fields>
                                                 </ext:Model>
                                             </Model>
