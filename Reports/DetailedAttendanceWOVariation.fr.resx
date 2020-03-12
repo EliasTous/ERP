@@ -162,8 +162,42 @@
   <data name="xrTableCell2.Text" xml:space="preserve">
     <value>Reference</value>
   </data>
+  <data name="xrTableCell21.Text" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="xrTableCell22.Text" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="xrTableCell23.Text" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="xrTableCell24.Text" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="xrTableCell25.Text" xml:space="preserve">
+    <value>Branche</value>
+  </data>
+  <data name="xrTableCell26.Text" xml:space="preserve">
+    <value>Departement</value>
+  </data>
+  <data name="xrTableCell27.Text" xml:space="preserve">
+    <value>Heure Début</value>
+  </data>
+  <data name="xrTableCell28.Text" xml:space="preserve">
+    <value>Heure Fin</value>
+  </data>
+  <data name="xrTableCell29.Text" xml:space="preserve">
+    <value>Nombre d'heure</value>
+  </data>
   <data name="xrTableCell3.Text" xml:space="preserve">
     <value>Nom</value>
+  </data>
+  <data name="xrTableCell3.Text1" xml:space="preserve">
+    <value>Employee
+</value>
+  </data>
+  <data name="xrTableCell30.Text" xml:space="preserve">
+    <value>Statut de jour</value>
   </data>
   <data name="xrTableCell4.Text" xml:space="preserve">
     <value>Position</value>

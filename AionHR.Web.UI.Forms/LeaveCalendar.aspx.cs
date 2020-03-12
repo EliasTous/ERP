@@ -242,40 +242,49 @@ namespace AionHR.Web.UI.Forms
             }
         }
 
+        int BranchId = 0;
+        int DepartmentId = 0;
+        int EmployeeId = 0;
+        int status = 0;
         private LeaveRequestListRequest GetFilteredRequest()
         {
             LeaveRequestListRequest req = new LeaveRequestListRequest();
 
             var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            //req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            //req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
 
+            BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
 
 
             if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
             {
-                req.EmployeeId = Convert.ToInt32(employeeFilter.Value);
+                //req.EmployeeId = Convert.ToInt32(employeeFilter.Value);
+                EmployeeId = Convert.ToInt32(employeeFilter.Value);
 
 
             }
             else
             {
-                req.EmployeeId = 0;
+                //req.EmployeeId = 0;
+                EmployeeId = 0;
 
             }
 
             if (!string.IsNullOrEmpty(includeOpen.Text))
             {
-                req.status = Convert.ToInt32(includeOpen.Value);
-
+                //req.status = Convert.ToInt32(includeOpen.Value);
+                status = Convert.ToInt32(includeOpen.Value);
 
             }
             else
             {
-                req.status = 0;
-
+                //req.status = 0;
+                status = 0;
             }
 
+            req.Params = "1|" + EmployeeId + "^2|" + BranchId + "^3|" + DepartmentId + "^4|2";
             req.Size = "50";
             req.StartAt = "0";
             req.SortBy = "recordId";

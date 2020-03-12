@@ -458,14 +458,15 @@ namespace AionHR.Web.UI.Forms
 
             //in this test will take a list of News
             LeaveRequestListRequest request = new LeaveRequestListRequest();
-            request.EmployeeId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId());
-            request.BranchId = 0;
-            request.DepartmentId = 0;
-            request.raEmployeeId = 0;
-            request.status = 0;
+            //request.EmployeeId =Convert.ToInt32( _systemService.SessionHelper.GetEmployeeId());
+            //request.BranchId = 0;
+            //request.DepartmentId = 0;
+            //request.raEmployeeId = 0;
+            //request.status = 0;
             request.Size = "50";
             request.StartAt = e.Start.ToString();
             request.SortBy = "recordId";
+
 
             request.Filter = "";
             ListResponse<leaveRequetsSelfservice> routers = _selfServiceService.ChildGetAll<leaveRequetsSelfservice>(request);

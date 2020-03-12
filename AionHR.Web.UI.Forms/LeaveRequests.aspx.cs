@@ -131,7 +131,7 @@ namespace AionHR.Web.UI.Forms
               Column2.Format = Column1.Format = _systemService.SessionHelper.GetDateformat();
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), null, GridPanel1, btnAdd, null);
+                   // AccessControlApplier.ApplyAccessControlOnPage(typeof(LeaveRequest), null, GridPanel1, btnAdd, null);
 
                 }
                 catch (AccessDeniedException exp)
@@ -330,38 +330,56 @@ namespace AionHR.Web.UI.Forms
             LeaveRequestListRequest req = new LeaveRequestListRequest();
 
 
-            var d = jobInfo1.GetJobInfo();
-            req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
-            req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
-            req.raEmployeeId = 0;
+            //var d = jobInfo1.GetJobInfo();
+            //req.BranchId = d.BranchId.HasValue ? d.BranchId.Value : 0;
+            //req.DepartmentId = d.DepartmentId.HasValue ? d.DepartmentId.Value : 0;
+            //req.raEmployeeId = 0;
           
-            if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
-            {
-                req.EmployeeId = Convert.ToInt32(employeeFilter.Value);
+            //if (!string.IsNullOrEmpty(employeeFilter.Text) && employeeFilter.Value.ToString() != "0")
+            //{
+            //    req.EmployeeId = Convert.ToInt32(employeeFilter.Value);
 
 
-            }
-            else
-            {
-                req.EmployeeId = 0;
+            //}
+            //else
+            //{
+            //    req.EmployeeId = 0;
 
-            }
+            //}
 
-            if (!string.IsNullOrEmpty(LeveApprovalStatusFilter.GetApprovalStatus()))
-            {
-                req.status = Convert.ToInt32(LeveApprovalStatusFilter.GetApprovalStatus());
+            //if (!string.IsNullOrEmpty(LeveApprovalStatusFilter.GetApprovalStatus()))
+            //{
+            //    req.status = Convert.ToInt32(LeveApprovalStatusFilter.GetApprovalStatus());
 
 
-            }
-            else
-            {
-                req.status = 0;
+            //}
+            //else
+            //{
+            //    req.status = 0;
 
-            }
+            //}
 
 
 
             return req;
+        }
+
+        [DirectMethod]
+        public void SetLabels(string labels)
+        {
+            this.labels.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetVals(string labels)
+        {
+            this.vals.Text = labels;
+        }
+
+        [DirectMethod]
+        public void SetTexts(string labels)
+        {
+            this.texts.Text = labels;
         }
 
         protected void Store1_RefreshData(object sender, StoreReadDataEventArgs e)
@@ -382,8 +400,9 @@ namespace AionHR.Web.UI.Forms
             request.Size = "50";
             request.StartAt = e.Start.ToString();
             request.SortBy = "recordId";
-            
-            request.Filter = "";
+            request.Params = vals.Text;
+
+            //request.Filter = "";
             ListResponse<LeaveRequest> routers = _leaveManagementService.ChildGetAll<LeaveRequest>(request);
 
            if (!routers.Success)

@@ -596,6 +596,9 @@ namespace AionHR.Web.UI.Forms
 
            
         }
+
+        
+
         [DirectMethod]
         protected void fillLeaves(object sender, DirectEventArgs e)
         {
@@ -604,22 +607,22 @@ namespace AionHR.Web.UI.Forms
             LeaveRequestListRequest req = new LeaveRequestListRequest();
 
 
-          
-            req.BranchId =0;
-            req.DepartmentId = 0;
-            req.raEmployeeId = 0;
 
-          
-           req.EmployeeId = Convert.ToInt32(employeeId.SelectedItem.Value);
+            // req.BranchId =0;
+            // req.DepartmentId = 0;
+            // req.raEmployeeId = 0;
 
 
+            //req.EmployeeId = Convert.ToInt32(employeeId.SelectedItem.Value);
 
 
 
-            req.status = 2;
-                            
-         
 
+
+            // req.status = 2;
+
+
+            req.Params = "1|" + Convert.ToInt32(employeeId.SelectedItem.Value) + "^4|2";
             req.Size = "50";
             req.StartAt = "0";
             req.SortBy = "recordId";
@@ -659,26 +662,26 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            req.BranchId = 0;
-            req.DepartmentId = 0;
-            req.raEmployeeId = 0;
+            //req.BranchId = 0;
+            //req.DepartmentId = 0;
+            //req.raEmployeeId = 0;
 
 
-            req.EmployeeId = Convert.ToInt32(employeeId.SelectedItem.Value);
+            //req.EmployeeId = Convert.ToInt32(employeeId.SelectedItem.Value);
 
 
 
 
 
-            req.status = 2;
+            //req.status = 2;
 
-
+            req.Params = "1|" + Convert.ToInt32(employeeId.SelectedItem.Value) + "^4|2";
 
             req.Size = "50";
             req.StartAt = "0";
             req.SortBy = "recordId";
 
-            req.Filter = "";
+            //req.Filter = "";
             ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
 
 

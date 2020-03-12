@@ -984,22 +984,23 @@ namespace AionHR.Web.UI.Forms.Controls
         {
             LeaveRequestListRequest req = new LeaveRequestListRequest();
 
-            if (!string.IsNullOrEmpty(returnedEmployee.Text) && returnedEmployee.Value.ToString() != "0")
-            {
-                req.EmployeeId = Convert.ToInt32(returnedEmployee.Value);
+            //if (!string.IsNullOrEmpty(returnedEmployee.Text) && returnedEmployee.Value.ToString() != "0")
+            //{
+            //    req.EmployeeId = Convert.ToInt32(returnedEmployee.Value);
 
 
-            }
-            else
-            {
-                return;
+            //}
+            //else
+            //{
+            //    return;
 
-            }
-            req.BranchId = req.DepartmentId = 0;
-            req.status = 0;
+            //}
+            //req.BranchId = req.DepartmentId = 0;
+            //req.status = 0;
             req.StartAt = "0";
             req.Size = "1";
             req.SortBy = "endDate";
+            req.Params = "1|" + Convert.ToInt32(employeeId.SelectedItem.Value);
 
             ListResponse<LeaveRequest> resp = _leaveManagementService.ChildGetAll<LeaveRequest>(req);
             if (!resp.Success)

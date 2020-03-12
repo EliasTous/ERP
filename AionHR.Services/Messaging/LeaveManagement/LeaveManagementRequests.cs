@@ -44,6 +44,8 @@ public class VacationPeriodsListRequest : ListRequest
     }
 }
 
+
+
 public class LeaveSchedulesListRequest : ListRequest
 {
     public string LeaveScheduleId { get; set; }
@@ -63,26 +65,28 @@ public class LeaveSchedulesListRequest : ListRequest
 }
 public class LeaveRequestListRequest : ListRequest
 {
-    public int status { get; set; }
-    public int BranchId { get; set; }
-    public int DepartmentId { get; set; }
-    public int EmployeeId { get; set; }
+    //public int status { get; set; }
+    //public int BranchId { get; set; }
+    //public int DepartmentId { get; set; }
+    //public int EmployeeId { get; set; }
     //public int ApproverId { get; set; }
 
+    public string Params { get; set; }
 
     public string SortBy { get; set; }
-    public int raEmployeeId { get; set; }
+    //public int raEmployeeId { get; set; }
     public override Dictionary<string, string> Parameters
     {
         get
         {
             parameters = base.Parameters;
-            parameters.Add("_status", status.ToString());
-            parameters.Add("_branchId", BranchId.ToString());
-            parameters.Add("_departmentId", DepartmentId.ToString());
-            parameters.Add("_employeeId", EmployeeId.ToString());
+            //parameters.Add("_status", status.ToString());
+            //parameters.Add("_branchId", BranchId.ToString());
+            //parameters.Add("_departmentId", DepartmentId.ToString());
+            //parameters.Add("_employeeId", EmployeeId.ToString());
             parameters.Add("_sortBy", SortBy.ToString());
-            parameters.Add("_raEmployeeId", raEmployeeId.ToString());
+            //parameters.Add("_raEmployeeId", raEmployeeId.ToString());
+            parameters.Add("_params", Params);
             //parameters.Add("_approverId", ApproverId.ToString());
 
 

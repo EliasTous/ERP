@@ -15,6 +15,11 @@ namespace Reports
             InitializeComponent();
             //printHeader(parameters);
             
+            if (getLan == "ar")
+            {
+                this.xrTable2.LocationF = new PointF(10, 0);
+                this.xrTable3.LocationF = new PointF(10, 15);
+            }
                
         }
         //private void printHeader(Dictionary<string, string> parameters)

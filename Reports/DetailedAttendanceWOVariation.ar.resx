@@ -420,4 +420,37 @@
   <data name="xrLabel22.Text" xml:space="preserve">
     <value>دوام ناقص</value>
   </data>
+  <data name="xrTableCell21.Text" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="xrTableCell22.Text" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="xrTableCell23.Text" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="xrTableCell24.Text" xml:space="preserve">
+    <value>الرمز</value>
+  </data>
+  <data name="xrTableCell25.Text" xml:space="preserve">
+    <value>الفروع</value>
+  </data>
+  <data name="xrTableCell26.Text" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="xrTableCell27.Text" xml:space="preserve">
+    <value>البصمة الاولى</value>
+  </data>
+  <data name="xrTableCell28.Text" xml:space="preserve">
+    <value>البصمة الأخيرة</value>
+  </data>
+  <data name="xrTableCell29.Text" xml:space="preserve">
+    <value>المدة</value>
+  </data>
+  <data name="xrTableCell3.Text1" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="xrTableCell30.Text" xml:space="preserve">
+    <value>حالة اليوم</value>
+  </data>
 </root>
