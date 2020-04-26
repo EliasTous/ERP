@@ -1424,7 +1424,7 @@
 
 
                                                       
-                                                        <ext:Panel Header="true" Resizable="true" ID="pnlAttendancePeriod" AutoUpdateLayout="true" runat="server" Title="<%$Resources: AttendancePeriod %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                        <ext:Panel Visible="false" Header="true" Resizable="true" ID="pnlAttendancePeriod" AutoUpdateLayout="true" runat="server" Title="<%$Resources: AttendancePeriod %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
                                                             <TopBar>
                                                                 <ext:Toolbar runat="server">
                                                                     <Items>
@@ -1462,7 +1462,7 @@
                                                             </Items>
                                                         </ext:Panel>
 
-                                                        <ext:Panel ID="pnlHeadCount" AutoUpdateLayout="true" runat="server" Title="<%$Resources: HeadCount %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                        <ext:Panel Visible="false" ID="pnlHeadCount" AutoUpdateLayout="true" runat="server" Title="<%$Resources: HeadCount %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
                                                             <TopBar>
                                                                 <ext:Toolbar runat="server">
                                                                     <Items>
@@ -1528,7 +1528,7 @@
                                                                 </ext:Panel>
                                                             </Items>
                                                         </ext:Panel>
-                                                          <ext:Panel runat="server" AutoUpdateLayout="true" AutoScroll="true" ID="pnlRate" Title="<%$Resources: LocalRate %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
+                                                          <ext:Panel Visible="false" runat="server" AutoUpdateLayout="true" AutoScroll="true" ID="pnlRate" Title="<%$Resources: LocalRate %>" StyleSpec=" border: 1px solid #add2ed !important;" Layout="HBoxLayout" Flex="1">
                                                             <Defaults>
                                                                 <ext:Parameter Name="margin" Value="0 5 0 0" Mode="Value" />
                                                             </Defaults>
@@ -1577,7 +1577,7 @@
                                                     </Listeners>
                                                 </ext:TabPanel>
 
-                                                <ext:TabPanel ID="belowt" IDMode="Client" EnableTheming="false" BodyCls="topper" Plain="true" runat="server" Flex="1" PaddingSpec="0 0 0 0" StyleSpec="border-radius: 0px;">
+                                                <ext:TabPanel Visible="false" ID="belowt" IDMode="Client" EnableTheming="false" BodyCls="topper" Plain="true" runat="server" Flex="1" PaddingSpec="0 0 0 0" StyleSpec="border-radius: 0px;">
                                                     <Defaults>
                                                     </Defaults>
                                                     <Items>

@@ -1088,7 +1088,7 @@
                 </ext:GridPanel>
 
 
-                         <ext:GridPanel
+                         <ext:GridPanel Visible="false"
                             ID="ApprovalsGridPanel"
                             runat="server"
                             PaddingSpec="0 0 1 0"
