@@ -493,7 +493,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Payroll.FinalSettlement);
+            this.objectDataSource1.DataSource = typeof(Model.Payroll.FinalSettlement);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // DetailReport1
@@ -602,7 +602,7 @@
             // 
             // objectDataSource2
             // 
-            this.objectDataSource2.DataSource = typeof(AionHR.Model.Payroll.FinalEntitlementsDeductions);
+            this.objectDataSource2.DataSource = typeof(Model.Payroll.FinalEntitlementsDeductions);
             this.objectDataSource2.Name = "objectDataSource2";
             // 
             // User
@@ -852,7 +852,7 @@
             // 
             // objectDataSource3
             // 
-            this.objectDataSource3.DataSource = typeof(AionHR.Model.Payroll.FinalEntitlementsDeductions);
+            this.objectDataSource3.DataSource = typeof(Model.Payroll.FinalEntitlementsDeductions);
             this.objectDataSource3.Name = "objectDataSource3";
             // 
             // xrLabel1

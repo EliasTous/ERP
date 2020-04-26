@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NationalQuotas.aspx.cs" Inherits="AionHR.Web.UI.Forms.NationalQuotas" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NationalQuotas.aspx.cs" Inherits="Web.UI.Forms.NationalQuotas" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

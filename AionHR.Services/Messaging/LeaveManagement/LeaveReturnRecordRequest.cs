@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.LeaveManagement
+namespace Services.Messaging.LeaveManagement
 {
    public class LeaveReturnRecordRequest : RecordRequest
     {

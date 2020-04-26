@@ -14,20 +14,20 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Attendance;
-using AionHR.Model.TimeAttendance;
-using AionHR.Services.Messaging.System;
-using AionHR.Services.Messaging.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.Employees.Profile;
+using Model.Employees.Leaves;
+using Model.Attendance;
+using Model.TimeAttendance;
+using Services.Messaging.System;
+using Services.Messaging.Reports;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class DaysAvailability : System.Web.UI.Page
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.Asset_Management
+namespace Services.Messaging.Asset_Management
 {
   public  class AssetManagementCategoryPropertyRecordRequest:RecordRequest
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.Configuration
+namespace Infrastructure.Configuration
 {
     /// <summary>
     /// Interface all setttings

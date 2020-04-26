@@ -1,13 +1,13 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.TaskManagement;
+﻿using Infrastructure.Configuration;
+using Infrastructure.Domain;
+using Model.TaskManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     public class TaskManagementRepository:Repository<Model.TaskManagement.Task, string>,ITaskManagementRepository
     {

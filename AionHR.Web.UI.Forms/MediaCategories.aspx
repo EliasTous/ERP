@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MediaCategories.aspx.cs" Inherits="AionHR.Web.UI.Forms.MediaCategories" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MediaCategories.aspx.cs" Inherits="Web.UI.Forms.MediaCategories" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

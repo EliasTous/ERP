@@ -14,25 +14,25 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.LeaveManagement;
-using AionHR.Services.Messaging.System;
-using AionHR.Model.Company.Cases;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Model.LeaveManagement;
+using Services.Messaging.System;
+using Model.Company.Cases;
 using System.Net;
-using AionHR.Infrastructure.Domain;
-using AionHR.Services.Messaging.CompanyStructure;
-using AionHR.Web.UI.Forms.ConstClasses;
+using Infrastructure.Domain;
+using Services.Messaging.CompanyStructure;
+using Web.UI.Forms.ConstClasses;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class CompanyFiles : System.Web.UI.Page
     {

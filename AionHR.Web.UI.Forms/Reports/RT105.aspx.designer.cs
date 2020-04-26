@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms.Reports {
+namespace Web.UI.Forms.Reports {
     
     
     public partial class RT105 {

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms.EmployeePages {
+namespace Web.UI.Forms.EmployeePages {
     
     
     public partial class Dependants {

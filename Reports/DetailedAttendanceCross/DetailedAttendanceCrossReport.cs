@@ -5,13 +5,13 @@ using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using System.Collections.Generic;
 using System.Linq;
-using AionHR.Model.Reports;
+using Model.Reports;
 using DevExpress.XtraPivotGrid;
 using System.Globalization;
 using System.Threading;
 using System.Drawing.Printing;
-using AionHR.Model.Attendance;
-using AionHR.Model.System;
+using Model.Attendance;
+using Model.System;
 
 namespace Reports.DetailedAttendanceCross
 {

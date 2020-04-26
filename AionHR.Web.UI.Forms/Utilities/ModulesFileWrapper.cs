@@ -1,11 +1,11 @@
-﻿using AionHR.Infrastructure.Domain;
+﻿using Infrastructure.Domain;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace AionHR.Web.UI.Forms.Utilities
+namespace Web.UI.Forms.Utilities
 {
     public class ModulesFileWrapper
     {

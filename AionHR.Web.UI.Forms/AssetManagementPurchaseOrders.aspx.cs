@@ -14,26 +14,26 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Infrastructure.Session;
-using AionHR.Model.System;
-using AionHR.Model.Employees.Profile;
-using AionHR.Infrastructure.JSON;
-using AionHR.Model.Attributes;
-using AionHR.Model.Access_Control;
-using AionHR.Model.Attendance;
-using AionHR.Web.UI.Forms.ConstClasses;
-using AionHR.Model.AssetManagement;
-using AionHR.Services.Messaging.Asset_Management;
-using AionHR.Services.Messaging.System;
-using AionHR.Services.Messaging.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Infrastructure.Session;
+using Model.System;
+using Model.Employees.Profile;
+using Infrastructure.JSON;
+using Model.Attributes;
+using Model.Access_Control;
+using Model.Attendance;
+using Web.UI.Forms.ConstClasses;
+using Model.AssetManagement;
+using Services.Messaging.Asset_Management;
+using Services.Messaging.System;
+using Services.Messaging.Reports;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class AssetManagementPurchaseOrders : System.Web.UI.Page
     {

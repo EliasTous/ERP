@@ -1,14 +1,14 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Model.Attributes;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.LeaveManagement;
+﻿using Infrastructure.Domain;
+using Model.Attributes;
+using Model.Employees.Profile;
+using Model.LeaveManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.SelfService
+namespace Model.SelfService
 {
     [ClassIdentifier("60104", "60")]
     public class leaveRequetsSelfservice : ModelBase

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.Payroll
+namespace Services.Messaging.Payroll
 {
    public class CheckExpressionRecordRequest:RecordRequest
     {

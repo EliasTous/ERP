@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class Default {
@@ -1324,6 +1324,6 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.TimeVariationHistoryControl TimeVariationHistoryControl1;
+        protected global::Web.UI.Forms.TimeVariationHistoryControl TimeVariationHistoryControl1;
     }
 }

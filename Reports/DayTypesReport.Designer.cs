@@ -141,7 +141,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Attendance.DayType);
+            this.objectDataSource1.DataSource = typeof(Model.Attendance.DayType);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

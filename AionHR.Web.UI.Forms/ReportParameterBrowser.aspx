@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReportParameterBrowser.aspx.cs" Inherits="AionHR.Web.UI.Forms.ReportParameterBrowser" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReportParameterBrowser.aspx.cs" Inherits="Web.UI.Forms.ReportParameterBrowser" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

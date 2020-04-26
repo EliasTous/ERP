@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DailySchedule.aspx.cs" Inherits="AionHR.Web.UI.Forms.DailySchedule" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DailySchedule.aspx.cs" Inherits="Web.UI.Forms.DailySchedule" %>
 
 
 

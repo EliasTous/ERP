@@ -186,7 +186,7 @@ public class EntitlementDeductionsReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Employees.Profile.EntitlementDeduction);
+            this.objectDataSource1.DataSource = typeof(Model.Employees.Profile.EntitlementDeduction);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

@@ -1,19 +1,19 @@
-﻿using AionHR.Services.Interfaces;
+﻿using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Model.Employees;
-using AionHR.Services.Messaging;
-using AionHR.Infrastructure.Session;
-using AionHR.Model.Employees.Profile;
-using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.WebService;
-using AionHR.Model.System;
-using AionHR.Services.Messaging.Employees;
+using Model.Employees;
+using Services.Messaging;
+using Infrastructure.Session;
+using Model.Employees.Profile;
+using Infrastructure.Domain;
+using Infrastructure.WebService;
+using Model.System;
+using Services.Messaging.Employees;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     public class EmployeeService : BaseService, IEmployeeService
     {

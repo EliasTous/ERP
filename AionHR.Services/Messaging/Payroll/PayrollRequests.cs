@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using AionHR.Model.Employees.Profile;
-using AionHR.Services.Messaging;
+using Model.Employees.Profile;
+using Services.Messaging;
 
 public class FiscalPeriodsListRequest:ListRequest
 {

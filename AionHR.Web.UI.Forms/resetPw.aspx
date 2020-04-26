@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="resetPw.aspx.cs" Inherits="AionHR.Web.UI.Forms.resetPw" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="resetPw.aspx.cs" Inherits="Web.UI.Forms.resetPw" %>
 
 <%@ Register TagPrefix="ext" Namespace="Ext.Net" Assembly="Ext.Net" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

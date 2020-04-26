@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms.App_GlobalResources {
+namespace Web.UI.Forms.App_GlobalResources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AionHR.Web.UI.Forms.App_GlobalResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AionHR.Web.UI.Forms.App_GlobalResources.ComboBoxValues", typeof(ComboBoxValues).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Web.UI.Forms.App_GlobalResources.ComboBoxValues", typeof(ComboBoxValues).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

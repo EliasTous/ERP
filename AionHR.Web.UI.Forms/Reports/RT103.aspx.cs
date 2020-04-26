@@ -14,17 +14,17 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Services.Messaging.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Services.Messaging.Reports;
 
-namespace AionHR.Web.UI.Forms.Reports
+namespace Web.UI.Forms.Reports
 {
     public partial class RT103 : System.Web.UI.Page
     {
@@ -100,7 +100,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 catch { }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT103), null, null, null, null);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.Reports.RT103), null, null, null, null);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -166,7 +166,7 @@ namespace AionHR.Web.UI.Forms.Reports
             string rep_params = vals.Text;
             ReportGenericRequest req = new ReportGenericRequest();
             req.paramString = rep_params;
-            ListResponse<AionHR.Model.Reports.RT103> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT103>(req);
+            ListResponse<Model.Reports.RT103> resp = _reportsService.ChildGetAll<Model.Reports.RT103>(req);
             resp.Items.ForEach(x =>
             {
                 x.dateString = x.date.ToString(_systemService.SessionHelper.GetDateformat(), System.Threading.Thread.CurrentThread.CurrentUICulture);

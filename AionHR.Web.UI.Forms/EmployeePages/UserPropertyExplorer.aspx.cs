@@ -1,10 +1,10 @@
-﻿using AionHR.Model.AssetManagement;
-using AionHR.Model.Employees;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.Asset_Management;
-using AionHR.Services.Messaging.Employees;
-using AionHR.Web.UI.Forms.Utilities;
+﻿using Model.AssetManagement;
+using Model.Employees;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.Asset_Management;
+using Services.Messaging.Employees;
+using Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using Newtonsoft.Json;
@@ -16,7 +16,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class UserPropertyExplorer : System.Web.UI.Page
     {

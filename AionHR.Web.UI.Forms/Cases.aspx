@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Cases.aspx.cs" Inherits="AionHR.Web.UI.Forms.Cases" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Cases.aspx.cs" Inherits="Web.UI.Forms.Cases" %>
 
 
 

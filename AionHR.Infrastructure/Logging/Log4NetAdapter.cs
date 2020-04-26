@@ -1,4 +1,4 @@
-﻿using AionHR.Infrastructure.Configuration;
+﻿using Infrastructure.Configuration;
 using log4net;
 using log4net.Config;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.Logging
+namespace Infrastructure.Logging
 {
     /// <summary>
     /// Log4netAdapter based on log4net package

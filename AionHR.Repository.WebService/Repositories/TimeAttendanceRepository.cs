@@ -1,18 +1,18 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model;
-using AionHR.Model.Attendance;
-using AionHR.Model.Dashboard;
-using AionHR.Model.HelpFunction;
-using AionHR.Model.Payroll;
-using AionHR.Model.TimeAttendance;
+﻿using Infrastructure.Configuration;
+using Infrastructure.Domain;
+using Model;
+using Model.Attendance;
+using Model.Dashboard;
+using Model.HelpFunction;
+using Model.Payroll;
+using Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     public class TimeAttendanceRepository:Repository<IEntity,string>, ITimeAttendanceRepository
     {

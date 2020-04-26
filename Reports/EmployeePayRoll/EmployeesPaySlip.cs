@@ -5,7 +5,7 @@ using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using System.Linq;
 using System.Collections.Generic;
-using AionHR.Model.Reports;
+using Model.Reports;
 using Tools;
 using System.Drawing.Printing;
 

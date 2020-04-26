@@ -634,7 +634,7 @@ namespace Reports
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT202);
+            this.objectDataSource1.DataSource = typeof(Model.Reports.RT202);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // SalaryChanges

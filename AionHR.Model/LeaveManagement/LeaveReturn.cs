@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.LeaveManagement
+namespace Model.LeaveManagement
 {
   public  class LeaveReturn
     {

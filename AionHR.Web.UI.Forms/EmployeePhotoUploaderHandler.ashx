@@ -1,1 +1,1 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="EmployeePhotoUploaderHandler.ashx.cs" Class="AionHR.Web.UI.Forms.EmployeePhotoUploaderHandler" %>
+﻿<%@ WebHandler Language="C#" CodeBehind="EmployeePhotoUploaderHandler.ashx.cs" Class="Web.UI.Forms.EmployeePhotoUploaderHandler" %>

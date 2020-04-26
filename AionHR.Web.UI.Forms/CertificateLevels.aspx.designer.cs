@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class CertificateLevels {

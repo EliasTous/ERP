@@ -1,8 +1,8 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.System;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
+﻿using Infrastructure.Domain;
+using Model.Employees.Profile;
+using Model.System;
+using Services.Messaging;
+using Services.Messaging.System;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

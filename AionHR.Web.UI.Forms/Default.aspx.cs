@@ -1,13 +1,13 @@
-﻿using AionHR.Infrastructure;
-using AionHR.Model.Access_Control;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.MasterModule;
-using AionHR.Model.Payroll;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
-using AionHR.Web.UI.Forms.Utilities;
+﻿using Infrastructure;
+using Model.Access_Control;
+using Model.Employees.Profile;
+using Model.MasterModule;
+using Model.Payroll;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.System;
+using Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using Newtonsoft.Json;
@@ -21,7 +21,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class Default : System.Web.UI.Page
     {

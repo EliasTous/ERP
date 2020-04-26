@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmployeeFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmployeeFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.EmployeeFilter" %>
 
         <ext:ComboBox   AnyMatch="true"   CaseSensitive="false"  runat="server" ID="employeeId"  LabelAlign="Left"
             DisplayField="fullName"

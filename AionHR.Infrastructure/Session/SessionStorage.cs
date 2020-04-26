@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace AionHR.Infrastructure.Session
+namespace Infrastructure.Session
 {
     /// <summary>
     /// The http context session storage

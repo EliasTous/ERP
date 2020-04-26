@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.Configuration
+namespace Infrastructure.Configuration
 {
     /// <summary>
     /// Class reponsible for reading application settings

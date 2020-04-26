@@ -1,5 +1,5 @@
-﻿using AionHR.Infrastructure.Importers;
-using AionHR.Services.Implementations;
+﻿using Infrastructure.Importers;
+using Services.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Interfaces
+namespace Services.Interfaces
 {
     public class ImportingServiceBase<T> where T : new()
     {

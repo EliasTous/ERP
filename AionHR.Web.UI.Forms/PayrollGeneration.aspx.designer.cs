@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class PayrollGeneration {
@@ -298,7 +298,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.SalaryTypeFilter salaryTypeId;
+        protected global::Web.UI.Forms.Reports.Controls.SalaryTypeFilter salaryTypeId;
         
         /// <summary>
         /// status control.
@@ -451,7 +451,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.SalaryTypeFilter SalaryType2;
+        protected global::Web.UI.Forms.Reports.Controls.SalaryTypeFilter SalaryType2;
         
         /// <summary>
         /// periodId control.
@@ -550,7 +550,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
+        protected global::Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
         /// employeeCombo1 control.
@@ -559,7 +559,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
+        protected global::Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
         
         /// <summary>
         /// DeleteAll control.

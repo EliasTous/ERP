@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmployeeProfileControl.ascx.cs" Inherits="AionHR.Web.UI.Forms.EmployeeProfileControl" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmployeeProfileControl.ascx.cs" Inherits="Web.UI.Forms.EmployeeProfileControl" %>
 <link rel="stylesheet" type="../text/css" href="CSS/Common.css?id=11" />
 <script src="Scripts.js" type="../text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="../CSS/Employees.css?id=15" />

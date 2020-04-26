@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChangeAutoApprovedVariations.aspx.cs" Inherits="AionHR.Web.UI.Forms.ChangeAutoApprovedVariations" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChangeAutoApprovedVariations.aspx.cs" Inherits="Web.UI.Forms.ChangeAutoApprovedVariations" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

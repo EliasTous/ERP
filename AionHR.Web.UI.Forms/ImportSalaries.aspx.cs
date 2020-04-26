@@ -14,30 +14,30 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Attendance;
-using AionHR.Model.TimeAttendance;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Model.Reports;
-using AionHR.Services.Implementations;
-using AionHR.Infrastructure.Importers;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.Employees.Profile;
+using Model.Employees.Leaves;
+using Model.Attendance;
+using Model.TimeAttendance;
+using Services.Messaging.Reports;
+using Model.Reports;
+using Services.Implementations;
+using Infrastructure.Importers;
 using System.Threading;
-using AionHR.Infrastructure.Session;
-using AionHR.Infrastructure.Tokens;
-using AionHR.Repository.WebService.Repositories;
-using AionHR.Services.Messaging.System;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.System;
-using AionHR.Model.LoadTracking;
+using Infrastructure.Session;
+using Infrastructure.Tokens;
+using Repository.WebService.Repositories;
+using Services.Messaging.System;
+using Infrastructure.Domain;
+using Model.System;
+using Model.LoadTracking;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class ImportSalaries : System.Web.UI.Page
     {

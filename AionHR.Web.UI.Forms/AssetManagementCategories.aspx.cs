@@ -14,20 +14,20 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.Access_Control;
-using AionHR.Web.UI.Forms.ConstClasses;
-using AionHR.Model.AssetManagement;
-using AionHR.Services.Messaging.Asset_Management;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Infrastructure.Domain;
+using Model.Access_Control;
+using Web.UI.Forms.ConstClasses;
+using Model.AssetManagement;
+using Services.Messaging.Asset_Management;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class AssetManagementCategories : System.Web.UI.Page
     {

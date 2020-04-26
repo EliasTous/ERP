@@ -1,13 +1,13 @@
-﻿using AionHR.Model.Employees.Leaves;
-using AionHR.Model.LeaveManagement;
-using AionHR.Services.Messaging;
+﻿using Model.Employees.Leaves;
+using Model.LeaveManagement;
+using Services.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Interfaces
+namespace Services.Interfaces
 {
     public interface ILeaveManagementService:IBaseService
     {

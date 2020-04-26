@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NoticePeriods.aspx.cs" Inherits="AionHR.Web.UI.Forms.NoticePeriods" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NoticePeriods.aspx.cs" Inherits="Web.UI.Forms.NoticePeriods" %>
 
 
 

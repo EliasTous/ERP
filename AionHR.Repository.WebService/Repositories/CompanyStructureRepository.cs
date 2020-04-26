@@ -1,14 +1,14 @@
-﻿using AionHR.Model.Company.Structure;
+﻿using Model.Company.Structure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Infrastructure.WebService;
-using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Domain;
+using Infrastructure.WebService;
+using Infrastructure.Configuration;
+using Infrastructure.Domain;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     public class CompanyStructureRepository : Repository<IEntity,string>, ICompanyStructureRepository
     {

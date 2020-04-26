@@ -1,12 +1,12 @@
-﻿using AionHR.Model.Attributes;
-using AionHR.Model.Employees.Profile;
+﻿using Model.Attributes;
+using Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Payroll
+namespace Model.Payroll
 {
     [ClassIdentifier("51021", "51")]
     public class EmployeePayroll

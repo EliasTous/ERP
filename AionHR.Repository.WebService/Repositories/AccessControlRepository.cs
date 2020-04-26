@@ -1,13 +1,13 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.Access_Control;
+﻿using Infrastructure.Configuration;
+using Infrastructure.Domain;
+using Model.Access_Control;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
    public class AccessControlRepository:Repository<IEntity,string>,IAccessControlRepository
     {

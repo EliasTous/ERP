@@ -1,13 +1,13 @@
-﻿using AionHR.Services.Messaging.System;
+﻿using Services.Messaging.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Services.Messaging;
-using AionHR.Infrastructure.Domain;
+using Services.Messaging;
+using Infrastructure.Domain;
 
-namespace AionHR.Services.Messaging.CompanyStructure
+namespace Services.Messaging.CompanyStructure
 {
   public class CompanyFilesListRequest: SystemAttachmentsListRequest
     {

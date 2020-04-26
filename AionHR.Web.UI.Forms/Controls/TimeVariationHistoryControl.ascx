@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TimeVariationHistoryControl.ascx.cs" Inherits="AionHR.Web.UI.Forms.TimeVariationHistoryControl" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TimeVariationHistoryControl.ascx.cs" Inherits="Web.UI.Forms.TimeVariationHistoryControl" %>
 <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
 <link rel="stylesheet" href="CSS/LiveSearch.css" />
 

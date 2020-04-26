@@ -14,24 +14,24 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Infrastructure.Session;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.System;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Attendance;
-using AionHR.Model.TimeAttendance;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Model.Dashboard;
-using AionHR.Services.Messaging.TimeAttendance;
-using AionHR.Web.UI.Forms.ConstClasses;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Infrastructure.Session;
+using Model.Employees.Profile;
+using Model.System;
+using Model.Employees.Leaves;
+using Model.Attendance;
+using Model.TimeAttendance;
+using Services.Messaging.Reports;
+using Model.Dashboard;
+using Services.Messaging.TimeAttendance;
+using Web.UI.Forms.ConstClasses;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class TimePerformances : System.Web.UI.Page
     {

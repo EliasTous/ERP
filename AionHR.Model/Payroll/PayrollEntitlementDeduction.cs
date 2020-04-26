@@ -1,4 +1,4 @@
-﻿using AionHR.Model.Attributes;
+﻿using Model.Attributes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Payroll
+namespace Model.Payroll
 {
     [ClassIdentifier("51122", "51")]
   

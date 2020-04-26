@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LeaveReplacementApprovals.aspx.cs" Inherits="AionHR.Web.UI.Forms.LeaveReplacementApprovals" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LeaveReplacementApprovals.aspx.cs" Inherits="Web.UI.Forms.LeaveReplacementApprovals" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

@@ -14,21 +14,21 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Web.UI.Forms.ConstClasses;
-using AionHR.Model.Access_Control;
-using AionHR.Services.Messaging.CompanyStructure;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Web.UI.Forms.ConstClasses;
+using Model.Access_Control;
+using Services.Messaging.CompanyStructure;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class RuleTriggers : System.Web.UI.Page
     {
@@ -476,12 +476,12 @@ namespace AionHR.Web.UI.Forms
                 string accessTypeParameter = e.ExtraParams["accessType"];
 
 
-                List<AionHR.Model.Company.Structure.RuleTrigger> selectedRules = new List<AionHR.Model.Company.Structure.RuleTrigger>();
+                List<Model.Company.Structure.RuleTrigger> selectedRules = new List<Model.Company.Structure.RuleTrigger>();
                 int count = 1;
                 foreach (var item in ruleSelector.SelectedItems)
                 {
 
-                    selectedRules.Add(new AionHR.Model.Company.Structure.RuleTrigger() { ruleId = item.Value, classId = classIdParameter, accessType = accessTypeParameter, seqNo = count.ToString() });
+                    selectedRules.Add(new Model.Company.Structure.RuleTrigger() { ruleId = item.Value, classId = classIdParameter, accessType = accessTypeParameter, seqNo = count.ToString() });
                     count++;
                 }
 

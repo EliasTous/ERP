@@ -1,13 +1,13 @@
-﻿using AionHR.Model.MasterModule;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
+﻿using Model.MasterModule;
+using Services.Messaging;
+using Services.Messaging.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Interfaces
+namespace Services.Interfaces
 {
     public interface IMasterService:IBaseService
     {

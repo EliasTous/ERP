@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FiscalYearFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.FiscalYearFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FiscalYearFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.FiscalYearFilter" %>
 
   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" FieldLabel="<%$ Resources:Common, FiscalYears %>"   Name="year" runat="server" DisplayField="fiscalYear" ValueField="fiscalYear" ID="year">
                                     <Store>

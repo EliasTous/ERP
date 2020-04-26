@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.SelfService
+namespace Services.Messaging.SelfService
 {
   public  class AssetLoanListRequest:ListRequest
     {

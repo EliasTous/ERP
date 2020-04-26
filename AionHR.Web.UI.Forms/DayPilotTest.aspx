@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DayPilotTest.aspx.cs" Inherits="AionHR.Web.UI.Forms.DayPilotTest" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DayPilotTest.aspx.cs" Inherits="Web.UI.Forms.DayPilotTest" %>
  <%@ Register Assembly="DayPilot" Namespace="DayPilot.Web.Ui" TagPrefix="DayPilot" %>
 <!DOCTYPE html>
 

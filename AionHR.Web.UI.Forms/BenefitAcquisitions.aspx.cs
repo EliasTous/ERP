@@ -14,30 +14,30 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.TimeAttendance;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Model.TimeAttendance;
 using Reports;
-using AionHR.Model.Payroll;
+using Model.Payroll;
 using DevExpress.XtraReports.UI;
-using AionHR.Services.Messaging.LoanManagment;
-using AionHR.Model.LoadTracking;
-using AionHR.Services.Implementations;
-using AionHR.Model.Benefits;
-using AionHR.Services.Messaging.Benefits;
-using AionHR.Services.Messaging.HelpFunction;
-using AionHR.Model.HelpFunction;
-using AionHR.Web.UI.Forms.ConstClasses;
+using Services.Messaging.LoanManagment;
+using Model.LoadTracking;
+using Services.Implementations;
+using Model.Benefits;
+using Services.Messaging.Benefits;
+using Services.Messaging.HelpFunction;
+using Model.HelpFunction;
+using Web.UI.Forms.ConstClasses;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class BenefitAcquisitions : System.Web.UI.Page
     {

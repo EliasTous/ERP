@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TimeApprovalsSelfServices.aspx.cs" Inherits="AionHR.Web.UI.Forms.TimeApprovalsSelfServices" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TimeApprovalsSelfServices.aspx.cs" Inherits="Web.UI.Forms.TimeApprovalsSelfServices" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

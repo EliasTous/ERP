@@ -14,12 +14,12 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     /// <summary>
     /// This is a test page and will keep it as a reference for us. It is build based on the System service

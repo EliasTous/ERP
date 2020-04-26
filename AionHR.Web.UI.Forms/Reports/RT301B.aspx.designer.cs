@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms.Reports {
+namespace Web.UI.Forms.Reports {
     
     
     public partial class RT301B {
@@ -118,7 +118,7 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.DateRangeFilter dateRange1;
+        protected global::Web.UI.Forms.Reports.DateRangeFilter dateRange1;
         
         /// <summary>
         /// employeeCombo1 control.
@@ -127,7 +127,7 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
+        protected global::Web.UI.Forms.Reports.Controls.EmployeeFilter employeeCombo1;
         
         /// <summary>
         /// ASPxCallbackPanel1 control.

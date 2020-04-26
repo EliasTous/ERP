@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ActiveStatusFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.ActiveStatusFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ActiveStatusFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.ActiveStatusFilter" %>
 <ext:Panel runat="server" Layout="HBoxLayout" Width="120"  ><Items>
 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="inactivePref" Width="120" Editable="false" FieldLabel="">
     <Items>

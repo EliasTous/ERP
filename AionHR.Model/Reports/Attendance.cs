@@ -1,4 +1,4 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using Model.Employees.Profile;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace AionHR.Model.Reports
+namespace Model.Reports
 {
     public class EmployeeAttendances
 

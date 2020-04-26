@@ -81,7 +81,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT501);
+            this.objectDataSource1.DataSource = typeof(Model.Reports.RT501);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // TopMargin

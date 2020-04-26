@@ -14,27 +14,27 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Attendance;
-using AionHR.Model.TimeAttendance;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Model.Reports;
-using AionHR.Model.Access_Control;
-using AionHR.Model.System;
-using AionHR.Services.Messaging.System;
-using AionHR.Infrastructure.Domain;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.Employees.Profile;
+using Model.Employees.Leaves;
+using Model.Attendance;
+using Model.TimeAttendance;
+using Services.Messaging.Reports;
+using Model.Reports;
+using Model.Access_Control;
+using Model.System;
+using Services.Messaging.System;
+using Infrastructure.Domain;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
-using AionHR.Model.Attributes;
+using Model.Attributes;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class SecurityGroups : System.Web.UI.Page
     {
@@ -154,7 +154,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Access_Control.ClassProperty), EditClassPropertiesForm, propertiesGrid, null, Button6);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.Access_Control.ClassProperty), EditClassPropertiesForm, propertiesGrid, null, Button6);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -165,7 +165,7 @@ namespace AionHR.Web.UI.Forms
                 }
                 try
                 {
-                    //var properties = AccessControlApplier.GetPropertiesLevels(typeof(AionHR.Model.Access_Control.ClassProperty));
+                    //var properties = AccessControlApplier.GetPropertiesLevels(typeof(Model.Access_Control.ClassProperty));
 
                     //var result = propertiesGrid.ColumnModel.Columns[propertiesGrid.ColumnModel.Columns.Count - 1];
                     //var item = properties.Where(x => x.index == "accessLevel").ToList()[0];
@@ -498,7 +498,7 @@ namespace AionHR.Web.UI.Forms
            
 
             //string moduleId = modulesCombo.SelectedItem.Value;
-            //List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == moduleId) return true; else return false; }).ToList();
+            //List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == moduleId) return true; else return false; }).ToList();
 
             //int level = Convert.ToInt32(moduleAccessLevel.SelectedItem.Value);
             //PostRequest<ModuleClass[]> batch = new PostRequest<ModuleClass[]>();
@@ -536,15 +536,15 @@ namespace AionHR.Web.UI.Forms
             //Getting the id to check if it is an Add or an edit as they are managed within the same form.
             string classId = e.ExtraParams["classId"];
 
-            List<AionHR.Model.Access_Control.ClassProperty> properties = JsonConvert.DeserializeObject<List<AionHR.Model.Access_Control.ClassProperty>>(e.ExtraParams["values"]);
-            PostRequest<AionHR.Model.Access_Control.ClassProperty> req = new PostRequest<AionHR.Model.Access_Control.ClassProperty>();
-            PostResponse<AionHR.Model.Access_Control.ClassProperty> resp = null;
+            List<Model.Access_Control.ClassProperty> properties = JsonConvert.DeserializeObject<List<Model.Access_Control.ClassProperty>>(e.ExtraParams["values"]);
+            PostRequest<Model.Access_Control.ClassProperty> req = new PostRequest<Model.Access_Control.ClassProperty>();
+            PostResponse<Model.Access_Control.ClassProperty> resp = null;
             foreach (var item in properties)
             {
                 item.classId = CurrentClass.Text;
                 item.sgId = CurrentGroup.Text;
                 req.entity = item;
-                resp = _accessControlService.ChildAddOrUpdate<AionHR.Model.Access_Control.ClassProperty>(req);
+                resp = _accessControlService.ChildAddOrUpdate<Model.Access_Control.ClassProperty>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -1095,7 +1095,7 @@ namespace AionHR.Web.UI.Forms
         protected void classesStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
             //List<ModuleClassDefinition> classes = new List<ModuleClassDefinition>();
-            //List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == modulesCombo.SelectedItem.Value) return true; else return false; }).ToList();
+            //List<Type> types = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); if (d != null && d.ModuleId == modulesCombo.SelectedItem.Value) return true; else return false; }).ToList();
 
             //types.ForEach(x => classes.Add(new ModuleClassDefinition() { classId = x.GetCustomAttribute<ClassIdentifier>().ClassID, id = x.GetCustomAttribute<ClassIdentifier>().ClassID, name = "Class" + x.GetCustomAttribute<ClassIdentifier>().ClassID }));
 
@@ -1122,7 +1122,7 @@ namespace AionHR.Web.UI.Forms
 
         protected void propertyStore_ReadData(object sender, StoreReadDataEventArgs e)
         {
-            Type t = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AionHR.Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); return (d != null && d.ClassID == CurrentClass.Text); }).ToList()[0];
+            Type t = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Model")).ToList()[0].GetTypes().Where(x => { var d = x.GetCustomAttribute<ClassIdentifier>(); return (d != null && d.ClassID == CurrentClass.Text); }).ToList()[0];
             PropertyInfo[] props = t.GetProperties();
 
             List<ClassPropertyDefinition> properites = new List<ClassPropertyDefinition>();
@@ -1130,7 +1130,7 @@ namespace AionHR.Web.UI.Forms
             PropertiesListRequest req = new PropertiesListRequest();
             req.GroupId = CurrentGroup.Text;
             req.ClassId = CurrentClass.Text;
-            ListResponse<AionHR.Model.Access_Control.ClassProperty> stored = _accessControlService.ChildGetAll<AionHR.Model.Access_Control.ClassProperty>(req);
+            ListResponse<Model.Access_Control.ClassProperty> stored = _accessControlService.ChildGetAll<Model.Access_Control.ClassProperty>(req);
             if (!stored.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, stored.Summary).Show();
@@ -1138,7 +1138,7 @@ namespace AionHR.Web.UI.Forms
             }
 
 
-            List<AionHR.Model.Access_Control.ClassProperty> final = new List<AionHR.Model.Access_Control.ClassProperty>();
+            List<Model.Access_Control.ClassProperty> final = new List<Model.Access_Control.ClassProperty>();
             foreach (var item in properites)
             {
                 if (GetGlobalResourceObject("AccessControl", item.name) == null)
@@ -1146,7 +1146,7 @@ namespace AionHR.Web.UI.Forms
                 else
                 {
                     item.name = GetGlobalResourceObject("AccessControl", item.name).ToString();
-                    final.Add(new AionHR.Model.Access_Control.ClassProperty() { index = item.index, propertyId = item.propertyId, name = item.name, accessLevel = 2 });
+                    final.Add(new Model.Access_Control.ClassProperty() { index = item.index, propertyId = item.propertyId, name = item.name, accessLevel = 2 });
                 }
             }
             JsonSerializerSettings settings = new JsonSerializerSettings();

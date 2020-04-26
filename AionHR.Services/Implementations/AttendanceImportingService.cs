@@ -1,9 +1,9 @@
-﻿using AionHR.Infrastructure.Importers;
-using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.TimeAttendance;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
+﻿using Infrastructure.Importers;
+using Model.Attendance;
+using Model.Employees.Profile;
+using Model.TimeAttendance;
+using Services.Interfaces;
+using Services.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     public class AttendanceImportingService : ImportingServiceBase<AttendanceShift>, IImportaingService
     {

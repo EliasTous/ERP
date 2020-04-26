@@ -1,11 +1,11 @@
-﻿using AionHR.Model.Attributes;
+﻿using Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.HelpFunction
+namespace Model.HelpFunction
 {
     [ClassIdentifier("84107", "84")]
     public  class SynchronizeAttendanceDay

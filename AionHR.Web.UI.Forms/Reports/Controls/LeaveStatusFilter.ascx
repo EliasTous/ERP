@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LeaveStatusFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.LeaveStatusFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LeaveStatusFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.LeaveStatusFilter" %>
     <ext:Panel runat="server" Layout="HBoxLayout" Width="130">
     <Items>
   <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="statusPref" Editable="false" EmptyText="<%$ Resources: FieldStatus %>" Width="120"  >

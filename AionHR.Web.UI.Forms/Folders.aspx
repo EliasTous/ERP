@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Folders.aspx.cs" Inherits="AionHR.Web.UI.Forms.Folders" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Folders.aspx.cs" Inherits="Web.UI.Forms.Folders" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

@@ -1,16 +1,16 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model;
-using AionHR.Model.LeaveManagement;
-using AionHR.Model.LoadTracking;
-using AionHR.Model.SelfService;
+﻿using Infrastructure.Configuration;
+using Infrastructure.Domain;
+using Model;
+using Model.LeaveManagement;
+using Model.LoadTracking;
+using Model.SelfService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     public class LoanTrackingRepository:Repository<Loan,string>,ILoanTrackingRepository
     {
@@ -28,7 +28,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetLookup.Add(typeof(LoanDeduction), "getLD");
             ChildGetLookup.Add(typeof(LoanOverride), "getEM");
             ChildGetAllLookup.Add(typeof(LoanType), "qryLT");
-            ChildGetAllLookup.Add(typeof(AionHR.Model.LoadTracking.PendingLA), "pendingLA");
+            ChildGetAllLookup.Add(typeof(Model.LoadTracking.PendingLA), "pendingLA");
             ChildGetAllLookup.Add(typeof(LoanApproval), "qryLA");
             ChildGetAllLookup.Add(typeof(LoanOverride), "qryEM");
 

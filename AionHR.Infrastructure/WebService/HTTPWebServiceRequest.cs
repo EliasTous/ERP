@@ -1,6 +1,6 @@
-﻿using AionHR.Infrastructure.JSON;
-using AionHR.Infrastructure.Logging;
-using AionHR.Infrastructure.WebService;
+﻿using Infrastructure.JSON;
+using Infrastructure.Logging;
+using Infrastructure.WebService;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.WebService
+namespace Infrastructure.WebService
 {
     /// <summary>
     /// Class responsible for making the request to the webserice using http web request

@@ -1,12 +1,12 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Model.System;
+﻿using Infrastructure.Domain;
+using Model.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.System
+namespace Services.Messaging.System
 {
   public  class CompanyUploadLogoRequest : PostRequest<Attachement>
     {

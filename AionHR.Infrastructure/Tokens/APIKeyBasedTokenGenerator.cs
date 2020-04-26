@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace AionHR.Infrastructure.Tokens
+namespace Infrastructure.Tokens
 {
     /// <summary>
     /// Token Generator Class used to tokenize the key of the user

@@ -14,33 +14,33 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Infrastructure.Session;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.System;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Attendance;
-using AionHR.Services.Messaging.System;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.Attributes;
-using AionHR.Model.Access_Control;
-using AionHR.Web.UI.Forms.ConstClasses;
-using AionHR.Services.Messaging.CompanyStructure;
-using AionHR.Services.Messaging.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Infrastructure.Session;
+using Model.Employees.Profile;
+using Model.System;
+using Model.Employees.Leaves;
+using Model.Attendance;
+using Services.Messaging.System;
+using Infrastructure.Domain;
+using Model.Attributes;
+using Model.Access_Control;
+using Web.UI.Forms.ConstClasses;
+using Services.Messaging.CompanyStructure;
+using Services.Messaging.Reports;
 using System.Threading;
-using AionHR.Model.AdminTemplates;
-using AionHR.Infrastructure.Tokens;
-using AionHR.Services.Implementations;
-using AionHR.Repository.WebService.Repositories;
-using AionHR.Services.Messaging.AdministrativeAffairs;
-using AionHR.Services.Messaging.Employees;
+using Model.AdminTemplates;
+using Infrastructure.Tokens;
+using Services.Implementations;
+using Repository.WebService.Repositories;
+using Services.Messaging.AdministrativeAffairs;
+using Services.Messaging.Employees;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class Employees : System.Web.UI.Page
     {

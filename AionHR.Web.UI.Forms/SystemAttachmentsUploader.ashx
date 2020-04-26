@@ -1,1 +1,1 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="SystemAttachmentsUploader.ashx.cs" Class="AionHR.Web.UI.Forms.SystemAttachmentsUploader" %>
+﻿<%@ WebHandler Language="C#" CodeBehind="SystemAttachmentsUploader.ashx.cs" Class="Web.UI.Forms.SystemAttachmentsUploader" %>

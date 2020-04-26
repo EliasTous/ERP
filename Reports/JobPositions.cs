@@ -226,7 +226,7 @@ public class JobPositions : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Company.Structure.Position);
+            this.objectDataSource1.DataSource = typeof(Model.Company.Structure.Position);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

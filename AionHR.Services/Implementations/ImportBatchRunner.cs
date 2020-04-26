@@ -1,7 +1,7 @@
-﻿using AionHR.Infrastructure.Session;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
+﻿using Infrastructure.Session;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     public abstract class ImportBatchRunner<T>
     {

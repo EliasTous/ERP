@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.AdministrativeAffairs
+namespace Services.Messaging.AdministrativeAffairs
 {
    public class MailEmployeeRecordRequest : RecordRequest
     {

@@ -1,7 +1,7 @@
-﻿using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Web.UI.Forms.Reports;
+﻿using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.Reports;
+using Web.UI.Forms.Reports;
 using Microsoft.Practices.ServiceLocation;
 using Reports;
 using System;
@@ -11,7 +11,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class ReportTest : System.Web.UI.Page
     {
@@ -61,7 +61,7 @@ namespace AionHR.Web.UI.Forms
         {
             ReportCompositeRequest req =  GetRequest();
             
-            ListResponse<AionHR.Model.Reports.RT201> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT201>(req);
+            ListResponse<Model.Reports.RT201> resp = _reportsService.ChildGetAll<Model.Reports.RT201>(req);
 
            
 

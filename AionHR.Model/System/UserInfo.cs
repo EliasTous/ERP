@@ -1,12 +1,12 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Model.Attributes;
-using AionHR.Model.Employees.Profile;
+﻿using Infrastructure.Domain;
+using Model.Attributes;
+using Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AionHR.Model.System
+namespace Model.System
 {
     public enum UserType
     {

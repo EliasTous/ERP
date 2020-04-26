@@ -7,8 +7,8 @@
     <ProjectGuid>{9955B92F-F16C-49B9-99F3-4919D3327263}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AionHR.Infrastructure</RootNamespace>
-    <AssemblyName>AionHR.Infrastructure</AssemblyName>
+    <RootNamespace>Infrastructure</RootNamespace>
+    <AssemblyName>Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

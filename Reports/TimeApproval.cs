@@ -619,7 +619,7 @@ public class TimeApproval : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.TimeAttendance.Time);
+            this.objectDataSource1.DataSource = typeof(Model.TimeAttendance.Time);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // GroupFooter1

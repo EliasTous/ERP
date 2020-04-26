@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AionHR.Web.UI.Forms.ConstClasses
+namespace Web.UI.Forms.ConstClasses
 {
     public static class ConstDashboardItem
     {

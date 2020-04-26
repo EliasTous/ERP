@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CompanyRightToWorks.aspx.cs" Inherits="AionHR.Web.UI.Forms.CompanyRightToWorks" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CompanyRightToWorks.aspx.cs" Inherits="Web.UI.Forms.CompanyRightToWorks" %>
 
 
 

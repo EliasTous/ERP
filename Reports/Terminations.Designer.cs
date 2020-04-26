@@ -402,7 +402,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT102B);
+            this.objectDataSource1.DataSource = typeof(Model.Reports.RT102B);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // PageHeader

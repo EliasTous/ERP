@@ -1,12 +1,12 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Model.Attributes;
+﻿using Infrastructure.Domain;
+using Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Payroll
+namespace Model.Payroll
 {
     [ClassIdentifier("51017", "20")]
     public class PayrollIndemnity:ModelBase,IEntity

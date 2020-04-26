@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging
+namespace Services.Messaging
 {
     /// <summary>
     ///Generic Class used to build up a list request to be sent to a service

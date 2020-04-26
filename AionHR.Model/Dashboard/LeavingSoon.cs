@@ -1,11 +1,11 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Dashboard
+namespace Model.Dashboard
 {
    public class LeavingSoon : ModelBase
     {

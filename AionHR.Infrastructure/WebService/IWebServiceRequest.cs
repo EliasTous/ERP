@@ -1,11 +1,11 @@
-﻿using AionHR.Infrastructure.Domain;
+﻿using Infrastructure.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.WebService
+namespace Infrastructure.WebService
 {
     /// <summary>
     /// Interface for making a request to the webservice

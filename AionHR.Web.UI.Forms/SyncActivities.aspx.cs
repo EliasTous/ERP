@@ -1,16 +1,16 @@
-﻿using AionHR.Infrastructure;
-using AionHR.Infrastructure.Session;
-using AionHR.Infrastructure.Tokens;
-using AionHR.Model;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.HelpFunction;
-using AionHR.Model.System;
-using AionHR.Model.TimeAttendance;
-using AionHR.Repository.WebService.Repositories;
-using AionHR.Services.Implementations;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Web.UI.Forms.Utilities;
+﻿using Infrastructure;
+using Infrastructure.Session;
+using Infrastructure.Tokens;
+using Model;
+using Model.Employees.Profile;
+using Model.HelpFunction;
+using Model.System;
+using Model.TimeAttendance;
+using Repository.WebService.Repositories;
+using Services.Implementations;
+using Services.Interfaces;
+using Services.Messaging;
+using Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -20,7 +20,7 @@ using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class SyncActivities : System.Web.UI.Page
     {

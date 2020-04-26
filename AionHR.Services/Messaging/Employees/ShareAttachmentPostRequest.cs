@@ -1,11 +1,11 @@
-﻿using AionHR.Model.Employees;
+﻿using Model.Employees;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.Employees
+namespace Services.Messaging.Employees
 {
   public  class ShareAttachmentPostRequest: PostRequest<ShareAttachment>
     {

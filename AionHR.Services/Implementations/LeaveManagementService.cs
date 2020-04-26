@@ -1,15 +1,15 @@
-﻿using AionHR.Infrastructure.Session;
-using AionHR.Model.LeaveManagement;
-using AionHR.Services.Interfaces;
+﻿using Infrastructure.Session;
+using Model.LeaveManagement;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Services.Messaging;
+using Model.Employees.Leaves;
+using Services.Messaging;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     public class LeaveManagementService : BaseService, ILeaveManagementService
 

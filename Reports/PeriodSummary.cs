@@ -1444,7 +1444,7 @@ public class PeriodSummary : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT302);
+            this.objectDataSource1.DataSource = typeof(Model.Reports.RT302);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // PeriodSummary

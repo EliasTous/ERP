@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Company.Structure
+namespace Model.Company.Structure
 {
  public   class WorkSequence
     {

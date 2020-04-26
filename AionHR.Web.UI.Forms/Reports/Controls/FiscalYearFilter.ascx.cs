@@ -1,8 +1,8 @@
-﻿using AionHR.Model.Payroll;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.Reports;
+﻿using Model.Payroll;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.Reports;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms.Reports
+namespace Web.UI.Forms.Reports
 {
     public partial class FiscalYearFilter : System.Web.UI.UserControl
     {

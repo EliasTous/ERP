@@ -1,7 +1,7 @@
-﻿using AionHR.Model.MasterModule;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Web.UI.Forms.Utilities;
+﻿using Model.MasterModule;
+using Services.Interfaces;
+using Services.Messaging;
+using Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -12,7 +12,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class EmployeeRoot : System.Web.UI.Page
     {

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class Rules {
@@ -307,7 +307,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ExpressionFilter expressionCombo1;
+        protected global::Web.UI.Forms.Reports.ExpressionFilter expressionCombo1;
         
         /// <summary>
         /// conditionsGrid control.
@@ -721,7 +721,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ExpressionFilter expressionCombo2;
+        protected global::Web.UI.Forms.Reports.ExpressionFilter expressionCombo2;
         
         /// <summary>
         /// saveCondition control.

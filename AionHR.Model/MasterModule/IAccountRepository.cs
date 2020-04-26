@@ -1,12 +1,12 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.WebService;
+﻿using Infrastructure.Domain;
+using Infrastructure.WebService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.MasterModule
+namespace Model.MasterModule
 {
     public interface IAccountRepository:IRepository<Account,string>,ICommonRepository
     {

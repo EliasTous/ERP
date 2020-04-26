@@ -1,11 +1,11 @@
-﻿using AionHR.Infrastructure.WebService;
+﻿using Infrastructure.WebService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.Domain
+namespace Infrastructure.Domain
 {
     /// <summary>
     /// Inteface to be implemented by all entities that need to exchange data

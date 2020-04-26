@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.Importers
+namespace Infrastructure.Importers
 {
     public interface IImporter
     {

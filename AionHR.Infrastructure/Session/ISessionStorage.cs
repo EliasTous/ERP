@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.Session
+namespace Infrastructure.Session
 {
     /// <summary>
     /// Session storage interface

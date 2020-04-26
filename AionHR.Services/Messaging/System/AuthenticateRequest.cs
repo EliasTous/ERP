@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.System
+namespace Services.Messaging.System
 {
     /// <summary>
     /// Class holding the parameter to authenticate the user

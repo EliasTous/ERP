@@ -361,7 +361,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Attendance.AttendanceDay);
+            this.objectDataSource1.DataSource = typeof(Model.Attendance.AttendanceDay);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // TimeAttendanceViewReport

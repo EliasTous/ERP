@@ -1,4 +1,4 @@
-﻿namespace AionHR.Model.Reports
+﻿namespace Model.Reports
 {
     public class Day
     {

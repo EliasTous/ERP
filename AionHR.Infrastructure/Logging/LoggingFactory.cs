@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.Logging
+namespace Infrastructure.Logging
 {
     /// <summary>
     /// Application responsible for Logging exception or any other usefull data

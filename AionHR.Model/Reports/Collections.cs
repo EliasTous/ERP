@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.ComponentModel;
-namespace AionHR.Model.Reports
+namespace Model.Reports
 {
 
     public class AttendanceCollection : ArrayList, ITypedList

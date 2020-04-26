@@ -14,18 +14,18 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Services.Messaging.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Services.Messaging.Reports;
 using System.Threading;
 using Reports;
-namespace AionHR.Web.UI.Forms.Reports
+namespace Web.UI.Forms.Reports
 {
     public partial class RT102B : System.Web.UI.Page
     {
@@ -99,7 +99,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 catch { }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT102A), null, null, null, null);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.Reports.RT102A), null, null, null, null);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -187,7 +187,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
             //ReportCompositeRequest req = GetRequest();
 
-            //ListResponse<AionHR.Model.Reports.RT102A> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102A>(req);
+            //ListResponse<Model.Reports.RT102A> resp = _reportsService.ChildGetAll<Model.Reports.RT102A>(req);
             //if (!resp.Success)
             //{
             //    if (throwException)
@@ -213,7 +213,7 @@ namespace AionHR.Web.UI.Forms.Reports
             ReportGenericRequest req = new ReportGenericRequest();
             req.paramString = rep_params;
 
-            ListResponse<AionHR.Model.Reports.RT102B> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT102B>(req);
+            ListResponse<Model.Reports.RT102B> resp = _reportsService.ChildGetAll<Model.Reports.RT102B>(req);
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
             resp.Items.ForEach(x => x.DateString = x.date.ToString(_systemService.SessionHelper.GetDateformat()));
@@ -223,7 +223,7 @@ namespace AionHR.Web.UI.Forms.Reports
             string user = _systemService.SessionHelper.GetCurrentUser();
 
 
-            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            Dictionary<string, string> parameters = Web.UI.Forms.Common.FetchReportParameters(texts.Text);
           
             Terminations t = new Terminations(parameters);
             t.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;

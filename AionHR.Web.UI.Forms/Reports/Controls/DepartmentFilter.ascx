@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DepartmentFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.DepartmentFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DepartmentFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.DepartmentFilter" %>
 
         <ext:ComboBox runat="server" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="departmentId"  FieldLabel="<%$ Resources:Common,Departments%>">
             <Store>

@@ -1,5 +1,5 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Logging;
+﻿using Infrastructure.Configuration;
+using Infrastructure.Logging;
 using DevExpress.XtraReports.Security;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -10,7 +10,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public class Global : System.Web.HttpApplication
     {

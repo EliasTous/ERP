@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SelfServiceResetPasswords.aspx.cs" Inherits="AionHR.Web.UI.Forms.SelfServiceResetPasswords" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SelfServiceResetPasswords.aspx.cs" Inherits="Web.UI.Forms.SelfServiceResetPasswords" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

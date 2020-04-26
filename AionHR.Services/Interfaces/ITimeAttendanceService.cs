@@ -1,12 +1,12 @@
-﻿using AionHR.Model.Attendance;
-using AionHR.Services.Messaging;
+﻿using Model.Attendance;
+using Services.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Interfaces
+namespace Services.Interfaces
 {
     public interface ITimeAttendanceService:IBaseService
     {

@@ -1,12 +1,12 @@
-﻿using AionHR.Model.Attributes;
-using AionHR.Model.Employees.Profile;
+﻿using Model.Attributes;
+using Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.AdminTemplates
+namespace Model.AdminTemplates
 {
     [ClassIdentifier("70301", "70")]
     public class AdminDocument : ModelBase

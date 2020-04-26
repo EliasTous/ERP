@@ -1,12 +1,12 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.WebService;
+﻿using Infrastructure.Domain;
+using Infrastructure.WebService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     /// <summary>
     /// Abstract class for all the repositories used

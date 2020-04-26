@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AssetFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.AssetFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AssetFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.AssetFilter" %>
 
     
         <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="assetId" EmptyText="<%$ Resources: Common ,Assets%>" >

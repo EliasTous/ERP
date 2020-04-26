@@ -1,12 +1,12 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.Session;
-using AionHR.Infrastructure.Tokens;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.LeaveManagement;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
+﻿using Infrastructure.Domain;
+using Infrastructure.Session;
+using Infrastructure.Tokens;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Model.LeaveManagement;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
    public class LeaveBatchRunner : ImportBatchRunner<LeaveRequest>
     {

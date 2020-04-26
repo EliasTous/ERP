@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WorkingCalendars.aspx.cs" Inherits="AionHR.Web.UI.Forms.WorkingCalendars" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WorkingCalendars.aspx.cs" Inherits="Web.UI.Forms.WorkingCalendars" %>
 
 
 

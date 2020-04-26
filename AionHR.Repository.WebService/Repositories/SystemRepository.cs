@@ -1,20 +1,20 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Model.System;
+﻿using Infrastructure.Configuration;
+using Model.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Infrastructure.WebService;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.MasterModule;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Dashboard;
-using AionHR.Model.TimeAttendance;
-using AionHR.Model.Reports;
-using AionHR.Model.Access_Control;
+using Infrastructure.WebService;
+using Infrastructure.Domain;
+using Model.MasterModule;
+using Model.Employees.Profile;
+using Model.Dashboard;
+using Model.TimeAttendance;
+using Model.Reports;
+using Model.Access_Control;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     /// <summary>
     /// Class that handle the communcation between the model and the webservice. it encapsultes all the user relative methods
@@ -122,7 +122,7 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(RetirementAge), "qryRE");
             ChildGetAllLookup.Add(typeof(TermEndDate), "qryTE");
             ChildGetAllLookup.Add(typeof(XMLDictionary), "qryXML");
-            ChildGetAllLookup.Add(typeof(AionHR.Model.System.ClassProperty), "qryCP");
+            ChildGetAllLookup.Add(typeof(Model.System.ClassProperty), "qryCP");
 
 
             ChildAddOrUpdateLookup.Add(typeof(KeyValuePair<string, string>), "setDE");

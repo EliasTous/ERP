@@ -1,11 +1,11 @@
-﻿using AionHR.Model.Attributes;
+﻿using Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Access_Control
+namespace Model.Access_Control
 {
     [ClassIdentifier("90101", "90")]
     public class SecurityGroup : ModelBase

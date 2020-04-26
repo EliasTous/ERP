@@ -1,17 +1,17 @@
-﻿using AionHR.Model.Employees;
+﻿using Model.Employees;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.Configuration;
-using AionHR.Model.Employees.Profile;
-using AionHR.Infrastructure.WebService;
-using AionHR.Model.System;
-using AionHR.Model;
+using Infrastructure.Domain;
+using Infrastructure.Configuration;
+using Model.Employees.Profile;
+using Infrastructure.WebService;
+using Model.System;
+using Model;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     /// Class that handle the communcation between the model and the webservice. it encapsultes all the employee relative methods
     public class EmployeeRepository : Repository<Employee, string>, IEmployeeRepository

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AionHR.Services.Messaging;
+using Services.Messaging;
 
 public class DayBreaksListRequest : ListRequest
 {

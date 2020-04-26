@@ -165,7 +165,7 @@ public class LoanTypesReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.LoadTracking.LoanType);
+            this.objectDataSource1.DataSource = typeof(Model.LoadTracking.LoanType);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProcessNotifications.aspx.cs" Inherits="AionHR.Web.UI.Forms.ProcessNotifications" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProcessNotifications.aspx.cs" Inherits="Web.UI.Forms.ProcessNotifications" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

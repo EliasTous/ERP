@@ -5,7 +5,7 @@ using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using System.Collections.Generic;
 using System.Linq;
-using AionHR.Model.Reports;
+using Model.Reports;
 using DevExpress.XtraPivotGrid;
 using System.Drawing.Printing;
 

@@ -462,7 +462,7 @@ public class LoanStatement : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT402);
+            this.objectDataSource1.DataSource = typeof(Model.Reports.RT402);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // descriptionTrxType1

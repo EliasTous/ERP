@@ -14,30 +14,30 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.LeaveManagement;
-using AionHR.Services.Messaging.System;
-using AionHR.Model.TimeAttendance;
-using AionHR.Infrastructure.JSON;
-using AionHR.Model.Access_Control;
-using AionHR.Model.Attributes;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Model.LeaveManagement;
+using Services.Messaging.System;
+using Model.TimeAttendance;
+using Infrastructure.JSON;
+using Model.Access_Control;
+using Model.Attributes;
 using Reports;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Model.Dashboard;
-using AionHR.Services.Messaging.DashBoard;
-using AionHR.Web.UI.Forms.ConstClasses;
+using Services.Messaging.Reports;
+using Model.Dashboard;
+using Services.Messaging.DashBoard;
+using Web.UI.Forms.ConstClasses;
 using DevExpress.XtraReports.UI;
 
-namespace AionHR.Web.UI.Forms.Controls
+namespace Web.UI.Forms.Controls
 {
     public partial class LeaveRequestControl : System.Web.UI.UserControl
     {
@@ -132,7 +132,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
 
 
-            ListResponse<AionHR.Model.Reports.RT106> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT106>(request);
+            ListResponse<Model.Reports.RT106> resp = _reportsService.ChildGetAll<Model.Reports.RT106>(request);
             if (!resp.Success)
             {
             }
@@ -1093,7 +1093,7 @@ namespace AionHR.Web.UI.Forms.Controls
                 LIP.leaveId = CurrentLeave.Text;
                 req.Add(LIP);
 
-                ListResponse<AionHR.Model.Reports.PT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.PT501>(req);
+                ListResponse<Model.Reports.PT501> resp = _reportsService.ChildGetAll<Model.Reports.PT501>(req);
                 if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -1296,7 +1296,7 @@ namespace AionHR.Web.UI.Forms.Controls
 
            
           
-            ListResponse<AionHR.Model.LeaveManagement.Approvals> response = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.Approvals>(req);
+            ListResponse<Model.LeaveManagement.Approvals> response = _leaveManagementService.ChildGetAll<Model.LeaveManagement.Approvals>(req);
             if (!response.Success)
             {
                Common.errorMessage(response);

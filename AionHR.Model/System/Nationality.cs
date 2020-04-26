@@ -1,12 +1,12 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Model.Attributes;
+﻿using Infrastructure.Domain;
+using Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.System
+namespace Model.System
 {
     [ClassIdentifier("20040","20")]
     public class Nationality:ModelBase

@@ -1,8 +1,8 @@
-﻿using AionHR.Model.AssetManagement;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.Asset_Management;
-using AionHR.Web.UI.Forms.Utilities;
+﻿using Model.AssetManagement;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.Asset_Management;
+using Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -12,7 +12,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class AssetPropertyExplorer : System.Web.UI.Page
     {

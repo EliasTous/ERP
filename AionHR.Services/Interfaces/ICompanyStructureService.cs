@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Infrastructure.Session;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Infrastructure.Domain;
+using Infrastructure.Session;
+using Services.Messaging;
+using Model.Company.Structure;
+using Infrastructure.Domain;
 
-namespace AionHR.Services.Interfaces
+namespace Services.Interfaces
 {
     public interface ICompanyStructureService : IBaseService
     {

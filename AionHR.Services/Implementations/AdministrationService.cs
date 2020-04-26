@@ -1,14 +1,14 @@
-﻿using AionHR.Infrastructure.Session;
-using AionHR.Model.AdminTemplates;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
+﻿using Infrastructure.Session;
+using Model.AdminTemplates;
+using Services.Interfaces;
+using Services.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
    public class AdministrationService : BaseService, IAdministrationService
     {

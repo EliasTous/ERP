@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LeaveRequestControl.ascx.cs" Inherits="AionHR.Web.UI.Forms.Controls.LeaveRequestControl" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LeaveRequestControl.ascx.cs" Inherits="Web.UI.Forms.Controls.LeaveRequestControl" %>
 <link rel="stylesheet" type="text/css" href="CSS/Common.css" />
 <link rel="stylesheet" href="CSS/LiveSearch.css" />
 

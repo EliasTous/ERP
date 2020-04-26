@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class SystemDefaults {
@@ -397,7 +397,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ApprovalsFilter lvApId;
+        protected global::Web.UI.Forms.Reports.ApprovalsFilter lvApId;
         
         /// <summary>
         /// lvEdId control.
@@ -406,7 +406,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.EntitlementDeductionFilter lvEdId;
+        protected global::Web.UI.Forms.Reports.EntitlementDeductionFilter lvEdId;
         
         /// <summary>
         /// SaveButton control.

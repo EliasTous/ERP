@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Benefits
+namespace Model.Benefits
 {
   public  class PeriodOfTheDate 
     {

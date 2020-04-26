@@ -164,7 +164,7 @@ public class PayrollTimeSchedulesReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Payroll.TimeSchedule);
+            this.objectDataSource1.DataSource = typeof(Model.Payroll.TimeSchedule);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

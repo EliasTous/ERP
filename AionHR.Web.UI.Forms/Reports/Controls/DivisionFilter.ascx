@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DivisionFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.DivisionFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DivisionFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.DivisionFilter" %>
 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"   runat="server" QueryMode="Local" Width="120"  ForceSelection="true"  TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="divisionId"   FieldLabel="<%$ Resources:Common,Divisions%>" >
             <Store>
                 <ext:Store runat="server" ID="divisionStore">

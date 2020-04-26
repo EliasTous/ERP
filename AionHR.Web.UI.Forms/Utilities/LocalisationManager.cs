@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 
-namespace AionHR.Web.UI.Forms.Utilities
+namespace Web.UI.Forms.Utilities
 {
     /// <summary>
     /// Class for managing the language of the interface, built on the singeleton pattern

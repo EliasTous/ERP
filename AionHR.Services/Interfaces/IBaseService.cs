@@ -1,13 +1,13 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.Session;
-using AionHR.Services.Messaging;
+﻿using Infrastructure.Domain;
+using Infrastructure.Session;
+using Services.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Interfaces
+namespace Services.Interfaces
 {
     public interface IBaseService
     {

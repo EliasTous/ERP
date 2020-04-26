@@ -14,22 +14,22 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Services.Messaging.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Services.Messaging.Reports;
 using DevExpress.XtraReports.Web;
 using DevExpress.XtraPrinting.Localization;
 using Reports;
 using System.Threading;
-using AionHR.Model.Employees.Profile;
+using Model.Employees.Profile;
 
-namespace AionHR.Web.UI.Forms.Reports
+namespace Web.UI.Forms.Reports
 {
     public partial class RT202 : System.Web.UI.Page
     {
@@ -96,7 +96,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     try
                     {
-                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT202), null, null, null, null);
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.Reports.RT202), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)
                     {
@@ -207,7 +207,7 @@ namespace AionHR.Web.UI.Forms.Reports
             string rep_params = vals.Text;
             ReportGenericRequest req = new ReportGenericRequest();
             req.paramString = rep_params;
-            ListResponse<AionHR.Model.Reports.RT202> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT202>(req);
+            ListResponse<Model.Reports.RT202> resp = _reportsService.ChildGetAll<Model.Reports.RT202>(req);
             resp.Items.ForEach(x =>
                         { 
                             if (x.prevBasicAmount==0)
@@ -224,7 +224,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 x.DateString = x.effectiveDate != null ? ((DateTime)(x.effectiveDate)).ToString(_systemService.SessionHelper.GetDateformat(), CultureInfo.CurrentCulture) : "";
             });
             string getLan = _systemService.SessionHelper.getLangauge();
-            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            Dictionary<string, string> parameters = Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             SalaryChanges h = new SalaryChanges(parameters, getLan);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;

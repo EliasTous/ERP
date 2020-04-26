@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DaysAvailability.aspx.cs" Inherits="AionHR.Web.UI.Forms.DaysAvailability" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DaysAvailability.aspx.cs" Inherits="Web.UI.Forms.DaysAvailability" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

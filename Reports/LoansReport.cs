@@ -648,7 +648,7 @@ public class LoansReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT401);
+            this.objectDataSource1.DataSource = typeof(Model.Reports.RT401);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // LoansReport

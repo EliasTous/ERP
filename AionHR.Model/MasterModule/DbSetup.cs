@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.MasterModule
+namespace Model.MasterModule
 {
     public class DbSetup
 

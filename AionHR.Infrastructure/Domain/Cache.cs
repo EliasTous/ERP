@@ -5,7 +5,7 @@ using System.Runtime.Caching;
 using System.Xml.Linq;
 using System.IO;
 
-namespace AionHR.Infrastructure.Domain
+namespace Infrastructure.Domain
 {
     public class Cache
     {

@@ -206,7 +206,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT506);
+            this.objectDataSource1.DataSource = typeof(Model.Reports.RT506);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrTableRow1

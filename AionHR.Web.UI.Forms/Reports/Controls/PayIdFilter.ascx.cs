@@ -1,20 +1,20 @@
 ﻿using System;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.Reports;
+using Model.Employees.Profile;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.Reports;
 using Microsoft.Practices.ServiceLocation;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using AionHR.Model.Payroll;
+using Model.Payroll;
 using System.Globalization;
 using Ext.Net;
 
-namespace AionHR.Web.UI.Forms.Reports.Controls
+namespace Web.UI.Forms.Reports.Controls
 {
     public partial class PayIdFilter : System.Web.UI.UserControl,IComboControl
     {

@@ -1,14 +1,14 @@
-﻿using AionHR.Model.AssetManagement;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Reports;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.Asset_Management;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Web.UI.Forms.Reports;
-using AionHR.Web.UI.Forms.Reports.Controls;
-using AionHR.Web.UI.Forms.Utilities;
+﻿using Model.AssetManagement;
+using Model.Employees.Profile;
+using Model.Reports;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.Asset_Management;
+using Services.Messaging.Reports;
+using Web.UI.Forms.Reports;
+using Web.UI.Forms.Reports.Controls;
+using Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using Newtonsoft.Json.Linq;
@@ -22,7 +22,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class ReportParameterBrowser : System.Web.UI.Page
     {

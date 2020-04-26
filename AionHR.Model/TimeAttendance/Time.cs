@@ -1,5 +1,5 @@
-﻿using AionHR.Model.Attributes;
-using AionHR.Model.Employees.Profile;
+﻿using Model.Attributes;
+using Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.TimeAttendance
+namespace Model.TimeAttendance
 {
     [ClassIdentifier("41065", "41")]
     public  class Time

@@ -250,7 +250,7 @@ public class SponsorsReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Employees.Profile.Sponsor);
+            this.objectDataSource1.DataSource = typeof(Model.Employees.Profile.Sponsor);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

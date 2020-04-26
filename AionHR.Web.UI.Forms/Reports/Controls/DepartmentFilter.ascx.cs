@@ -1,7 +1,7 @@
-﻿using AionHR.Model.Company.Structure;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.Reports;
+﻿using Model.Company.Structure;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.Reports;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 
 
 
-namespace AionHR.Web.UI.Forms.Reports.Controls
+namespace Web.UI.Forms.Reports.Controls
 {
     public partial class DepartmentFilter : System.Web.UI.UserControl,IComboControl
     {

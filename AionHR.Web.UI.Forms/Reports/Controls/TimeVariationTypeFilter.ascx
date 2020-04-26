@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TimeVariationTypeFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.TimeVariationTypeFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TimeVariationTypeFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.TimeVariationTypeFilter" %>
 
 <ext:Panel runat="server" Layout="HBoxLayout"   ><Items>
    

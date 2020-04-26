@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AssetManagementOnboardings.aspx.cs" Inherits="AionHR.Web.UI.Forms.AssetManagementOnboardings" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AssetManagementOnboardings.aspx.cs" Inherits="Web.UI.Forms.AssetManagementOnboardings" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

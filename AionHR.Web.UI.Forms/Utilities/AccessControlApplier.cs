@@ -1,9 +1,9 @@
-﻿using AionHR.Model.Access_Control;
-using AionHR.Model.Attributes;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Web.UI.Forms.Utilities;
+﻿using Model.Access_Control;
+using Model.Attributes;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using Newtonsoft.Json;
@@ -14,7 +14,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public class AccessControlApplier
     {

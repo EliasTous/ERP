@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace AionHR.Web.UI.Forms.Utilities
+namespace Web.UI.Forms.Utilities
 {
     public class Functions
     {

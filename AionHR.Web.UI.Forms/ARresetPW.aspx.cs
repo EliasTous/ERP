@@ -1,11 +1,11 @@
-﻿using AionHR.Infrastructure;
-using AionHR.Model.MasterModule;
-using AionHR.Model.System;
-using AionHR.Services.Implementations;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
-using AionHR.Web.UI.Forms.Utilities;
+﻿using Infrastructure;
+using Model.MasterModule;
+using Model.System;
+using Services.Implementations;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.System;
+using Web.UI.Forms.Utilities;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap.Attributes;
@@ -20,7 +20,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class ARresetPW : System.Web.UI.Page
     {

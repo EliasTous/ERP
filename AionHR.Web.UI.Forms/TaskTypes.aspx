@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TaskTypes.aspx.cs" Inherits="AionHR.Web.UI.Forms.TaskTypes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TaskTypes.aspx.cs" Inherits="Web.UI.Forms.TaskTypes" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

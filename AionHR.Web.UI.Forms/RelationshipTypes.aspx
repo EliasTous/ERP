@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RelationshipTypes.aspx.cs" Inherits="AionHR.Web.UI.Forms.RelationshipTypes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RelationshipTypes.aspx.cs" Inherits="Web.UI.Forms.RelationshipTypes" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

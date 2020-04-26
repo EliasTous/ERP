@@ -1,12 +1,12 @@
-﻿using AionHR.Model.LeaveManagement;
+﻿using Model.LeaveManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Model.TimeAttendance;
+using Model.TimeAttendance;
 
-namespace AionHR.Model.SelfService
+namespace Model.SelfService
 {
   public  class LeaveReplacementApproval : LeaveRequest
     {

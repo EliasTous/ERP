@@ -261,7 +261,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Payroll.LeavePayment);
+            this.objectDataSource1.DataSource = typeof(Model.Payroll.LeavePayment);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrTableRow1

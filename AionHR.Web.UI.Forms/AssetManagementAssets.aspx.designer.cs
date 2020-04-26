@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class AssetManagementAssets {
@@ -145,7 +145,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.AssetCategoryFilter categoryIdFilter;
+        protected global::Web.UI.Forms.Reports.Controls.AssetCategoryFilter categoryIdFilter;
         
         /// <summary>
         /// employeeFilter control.
@@ -154,7 +154,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
+        protected global::Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
         
         /// <summary>
         /// supplierIdFilter control.
@@ -163,7 +163,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.SupplierFilter supplierIdFilter;
+        protected global::Web.UI.Forms.Reports.Controls.SupplierFilter supplierIdFilter;
         
         /// <summary>
         /// jobInfo1 control.
@@ -172,7 +172,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
+        protected global::Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
         /// ColrecordId control.
@@ -505,7 +505,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.SupplierFilter supplierId;
+        protected global::Web.UI.Forms.Reports.Controls.SupplierFilter supplierId;
         
         /// <summary>
         /// currencyId control.

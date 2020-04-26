@@ -1,7 +1,7 @@
-﻿using AionHR.Model.Employees.Profile;
+﻿using Model.Employees.Profile;
 using System;
 
-namespace AionHR.Model.Attendance
+namespace Model.Attendance
 {
     public  class CheckMonitor 
     {

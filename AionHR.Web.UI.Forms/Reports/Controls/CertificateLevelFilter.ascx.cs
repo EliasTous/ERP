@@ -1,9 +1,9 @@
-﻿using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.Reports;
+﻿using Model.Attendance;
+using Model.Employees.Profile;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.Reports;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -13,7 +13,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms.Reports.Controls
+namespace Web.UI.Forms.Reports.Controls
 {
     public partial class CertificateLevelFilter : System.Web.UI.UserControl, IComboControl
     {

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TransactionTypeFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.TransactionTypeFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TransactionTypeFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.TransactionTypeFilter" %>
 <ext:Panel runat="server" Layout="HBoxLayout" Width="120"  ><Items>
 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" ID="trxType" Editable="false" Width="120" FieldLabel="">
     <Items>

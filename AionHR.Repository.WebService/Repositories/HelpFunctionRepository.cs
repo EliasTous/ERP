@@ -1,18 +1,18 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.Benefits;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.Dashboard;
-using AionHR.Model.HelpFunction;
-using AionHR.Model.SelfService;
-using AionHR.Model.TimeAttendance;
+﻿using Infrastructure.Configuration;
+using Infrastructure.Domain;
+using Model.Benefits;
+using Model.Company.Structure;
+using Model.Dashboard;
+using Model.HelpFunction;
+using Model.SelfService;
+using Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
  public   class HelpFunctionRepository: Repository<IEntity, string>, IHelpFunctionRepository
     {

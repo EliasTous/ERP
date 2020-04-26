@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayrollFunctions.aspx.cs" Inherits="AionHR.Web.UI.Forms.PayrollFunctions" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayrollFunctions.aspx.cs" Inherits="Web.UI.Forms.PayrollFunctions" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

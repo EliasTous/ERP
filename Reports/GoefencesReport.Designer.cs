@@ -204,7 +204,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Attendance.Geofence);
+            this.objectDataSource1.DataSource = typeof(Model.Attendance.Geofence);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

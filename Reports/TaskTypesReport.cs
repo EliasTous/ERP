@@ -164,7 +164,7 @@ public class TaskTypesReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.TaskManagement.TaskType);
+            this.objectDataSource1.DataSource = typeof(Model.TaskManagement.TaskType);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

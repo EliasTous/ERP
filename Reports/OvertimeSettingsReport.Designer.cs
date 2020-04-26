@@ -154,7 +154,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.TimeAttendance.OvertimeSetting);
+            this.objectDataSource1.DataSource = typeof(Model.TimeAttendance.OvertimeSetting);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

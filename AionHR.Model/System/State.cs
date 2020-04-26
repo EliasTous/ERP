@@ -1,11 +1,11 @@
-﻿using AionHR.Model.Attributes;
+﻿using Model.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.System
+namespace Model.System
 {
     [ClassIdentifier("20071","20")]
     public class State:ModelBase

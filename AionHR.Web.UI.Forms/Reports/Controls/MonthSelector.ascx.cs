@@ -1,4 +1,4 @@
-﻿using AionHR.Services.Messaging.Reports;
+﻿using Services.Messaging.Reports;
 using Ext.Net;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms.Reports.Controls
+namespace Web.UI.Forms.Reports.Controls
 {
     public partial class MonthSelector : System.Web.UI.UserControl
     {

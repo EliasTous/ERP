@@ -1,12 +1,12 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Model.Company.Cases;
+﻿using Infrastructure.Configuration;
+using Model.Company.Cases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     public class CasesRepository:Repository<Case,string>, ICasesRepository
     {

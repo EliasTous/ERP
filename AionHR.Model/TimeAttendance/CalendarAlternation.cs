@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.TimeAttendance
+namespace Model.TimeAttendance
 {
     public class CalendarAlternation
     {

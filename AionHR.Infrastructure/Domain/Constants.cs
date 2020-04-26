@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.Domain
+namespace Infrastructure.Domain
 {
 
     public  static partial class ClassId

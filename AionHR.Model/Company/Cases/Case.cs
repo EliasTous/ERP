@@ -1,13 +1,13 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Model.Attributes;
-using AionHR.Model.Employees.Profile;
+﻿using Infrastructure.Domain;
+using Model.Attributes;
+using Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Company.Cases
+namespace Model.Company.Cases
 {
     [ClassIdentifier("43000", "43")]
     public  class Case : ModelBase,IEntity

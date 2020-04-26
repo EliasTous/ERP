@@ -1,14 +1,14 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.Benefits;
-using AionHR.Model.Company.Structure;
+﻿using Infrastructure.Configuration;
+using Infrastructure.Domain;
+using Model.Benefits;
+using Model.Company.Structure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
  public   class BenefitsRepository : Repository<IEntity, string>, IBenefitsRepository
     {

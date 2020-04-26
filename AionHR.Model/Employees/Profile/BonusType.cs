@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.Attributes;
+using Infrastructure.Domain;
+using Model.Attributes;
 
-namespace AionHR.Model.Employees.Profile
+namespace Model.Employees.Profile
 {
     [ClassIdentifier("31030", "31")]
     public class BonusType : ModelBase

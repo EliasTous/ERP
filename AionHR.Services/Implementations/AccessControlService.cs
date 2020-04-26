@@ -1,17 +1,17 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.Session;
-using AionHR.Model.Access_Control;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
+﻿using Infrastructure.Domain;
+using Infrastructure.Session;
+using Model.Access_Control;
+using Model.Company.Structure;
+using Model.Employees.Profile;
+using Model.System;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     public class AccessControlService : BaseService, IAccessControlService
     {

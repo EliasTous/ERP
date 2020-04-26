@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AionHR.Infrastructure", "AionHR.Infrastructure\AionHR.Infrastructure.csproj", "{9955B92F-F16C-49B9-99F3-4919D3327263}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "AionHR.Infrastructure\Infrastructure.csproj", "{9955B92F-F16C-49B9-99F3-4919D3327263}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AionHR.Model", "AionHR.Model\AionHR.Model.csproj", "{ECB87836-818F-45F5-AB7F-F46CDE3C447F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "AionHR.Model\Model.csproj", "{ECB87836-818F-45F5-AB7F-F46CDE3C447F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AionHR.Repository.WebService", "AionHR.Repository.WebService\AionHR.Repository.WebService.csproj", "{9B6559D9-0FDF-4F9B-8CE0-0DF9860E4057}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.WebService", "AionHR.Repository.WebService\Repository.WebService.csproj", "{9B6559D9-0FDF-4F9B-8CE0-0DF9860E4057}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AionHR.Services", "AionHR.Services\AionHR.Services.csproj", "{F60BFEAF-3B3B-47C5-9DA0-AC8892DC9BE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "AionHR.Services\Services.csproj", "{F60BFEAF-3B3B-47C5-9DA0-AC8892DC9BE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AionHR.Web.UI.Forms", "AionHR.Web.UI.Forms\AionHR.Web.UI.Forms.csproj", "{39020ADD-F86A-42FA-872F-D0831E9F7CE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.UI.Forms", "AionHR.Web.UI.Forms\Web.UI.Forms.csproj", "{39020ADD-F86A-42FA-872F-D0831E9F7CE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports", "Reports\Reports.csproj", "{C4B2B519-7FE6-4AD2-9C32-1076DE632580}"
 EndProject

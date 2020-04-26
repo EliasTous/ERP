@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public class StructureMapServiceLocator : ServiceLocatorImplBase
     {

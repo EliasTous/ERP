@@ -14,20 +14,20 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Attendance;
-using AionHR.Model.TimeAttendance;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Model.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.Employees.Profile;
+using Model.Employees.Leaves;
+using Model.Attendance;
+using Model.TimeAttendance;
+using Services.Messaging.Reports;
+using Model.Reports;
 
-namespace AionHR.Web.UI.Forms.Reports
+namespace Web.UI.Forms.Reports
 {
     public partial class RT107 : System.Web.UI.Page
     {
@@ -88,7 +88,7 @@ namespace AionHR.Web.UI.Forms.Reports
             {
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT107), null, null, null, null);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.Reports.RT107), null, null, null, null);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -341,7 +341,7 @@ namespace AionHR.Web.UI.Forms.Reports
             //in this test will take a list of News
             
             
-            ListResponse<AionHR.Model.Reports.RT107> branches = _reportService.ChildGetAll<AionHR.Model.Reports.RT107>(req);
+            ListResponse<Model.Reports.RT107> branches = _reportService.ChildGetAll<Model.Reports.RT107>(req);
             if (!branches.Success)
             {
                 X.Msg.Alert(Resources.Common.Error, GetGlobalResourceObject("Errors", branches.ErrorCode) != null ? GetGlobalResourceObject("Errors", branches.ErrorCode).ToString() : branches.Summary).Show();

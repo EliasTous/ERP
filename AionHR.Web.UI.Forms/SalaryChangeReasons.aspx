@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SalaryChangeReasons.aspx.cs" Inherits="AionHR.Web.UI.Forms.SalaryChangeReasons" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SalaryChangeReasons.aspx.cs" Inherits="Web.UI.Forms.SalaryChangeReasons" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

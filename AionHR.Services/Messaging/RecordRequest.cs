@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging
+namespace Services.Messaging
 {
     /// <summary>
     /// Generic class used to fill a request to be used by a record retrieval service

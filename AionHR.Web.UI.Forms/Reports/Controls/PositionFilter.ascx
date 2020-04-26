@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PositionFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.PositionFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PositionFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.PositionFilter" %>
  <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" Width="120"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="positionId" FieldLabel="<%$ Resources:Common,Positions%>" >
             <Store>
                 <ext:Store runat="server" ID="positionStore">

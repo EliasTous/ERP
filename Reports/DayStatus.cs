@@ -991,7 +991,7 @@ public class DayStatus : XtraReport
             // 
             // objectDataSource2
             // 
-            this.objectDataSource2.DataSource = typeof(AionHR.Model.Reports.RT306);
+            this.objectDataSource2.DataSource = typeof(Model.Reports.RT306);
             this.objectDataSource2.Name = "objectDataSource2";
             // 
             // xrControlStyle2

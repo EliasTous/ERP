@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MoudleFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.MoudleFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MoudleFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.MoudleFilter" %>
 <script type="text/javascript" runat="server">
  
    

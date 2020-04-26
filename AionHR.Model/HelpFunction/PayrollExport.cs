@@ -1,12 +1,12 @@
-﻿using AionHR.Model.Attributes;
-using AionHR.Model.Employees.Profile;
+﻿using Model.Attributes;
+using Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.HelpFunction
+namespace Model.HelpFunction
 {
     [ClassIdentifier("85101", "85")]
     public class PayrollExport

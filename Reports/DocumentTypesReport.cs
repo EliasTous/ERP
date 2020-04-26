@@ -164,7 +164,7 @@ public class DocumentTypesReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Employees.Profile.DocumentType);
+            this.objectDataSource1.DataSource = typeof(Model.Employees.Profile.DocumentType);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // pageHeaderBand1

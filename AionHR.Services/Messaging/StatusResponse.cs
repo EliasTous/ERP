@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging
+namespace Services.Messaging
 {
    public  class StatusResponse:ResponseBase
     {

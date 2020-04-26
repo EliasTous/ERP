@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class Employees {
@@ -469,7 +469,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.EmployeeProfileControl employeeControl1;
+        protected global::Web.UI.Forms.EmployeeProfileControl employeeControl1;
         
         /// <summary>
         /// batchWindow control.

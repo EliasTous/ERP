@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.Tokens
+namespace Infrastructure.Tokens
 {
     /// <summary>
     /// Token Generator Interface

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CompanyDocumentTypes.aspx.cs" Inherits="AionHR.Web.UI.Forms.CompanyDocumentTypes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CompanyDocumentTypes.aspx.cs" Inherits="Web.UI.Forms.CompanyDocumentTypes" %>
 
 
 

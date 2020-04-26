@@ -17,12 +17,12 @@ using Newtonsoft.Json;
 
 
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging.System;
-using AionHR.Model.System;
-using AionHR.Services.Messaging;
+using Services.Interfaces;
+using Services.Messaging.System;
+using Model.System;
+using Services.Messaging;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
 
     [DirectMethodProxyID(IDMode = DirectMethodProxyIDMode.Alias, Alias = "TLUC")]

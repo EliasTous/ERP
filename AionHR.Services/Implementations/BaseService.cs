@@ -1,15 +1,15 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.Session;
-using AionHR.Infrastructure.WebService;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
+﻿using Infrastructure.Domain;
+using Infrastructure.Session;
+using Infrastructure.WebService;
+using Services.Interfaces;
+using Services.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     /// <summary>
     /// Base service used to hold all common properties and common service methods

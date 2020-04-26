@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.LoadTracking
+namespace Model.LoadTracking
 {
   public  class PendingLA :LoanApproval
     {

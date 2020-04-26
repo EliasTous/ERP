@@ -1,4 +1,4 @@
-﻿using AionHR.Infrastructure.Tokens;
+﻿using Infrastructure.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.Session
+namespace Infrastructure.Session
 {
     /// <summary>
     /// It is a helper class very similar to UserManager of the old project, this class need to be structured again as there is a violation of the separation of Concern.

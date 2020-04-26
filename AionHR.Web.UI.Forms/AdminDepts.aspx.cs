@@ -14,24 +14,24 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Payroll;
-using AionHR.Model.NationalQuota;
-using AionHR.Model.Benefits;
-using AionHR.Services.Messaging.System;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.Employees;
-using AionHR.Model.AdminTemplates;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.System;
+using Model.Attendance;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Model.Payroll;
+using Model.NationalQuota;
+using Model.Benefits;
+using Services.Messaging.System;
+using Infrastructure.Domain;
+using Model.Employees;
+using Model.AdminTemplates;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class AdminDepts : System.Web.UI.Page
     {

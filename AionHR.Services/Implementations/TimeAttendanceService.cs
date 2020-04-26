@@ -1,15 +1,15 @@
-﻿using AionHR.Infrastructure.Session;
-using AionHR.Model.TimeAttendance;
-using AionHR.Services.Interfaces;
+﻿using Infrastructure.Session;
+using Model.TimeAttendance;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Model.Attendance;
-using AionHR.Services.Messaging;
+using Model.Attendance;
+using Services.Messaging;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     public class TimeAttendanceService : BaseService,ITimeAttendanceService
     {

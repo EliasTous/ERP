@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MediaItems.aspx.cs" Inherits="AionHR.Web.UI.Forms.MediaItems" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MediaItems.aspx.cs" Inherits="Web.UI.Forms.MediaItems" %>
 
 
 

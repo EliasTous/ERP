@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
-using AionHR.Model.Reports;
+using Model.Reports;
 
 /// <summary>
 /// Summary description for TimeAttendanceSummary
@@ -481,7 +481,7 @@ public class TimeAttendanceSummary : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.MonthlyEmployeeAttendanceCollection);
+            this.objectDataSource1.DataSource = typeof(Model.Reports.MonthlyEmployeeAttendanceCollection);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // DetailReport3

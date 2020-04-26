@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class LeaveReplacementApprovals {
@@ -460,7 +460,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus LeaveApprovalStatusControl;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus LeaveApprovalStatusControl;
         
         /// <summary>
         /// apStatus control.
@@ -469,7 +469,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus apStatus;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus apStatus;
         
         /// <summary>
         /// summary control.

@@ -1,4 +1,4 @@
-﻿namespace AionHR.Infrastructure.Domain
+﻿namespace Infrastructure.Domain
 {
     /// <summary>
     /// An exchangable data interface 

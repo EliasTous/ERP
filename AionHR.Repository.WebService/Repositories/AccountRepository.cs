@@ -1,13 +1,13 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Model.MasterModule;
+﻿using Infrastructure.Configuration;
+using Model.MasterModule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Infrastructure.WebService;
+using Infrastructure.WebService;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     /// <summary>
     /// Class that handle the communcation between the model and the webservice. it encapsultes all the account related methods

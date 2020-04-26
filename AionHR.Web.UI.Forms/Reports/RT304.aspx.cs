@@ -14,18 +14,18 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Model.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Services.Messaging.Reports;
+using Model.Reports;
 
-namespace AionHR.Web.UI.Forms.Reports
+namespace Web.UI.Forms.Reports
 {
     public partial class RT304 : System.Web.UI.Page
     {
@@ -99,7 +99,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 catch { }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT103), null, null, null, null);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.Reports.RT103), null, null, null, null);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -200,7 +200,7 @@ namespace AionHR.Web.UI.Forms.Reports
             r.DateTo = dF;
             r.IsDayId = true;
             request.Add(r);
-            ListResponse<AionHR.Model.Reports.RT304> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT304>(request);
+            ListResponse<Model.Reports.RT304> resp = _reportsService.ChildGetAll<Model.Reports.RT304>(request);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;
@@ -217,7 +217,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
         }
 
-        private void DisplayResult(List<AionHR.Model.Reports.RT304> items)
+        private void DisplayResult(List<Model.Reports.RT304> items)
         {
             List<TimeSpan> timesFrom = items
                       .Select(x => x.from)

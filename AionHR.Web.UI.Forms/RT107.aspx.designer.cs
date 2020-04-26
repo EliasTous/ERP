@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms.Reports {
+namespace Web.UI.Forms.Reports {
     
     
     public partial class RT107 {
@@ -37,7 +37,7 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.EmployeeProfileControl employeeControl1;
+        protected global::Web.UI.Forms.EmployeeProfileControl employeeControl1;
         
         /// <summary>
         /// textMatch control.

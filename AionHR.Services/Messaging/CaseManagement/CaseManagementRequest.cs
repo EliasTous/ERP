@@ -1,6 +1,6 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
+﻿using Infrastructure.Domain;
+using Services.Messaging;
+using Services.Messaging.System;
 using System.Collections.Generic;
 
 public class CaseManagementListRequest : ListRequest

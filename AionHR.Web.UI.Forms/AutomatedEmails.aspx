@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AutomatedEmails.aspx.cs" Inherits="AionHR.Web.UI.Forms.AutomatedEmails" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AutomatedEmails.aspx.cs" Inherits="Web.UI.Forms.AutomatedEmails" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

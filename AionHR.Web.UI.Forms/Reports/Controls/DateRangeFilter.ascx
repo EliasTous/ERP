@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DateRangeFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.DateRangeFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DateRangeFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.DateRangeFilter" %>
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <ext:Panel runat="server" Layout="HBoxLayout" Width="320" ><Items>
 <ext:DateField runat="server" ID="dateFrom" Width="150" LabelWidth="30" FieldLabel="<%$Resources: From %>" Format="dd/MM/yyyy"/>

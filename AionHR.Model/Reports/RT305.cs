@@ -1,12 +1,12 @@
-﻿using AionHR.Model.Attributes;
-using AionHR.Model.Dashboard;
+﻿using Model.Attributes;
+using Model.Dashboard;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Reports
+namespace Model.Reports
 {
     [ClassIdentifier("80305", "80")]
     public  class RT305 : DashBoardTimeVariation

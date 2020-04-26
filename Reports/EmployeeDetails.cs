@@ -949,7 +949,7 @@ public class EmployeeDetails : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT108);
+            this.objectDataSource1.DataSource = typeof(Model.Reports.RT108);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // EmployeeDetails

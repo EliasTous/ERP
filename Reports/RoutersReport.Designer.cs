@@ -358,7 +358,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Attendance.Router);
+            this.objectDataSource1.DataSource = typeof(Model.Attendance.Router);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // No

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AssetLoans.aspx.cs" Inherits="AionHR.Web.UI.Forms.AssetLoans" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AssetLoans.aspx.cs" Inherits="Web.UI.Forms.AssetLoans" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

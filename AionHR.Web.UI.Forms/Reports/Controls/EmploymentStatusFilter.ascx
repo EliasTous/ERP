@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmploymentStatusFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.EmploymentStatusFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EmploymentStatusFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.EmploymentStatusFilter" %>
 
   <ext:ComboBox AnyMatch="true" CaseSensitive="false" runat="server" QueryMode="Local" ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="esId"  EmptyText="<%$ Resources: Common ,FieldEHStatus%>" width="150">
                                     <Store>

@@ -1,29 +1,29 @@
-﻿using AionHR.Services.Interfaces;
+﻿using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Infrastructure.Session;
-using AionHR.Model.MasterModule;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
-using AionHR.Infrastructure.WebService;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.System;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.MediaGallery;
-using AionHR.Model.Company.News;
-using AionHR.Model.TaskManagement;
-using AionHR.Model.Attendance;
-using AionHR.Model.TimeAttendance;
-using AionHR.Model.LeaveManagement;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Payroll;
-using AionHR.Model.LoadTracking;
+using Infrastructure.Session;
+using Model.MasterModule;
+using Services.Messaging;
+using Services.Messaging.System;
+using Infrastructure.WebService;
+using Infrastructure.Domain;
+using Model.System;
+using Model.Employees.Profile;
+using Model.Company.Structure;
+using Model.MediaGallery;
+using Model.Company.News;
+using Model.TaskManagement;
+using Model.Attendance;
+using Model.TimeAttendance;
+using Model.LeaveManagement;
+using Model.Employees.Leaves;
+using Model.Payroll;
+using Model.LoadTracking;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     public class MasterService : BaseService,IMasterService
     {

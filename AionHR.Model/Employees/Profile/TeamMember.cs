@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Employees.Profile
+namespace Model.Employees.Profile
 {
     public class TeamMember:EmployeeParam
     {

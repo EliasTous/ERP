@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayrollConstants.aspx.cs" Inherits="AionHR.Web.UI.Forms.PayrollConstants" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayrollConstants.aspx.cs" Inherits="Web.UI.Forms.PayrollConstants" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

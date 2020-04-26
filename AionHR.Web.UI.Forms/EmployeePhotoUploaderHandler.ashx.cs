@@ -1,8 +1,8 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
+﻿using Infrastructure.Domain;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.System;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Text;
 using System.Web;
 using System.Web.SessionState;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     /// <summary>
     /// Summary description for EmployeePhotoUploaderHandler

@@ -1,24 +1,24 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.Attendance;
-using AionHR.Model.Dashboard;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.LeaveManagement;
-using AionHR.Model.LoadTracking;
-using AionHR.Model.Payroll;
+﻿using Infrastructure.Configuration;
+using Infrastructure.Domain;
+using Model.Attendance;
+using Model.Dashboard;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Model.LeaveManagement;
+using Model.LoadTracking;
+using Model.Payroll;
 
-using AionHR.Model.TimeAttendance;
+using Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Model.AssetManagementRepository;
-using AionHR.Model.AssetManagement;
-using AionHR.Model;
+using Model.AssetManagementRepository;
+using Model.AssetManagement;
+using Model;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
   public  class AssetManagementRepository : Repository<IEntity, string>, IAssetManagementRepository
     {

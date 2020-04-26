@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LeaveTypeFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.LeaveTypeFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LeaveTypeFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.LeaveTypeFilter" %>
 <ext:Panel runat="server" Layout="HBoxLayout" Width="150">
     <Items>
        

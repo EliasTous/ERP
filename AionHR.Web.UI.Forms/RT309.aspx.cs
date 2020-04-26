@@ -14,25 +14,25 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Services.Messaging.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Services.Messaging.Reports;
 using System.Threading;
 using Reports;
-using AionHR.Model.Reports;
-using AionHR.Model.Employees.Profile;
-using AionHR.Services.Messaging.TimeAttendance;
-using AionHR.Model.TimeAttendance;
-using AionHR.Web.UI.Forms.ConstClasses;
+using Model.Reports;
+using Model.Employees.Profile;
+using Services.Messaging.TimeAttendance;
+using Model.TimeAttendance;
+using Web.UI.Forms.ConstClasses;
 using Reports.ShiftLogs;
 
-namespace AionHR.Web.UI.Forms.Reports
+namespace Web.UI.Forms.Reports
 {
     public partial class RT309 : System.Web.UI.Page
     {
@@ -100,7 +100,7 @@ namespace AionHR.Web.UI.Forms.Reports
 
                     try
                     {
-                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT309), null, null, null, null);
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.Reports.RT309), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)
                     {
@@ -278,13 +278,13 @@ namespace AionHR.Web.UI.Forms.Reports
                 req.paramString = rep_params;
 
 
-                ListResponse<AionHR.Model.Reports.RT309> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT309>(req);
+                ListResponse<Model.Reports.RT309> resp = _reportsService.ChildGetAll<Model.Reports.RT309>(req);
                 if (!resp.Success)
                     Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
                 int counter = 1;
             int maxShiftCount = 0;
-            List<AionHR.Model.Reports.RT309> newShiftLogsList = new List<AionHR.Model.Reports.RT309>();
-                AionHR.Model.Reports.RT309 record = new AionHR.Model.Reports.RT309();
+            List<Model.Reports.RT309> newShiftLogsList = new List<Model.Reports.RT309>();
+                Model.Reports.RT309 record = new Model.Reports.RT309();
                 DateTime parsed = DateTime.Now;
 
 
@@ -339,7 +339,7 @@ namespace AionHR.Web.UI.Forms.Reports
                   
                   
                 }
-                Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+                Dictionary<string, string> parameters = Web.UI.Forms.Common.FetchReportParameters(texts.Text);
                 ShiftLogsReport h = new ShiftLogsReport(newShiftLogsList, /*_systemService.SessionHelper.CheckIfArabicSession()*/ getLan, _systemService.SessionHelper.GetDateformat(), parameters, maxShiftCount);
                // BasicShiftLogReport h = new BasicShiftLogReport(newShiftLogsList, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters, maxShiftCount);
                 h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;

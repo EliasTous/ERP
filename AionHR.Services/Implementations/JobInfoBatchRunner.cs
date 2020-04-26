@@ -1,11 +1,11 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.Session;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.CompanyStructure;
+﻿using Infrastructure.Domain;
+using Infrastructure.Session;
+using Model.Company.Structure;
+using Model.Employees.Profile;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.CompanyStructure;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     public class JobInfoBatchRunner : ImportBatchRunner<JobInfo>
     {

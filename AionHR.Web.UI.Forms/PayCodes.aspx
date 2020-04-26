@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayCodes.aspx.cs" Inherits="AionHR.Web.UI.Forms.PayCodes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayCodes.aspx.cs" Inherits="Web.UI.Forms.PayCodes" %>
 
 
 

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UserComboFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.UserComboFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UserComboFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.UserComboFilter" %>
  
    <ext:ComboBox runat="server" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="fullName" ID="userId"  >
             <Store>

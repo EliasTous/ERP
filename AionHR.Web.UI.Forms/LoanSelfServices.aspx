@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoanSelfServices.aspx.cs" Inherits="AionHR.Web.UI.Forms.LoanSelfServices" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoanSelfServices.aspx.cs" Inherits="Web.UI.Forms.LoanSelfServices" %>
 
 
 

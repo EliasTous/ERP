@@ -1,13 +1,13 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Model.Attributes;
-using AionHR.Model.Employees.Profile;
+﻿using Infrastructure.Domain;
+using Model.Attributes;
+using Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.TaskManagement
+namespace Model.TaskManagement
 {
     [ClassIdentifier("32010", "32")]
     public class Task:ModelBase,IEntity

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class EmployeePenalties {
@@ -181,7 +181,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
+        protected global::Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
         
         /// <summary>
         /// PenaltyFilter control.

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.Reports
+namespace Services.Messaging.Reports
 {
     public class DateRangeParameterSet:ReportParameterSet
     {

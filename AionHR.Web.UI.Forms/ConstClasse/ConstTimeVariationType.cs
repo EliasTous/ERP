@@ -1,13 +1,13 @@
-﻿using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
+﻿using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AionHR.Web.UI.Forms.ConstClasses
+namespace Web.UI.Forms.ConstClasses
 {
     public static class ConstTimeVariationType
     {

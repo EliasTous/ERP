@@ -14,30 +14,30 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Attendance;
-using AionHR.Model.TimeAttendance;
-using AionHR.Services.Messaging.System;
-using AionHR.Web.UI.Forms.ConstClasses;
-using AionHR.Model.HelpFunction;
-using AionHR.Model.System;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.Employees.Profile;
+using Model.Employees.Leaves;
+using Model.Attendance;
+using Model.TimeAttendance;
+using Services.Messaging.System;
+using Web.UI.Forms.ConstClasses;
+using Model.HelpFunction;
+using Model.System;
 using System.Text.RegularExpressions;
-using AionHR.Infrastructure.Domain;
+using Infrastructure.Domain;
 using DevExpress.XtraReports.UI;
-using AionHR.Model.Employees;
-using AionHR.Services.Messaging.Employees;
-using AionHR.Services.Messaging.Reports;
+using Model.Employees;
+using Services.Messaging.Employees;
+using Services.Messaging.Reports;
 using Reports.AttendanceSchedule;
 using System.Threading;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class BranchAvailabilities : System.Web.UI.Page
     {
@@ -1659,7 +1659,7 @@ namespace AionHR.Web.UI.Forms
 
 
 
-            ListResponse<AionHR.Model.Reports.RT310> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT310>(req);
+            ListResponse<Model.Reports.RT310> resp = _reportsService.ChildGetAll<Model.Reports.RT310>(req);
             if (!resp.Success)
             {
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
@@ -1677,7 +1677,7 @@ namespace AionHR.Web.UI.Forms
 
                     resp.Items.RemoveAt(i);
             }
-            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            Dictionary<string, string> parameters = Web.UI.Forms.Common.FetchReportParameters(texts.Text);
 
             AttendanceScheduleReport h = new AttendanceScheduleReport(resp.Items, _systemService.SessionHelper.CheckIfArabicSession(), _systemService.SessionHelper.GetDateformat(), parameters);
             //h.PrintingSystem.Document.AutoFitToPagesWidth = 1;

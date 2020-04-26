@@ -14,25 +14,25 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.TimeAttendance;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Model.TimeAttendance;
 using Reports;
-using AionHR.Model.Payroll;
+using Model.Payroll;
 using DevExpress.XtraReports.UI;
-using AionHR.Services.Messaging.LoanManagment;
-using AionHR.Model.LoadTracking;
-using AionHR.Services.Messaging.Employees;
+using Services.Messaging.LoanManagment;
+using Model.LoadTracking;
+using Services.Messaging.Employees;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class FinalSettlements : System.Web.UI.Page
     {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Geofences.aspx.cs" Inherits="AionHR.Web.UI.Forms.Geofences" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Geofences.aspx.cs" Inherits="Web.UI.Forms.Geofences" %>
 
 
 

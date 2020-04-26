@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SalaryChangeReasonFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.SalaryChangeReasonFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SalaryChangeReasonFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.SalaryChangeReasonFilter" %>
 
   
        

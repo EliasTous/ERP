@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class LoanRequests {
@@ -298,7 +298,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
+        protected global::Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
         /// LoanApprovalStatusFilter control.
@@ -307,7 +307,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus LoanApprovalStatusFilter;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus LoanApprovalStatusFilter;
         
         /// <summary>
         /// employeeFilter control.
@@ -667,7 +667,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus loanApprovalStatusControl;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus loanApprovalStatusControl;
         
         /// <summary>
         /// effectiveDate control.
@@ -1270,6 +1270,6 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.TimeVariationHistoryControl TimeVariationHistoryControl1;
+        protected global::Web.UI.Forms.TimeVariationHistoryControl TimeVariationHistoryControl1;
     }
 }

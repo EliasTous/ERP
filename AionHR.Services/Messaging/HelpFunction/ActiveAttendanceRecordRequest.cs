@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Messaging.HelpFunction
+namespace Services.Messaging.HelpFunction
 {
    public class ActiveAttendanceRecordRequest : RecordRequest
     {

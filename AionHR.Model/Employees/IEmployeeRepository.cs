@@ -1,14 +1,14 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.WebService;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.System;
+﻿using Infrastructure.Domain;
+using Infrastructure.WebService;
+using Model.Employees.Profile;
+using Model.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Employees
+namespace Model.Employees
 {
     /// <summary>
     /// Interface for the EmployeeRepository

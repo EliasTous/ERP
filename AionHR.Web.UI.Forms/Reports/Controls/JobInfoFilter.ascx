@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobInfoFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.JobInfoFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="JobInfoFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.JobInfoFilter" %>
 <script type="text/javascript" >
     function setStatus(de,br,po,di)
     {

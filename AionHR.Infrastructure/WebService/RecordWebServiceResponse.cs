@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.WebService
+namespace Infrastructure.WebService
 {
     /// <summary>
     /// the object returned by webservice when requesting a unique item

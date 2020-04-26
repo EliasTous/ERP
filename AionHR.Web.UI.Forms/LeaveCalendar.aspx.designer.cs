@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class LeaveCalendar {
@@ -262,7 +262,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
+        protected global::Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
         /// employeeFilter control.
@@ -370,6 +370,6 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Controls.LeaveRequestControl leaveRequest1;
+        protected global::Web.UI.Forms.Controls.LeaveRequestControl leaveRequest1;
     }
 }

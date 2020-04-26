@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class AssetManagementPurchaseOrders {
@@ -199,7 +199,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.AssetCategoryFilter categoryIdFilter;
+        protected global::Web.UI.Forms.Reports.Controls.AssetCategoryFilter categoryIdFilter;
         
         /// <summary>
         /// supplierIdFilter control.
@@ -208,7 +208,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.SupplierFilter supplierIdFilter;
+        protected global::Web.UI.Forms.Reports.Controls.SupplierFilter supplierIdFilter;
         
         /// <summary>
         /// jobInfo1 control.
@@ -217,7 +217,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
+        protected global::Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
         /// apStatusFilter control.
@@ -226,7 +226,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus apStatusFilter;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus apStatusFilter;
         
         /// <summary>
         /// statusFilter control.
@@ -469,7 +469,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus apStatus;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus apStatus;
         
         /// <summary>
         /// status control.
@@ -541,7 +541,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.AssetCategoryFilter categoryId;
+        protected global::Web.UI.Forms.Reports.Controls.AssetCategoryFilter categoryId;
         
         /// <summary>
         /// qty control.
@@ -559,7 +559,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.SupplierFilter supplierId;
+        protected global::Web.UI.Forms.Reports.Controls.SupplierFilter supplierId;
         
         /// <summary>
         /// CurrencyControl control.
@@ -568,7 +568,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.CurrencyFilter CurrencyControl;
+        protected global::Web.UI.Forms.Reports.CurrencyFilter CurrencyControl;
         
         /// <summary>
         /// costPrice control.

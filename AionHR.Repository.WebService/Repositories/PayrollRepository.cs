@@ -1,13 +1,13 @@
-﻿ using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.Payroll;
+﻿ using Infrastructure.Configuration;
+using Infrastructure.Domain;
+using Model.Payroll;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     public class PayrollRepository:Repository<IEntity,string>,IPayrollRepository
     {

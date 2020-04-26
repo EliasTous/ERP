@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BranchAvailabilities.aspx.cs" Inherits="AionHR.Web.UI.Forms.BranchAvailabilities" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BranchAvailabilities.aspx.cs" Inherits="Web.UI.Forms.BranchAvailabilities" %>
 
 
 

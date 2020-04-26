@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms.Reports {
+namespace Web.UI.Forms.Reports {
     
     
     public partial class RT108 {
@@ -154,7 +154,7 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
+        protected global::Web.UI.Forms.Reports.Controls.EmployeeFilter employeeFilter;
         
         /// <summary>
         /// jobInfo1 control.
@@ -163,7 +163,7 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
+        protected global::Web.UI.Forms.Reports.JobInfoFilter jobInfo1;
         
         /// <summary>
         /// activeControl control.
@@ -172,7 +172,7 @@ namespace AionHR.Web.UI.Forms.Reports {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ActiveStatusFilter activeControl;
+        protected global::Web.UI.Forms.Reports.ActiveStatusFilter activeControl;
         
         /// <summary>
         /// countryIdCombo control.

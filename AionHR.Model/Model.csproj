@@ -7,8 +7,8 @@
     <ProjectGuid>{ECB87836-818F-45F5-AB7F-F46CDE3C447F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AionHR.Model</RootNamespace>
-    <AssemblyName>AionHR.Model</AssemblyName>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -458,9 +458,9 @@
     <Content Include="App_Readme\Transformer.NET\README.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
+    <ProjectReference Include="..\AionHR.Infrastructure\Infrastructure.csproj">
       <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
-      <Name>AionHR.Infrastructure</Name>
+      <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

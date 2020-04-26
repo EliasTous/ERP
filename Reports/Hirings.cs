@@ -513,7 +513,7 @@ public class Hirings : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Reports.RT102A);
+            this.objectDataSource1.DataSource = typeof(Model.Reports.RT102A);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // Hirings

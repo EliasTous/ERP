@@ -14,17 +14,17 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Services.Messaging.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Services.Messaging.Reports;
 
-namespace AionHR.Web.UI.Forms.Reports
+namespace Web.UI.Forms.Reports
 {
     public partial class RT01 : System.Web.UI.Page
     {
@@ -97,7 +97,7 @@ namespace AionHR.Web.UI.Forms.Reports
                 catch { }
                 try
                 {
-                    AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT01), null, null, null, null);
+                    AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.Reports.RT01), null, null, null, null);
                 }
                 catch (AccessDeniedException exp)
                 {
@@ -175,7 +175,7 @@ namespace AionHR.Web.UI.Forms.Reports
             req.Size = "1000";
             req.StartAt = "0";
             req.SortBy = "departmentName";
-            ListResponse<AionHR.Model.Reports.RT01> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT01>(req);
+            ListResponse<Model.Reports.RT01> resp = _reportsService.ChildGetAll<Model.Reports.RT01>(req);
             if (!resp.Success)
             {
                 X.MessageBox.ButtonText.Ok = Resources.Common.Ok;

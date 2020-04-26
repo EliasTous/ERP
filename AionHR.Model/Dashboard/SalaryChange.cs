@@ -1,12 +1,12 @@
-﻿using AionHR.Model.Attributes;
-using AionHR.Model.Employees.Profile;
+﻿using Model.Attributes;
+using Model.Employees.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.Dashboard
+namespace Model.Dashboard
 {
     [ClassIdentifier("81102", "81")]
     public class SalaryChange

@@ -1,12 +1,12 @@
-﻿using AionHR.Infrastructure.Domain;
+﻿using Infrastructure.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AionHR.Infrastructure.WebService;
+using Infrastructure.WebService;
 
-namespace AionHR.Model.Company.Structure
+namespace Model.Company.Structure
 {
     public interface ICompanyStructureRepository : IRepository<IEntity, string>,ICommonRepository
     {

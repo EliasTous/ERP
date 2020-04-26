@@ -14,36 +14,36 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Payroll;
-using AionHR.Infrastructure.JSON;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Model.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Model.Payroll;
+using Infrastructure.JSON;
+using Services.Messaging.Reports;
+using Model.Reports;
 using Reports;
-using AionHR.Model.TimeAttendance;
+using Model.TimeAttendance;
 using DevExpress;
 using DevExpress.XtraPrinting;
-using AionHR.Model.Attributes;
-using AionHR.Model.Access_Control;
-using AionHR.Services.Messaging.HelpFunction;
-using AionHR.Model.HelpFunction;
-using AionHR.Infrastructure.Session;
+using Model.Attributes;
+using Model.Access_Control;
+using Services.Messaging.HelpFunction;
+using Model.HelpFunction;
+using Infrastructure.Session;
 using System.Threading;
-using AionHR.Infrastructure.Tokens;
-using AionHR.Services.Implementations;
-using AionHR.Repository.WebService.Repositories;
-using AionHR.Model.SelfService;
+using Infrastructure.Tokens;
+using Services.Implementations;
+using Repository.WebService.Repositories;
+using Model.SelfService;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class PayrollGenerationSelfServices : System.Web.UI.Page
     {
@@ -1335,7 +1335,7 @@ namespace AionHR.Web.UI.Forms
 
                 ReportCompositeRequest req = GetRequest(payRef);
 
-                ListResponse<AionHR.Model.Reports.RT501> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT501>(req);
+                ListResponse<Model.Reports.RT501> resp = _reportsService.ChildGetAll<Model.Reports.RT501>(req);
                 if (!resp.Success)
                 {
 

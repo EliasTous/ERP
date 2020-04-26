@@ -1,18 +1,18 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.Session;
-using AionHR.Infrastructure.WebService;
-using AionHR.Model.MasterModule;
-using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
+﻿using Infrastructure.Domain;
+using Infrastructure.Session;
+using Infrastructure.WebService;
+using Model.MasterModule;
+using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     /// <summary>
     /// Class responsible for all operation of the system.

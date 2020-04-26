@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Model.System
+namespace Model.System
 {
   public  class ClassProperty
     {

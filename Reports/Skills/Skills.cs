@@ -4,7 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using System.Collections.Generic;
-using AionHR.Model.Reports;
+using Model.Reports;
 using System.Drawing.Printing;
 
 namespace Reports.Skills

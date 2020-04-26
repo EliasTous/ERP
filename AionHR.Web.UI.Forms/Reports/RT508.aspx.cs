@@ -14,22 +14,22 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Services.Messaging.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Services.Messaging.Reports;
 using System.Threading;
 using Reports;
-using AionHR.Model.Reports;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.Payroll;
+using Model.Reports;
+using Model.Employees.Profile;
+using Model.Payroll;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class RT508 : System.Web.UI.Page
     {
@@ -97,7 +97,7 @@ namespace AionHR.Web.UI.Forms
 
                     try
                     {
-                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Reports.RT401), null, null, null, null);
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.Reports.RT401), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)
                     {
@@ -207,14 +207,14 @@ namespace AionHR.Web.UI.Forms
             ReportGenericRequest req = new ReportGenericRequest();
             req.paramString = rep_params;
 
-            ListResponse<AionHR.Model.Reports.RT508> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT508>(req);
+            ListResponse<Model.Reports.RT508> resp = _reportsService.ChildGetAll<Model.Reports.RT508>(req);
 
             if (!resp.Success)
                 Common.ReportErrorMessage(resp, GetGlobalResourceObject("Errors", "Error_1").ToString(), GetGlobalResourceObject("Errors", "ErrorLogId").ToString());
 
             string getLan = _systemService.SessionHelper.getLangauge();
 
-            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            Dictionary<string, string> parameters = Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             PayrollLeavePaymentsReport h = new PayrollLeavePaymentsReport(parameters, getLan);
             h.RightToLeft = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeft.Yes : DevExpress.XtraReports.UI.RightToLeft.No;
             h.RightToLeftLayout = _systemService.SessionHelper.CheckIfArabicSession() ? DevExpress.XtraReports.UI.RightToLeftLayout.Yes : DevExpress.XtraReports.UI.RightToLeftLayout.No;

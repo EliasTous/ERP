@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ImportEmploymentStatus.aspx.cs" Inherits="AionHR.Web.UI.Forms.ImportEmploymentStatus" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ImportEmploymentStatus.aspx.cs" Inherits="Web.UI.Forms.ImportEmploymentStatus" %>
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

@@ -442,7 +442,7 @@ public class BranchesReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(AionHR.Model.Company.Structure.Branch);
+            this.objectDataSource1.DataSource = typeof(Model.Company.Structure.Branch);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // isInactiveString

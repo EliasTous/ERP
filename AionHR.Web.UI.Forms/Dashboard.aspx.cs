@@ -14,36 +14,36 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Services.Messaging.TaskManagement;
-using AionHR.Services.Messaging.LoanManagment;
-using AionHR.Model.LoadTracking;
-using AionHR.Model.LeaveManagement;
-using AionHR.Model.Employees.Profile;
-using AionHR.Services.Messaging.System;
-using AionHR.Model.Dashboard;
-using AionHR.Model.TimeAttendance;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Model.Reports;
-using AionHR.Model.Access_Control;
-using AionHR.Services.Messaging.TimeAttendance;
-using AionHR.Web.UI.Forms.ConstClasses;
-using AionHR.Services.Messaging.Employees;
-using AionHR.Model.Employees;
-using AionHR.Services.Messaging.DashBoard;
-using AionHR.Services.Messaging.Asset_Management;
-using AionHR.Model.AssetManagement;
-using AionHR.Services.Messaging.HelpFunction;
-using AionHR.Services.Messaging.LeaveManagement;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Services.Messaging.TaskManagement;
+using Services.Messaging.LoanManagment;
+using Model.LoadTracking;
+using Model.LeaveManagement;
+using Model.Employees.Profile;
+using Services.Messaging.System;
+using Model.Dashboard;
+using Model.TimeAttendance;
+using Services.Messaging.Reports;
+using Model.Reports;
+using Model.Access_Control;
+using Services.Messaging.TimeAttendance;
+using Web.UI.Forms.ConstClasses;
+using Services.Messaging.Employees;
+using Model.Employees;
+using Services.Messaging.DashBoard;
+using Services.Messaging.Asset_Management;
+using Model.AssetManagement;
+using Services.Messaging.HelpFunction;
+using Services.Messaging.LeaveManagement;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class Dashboard : System.Web.UI.Page
     {
@@ -163,7 +163,7 @@ namespace AionHR.Web.UI.Forms
                         //    throw new DashBoardAccessDenied();
                         //}
                         //else
-                        AccessControlApplier.ApplyAccessControlOnPage(typeof(AionHR.Model.Dashboard.Dashboard), null, null, null, null);
+                        AccessControlApplier.ApplyAccessControlOnPage(typeof(Model.Dashboard.Dashboard), null, null, null, null);
                     }
                     catch (AccessDeniedException exp)
                     {
@@ -725,7 +725,7 @@ namespace AionHR.Web.UI.Forms
         private ActiveAttendanceRequest GetActiveAttendanceRequest()
         {
            
-            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            Dictionary<string, string> parameters = Web.UI.Forms.Common.FetchReportParameters(texts.Text);
 
 
             ActiveAttendanceRequest req = new ActiveAttendanceRequest();
@@ -747,7 +747,7 @@ namespace AionHR.Web.UI.Forms
         {
             try
             {
-                Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+                Dictionary<string, string> parameters = Web.UI.Forms.Common.FetchReportParameters(texts.Text);
                 EmployeeCountRequest req = new EmployeeCountRequest();
                 req.BranchId = parameters.ContainsKey("branchId") ? parameters["branchId"].ToString() : "0";
                 req.DepartmentId = parameters.ContainsKey("departmentId") ? parameters["branchId"].ToString() : "0";
@@ -830,7 +830,7 @@ namespace AionHR.Web.UI.Forms
 
         private LoanManagementListRequest GetLoanManagementRequest()
         {
-            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            Dictionary<string, string> parameters = Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             LoanManagementListRequest req = new LoanManagementListRequest();
 
             req.BranchId = parameters.ContainsKey("branchId") ? parameters["branchId"].ToString() : "0";
@@ -883,7 +883,7 @@ namespace AionHR.Web.UI.Forms
 
         private DashboardRequest GetDashboardRequest()
         {
-            Dictionary<string, string> parameters = AionHR.Web.UI.Forms.Common.FetchReportParameters(texts.Text);
+            Dictionary<string, string> parameters = Web.UI.Forms.Common.FetchReportParameters(texts.Text);
             DashboardRequest req = new DashboardRequest();
 
             
@@ -994,7 +994,7 @@ namespace AionHR.Web.UI.Forms
 
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
-                ListResponse<AionHR.Model.LeaveManagement.PendingLA> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.PendingLA>(req);
+                ListResponse<Model.LeaveManagement.PendingLA> resp = _leaveManagementService.ChildGetAll<Model.LeaveManagement.PendingLA>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -1058,7 +1058,7 @@ namespace AionHR.Web.UI.Forms
 
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
-                ListResponse<AionHR.Model.LeaveManagement.pendingRA> resp = _leaveManagementService.ChildGetAll<AionHR.Model.LeaveManagement.pendingRA>(req);
+                ListResponse<Model.LeaveManagement.pendingRA> resp = _leaveManagementService.ChildGetAll<Model.LeaveManagement.pendingRA>(req);
                 if (!resp.Success)
                 {
                     Common.errorMessage(resp);
@@ -1448,7 +1448,7 @@ namespace AionHR.Web.UI.Forms
                                                                       
                 ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
-                ListResponse<AionHR.Model.LoadTracking.PendingLA> resp = _loanService.ChildGetAll<AionHR.Model.LoadTracking.PendingLA>(req);
+                ListResponse<Model.LoadTracking.PendingLA> resp = _loanService.ChildGetAll<Model.LoadTracking.PendingLA>(req);
 
                                                                          
                 if (!resp.Success)
@@ -3119,7 +3119,7 @@ namespace AionHR.Web.UI.Forms
                 //    EmployeePenaltyApprovalStore.DataBind();
                 //    return;
                 //}
-                ListResponse<AionHR.Model.Employees.PendingPA> response = _employeeService.ChildGetAll<AionHR.Model.Employees.PendingPA>(req);
+                ListResponse<Model.Employees.PendingPA> response = _employeeService.ChildGetAll<Model.Employees.PendingPA>(req);
 
                 if (!response.Success)
                 {
@@ -3205,7 +3205,7 @@ namespace AionHR.Web.UI.Forms
                     ReportGenericRequest req = new ReportGenericRequest();
                 req.paramString = rep_params;
               
-                ListResponse<AionHR.Model.AssetManagement.PendingPA> response = _assetManagementService.ChildGetAll<AionHR.Model.AssetManagement.PendingPA>(req);
+                ListResponse<Model.AssetManagement.PendingPA> response = _assetManagementService.ChildGetAll<Model.AssetManagement.PendingPA>(req);
 
                 if (!response.Success)
                 {

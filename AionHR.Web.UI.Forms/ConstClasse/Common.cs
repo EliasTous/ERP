@@ -1,7 +1,7 @@
-﻿using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
+﻿using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.System;
 using Ext.Net;
 using System;
 using System.Collections;
@@ -10,12 +10,12 @@ using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Web;
-using AionHR.Web.UI.Forms.App_GlobalResources;
+using Web.UI.Forms.App_GlobalResources;
 using System.Text.RegularExpressions;
-using AionHR.Model.Employees.Profile;
+using Model.Employees.Profile;
 using Microsoft.Practices.ServiceLocation;
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public static class Common
     {

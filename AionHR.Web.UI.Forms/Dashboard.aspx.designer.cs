@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms {
+namespace Web.UI.Forms {
     
     
     public partial class Dashboard {
@@ -1036,7 +1036,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.TimeVariationTypeFilter timeVariationType;
+        protected global::Web.UI.Forms.Reports.Controls.TimeVariationTypeFilter timeVariationType;
         
         /// <summary>
         /// Button3 control.
@@ -3007,7 +3007,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus LeveApprovalStatusControl;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus LeveApprovalStatusControl;
         
         /// <summary>
         /// LeaveApprovalReasonControl control.
@@ -3016,7 +3016,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ApprovalReasonFilter LeaveApprovalReasonControl;
+        protected global::Web.UI.Forms.Reports.ApprovalReasonFilter LeaveApprovalReasonControl;
         
         /// <summary>
         /// returnNotes control.
@@ -3322,7 +3322,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus TimeApprovalStatusControl;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus TimeApprovalStatusControl;
         
         /// <summary>
         /// TimeApprovalReasonControl control.
@@ -3331,7 +3331,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ApprovalReasonFilter TimeApprovalReasonControl;
+        protected global::Web.UI.Forms.Reports.ApprovalReasonFilter TimeApprovalReasonControl;
         
         /// <summary>
         /// justification control.
@@ -3556,7 +3556,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus LoanApprovalStatusControl;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus LoanApprovalStatusControl;
         
         /// <summary>
         /// LoanApprovalReasonControl control.
@@ -3565,7 +3565,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ApprovalReasonFilter LoanApprovalReasonControl;
+        protected global::Web.UI.Forms.Reports.ApprovalReasonFilter LoanApprovalReasonControl;
         
         /// <summary>
         /// effectiveDate control.
@@ -4384,7 +4384,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus PurchaseApprovalStatusControl;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus PurchaseApprovalStatusControl;
         
         /// <summary>
         /// PurchasApprovalReasonControl control.
@@ -4393,7 +4393,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ApprovalReasonFilter PurchasApprovalReasonControl;
+        protected global::Web.UI.Forms.Reports.ApprovalReasonFilter PurchasApprovalReasonControl;
         
         /// <summary>
         /// qty control.
@@ -4501,7 +4501,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus PenaltyApprovalStatusControl;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus PenaltyApprovalStatusControl;
         
         /// <summary>
         /// PAAmount control.
@@ -4645,7 +4645,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.Controls.ApprovalStatus LeaveReturnApprovalControl;
+        protected global::Web.UI.Forms.Reports.Controls.ApprovalStatus LeaveReturnApprovalControl;
         
         /// <summary>
         /// LeaveReturnApprovalReasonControl control.
@@ -4654,7 +4654,7 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Reports.ApprovalReasonFilter LeaveReturnApprovalReasonControl;
+        protected global::Web.UI.Forms.Reports.ApprovalReasonFilter LeaveReturnApprovalReasonControl;
         
         /// <summary>
         /// leaveReturnComments control.
@@ -4708,6 +4708,6 @@ namespace AionHR.Web.UI.Forms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AionHR.Web.UI.Forms.Controls.LeaveRequestControl leaveRequest1;
+        protected global::Web.UI.Forms.Controls.LeaveRequestControl leaveRequest1;
     }
 }

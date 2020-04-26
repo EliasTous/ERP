@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CheckTypes.aspx.cs" Inherits="AionHR.Web.UI.Forms.CheckTypes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CheckTypes.aspx.cs" Inherits="Web.UI.Forms.CheckTypes" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

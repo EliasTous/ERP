@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TerminationReasons.aspx.cs" Inherits="AionHR.Web.UI.Forms.TerminationReasons" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TerminationReasons.aspx.cs" Inherits="Web.UI.Forms.TerminationReasons" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

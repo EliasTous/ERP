@@ -1,5 +1,5 @@
-﻿using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging.Reports;
+﻿using Services.Interfaces;
+using Services.Messaging.Reports;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms.Reports.Controls
+namespace Web.UI.Forms.Reports.Controls
 {
     public partial class DateFilter : System.Web.UI.UserControl
     {

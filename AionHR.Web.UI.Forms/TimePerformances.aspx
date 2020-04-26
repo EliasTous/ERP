@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TimePerformances.aspx.cs" Inherits="AionHR.Web.UI.Forms.TimePerformances" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TimePerformances.aspx.cs" Inherits="Web.UI.Forms.TimePerformances" %>
 
 
 

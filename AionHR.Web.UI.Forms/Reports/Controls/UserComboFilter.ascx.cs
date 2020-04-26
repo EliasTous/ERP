@@ -1,8 +1,8 @@
-﻿using AionHR.Model.System;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Services.Messaging.System;
+﻿using Model.System;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.Reports;
+using Services.Messaging.System;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -12,7 +12,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms.Reports.Controls
+namespace Web.UI.Forms.Reports.Controls
 {
     public partial class UserComboFilter : System.Web.UI.UserControl, IComboControl
     {

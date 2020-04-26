@@ -14,21 +14,21 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Employees.Profile;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Employees.Profile;
 using System.Net;
-using AionHR.Infrastructure.JSON;
-using AionHR.Model.Attributes;
-using AionHR.Model.Access_Control;
-using AionHR.Web.UI.Forms.ConstClasses;
+using Infrastructure.JSON;
+using Model.Attributes;
+using Model.Access_Control;
+using Web.UI.Forms.ConstClasses;
 
-namespace AionHR.Web.UI.Forms.EmployeePages
+namespace Web.UI.Forms.EmployeePages
 {
     public partial class Dependants : System.Web.UI.Page
     {

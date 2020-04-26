@@ -7,8 +7,8 @@
     <ProjectGuid>{9B6559D9-0FDF-4F9B-8CE0-0DF9860E4057}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AionHR.Repository.WebService</RootNamespace>
-    <AssemblyName>AionHR.Repository.WebService</AssemblyName>
+    <RootNamespace>Repository.WebService</RootNamespace>
+    <AssemblyName>Repository.WebService</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -72,13 +72,13 @@
     <Compile Include="Repositories\TimeAttendanceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
+    <ProjectReference Include="..\AionHR.Infrastructure\Infrastructure.csproj">
       <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
-      <Name>AionHR.Infrastructure</Name>
+      <Name>Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
+    <ProjectReference Include="..\AionHR.Model\Model.csproj">
       <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
-      <Name>AionHR.Model</Name>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Infrastructure.JSON
+namespace Infrastructure.JSON
 {
     /// <summary>
     /// Contract used to resolve a json data

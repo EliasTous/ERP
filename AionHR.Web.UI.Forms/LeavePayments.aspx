@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LeavePayments.aspx.cs" Inherits="AionHR.Web.UI.Forms.LeavePayments" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LeavePayments.aspx.cs" Inherits="Web.UI.Forms.LeavePayments" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

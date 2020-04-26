@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT106.aspx.cs" Inherits="AionHR.Web.UI.Forms.Reports.RT106" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RT106.aspx.cs" Inherits="Web.UI.Forms.Reports.RT106" %>
 <%@ Register Assembly="DevExpress.Web.v18.2, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <%@ Register Assembly="DevExpress.XtraReports.v18.2.Web.WebForms, Version=18.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>

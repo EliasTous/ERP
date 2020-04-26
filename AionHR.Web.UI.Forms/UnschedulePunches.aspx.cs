@@ -14,23 +14,23 @@ using System.Xml;
 using System.Xml.Xsl;
 using Ext.Net;
 using Newtonsoft.Json;
-using AionHR.Services.Interfaces;
+using Services.Interfaces;
 using Microsoft.Practices.ServiceLocation;
-using AionHR.Web.UI.Forms.Utilities;
-using AionHR.Model.Company.News;
-using AionHR.Services.Messaging;
-using AionHR.Model.Company.Structure;
-using AionHR.Model.System;
-using AionHR.Model.Attendance;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Web.UI.Forms.ConstClasses;
-using AionHR.Services.Messaging.Reports;
-using AionHR.Model.TimeAttendance;
-using AionHR.Model.Reports;
+using Web.UI.Forms.Utilities;
+using Model.Company.News;
+using Services.Messaging;
+using Model.Company.Structure;
+using Model.System;
+using Model.Attendance;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Web.UI.Forms.ConstClasses;
+using Services.Messaging.Reports;
+using Model.TimeAttendance;
+using Model.Reports;
 
 
-namespace AionHR.Web.UI.Forms
+namespace Web.UI.Forms
 {
     public partial class UnschedulePunches : System.Web.UI.Page
     {
@@ -497,7 +497,7 @@ namespace AionHR.Web.UI.Forms
 
             bool rtl = _systemService.SessionHelper.CheckIfArabicSession();
 
-            //ListResponse<AionHR.Model.Reports.RT309> resp = _reportsService.ChildGetAll<AionHR.Model.Reports.RT309>(req);
+            //ListResponse<Model.Reports.RT309> resp = _reportsService.ChildGetAll<Model.Reports.RT309>(req);
             //if (!resp.Success)
             //{
             //    Common.errorMessage(resp);
@@ -510,7 +510,7 @@ namespace AionHR.Web.UI.Forms
                 Common.errorMessage(resp);
                 return;
             }
-            AionHR.Web.UI.Forms.Utilities.Functions test = new Functions();
+            Web.UI.Forms.Utilities.Functions test = new Functions();
             //DateTime temp;
             resp.Items.ForEach(x =>
             {

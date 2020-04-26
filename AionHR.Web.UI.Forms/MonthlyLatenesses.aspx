@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MonthlyLatenesses.aspx.cs" Inherits="AionHR.Web.UI.Forms.MonthlyLatenesses" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MonthlyLatenesses.aspx.cs" Inherits="Web.UI.Forms.MonthlyLatenesses" %>
 
 
 <%@ Register Assembly="Ext.Net" Namespace="Ext.Net" TagPrefix="ext" %>

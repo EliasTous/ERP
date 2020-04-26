@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="GovernmentOrganizationFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.GovernmentOrganizationFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="GovernmentOrganizationFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.GovernmentOrganizationFilter" %>
 
         <ext:ComboBox runat="server" QueryMode="Local"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="goId"  >
             <Store>

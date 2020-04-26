@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AionHR.Web.UI.Forms.App_LocalResources {
+namespace Web.UI.Forms.App_LocalResources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AionHR.Web.UI.Forms.App_LocalResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AionHR.Web.UI.Forms.App_LocalResources.EmployeeCals.aspx", typeof(EmployeeCals_aspx).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Web.UI.Forms.App_LocalResources.EmployeeCals.aspx", typeof(EmployeeCals_aspx).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

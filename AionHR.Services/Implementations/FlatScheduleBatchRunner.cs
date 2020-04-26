@@ -1,11 +1,11 @@
-﻿using AionHR.Infrastructure.Domain;
-using AionHR.Infrastructure.Session;
-using AionHR.Infrastructure.Tokens;
-using AionHR.Model.Employees.Profile;
-using AionHR.Model.System;
-using AionHR.Model.TimeAttendance;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
+﻿using Infrastructure.Domain;
+using Infrastructure.Session;
+using Infrastructure.Tokens;
+using Model.Employees.Profile;
+using Model.System;
+using Model.TimeAttendance;
+using Services.Interfaces;
+using Services.Messaging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Services.Implementations
+namespace Services.Implementations
 {
     public class FlatScheduleBatchRunner : ImportBatchRunner<FlatSchedule>
 

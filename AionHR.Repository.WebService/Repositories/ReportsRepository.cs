@@ -1,14 +1,14 @@
-﻿using AionHR.Infrastructure.Configuration;
-using AionHR.Infrastructure.Domain;
-using AionHR.Model.Reports;
-using AionHR.Model.TimeAttendance;
+﻿using Infrastructure.Configuration;
+using Infrastructure.Domain;
+using Model.Reports;
+using Model.TimeAttendance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AionHR.Repository.WebService.Repositories
+namespace Repository.WebService.Repositories
 {
     public class ReportsRepository:Repository<IEntity,string>,IReportsRepository
     {
@@ -50,12 +50,12 @@ namespace AionHR.Repository.WebService.Repositories
             ChildGetAllLookup.Add(typeof(RT304), "RT304");
             ChildGetAllLookup.Add(typeof(Model.Reports.RT305), "RT305");
             ChildGetAllLookup.Add(typeof(RT306), "RT306");
-            ChildGetAllLookup.Add(typeof(AionHR.Model.Reports.RT307), "RT307");
-            ChildGetAllLookup.Add(typeof(AionHR.Model.Reports.RT308), "RT308");
-            ChildGetAllLookup.Add(typeof(AionHR.Model.Reports.RT309), "RT309");
-            ChildGetAllLookup.Add(typeof(AionHR.Model.Reports.RT311), "RT311");
+            ChildGetAllLookup.Add(typeof(Model.Reports.RT307), "RT307");
+            ChildGetAllLookup.Add(typeof(Model.Reports.RT308), "RT308");
+            ChildGetAllLookup.Add(typeof(Model.Reports.RT309), "RT309");
+            ChildGetAllLookup.Add(typeof(Model.Reports.RT311), "RT311");
             ChildGetAllLookup.Add(typeof(RT310), "RT310");
-            ChildGetAllLookup.Add(typeof(AionHR.Model.Attendance.AttendanceDay), "RT312");
+            ChildGetAllLookup.Add(typeof(Model.Attendance.AttendanceDay), "RT312");
 
             ChildGetAllLookup.Add(typeof(RT401), "RT401");
             ChildGetAllLookup.Add(typeof(RT402), "RT402");

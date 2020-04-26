@@ -1,11 +1,11 @@
-﻿using AionHR.Infrastructure.WebService;
-using AionHR.Model.MasterModule;
-using AionHR.Model.System;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.System;
+﻿using Infrastructure.WebService;
+using Model.MasterModule;
+using Model.System;
+using Services.Messaging;
+using Services.Messaging.System;
 using System.Collections.Generic;
 
-namespace AionHR.Services.Interfaces
+namespace Services.Interfaces
 {
     /// <summary>
     /// Interface that hold the methods of a service

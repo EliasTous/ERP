@@ -1,10 +1,10 @@
-﻿using AionHR.Model.AssetManagement;
-using AionHR.Model.Employees.Leaves;
-using AionHR.Model.Employees.Profile;
-using AionHR.Services.Interfaces;
-using AionHR.Services.Messaging;
-using AionHR.Services.Messaging.Asset_Management;
-using AionHR.Services.Messaging.Reports;
+﻿using Model.AssetManagement;
+using Model.Employees.Leaves;
+using Model.Employees.Profile;
+using Services.Interfaces;
+using Services.Messaging;
+using Services.Messaging.Asset_Management;
+using Services.Messaging.Reports;
 using Ext.Net;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -14,7 +14,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AionHR.Web.UI.Forms.Reports.Controls
+namespace Web.UI.Forms.Reports.Controls
 {
    
     public partial class AssetFilter : System.Web.UI.UserControl

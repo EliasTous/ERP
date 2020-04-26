@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SecurityGroupsFilter.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.SecurityGroupsFilter" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SecurityGroupsFilter.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.SecurityGroupsFilter" %>
 <ext:ComboBox   AnyMatch="true" CaseSensitive="false"  runat="server" QueryMode="Local" Width="120"  ForceSelection="true" TypeAhead="true" MinChars="1" ValueField="recordId" DisplayField="name" ID="groupId" >
             <Store>
                 <ext:Store runat="server" ID="groupsStore">

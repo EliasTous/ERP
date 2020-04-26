@@ -7,8 +7,8 @@
     <ProjectGuid>{F60BFEAF-3B3B-47C5-9DA0-AC8892DC9BE8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AionHR.Services</RootNamespace>
-    <AssemblyName>AionHR.Services</AssemblyName>
+    <RootNamespace>Services</RootNamespace>
+    <AssemblyName>Services</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -267,13 +267,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AionHR.Infrastructure\AionHR.Infrastructure.csproj">
+    <ProjectReference Include="..\AionHR.Infrastructure\Infrastructure.csproj">
       <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
-      <Name>AionHR.Infrastructure</Name>
+      <Name>Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AionHR.Model\AionHR.Model.csproj">
+    <ProjectReference Include="..\AionHR.Model\Model.csproj">
       <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
-      <Name>AionHR.Model</Name>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

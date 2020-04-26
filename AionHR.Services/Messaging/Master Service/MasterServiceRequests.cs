@@ -1,4 +1,4 @@
-﻿using AionHR.Services.Messaging;
+﻿using Services.Messaging;
 using System.Collections.Generic;
 
 public class GetAccountRequest:RequestBase

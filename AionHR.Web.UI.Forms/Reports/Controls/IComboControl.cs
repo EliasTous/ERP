@@ -1,4 +1,4 @@
-﻿namespace AionHR.Web.UI.Forms.Reports.Controls
+﻿namespace Web.UI.Forms.Reports.Controls
 {
     public interface IComboControl
     {

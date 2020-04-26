@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WeekPicker.ascx.cs" Inherits="AionHR.Web.UI.Forms.Reports.Controls.WeekPicker" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WeekPicker.ascx.cs" Inherits="Web.UI.Forms.Reports.Controls.WeekPicker" %>
 
 <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
 <script src="../Scripts/jquery-ui-min.js" type="text/javascript"></script>
