@@ -458,7 +458,7 @@
     <Content Include="App_Readme\Transformer.NET\README.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AionHR.Infrastructure\Infrastructure.csproj">
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>

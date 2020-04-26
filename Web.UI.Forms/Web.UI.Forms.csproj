@@ -3554,25 +3554,25 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AionHR.Infrastructure\Infrastructure.csproj">
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AionHR.Model\Model.csproj">
+    <ProjectReference Include="..\Model\Model.csproj">
       <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
       <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Repository.WebService\Repository.WebService.csproj">
-      <Project>{9b6559d9-0fdf-4f9b-8ce0-0df9860e4057}</Project>
-      <Name>Repository.WebService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AionHR.Services\Services.csproj">
-      <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
-      <Name>Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Reports\Reports.csproj">
       <Project>{c4b2b519-7fe6-4ad2-9c32-1076de632580}</Project>
       <Name>Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository.WebService\Repository.WebService.csproj">
+      <Project>{9b6559d9-0fdf-4f9b-8ce0-0df9860e4057}</Project>
+      <Name>Repository.WebService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{f60bfeaf-3b3b-47c5-9da0-ac8892dc9be8}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

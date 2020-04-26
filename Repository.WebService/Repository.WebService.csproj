@@ -72,11 +72,11 @@
     <Compile Include="Repositories\TimeAttendanceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AionHR.Infrastructure\Infrastructure.csproj">
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{9955b92f-f16c-49b9-99f3-4919d3327263}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AionHR.Model\Model.csproj">
+    <ProjectReference Include="..\Model\Model.csproj">
       <Project>{ecb87836-818f-45f5-ab7f-f46cde3c447f}</Project>
       <Name>Model</Name>
     </ProjectReference>
