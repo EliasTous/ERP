@@ -250,10 +250,6 @@
     <Content Include="RuleTriggers.aspx" />
     <Content Include="Scripts\Absent.js" />
     <Content Include="Scripts\AdminTemplates.js" />
-    <Content Include="Scripts\moment-with-locales.js" />
-    <Content Include="Scripts\moment-with-locales.min.js" />
-    <Content Include="Scripts\moment.min.js" />
-    <Content Include="Scripts\momentLocale.js" />
     <Content Include="Scripts\ReportsCommon.js" />
     <Content Include="Scripts\SystemDefaults.js" />
     <Content Include="SelfServiceResetPasswords.aspx" />
@@ -359,13 +355,10 @@
     <Content Include="Images\reports.png" />
     <Content Include="Images\schedule.png" />
     <Content Include="Images\SelfServiceIcon.png" />
-    <Content Include="Images\Tools\accept.png" />
     <Content Include="Images\Tools\application_edit.png" />
     <Content Include="Images\Tools\attach.png" />
-    <Content Include="Images\Tools\collapse-all.gif" />
     <Content Include="Images\Tools\delete.png" />
     <Content Include="Images\Tools\edit.png" />
-    <Content Include="Images\Tools\expand-all.gif" />
     <Content Include="Images\Tools\group.png" />
     <Content Include="Images\Tools\print.png" />
     <Content Include="ImportAttendance.aspx" />
@@ -695,6 +688,7 @@
     <Content Include="App_Readme\Ext.NET\CHANGELOG.md" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="Scripts\jquery-min-1.4.2.js" />
+    <None Include="Properties\PublishProfiles\SapienzaERP - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

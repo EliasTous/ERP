@@ -182,9 +182,7 @@ namespace Web.UI.Forms
                     store.DataSource = new object[]
                     {
                 new object[] { "1", "English" },
-                new object[] { "2", "عربي" },
-                new object[] { "3", "Français" },
-                 new object[] { "4", "Deutsch" }
+               
                     };
                 }
                 languageId.HideBaseTrigger = true;

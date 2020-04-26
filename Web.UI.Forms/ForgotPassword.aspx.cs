@@ -69,6 +69,20 @@ namespace Web.UI.Forms
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
+
+            Store store = this.languageId.GetStore();
+            store.DataSource = new object[]
+            {
+                new object[] { "1", "English" },
+
+            };
+        
+            languageId.HideBaseTrigger = true;
+            this.languageId.Call("getTrigger(0).hide");
+            languageId.Select(0);
+
             if (Request.QueryString["timeout"] != null && Request.QueryString["timeout"].ToString() == "yes")
             {
                 lblError.Text = Resources.Common.SessionDisconnected;
@@ -76,8 +90,43 @@ namespace Web.UI.Forms
             ResourceManager1.RegisterIcon(Icon.Tick);
             ResourceManager1.RegisterIcon(Icon.Error);
         }
+        protected void Change_language(object sender, DirectEventArgs e)
+        {
+            string language = e.ExtraParams["value"];
 
-        protected void login_Click(object sender, EventArgs e)
+            if (string.IsNullOrEmpty(language))
+            {
+                language = "1";
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+
+
+            switch (language)
+            {
+                case "1":
+                    {
+                        Response.Redirect("~/Login.aspx");
+                    }
+                    break;
+                case "2":
+                    Response.Redirect("~/ARLogin.aspx");
+                    break;
+                case "3":
+                    Response.Redirect("~/FRLogin.aspx");
+                    break;
+                case "4":
+                    Response.Redirect("~/DELogin.aspx");
+                    break;
+                default:
+                    Response.Redirect("~/Login.aspx");
+                    break;
+
+
+            }
+
+        }
+            protected void login_Click(object sender, EventArgs e)
         {
             GetAccountRequest request = new GetAccountRequest();
             request.Account = tbAccountName.Text;

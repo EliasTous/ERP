@@ -28,23 +28,78 @@
     <div class="header">
         <div class="left">
            <div class="logoImage">
-                <img src="Images/logo-light.png" style="margin-top:20px;margin-left:5px;margin-right:5px;"  width="73" height="20" />
-            </div>
+            <%--    <img src="Images/logo-light.png" style="margin-top:20px;margin-left:5px;margin-right:5px;"  width="73" height="20" />
+            </div>--%>
             <div class="title">
                 <div style="width: 400px">
                     <span class="title-sub">
                         <asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:Common ,ApplicationTitle%>" /></span>
                 </div>
                 <div class="SubTitles">
-                    <span class="subTitleSpan">
-                        <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /></span>
+                   <%-- <span class="subTitleSpan">
+                        <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /></span>--%>
                 </div>
             </div>
         </div>
-        <div class="right">
-            <div class="button-group" style="margin-top: 15px;">
-                <a class="button" href="ARForgotPassword.aspx">
-                    <asp:Literal ID="Literal8" runat="server" Text="عربي" /></a>
+            </div>
+        <div class="right" >
+            <div class="button-group" style=" margin-top: 15px;">
+              <ext:ComboBox FieldStyle="background-color:#6fb0e9; color: white;text-align: center; font-weight: bold; 
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;"  
+            ID="languageId"
+            runat="server"
+            DisplayField="text"
+          ValueField="value" ForceSelection="true" Width="75"  AnyMatch="true"   CaseSensitive="false"  QueryMode="Local"  TypeAhead="true" MinChars="1" >
+            <Store>
+                <ext:Store runat="server">
+                    <Model>
+                        <ext:Model runat="server">
+                            <Fields>
+                                <ext:ModelField Name="value" />
+                                <ext:ModelField Name="text" />
+                          
+                            </Fields>
+                        </ext:Model>
+                    </Model>
+                    <Reader>
+                        <ext:ArrayReader />
+                    </Reader>
+                </ext:Store>
+            </Store>
+          <Listeners>
+                 <FocusEnter Handler="App.languageId.onTriggerClick();"   />    
+                   
+            </Listeners>
+            <DirectEvents>
+                <Select OnEvent="Change_language" >
+                     <ExtraParams>
+                                <ext:Parameter Name="value" Value="this.value" Mode="Raw" />
+                              
+                            </ExtraParams>
+                    </Select>
+            </DirectEvents>
+            <ListConfig>
+                <Tpl runat="server" >
+                    <Html>
+                        <ul class="x-list-plain">
+                            <tpl for=".">
+                                <li role="option" class="x-boundlist-item" style="background-color:#6fb0e9;color:white; text-align: center;font-weight: bold;
+                                                  font-size: 15px;
+                                                     text-decoration: none;
+                                                             text-align: center;
+                                                          cursor: pointer;">
+                                    {text}
+                                </li>
+                            </tpl>
+                        </ul>
+                    </Html>
+                </Tpl>                              
+            </ListConfig> 
+        </ext:ComboBox>
+    
             </div>
         </div>
     </div>

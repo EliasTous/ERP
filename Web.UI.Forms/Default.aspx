@@ -11,35 +11,7 @@
     <script type="text/javascript" src="Scripts/app.js?id=153"></script>
     <script type="text/javascript" src="Scripts/Common.js?id=6"></script>
     <script type="text/javascript" src="Scripts/default.js?id=17"></script>
-    <script type="text/javascript">
-
-       
-        //var beforeMenu = function (pnl, tab, menu) {
-        //    menu.items.get(0).setText(tab.title);
-
-        //    var item = menu.getComponent(5),
-        //        lastTab = pnl.items.get(pnl.items.getCount() - 1);
-        //    alert('test');
-        //    item.show();
-        //    //if (tab.id == "tabPanel") {
-        //    //    item.show();
-
-        //    //    if (lastTab.isTabMenuVisible()) {
-        //    //        item.setText("Hide Menu for last Tab");
-        //    //        item.handler = function () {
-        //    //            lastTab.hideTabMenu();
-        //    //        };
-        //    //    } else {
-        //    //        item.setText("Show Menu for last Tab");
-        //    //        item.handler = function () {
-        //    //            lastTab.showTabMenu();
-        //    //        };
-        //    //    }
-        //    //} else {
-        //    //    item.hide();
-        //    //}
-        //};
-    </script>
+  
  
     <title>
         <asp:Literal ID="Literal1" runat="server" Text="<%$Resources:Common , ApplicationTitle%>" />
@@ -175,8 +147,7 @@
 
     
 
-    <%--<ext:Hidden runat="server" ID="CurrentClassRef" />
-    <ext:Hidden runat="server" ID="CurrentRecordId" />--%>
+   
     <ext:Hidden runat="server" ID="activeModule" />
     <ext:ResourceManager ID="ResourceManager1" runat="server" Theme="Neptune" IDMode="Explicit" AjaxTimeout="1200000" />
     <ext:Viewport ID="Viewport1" runat="server" Layout="border">
@@ -186,10 +157,10 @@
                     <ext:Container runat="server">
                         <Content>
                             <div class="logoImage">
-                                <img  src="Images/logo-light.png" style="margin-top: 20px; margin-left: 5px; margin-right: 5px;" width="73" height="20" />
+                                <%--<img  src="Images/logo-light.png" style="margin-top: 20px; margin-left: 5px; margin-right: 5px;" width="73" height="20" />--%>
                             </div>
-                            <div class="title">
-                                <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /><asp:Literal ID="CompanyNameLiteral" runat="server" Text="" /></span>
+                            <div class="title" style="margin-left: 10px;">
+                                <asp:Literal ID="Literal3"   runat="server" Text="<%$ Resources:Common ,ApplicationModule%>" /><asp:Literal ID="CompanyNameLiteral" runat="server" Text="" /></span>
                                 <br />
                                 <asp:Literal ID="username" runat="server" Text="" />
                             </div>

@@ -33,7 +33,7 @@
     <div class="header">
         <div class="left">
             <div class="logoImage">
-                <img src="Images/logo-light.png" style="margin-top:20px;margin-left:5px;margin-right:5px;"  width="73" height="20" />
+           <%--     <img src="Images/logo-light.png" style="margin-top:20px;margin-left:5px;margin-right:5px;"  width="73" height="20" />--%>
             </div>
             <div class="title">
                 <div style="width: 400px">

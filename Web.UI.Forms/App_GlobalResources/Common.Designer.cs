@@ -178,7 +178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 
+        ///   Looks up a localized string similar to Enterprise Resource Planning.
         /// </summary>
         internal static string ApplicationTitle {
             get {
@@ -700,7 +700,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to © 2017  All rights reserved..
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string CopyRight {
             get {

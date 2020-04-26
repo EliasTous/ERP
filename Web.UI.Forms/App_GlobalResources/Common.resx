@@ -154,7 +154,7 @@
     <value />
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>AionHR</value>
+    <value>Enterprise Resource Planning</value>
   </data>
   <data name="Approvals" xml:space="preserve">
     <value>Approvals</value>
@@ -298,7 +298,7 @@
     <value>Confirmation</value>
   </data>
   <data name="CopyRight" xml:space="preserve">
-    <value>© 2017  All rights reserved.</value>
+    <value />
   </data>
   <data name="COUNT" xml:space="preserve">
     <value>Count</value>
